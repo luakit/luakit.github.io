@@ -1,0 +1,135 @@
+html {
+	box-sizing: border-box;
+}
+
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
+body {
+	background-color: #F3EFE7;
+	color: #333;
+	padding: 0;
+	font-family: "Fira Sans", sans-serif;
+	font-size: 1.0em;
+	position: relative; 
+	line-height: 1.5;
+	margin: 0 auto;
+}
+
+#forkme {
+	position: absolute;
+	top: 0; right: 0; border: 0;
+}
+
+/* Link styles */
+a {
+	color: #0072b1;
+}
+a:hover {
+	color: #7DC1fF;
+}
+
+/* Nav */
+nav {
+	background: #efece1;
+	border-bottom: 1px solid #D4CBB6;
+	padding: 12px;
+	margin-bottom: 20px;
+	text-align: center;
+	font-size: 1.0em;
+	font-weight: 400;
+}
+nav > a {
+	color: #3F3D32;
+	padding: 10px;
+	text-decoration: none;
+	vertical-align: baseline;
+}
+
+/* Header */
+header {
+	margin: 3em 0;
+}
+header > h1 {
+	font-size: 4.8em;
+	margin: 0;
+	color: #888;
+	text-align: center;
+	font-weight: 500;
+}
+header > h1 > a {
+	color: #8a8a8a;
+	text-decoration: none;
+}
+header > h1 > a:hover { color: #268bd2; }
+header > h1 > a:active { color: #175784; }
+header > div {
+	margin: 0;
+	font-size: 1.2em;
+	font-style: italic;
+	text-align: center;
+	font-weight: 400;
+}
+
+/* @media screen and (min-width: 300px) { header > h1 { */
+/* 	font-size: calc( 26.4px + 31.2 * (100vw - 400px) / (800 - 400) ); */
+/* } } */
+
+/* Code */
+code, pre {
+	background: #ddd;
+	color: #333;
+	padding: 0.2em;
+	overflow-x: scroll;
+}
+pre {
+	padding: 1em;
+	font-size: 1.1em;
+	border-left: 3px solid #aaa;
+}
+
+pre:before { content: '$ '; }
+
+/* Main content */
+#container {
+	margin: 0 auto;
+	max-width: 700px;
+	padding: 0 1em;
+	padding: 0 5vw;
+}
+#container > h2 {
+	font-size: 1.5em;
+	color: #268bd2;
+}
+#container > h3 {
+	font-size: 1.2em;
+	margin-bottom: 0.5em;
+	color: #1c689e;
+}
+
+/* Footer */
+footer { text-align:center; margin: 30px 0; font-style: italic; }
+
+/* Screenshot thumbnails */
+.thumb {
+	padding: .25rem;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-radius: .25rem;
+	margin: 2%;
+	width: 46%;
+	height: auto;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.thumb > div {
+	font-size: 0.8em;
+	padding: 0.25rem;
+}
+
+.thumb > a > img {
+	width: 100%;
+	height: auto;
+}
