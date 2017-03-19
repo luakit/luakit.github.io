@@ -34,7 +34,7 @@ a:hover {
 nav {
 	background: #efece1;
 	border-bottom: 1px solid #D4CBB6;
-	padding: 12px;
+	padding: 7px;
 	margin-bottom: 20px;
 	text-align: center;
 	font-size: 1.0em;
@@ -42,9 +42,10 @@ nav {
 }
 nav > a {
 	color: #3F3D32;
-	padding: 10px;
+	padding: 0 10px;
 	text-decoration: none;
 	vertical-align: baseline;
+	line-height: 2em;
 }
 
 /* Header */
