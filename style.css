@@ -73,10 +73,6 @@ header > div {
 	font-weight: 400;
 }
 
-/* @media screen and (min-width: 300px) { header > h1 { */
-/* 	font-size: calc( 26.4px + 31.2 * (100vw - 400px) / (800 - 400) ); */
-/* } } */
-
 /* Code */
 code, pre {
 	background: #ddd;
