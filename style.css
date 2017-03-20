@@ -95,6 +95,9 @@ pre:before { content: '$ '; }
 	padding: 0 1em;
 	padding: 0 5vw;
 }
+@media screen and (min-width: 800px) { #container {
+	padding: 0 40px;
+} }
 #container > h2 {
 	font-size: 1.5em;
 	color: #268bd2;
