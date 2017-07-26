@@ -1,10 +1,10 @@
 local util = require "build-utils.util"
 -- Use luakit's customized markdown: it linkifies luakit:// URIs
-package.path = "../luakit/lib/?.lua;" .. package.path
+package.path = "../../luakit/lib/?.lua;" .. package.path
 local markdown = require "markdown"
 
 local opts = {
-    changelog = "../luakit/CHANGELOG.md",
+    changelog = "../../luakit/CHANGELOG.md",
     template = "build-utils/news_template.html",
     target_dir = "news",
 }
