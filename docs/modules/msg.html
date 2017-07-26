@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset='UTF-8'>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Luakit API Documentation</title>
+	<link rel="icon" type="image/png" href="favicon.png" />
+	<style type="text/css">html {
+	color: #333;
+}
+body {
+    margin: 0;
+    font-family: "Helvetica", "Arial", sans-serif;
+}
+
+#hdr {
+    border-bottom: 1px solid #e0e5e6;
+    background-color: #f6f8f8;
+}
+
+#hdr > h1 {
+    color: #555;
+    margin: 0 auto;
+    max-width: 910px;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+}
+
+#wrap {
+    font-size: 14px;
+    line-height: 1.3;
+    padding: 2rem;
+    margin: 0 auto;
+    justify-content: center;
+    max-width: 910px;
+}
+
+h1, h2, strong {
+    line-height: 1.1;
+    margin: 0;
+    color: #111;
+}
+
+.tagline {
+    color: #555;
+    margin: 0 0 1rem;
+    font-size: 1.4rem;
+    font-weight: normal;
+}
+
+h1 { margin: 0 0 0.7rem; }
+h2 { margin: 1.5rem 0 1rem; }
+h4 { margin: 1rem 0; }
+
+code, pre
+{
+	background: #f5f7f9;
+	color: #334;
+}
+code {
+	border: 1px solid #dfdfe9;
+	padding: 0px 4px;
+}
+pre > code {
+    border: none;
+    padding: 0;
+}
+pre {
+	padding: 1rem 1.2rem;
+	border-left: 2px solid #69c;
+}
+
+h3.function > a, h3.property > a, h3.table > a, h3.field > a {
+    font-family: monospace;
+	color: #2B5782;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+span.parameter, span.type {
+    font-family: monospace;
+	color: #2B5782;
+    text-decoration: none;
+    font-size: 1.0rem;
+}
+span.parameter {
+	font-weight: bold;
+}
+
+li.parameter {
+    margin-bottom: 1rem;
+}
+
+span.optional, span.any_type {
+    font-style: italic;
+    color: #777;
+}
+
+div.function, div.property, div.table, div.field {
+    margin-left: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+span.info {
+    margin-right: 0.5rem;
+}
+
+div.alert {
+    padding: 8px 35px 8px 14px;
+    margin-bottom: 20px;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+    position: relative;
+    font-style: italic;
+}
+
+div.warn.alert {
+    color: #635b31;
+    background-color: #fcf8e3;
+    border-color: #bdceaf;
+    border-left: 2px solid #7c723e;
+}
+
+div.good.alert {
+    color: #376d38;
+    background-color: #dff0d8;
+    border-color: #bdceaf;
+    border-left: 2px solid #376d38;
+}
+
+#wrap {
+    display: flex;
+    flex: 1;
+}
+#content {
+    flex: 1;
+    max-width: 48rem;
+}
+#sidebar {
+    flex: 0 0 15rem;
+    margin-right: 2rem;
+}
+
+@media (max-width: 965px) {
+    #sidebar { display: none; }
+}
+
+#sidebar > h2 {
+    margin: 0 0 1rem;
+}
+#sidebar > h3 {
+    margin: 1rem 0 0.5rem;
+}
+#sidebar > ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0 0 0.5rem;
+}
+#sidebar > ul > li {
+    margin: 0.2rem 0.2rem 0.2rem 0.5rem;
+    font-family: monospace;
+}
+#sidebar > ul > li > a, #sidebar > ul > li > span {
+    font-family: monospace;
+    text-decoration: none;
+    font-size: 1.1rem;
+}
+#sidebar > ul > li > span {
+	font-weight: bold;
+}
+
+#content li:not(:last-child) {
+    margin-bottom: 0.5rem;
+}
+
+/* Links */
+a { color: #204a87; text-decoration: none; }
+a:visited { color: #2B2087; }
+a:hover { text-decoration: underline; }
+a:active { color: #0c1d36; }
+li.dummy {
+    list-style-type: none;
+    -webkit-user-select: none;
+}
+
+/* Attribution styling */
+.attr-wrap {
+    display: flex;
+    flex: 1;
+}
+.attr-wrap > h4 {
+    flex: 0 0 8rem;
+    margin-bottom: 0;
+}
+.attr-wrap > ul {
+    flex: 1;
+    padding: 2px 0;
+    list-style-type: none;
+    margin-bottom: 0;
+}
+.attr-wrap > ul > li:before {
+   width: 20px;
+   margin-right: 5px;
+   display: inline-block;
+   text-align: center;
+}
+ul.authors > li:before { content: "•"; }
+ul.copyright > li:before { content: "©"; }
+
+.sourcecode .comment { color: #558817; }
+.sourcecode .constant { color: #a8660d; }
+.sourcecode .escape { color: #844631; }
+.sourcecode .keyword { color: #2239a8; font-weight: bold; }
+.sourcecode .library { color: #0e7c6b !important; text-decoration: none !important; }
+.sourcecode .marker { color: #512b1e; background: #fedc56; font-weight: bold; }
+.sourcecode .number { color: #a8660d; }
+.sourcecode .operator { color: #2239a8; font-weight: bold; }
+.sourcecode .preprocessor { color: #a33243; }
+.sourcecode .prompt { color: #558817; }
+.sourcecode a:link, .sourcecode a:visited { color: #272fc2; }
+
+.two-col { display: flex; }
+.two-col > :first-child { flex: 0 0 200px; margin-right: 10px; }
+.two-col > :first-child > div:not(:first-child) { margin-top: 0.3rem; }
+ul.triggers {
+	list-style-type: none;
+	padding: 0;
+}
+ul.triggers > li {
+	font-family: monospace, sans-serif;
+	color: #2B5782;
+	font-weight: bold;
+}
+
+div.info > div { margin-top: 0.3rem; }
+</style>
+	<link rel=stylesheet href=/luakit/style.css />
+	<link rel="stylesheet" href="https://code.cdn.mozilla.net/fonts/fira.css">
+	<style type="text/css">
+		#wrap { padding: 2em 0; }
+		#content > h1 { font-size: 28px; }
+		body { background-color: #fcfcfc; }
+		body > .container { max-width: unset; }
+		nav { font-size: 16px; background:#F3EFE7;}
+	</style>
+</head>
+<body>
+	<nav>
+		<a href="/luakit/">Home</a>
+		<a href="/luakit/#sec-release">Releases</a>
+		<a href="/luakit/#sec-download">Download</a>
+		<a href="/luakit/docs/">Documentation</a>
+		<a href="/luakit/#sec-contributing">Contributing</a>
+		<a href="https://github.com/luakit/luakit" target="_blank">GitHub</a>
+	</nav>
+	<div class="container">
+		<div id=wrap>
+            <div id=sidebar>
+                <h2>Table of Contents</h2>
+                <h3>Pages</h3>
+<ul>
+    <li><a href="../pages/Authors.html">Authors</a></li>
+    <li><a href="../pages/Tests.html">Tests</a></li>
+</ul>
+<h3>Modules</h3>
+<ul>
+    <li><a href="../modules/adblock.html">adblock</a></li>
+    <li><a href="../modules/adblock_chrome.html">adblock_chrome</a></li>
+    <li><a href="../modules/bookmarks.html">bookmarks</a></li>
+    <li><a href="../modules/bookmarks_chrome.html">bookmarks_chrome</a></li>
+    <li><a href="../modules/chrome.html">chrome</a></li>
+    <li><a href="../modules/cmdhist.html">cmdhist</a></li>
+    <li><a href="../modules/completion.html">completion</a></li>
+    <li><a href="../modules/domain_props.html">domain_props</a></li>
+    <li><a href="../modules/downloads.html">downloads</a></li>
+    <li><a href="../modules/downloads_chrome.html">downloads_chrome</a></li>
+    <li><a href="../modules/editor.html">editor</a></li>
+    <li><a href="../modules/error_page.html">error_page</a></li>
+    <li><a href="../modules/follow.html">follow</a></li>
+    <li><a href="../modules/follow_selected.html">follow_selected</a></li>
+    <li><a href="../modules/formfiller.html">formfiller</a></li>
+    <li><a href="../modules/go_input.html">go_input</a></li>
+    <li><a href="../modules/go_next_prev.html">go_next_prev</a></li>
+    <li><a href="../modules/go_up.html">go_up</a></li>
+    <li><a href="../modules/help_chrome.html">help_chrome</a></li>
+    <li><a href="../modules/hide_scrollbars.html">hide_scrollbars</a></li>
+    <li><a href="../modules/history.html">history</a></li>
+    <li><a href="../modules/history_chrome.html">history_chrome</a></li>
+    <li><a href="../modules/image_css.html">image_css</a></li>
+    <li><a href="../modules/introspector_chrome.html">introspector_chrome</a></li>
+    <li><a href="../modules/ipc.html">ipc</a></li>
+    <li><a href="../modules/lousy.bind.html">lousy.bind</a></li>
+    <li><a href="../modules/lousy.load.html">lousy.load</a></li>
+    <li><a href="../modules/lousy.mode.html">lousy.mode</a></li>
+    <li><a href="../modules/lousy.pickle.html">lousy.pickle</a></li>
+    <li><a href="../modules/lousy.signal.html">lousy.signal</a></li>
+    <li><a href="../modules/lousy.theme.html">lousy.theme</a></li>
+    <li><a href="../modules/lousy.uri.html">lousy.uri</a></li>
+    <li><a href="../modules/lousy.util.html">lousy.util</a></li>
+    <li><a href="../modules/lousy.widget.html">lousy.widget</a></li>
+    <li><a href="../modules/luakit.html">luakit</a></li>
+    <li><span>msg</span></li>
+    <li><a href="../modules/newtab_chrome.html">newtab_chrome</a></li>
+    <li><a href="../modules/noscript.html">noscript</a></li>
+    <li><a href="../modules/open_editor.html">open_editor</a></li>
+    <li><a href="../modules/proxy.html">proxy</a></li>
+    <li><a href="../modules/quickmarks.html">quickmarks</a></li>
+    <li><a href="../modules/referer_control_wm.html">referer_control_wm</a></li>
+    <li><a href="../modules/search.html">search</a></li>
+    <li><a href="../modules/select.html">select</a></li>
+    <li><a href="../modules/select_wm.html">select_wm</a></li>
+    <li><a href="../modules/session.html">session</a></li>
+    <li><a href="../modules/soup.html">soup</a></li>
+    <li><a href="../modules/styles.html">styles</a></li>
+    <li><a href="../modules/tab_favicons.html">tab_favicons</a></li>
+    <li><a href="../modules/tabhistory.html">tabhistory</a></li>
+    <li><a href="../modules/taborder.html">taborder</a></li>
+    <li><a href="../modules/tests.lib.html">tests.lib</a></li>
+    <li><a href="../modules/undoclose.html">undoclose</a></li>
+    <li><a href="../modules/unique.html">unique</a></li>
+    <li><a href="../modules/userscripts.html">userscripts</a></li>
+    <li><a href="../modules/vertical_tabs.html">vertical_tabs</a></li>
+    <li><a href="../modules/view_source.html">view_source</a></li>
+    <li><a href="../modules/viewpdf.html">viewpdf</a></li>
+    <li><a href="../modules/webinspector.html">webinspector</a></li>
+    <li><a href="../modules/xdg.html">xdg</a></li>
+</ul>
+<h3>Classes</h3>
+<ul>
+    <li><a href="../classes/dom_document.html">dom_document</a></li>
+    <li><a href="../classes/dom_element.html">dom_element</a></li>
+    <li><a href="../classes/download.html">download</a></li>
+    <li><a href="../classes/page.html">page</a></li>
+    <li><a href="../classes/regex.html">regex</a></li>
+    <li><a href="../classes/sqlite3.html">sqlite3</a></li>
+    <li><a href="../classes/stylesheet.html">stylesheet</a></li>
+    <li><a href="../classes/timer.html">timer</a></li>
+    <li><a href="../classes/widget.html">widget</a></li>
+    <li><a href="../classes/widget:box.html">widget:box</a></li>
+    <li><a href="../classes/widget:drawing_area.html">widget:drawing_area</a></li>
+    <li><a href="../classes/widget:entry.html">widget:entry</a></li>
+    <li><a href="../classes/widget:event_box.html">widget:event_box</a></li>
+    <li><a href="../classes/widget:image.html">widget:image</a></li>
+    <li><a href="../classes/widget:label.html">widget:label</a></li>
+    <li><a href="../classes/widget:notebook.html">widget:notebook</a></li>
+    <li><a href="../classes/widget:overlay.html">widget:overlay</a></li>
+    <li><a href="../classes/widget:paned.html">widget:paned</a></li>
+    <li><a href="../classes/widget:scrolled.html">widget:scrolled</a></li>
+    <li><a href="../classes/widget:socket.html">widget:socket</a></li>
+    <li><a href="../classes/widget:spinner.html">widget:spinner</a></li>
+    <li><a href="../classes/widget:webview.html">widget:webview</a></li>
+    <li><a href="../classes/widget:window.html">widget:window</a></li>
+</ul>
+
+            </div>
+            <div id=content>
+                        <h1>Module <code>msg</code></h1>
+        <h2 class=tagline>Message logging support for Lua</h2>
+        
+
+
+<div class="alert good">This module is builtin and does not need to be manually loaded.</div>
+
+
+<p>This built-in library offers support for logging messages from Lua code. Five
+verbosity levels are available. By default, <em>verbose</em> and <em>debug</em> messages
+are not shown, but this can be changed when launching Luakit.</p>
+
+<p>All parameters are converted to strings. A newline is automatically appended.</p>
+
+<pre class="sourcecode lua"><span class="identifier">webview.add_signal</span><span class="operator">(</span><span class="constant">"init"</span><span class="operator">,</span> <span class="identifier">function</span> <span class="operator">(</span><span class="identifier">view</span><span class="operator">)</span>
+    <span class="identifier">msg.debug</span><span class="operator">(</span><span class="constant">"Opening a new web view &lt;</span><span class="escape">%d</span><span class="constant">&gt;"</span><span class="operator">,</span> <span class="identifier">view.id</span><span class="operator">)</span>
+<span class="identifier">end</span><span class="operator">)</span>
+</pre>
+
+
+
+
+        <!-- modes and binds --><h2>Functions</h2>
+
+        <h3 class=function id="msg.fatal">
+            <a href="#msg.fatal">msg.fatal (format, ...)</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Log a fatal error message, and abort the program.</p>
+
+            <h4>Parameters</h4>
+<ul>
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>format</span>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+Format string.
+
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>...</span>
+                    <div>Type: <span class=any_type>any type</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+Additional arguments referenced from the format string.
+
+</div>
+            </div>
+        </li>
+    
+</ul>
+            
+        </div>
+    
+        <h3 class=function id="msg.warn">
+            <a href="#msg.warn">msg.warn (format, ...)</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Log a warning message.</p>
+
+            <h4>Parameters</h4>
+<ul>
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>format</span>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+Format string.
+
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>...</span>
+                    <div>Type: <span class=any_type>any type</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+Additional arguments referenced from the format string.
+
+</div>
+            </div>
+        </li>
+    
+</ul>
+            
+        </div>
+    
+        <h3 class=function id="msg.info">
+            <a href="#msg.info">msg.info (format, ...)</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Log an informational message.</p>
+
+            <h4>Parameters</h4>
+<ul>
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>format</span>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+Format string.
+
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>...</span>
+                    <div>Type: <span class=any_type>any type</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+Additional arguments referenced from the format string.
+
+</div>
+            </div>
+        </li>
+    
+</ul>
+            
+        </div>
+    
+        <h3 class=function id="msg.verbose">
+            <a href="#msg.verbose">msg.verbose (format, ...)</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Log a verbose message.</p>
+
+            <h4>Parameters</h4>
+<ul>
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>format</span>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+Format string.
+
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>...</span>
+                    <div>Type: <span class=any_type>any type</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+Additional arguments referenced from the format string.
+
+</div>
+            </div>
+        </li>
+    
+</ul>
+            
+        </div>
+    
+        <h3 class=function id="msg.debug">
+            <a href="#msg.debug">msg.debug (format, ...)</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Log a debug message.</p>
+
+            <h4>Parameters</h4>
+<ul>
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>format</span>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+Format string.
+
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>...</span>
+                    <div>Type: <span class=any_type>any type</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+Additional arguments referenced from the format string.
+
+</div>
+            </div>
+        </li>
+    
+</ul>
+            
+        </div>
+    
+        <h2>Attribution</h2>
+        <div class=attr-wrap>
+    <h4>Authors</h4>
+    <ul class=authors>
+    </ul>
+</div>
+<div class=attr-wrap>
+    <h4>Copyright</h4><ul class=copyright>
+        <li>2016 Aidan Holm
+    </ul>
+</div>
+    
+            </div>
+            <div style='display:none'><a rel=prev href='../modules/luakit.html'><a rel=next href='../modules/newtab_chrome.html'></div>
+        </div>
+	</div>
+	<footer>
+		<div class="container">
+			<small>Copyright 2017 Aidan Holm</small>
+			<br>
+			<small>All written documentation and luakit code are copyright to their respective authors.</small>
+		</div>
+	</footer>
+</body>
+</html>

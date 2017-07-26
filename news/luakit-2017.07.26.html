@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset='UTF-8'>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Luakit 2017-07-26</title>
+	<link rel="icon" type="image/png" href="favicon.png" />
+	<link rel=stylesheet href=/luakit/style.css />
+	<link rel="stylesheet" href="https://code.cdn.mozilla.net/fonts/fira.css">
+</head>
+<body>
+	<nav>
+		<a href="/luakit/">Home</a>
+		<a href="/luakit/#sec-release">Releases</a>
+		<a href="/luakit/#sec-download">Download</a>
+		<a href="/luakit/docs/">Documentation</a>
+		<a href="/luakit/#sec-contributing">Contributing</a>
+		<a href="https://github.com/luakit/luakit" target="_blank">GitHub</a>
+	</nav>
+	<section>
+		<div class="container">
+			
+<h2>Luakit 2017-07-26 - latest release</h2>
+
+<ul>
+    <li>Required WebKitGTK+ version: 2.14+</li>
+    <li>A relatively recent version of GTK+ 3 is required; some features are not available on older versions.</li>
+</ul>
+
+<h3>Added</h3>
+
+<h4>Adblock module</h4>
+
+<p>The adblock module previously available at <a href="https://github.com/luakit/luakit-plugins">https://github.com/luakit/luakit-plugins</a>
+has been included into the main luakit repository, with the following changes:</p>
+
+<ul>
+    <li>Ported adblock module to use WebKit 2 compatible APIs. This breaks compatibility with WebKit 1.</li>
+    <li>Added color-coding to adblock filter list status indicator.</li>
+    <li>The Adblock chrome page CSS has been updated to be more consistent with other luakit chrome pages.</li>
+    <li>An enable/disable button has been added to the Adblock chrome page.</li>
+    <li>The adblock chrome page has received several other refactors and improvements.</li>
+    <li>Adblock no longer blocks ads on local files (pages on the <code>file://</code> scheme).</li>
+    <li>Adblock no longer blocks data URIs for performance reasons.</li>
+    <li>Added links for quickly enabling/disabling filter lists to adblock chrome page.</li>
+    <li>Made <code>adblock.enabled</code> writeable, and removed <code>adblock.state()</code> function.</li>
+    <li>Adblock now blocks pages from being loaded until all filter list rules are fully loaded.</li>
+    <li>Adblock now enables newly-added filter lists by default.</li>
+    <li>Fixed a bug where luakit would not start if the adblock subscriptions file was missing.</li>
+    <li>Fixed broken <code>:adblock-reload</code> command.</li>
+    <li>Improved the consistency and formatting of adblock log messages.</li>
+    <li>Fixed a bug where the adblock subscriptions file would become corrupted.</li>
+    <li>Adblock simple mode has been removed.</li>
+    <li>Fixed parsing of adblock filter list rules containing '#'.</li>
+    <li>Fixed a bug where adblock would incorrectly block URIs on many domains, due to an design flaw.</li>
+    <li>Adblock now displays an error page when the adblock module blocks a page navigation.</li>
+    <li>Improved filter list rule length and ignore count calculation.</li>
+    <li>Added several optimizations for rule matching that significantly improve performance.</li>
+</ul>
+
+<p>See also:</p>
+
+<ul>
+    <li><a href="luakit://help/doc/modules/adblock.html">luakit://help/doc/modules/adblock.html</a></li>
+    <li><a href="luakit://help/doc/modules/adblock_chrome.html">luakit://help/doc/modules/adblock_chrome.html</a></li>
+</ul>
+
+<h4>Error pages</h4>
+
+<p>A new module, <code>error_page.lua</code>, allows customization of luakit error
+pages, such as those displayed when a page fails to load.</p>
+
+<ul>
+    <li>Luakit error pages are now displayed with a nicer interface, provided by <code>error_page.lua</code></li>
+    <li>Chrome page errors are now displayed with the <code>error_page.lua</code> module interface.</li>
+    <li>Error pages now show information about the current proxy, as unintended proxy use can be responsible for page load failures.</li>
+    <li>Error pages can now be customized with user CSS.</li>
+</ul>
+
+<p>See also:</p>
+
+<ul>
+    <li><a href="luakit://help/doc/modules/error_page.html">luakit://help/doc/modules/error_page.html</a></li>
+</ul>
+
+<h4>User styles</h4>
+
+<p>A new module, <code>styles.lua</code>, supports user stylesheets with
+<code>@-moz-document</code> sections. User stylesheets from <a href="https://userstyles.org">https://userstyles.org</a> are
+supported.</p>
+
+<ul>
+    <li>Luakit now automatically detects and parses user stylesheets on startup.</li>
+    <li>Added support for enabling/disabling user stylesheets immediately, without refreshing the page.</li>
+    <li>Added the <code>:styles-list</code> command to display the user stylesheets menu.</li>
+    <li>Added the <code>:styles-reload</code> command to reload all user stylesheet files from disk.</li>
+    <li>Removed the site-specific <code>user_stylesheet_uri</code> interface.</li>
+</ul>
+
+<p>See also:</p>
+
+<ul>
+    <li><a href="luakit://help/doc/modules/styles.html">luakit://help/doc/modules/styles.html</a></li>
+</ul>
+
+<h4>Other new modules</h4>
+
+<ul>
+    <li><code>open_editor.lua</code>: Adds support for editing text areas and input fields in an external text editor.</li>
+    <li><code>newtab_chrome.lua</code>: Adds support for customizing the new/blank tab page (<code>luakit://newtab/</code>) with HTML and CSS.</li>
+    <li><code>image_css.lua</code>: Improves how images are displayed by WebKit.</li>
+    <li><code>vertical_tabs.lua</code>: Displays tabs in a vertical tab bar to the left of the tab content.</li>
+    <li><code>referer_control_wm.lua</code>: Adds support for blocking the <code>Referer</code> header on cross-origin requests.</li>
+    <li><code>viewpdf.lua</code>: Adds support for automatically viewing downloaded PDF files.</li>
+</ul>
+
+<h4>New APIs</h4>
+
+<p>Core APIs:</p>
+
+<ul>
+    <li>Added <code>luakit.process_limit</code> to control the maximum number of web processes.</li>
+    <li>Added <code>luakit.options</code> and <code>luakit.webkit2</code> properties.</li>
+    <li>Added <code>lousy.util.table.filter_array()</code> and <code>lousy.util.lua_escape()</code>.</li>
+    <li>Added luakit spell checking API. A suitable language to check spelling with is automatically detected.</li>
+    <li>Added website data retrieval and removal APIs.</li>
+    <li>Added user stylesheet APIs, used by <code>styles.lua</code>. Stylesheet objects can be created from Lua code and enabled/disabled for individual <code>webview</code> widgets.</li>
+    <li>Added request API. This supports handling custom URI scheme requests asynchronously.</li>
+    <li>Added <code>msg</code> logging library. This replaces the <code>info()</code> and <code>warn()</code> functions.</li>
+    <li>Added more log levels. Luakit now has <code>fatal</code>, <code>error</code>, <code>warn</code>, <code>info</code>, <code>verbose</code>, and <code>debug</code> log levels.</li>
+    <li>Added <code>regex</code> class, to provide JavaScript- and PCRE-compatible regular expressions.</li>
+    <li>Added <code>lousy.pickle</code> library for Lua table serializing.</li>
+    <li>Added missing <code>remove_signals</code> method to Lua objects.</li>
+    <li>Added <code>soup.cookies_storage</code> to control the path to the cookies SQLite database.</li>
+    <li>Added IPC endpoint and web module APIs.</li>
+    <li>Added API for registering Lua functions accessible from JavaScript.</li>
+    <li>Added API for intercepting and modifying outgoing requests.</li>
+</ul>
+
+<p>New widget APIs:</p>
+
+<ul>
+    <li>Added <code>drawing_area</code>, <code>spinner</code>, <code>image</code>, <code>overlay</code> widgets.</li>
+    <li>Added unique IDs to <code>window</code> widgets.</li>
+    <li>Added widget <code>parent</code>, <code>focused</code> properties.</li>
+    <li>Added widget <code>"resize"</code> signal.</li>
+    <li>Added <code>"mouse-enter"</code> and <code>"mouse-leave"</code> signals to <code>eventbox</code> widget.</li>
+    <li>Added <code>window.ancestor()</code> method to retrieve the <code>window</code> widget that a given widget is contained in.</li>
+    <li>Added support for getting/setting <code>scrolled</code> widget scroll position and scrollbar settings.</li>
+    <li>Added support for displaying tooltips over widgets.</li>
+    <li>Added support for customizing individual widgets with GTK 3's CSS support.</li>
+    <li>Added <code>nrows()</code> getter to <code>lousy.widget.menu</code> widget instances.</li>
+</ul>
+
+<p>New webview APIs:</p>
+
+<ul>
+    <li>Added <code>webview</code> widget properties <code>editable</code> and <code>is_playing_audio</code>.</li>
+    <li>Added <code>webview.modify_load_block()</code> API. This allows Lua code to suspend page load operations.</li>
+    <li>Added <code>webview</code> widget <code>private</code> property.</li>
+    <li>Added <code>webview</code> widget <code>"crashed"</code> and <code>"go-back-forward"</code> signals.</li>
+    <li>Added APIs to get the web process ID of <code>webview</code> widgets and the current web extension ID.</li>
+    <li>Added APIs to save/restore the internal state of a <code>webview</code> widget.</li>
+    <li>Added <code>"enable-scripts"</code>, <code>"enable-styles"</code>, <code>"enable-userscripts"</code> signal APIs to customize module behavior for individual <code>webview</code> widgets.</li>
+    <li>Added signal for tab save decisions.</li>
+</ul>
+
+<h4>Miscellaneous</h4>
+
+<ul>
+    <li>Added <code>globals.page_step</code> to control the size of the scrolling step.</li>
+    <li>Added the <code>:tabdetach</code> command to detach a tab into a separate window. The tab is not destroyed and recreated, so any ongoing work in the tab will not be lost.</li>
+    <li>Added build options to specify more system paths, easing installation and packaging for a variety of systems.</li>
+    <li>The build system now uses the correct Lua/LuaJIT binary for build scripts.</li>
+    <li>A testing framework has been added that supports asynchronous tests.</li>
+    <li>Automatically generated documentation is now included in luakit installations.</li>
+    <li>Mode and bind information is now included in generated documentation.</li>
+    <li>The documentation index now displays which modules are loaded.</li>
+    <li>Added support for private browsing on a per-tab basis.</li>
+    <li>Added support for defining search engines as Lua functions. This allows more complex input, such as specifying multiple fields in technical search engines.</li>
+    <li>Added support for getting/setting the text alignment of <code>label</code> widgets.</li>
+    <li>Added support for getting/setting the divider position of <code>paned</code> widgets.</li>
+    <li>Added support for getting/setting the background color of <code>box</code> and <code>label</code> widgets.</li>
+    <li>Added support for getting the width and height of widgets.</li>
+    <li>Added support for setting the minimum width and height of widgets.</li>
+    <li>Added basic profile support.</li>
+    <li>Added options to control externally editing text files.</li>
+    <li>Added a crash recovery session that is automatically saved regularly.</li>
+    <li>Improved the formatting of error tracebacks. Improved tracebacks are now used for <code>debug.traceback()</code> as well as error messages.</li>
+    <li>The <code>xdg</code> module now has new properties <code>system_data_dirs</code> and <code>system_config_dirs</code>.</li>
+    <li>The <code>xdg</code> module now ensures that the paths it returns do not end in a trailing slash, regardless of how the relevant environment variables are set.</li>
+</ul>
+
+<h3>Changed</h3>
+
+<ul>
+    <li>User scripts can now run even when JavaScript has been disabled. They now use an isolated script world inaccessible from the web page.</li>
+    <li>User scripts now show an error message on failure.</li>
+    <li>The status bar and the tab bar are now hidden when luakit is fullscreen.</li>
+    <li>GLib logs are now funneled through luakit's log system.</li>
+    <li>Subsequent lines in log messages with multiple lines are now indented.</li>
+    <li>When the input bar is shown, the status bar is hidden. This is to prevent webview resizes causing performance issues for some users.</li>
+    <li>Error messages within the luakit window can now be selected with the mouse and copied.</li>
+    <li>An error message is now shown when the formfiller module fails to fill a form.</li>
+    <li>The undoclose menu is now automatically closed when there are no more menu entries.</li>
+    <li>Closed tabs are now saved in the luakit session file, so undoclose now works across sessions.</li>
+    <li>Individual tab history is now saved in the luakit session file.</li>
+    <li>The <code>"navigation-request"</code> signal now includes the reason for the navigation.</li>
+    <li>Plugin errors, load cancel errors, and frame load errors are now ignored.</li>
+    <li>Search behavior across multiple tabs has been improved.</li>
+    <li>Idle callback functions that throw errors are now removed.</li>
+    <li>Follow mode now has a new label maker: <code>trim()</code>.</li>
+    <li><code>w:run_cmd()</code> no longer adds the given command to the mode command history.</li>
+    <li>A compile-time check for older WebKit versions has been added.</li>
+    <li>All uses of <code>module()</code> in Lua code have been removed.</li>
+    <li>Most variables have been made non-global.</li>
+    <li>A follow mode heuristic has been added for links that contain a single image element.</li>
+    <li>Luakit no longer uses a custom luakit-specific useragent string. This mproves site compatibility with sites such as Google Maps and decreases user fingerprint.</li>
+    <li>All binds now have accompanying descriptions.</li>
+    <li>Chrome pages now have consistent CSS and page style.</li>
+    <li><code>introspector.lua</code> has been renamed to <code>introspector_chrome.lua</code> for consistency with other chrome page modules.</li>
+    <li>Added a help chrome page.</li>
+    <li>Luakit now gives a full backtrace on startup failure.</li>
+    <li>Formfiller mode now uses visual selection to add forms to the formfiller file.</li>
+    <li>Formfiller mode now uses Lua patterns instead of JavaScript regular expressions.</li>
+    <li>Widget getters and setters now verify that the widget is still valid.</li>
+    <li>The widget <code>"created"</code> signal now has the new widget as an argument, making it much more useful.</li>
+    <li>Accessing unknown widget properties now prints a warning.</li>
+    <li>A developer warning is now printed if the web extension binary is not found.</li>
+    <li>Luakit is now completely restarted if loading a configuration file fails.</li>
+    <li>Luakit no longer shows follow hints for invisible elements.</li>
+    <li>The <code>:lua</code> command now has an implicit variable <code>w</code>, the current window table. This is for convenience.</li>
+    <li>The <code>:lua</code> command can now evaluate expressions as well as execute statements.</li>
+    <li>A <code>resources/</code> directory tree has been added.</li>
+    <li>Tabs now have a themable hover color.</li>
+    <li>The default set of key bindings now includes bindings for number pad keys.</li>
+    <li>A small margin has been added to the status bar.</li>
+    <li>The formfiller now supports automatically filling forms when pages have finished loading. This is useful for automatically logging in to certain sites.</li>
+    <li>Added <code>export_funcs</code> parameter to <code>chrome.add()</code>.</li>
+    <li>Key presses that do not prefix any valid bindings are now ignored. This prevents key bindings being ignored because the input buffer has filled up with garbage.</li>
+    <li>Follow mode now allows focusing inputs by their value (the text within them) and focusing empty inputs by their placeholder text.</li>
+    <li>The <code>:javascript</code> command now has improved error handling.</li>
+    <li><code>luakit://</code> URIs are no longer added to history.</li>
+    <li>Download objects now have the <code>allow_overwrite</code> property.</li>
+    <li>Performance of the <code>ssl</code> widget has been improved.</li>
+    <li>The downloads chrome page now displays file size statistics.</li>
+    <li>Trailing newlines are now stripped from log messages.</li>
+    <li>The <code>webview</code> widget scrolling interface has been modified for compatibility with WebKit 2.</li>
+    <li>The API for retrieving page source is now asynchronous.</li>
+    <li>Follow mode now strips the leading <code>mailto:</code> from email links, and allows the user to configure whether to ignore case in or not.</li>
+    <li>Changed the <code>label</code> widget <code>width</code> property to <code>textwidth</code>.</li>
+    <li>The <code>socket</code> widget is no longer destroyed upon plug disconnect.</li>
+    <li><code>go_next_prev.lua</code> now uses an improved heuristic for guessing page relationship.</li>
+    <li>Other minor changes.</li>
+</ul>
+
+<h3>Removed</h3>
+
+<ul>
+    <li>All support for building with WebKit 1 has been removed.</li>
+    <li>All support for building with GTK+ 2 has been removed.</li>
+    <li>The <code>"cookie-changed"</code> signal has been removed, due to a WebKit API limitation.</li>
+    <li>The download creation API has been removed, due to a WebKit API limitation.</li>
+    <li>The global <code>info()</code> and <code>warn()</code> functions have been removed in favor of the <code>msg</code> library.</li>
+    <li>The <code>:viewsource</code> command is removed, and replaced with <code>:view-source</code>.</li>
+    <li>The <code>WITH_UNIQUE</code> build option has been removed, as <code>libunique</code> is no longer used.</li>
+    <li>The <code>webview</code> widget <code>show_scrollbars</code> property has been removed. It is replaced by the <code>hide_scrollbars.lua</code> module.</li>
+    <li>The default mouse forward/backward bindings have been removed.</li>
+    <li>Support for <code>webview.init_funcs</code> and <code>window.init_funcs</code> has been removed. There are replacement signals that serve the same purpose.</li>
+</ul>
+
+<h3>Fixed</h3>
+
+<ul>
+    <li>Changed outdated <code>luaL_reg</code> to <code>luaL_Reg</code>.</li>
+    <li>Fixed a desktop file issue preventing setting luakit as default browser for GNOME.</li>
+    <li>Fixed evaluated scripts appearing in the web inspector debugger tab.</li>
+    <li>Fixed <code>find_config()</code> assuming the system configuration is located at <code>/etc/xdg/</code>.</li>
+    <li>Fixed luakit window losing initial focus, preventing some key bindings from working.</li>
+    <li>Fixed luakit icon having incorrect permissions.</li>
+    <li>Removed use of some deprecated functions.</li>
+    <li>Fixed completion for hyphenated commands not working.</li>
+    <li>Fixed bind activation for hyphenated commands not working.</li>
+    <li>Fixed completion menu not closing.</li>
+    <li>Fixed a segmentation fault when removing a non-present signal from an object.</li>
+    <li>Fixed issues in how follow mode handled clicking on <code>&lt;input&gt;</code> elements.</li>
+    <li>Fixed broken conditional in <code>noscript.lua</code>.</li>
+    <li>Fixed a bug where calling <code>view:load_string()</code> from <code>load_failed_cb()</code> would cause reload loops.</li>
+    <li>Fixed a bug where the <code>"link-unhover"</code> signal was not being emitted.</li>
+    <li>Fixed <code>click()</code> in <code>follow.lua</code> to trigger more events to work around glitches.</li>
+    <li>Fixed <code>go_up</code> breaking on <code>file://</code> URIs.</li>
+    <li>Fixed PKGBUILD issues.</li>
+    <li>Fixed contributor emails.</li>
+    <li>Fixed use-after-free of destroyed widgets.</li>
+    <li>Fixed incorrect chrome page header z-index.</li>
+    <li>Fixed a bug where the <code>bin</code> widget <code>child</code> property always returned itself.</li>
+    <li>Fixed a bug in URI <code>__add</code> operation.</li>
+    <li>Fixed long source paths appearing in Lua log output.</li>
+    <li>Fixed formfiller silently failing to add forms.</li>
+    <li>Fixed formfiller radio button and checkbox clicking behavior.</li>
+    <li>Fixed errors when handling tabs with empty titles</li>
+    <li>Change context menu 'New Window' items to 'New Tab' items</li>
+    <li>Fixed a bug where <code>"property::textwidth"</code> signal was not emitted.</li>
+    <li>Fixed a bug where invalid color codes were silently ignored.</li>
+    <li>Fixed unstable behavior when creating widgets without a specified type.</li>
+    <li>Fixed design flaws where several modules would not work without JavaScript enabled.</li>
+    <li>Fixed the bookmarks chrome page missing pagination.</li>
+    <li>Fixed a bug where user scripts would fail to add CSS on pages without a <code>&lt;head&gt;</code> element.</li>
+    <li>Fixed a bug where quitting luakit through the window manager circumvented luakit's exit prevention system.</li>
+    <li>Fixed the <code>&lt;</code> and <code>&gt;</code> binds not wrapping around consistently.</li>
+    <li>Fixed a bug where the <code>"destroy"</code> signal would not be emitted for some widget types.</li>
+    <li>Numerous other fixes and performance improvements.</li>
+</ul>
+
+<h3>Contributors to this release:</h3>
+
+<ul>
+    <li>Aidan Holm            (1585 commits)</li>
+    <li>Jenny Wong            (71 commits)</li>
+    <li>Mason Larobina        (17 commits)</li>
+    <li>Grégory DAVID         (8 commits)</li>
+    <li>karottenreibe         (7 commits)</li>
+    <li>Ygrex                 (6 commits)</li>
+    <li>Robbie Smith          (4 commits)</li>
+    <li>Michishige Kaito      (4 commits)</li>
+    <li>Ambrevar              (3 commits)</li>
+    <li>Yuriy Melnyk          (2 commits)</li>
+    <li>Plaque-fcc            (2 commits)</li>
+    <li>loblik                (2 commits)</li>
+    <li>Daniel Bolgheroni     (2 commits)</li>
+    <li>windowsrefund         (1 commit)</li>
+    <li>walt                  (1 commit)</li>
+    <li>Robbie                (1 commit)</li>
+    <li>Peter Hofmann         (1 commit)</li>
+    <li>Nuno Vieira           (1 commit)</li>
+    <li>nmeum                 (1 commit)</li>
+    <li>Kane Wallmann         (1 commit)</li>
+    <li>Jasper den Ouden      (1 commit)</li>
+    <li>gleachkr              (1 commit)</li>
+    <li>feivel                (1 commit)</li>
+    <li>eshizhan              (1 commit)</li>
+    <li>donlzx                (1 commit)</li>
+    <li>Bartłomiej Piotrowski (1 commit)</li>
+    <li>Babken Vardanyan      (1 commit)</li>
+</ul>
+
+
+		</div>
+	</section>
+	<footer>
+		<div class="container">
+			<small>Copyright 2017 Aidan Holm</small>
+			<br>
+			<small>All written documentation and luakit code are copyright to their respective authors.</small>
+		</div>
+	</footer>
+</body>
+</html>

@@ -1,0 +1,1549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset='UTF-8'>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Luakit API Documentation</title>
+	<link rel="icon" type="image/png" href="favicon.png" />
+	<style type="text/css">html {
+	color: #333;
+}
+body {
+    margin: 0;
+    font-family: "Helvetica", "Arial", sans-serif;
+}
+
+#hdr {
+    border-bottom: 1px solid #e0e5e6;
+    background-color: #f6f8f8;
+}
+
+#hdr > h1 {
+    color: #555;
+    margin: 0 auto;
+    max-width: 910px;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+}
+
+#wrap {
+    font-size: 14px;
+    line-height: 1.3;
+    padding: 2rem;
+    margin: 0 auto;
+    justify-content: center;
+    max-width: 910px;
+}
+
+h1, h2, strong {
+    line-height: 1.1;
+    margin: 0;
+    color: #111;
+}
+
+.tagline {
+    color: #555;
+    margin: 0 0 1rem;
+    font-size: 1.4rem;
+    font-weight: normal;
+}
+
+h1 { margin: 0 0 0.7rem; }
+h2 { margin: 1.5rem 0 1rem; }
+h4 { margin: 1rem 0; }
+
+code, pre
+{
+	background: #f5f7f9;
+	color: #334;
+}
+code {
+	border: 1px solid #dfdfe9;
+	padding: 0px 4px;
+}
+pre > code {
+    border: none;
+    padding: 0;
+}
+pre {
+	padding: 1rem 1.2rem;
+	border-left: 2px solid #69c;
+}
+
+h3.function > a, h3.property > a, h3.table > a, h3.field > a {
+    font-family: monospace;
+	color: #2B5782;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+span.parameter, span.type {
+    font-family: monospace;
+	color: #2B5782;
+    text-decoration: none;
+    font-size: 1.0rem;
+}
+span.parameter {
+	font-weight: bold;
+}
+
+li.parameter {
+    margin-bottom: 1rem;
+}
+
+span.optional, span.any_type {
+    font-style: italic;
+    color: #777;
+}
+
+div.function, div.property, div.table, div.field {
+    margin-left: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+span.info {
+    margin-right: 0.5rem;
+}
+
+div.alert {
+    padding: 8px 35px 8px 14px;
+    margin-bottom: 20px;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+    position: relative;
+    font-style: italic;
+}
+
+div.warn.alert {
+    color: #635b31;
+    background-color: #fcf8e3;
+    border-color: #bdceaf;
+    border-left: 2px solid #7c723e;
+}
+
+div.good.alert {
+    color: #376d38;
+    background-color: #dff0d8;
+    border-color: #bdceaf;
+    border-left: 2px solid #376d38;
+}
+
+#wrap {
+    display: flex;
+    flex: 1;
+}
+#content {
+    flex: 1;
+    max-width: 48rem;
+}
+#sidebar {
+    flex: 0 0 15rem;
+    margin-right: 2rem;
+}
+
+@media (max-width: 965px) {
+    #sidebar { display: none; }
+}
+
+#sidebar > h2 {
+    margin: 0 0 1rem;
+}
+#sidebar > h3 {
+    margin: 1rem 0 0.5rem;
+}
+#sidebar > ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0 0 0.5rem;
+}
+#sidebar > ul > li {
+    margin: 0.2rem 0.2rem 0.2rem 0.5rem;
+    font-family: monospace;
+}
+#sidebar > ul > li > a, #sidebar > ul > li > span {
+    font-family: monospace;
+    text-decoration: none;
+    font-size: 1.1rem;
+}
+#sidebar > ul > li > span {
+	font-weight: bold;
+}
+
+#content li:not(:last-child) {
+    margin-bottom: 0.5rem;
+}
+
+/* Links */
+a { color: #204a87; text-decoration: none; }
+a:visited { color: #2B2087; }
+a:hover { text-decoration: underline; }
+a:active { color: #0c1d36; }
+li.dummy {
+    list-style-type: none;
+    -webkit-user-select: none;
+}
+
+/* Attribution styling */
+.attr-wrap {
+    display: flex;
+    flex: 1;
+}
+.attr-wrap > h4 {
+    flex: 0 0 8rem;
+    margin-bottom: 0;
+}
+.attr-wrap > ul {
+    flex: 1;
+    padding: 2px 0;
+    list-style-type: none;
+    margin-bottom: 0;
+}
+.attr-wrap > ul > li:before {
+   width: 20px;
+   margin-right: 5px;
+   display: inline-block;
+   text-align: center;
+}
+ul.authors > li:before { content: "•"; }
+ul.copyright > li:before { content: "©"; }
+
+.sourcecode .comment { color: #558817; }
+.sourcecode .constant { color: #a8660d; }
+.sourcecode .escape { color: #844631; }
+.sourcecode .keyword { color: #2239a8; font-weight: bold; }
+.sourcecode .library { color: #0e7c6b !important; text-decoration: none !important; }
+.sourcecode .marker { color: #512b1e; background: #fedc56; font-weight: bold; }
+.sourcecode .number { color: #a8660d; }
+.sourcecode .operator { color: #2239a8; font-weight: bold; }
+.sourcecode .preprocessor { color: #a33243; }
+.sourcecode .prompt { color: #558817; }
+.sourcecode a:link, .sourcecode a:visited { color: #272fc2; }
+
+.two-col { display: flex; }
+.two-col > :first-child { flex: 0 0 200px; margin-right: 10px; }
+.two-col > :first-child > div:not(:first-child) { margin-top: 0.3rem; }
+ul.triggers {
+	list-style-type: none;
+	padding: 0;
+}
+ul.triggers > li {
+	font-family: monospace, sans-serif;
+	color: #2B5782;
+	font-weight: bold;
+}
+
+div.info > div { margin-top: 0.3rem; }
+</style>
+	<link rel=stylesheet href=/luakit/style.css />
+	<link rel="stylesheet" href="https://code.cdn.mozilla.net/fonts/fira.css">
+	<style type="text/css">
+		#wrap { padding: 2em 0; }
+		#content > h1 { font-size: 28px; }
+		body { background-color: #fcfcfc; }
+		body > .container { max-width: unset; }
+		nav { font-size: 16px; background:#F3EFE7;}
+	</style>
+</head>
+<body>
+	<nav>
+		<a href="/luakit/">Home</a>
+		<a href="/luakit/#sec-release">Releases</a>
+		<a href="/luakit/#sec-download">Download</a>
+		<a href="/luakit/docs/">Documentation</a>
+		<a href="/luakit/#sec-contributing">Contributing</a>
+		<a href="https://github.com/luakit/luakit" target="_blank">GitHub</a>
+	</nav>
+	<div class="container">
+		<div id=wrap>
+            <div id=sidebar>
+                <h2>Table of Contents</h2>
+                <h3>Pages</h3>
+<ul>
+    <li><a href="../pages/Authors.html">Authors</a></li>
+    <li><a href="../pages/Tests.html">Tests</a></li>
+</ul>
+<h3>Modules</h3>
+<ul>
+    <li><a href="../modules/adblock.html">adblock</a></li>
+    <li><a href="../modules/adblock_chrome.html">adblock_chrome</a></li>
+    <li><a href="../modules/bookmarks.html">bookmarks</a></li>
+    <li><a href="../modules/bookmarks_chrome.html">bookmarks_chrome</a></li>
+    <li><a href="../modules/chrome.html">chrome</a></li>
+    <li><a href="../modules/cmdhist.html">cmdhist</a></li>
+    <li><a href="../modules/completion.html">completion</a></li>
+    <li><a href="../modules/domain_props.html">domain_props</a></li>
+    <li><a href="../modules/downloads.html">downloads</a></li>
+    <li><a href="../modules/downloads_chrome.html">downloads_chrome</a></li>
+    <li><a href="../modules/editor.html">editor</a></li>
+    <li><a href="../modules/error_page.html">error_page</a></li>
+    <li><a href="../modules/follow.html">follow</a></li>
+    <li><a href="../modules/follow_selected.html">follow_selected</a></li>
+    <li><a href="../modules/formfiller.html">formfiller</a></li>
+    <li><a href="../modules/go_input.html">go_input</a></li>
+    <li><a href="../modules/go_next_prev.html">go_next_prev</a></li>
+    <li><a href="../modules/go_up.html">go_up</a></li>
+    <li><a href="../modules/help_chrome.html">help_chrome</a></li>
+    <li><a href="../modules/hide_scrollbars.html">hide_scrollbars</a></li>
+    <li><a href="../modules/history.html">history</a></li>
+    <li><a href="../modules/history_chrome.html">history_chrome</a></li>
+    <li><a href="../modules/image_css.html">image_css</a></li>
+    <li><a href="../modules/introspector_chrome.html">introspector_chrome</a></li>
+    <li><a href="../modules/ipc.html">ipc</a></li>
+    <li><span>lousy.bind</span></li>
+    <li><a href="../modules/lousy.load.html">lousy.load</a></li>
+    <li><a href="../modules/lousy.mode.html">lousy.mode</a></li>
+    <li><a href="../modules/lousy.pickle.html">lousy.pickle</a></li>
+    <li><a href="../modules/lousy.signal.html">lousy.signal</a></li>
+    <li><a href="../modules/lousy.theme.html">lousy.theme</a></li>
+    <li><a href="../modules/lousy.uri.html">lousy.uri</a></li>
+    <li><a href="../modules/lousy.util.html">lousy.util</a></li>
+    <li><a href="../modules/lousy.widget.html">lousy.widget</a></li>
+    <li><a href="../modules/luakit.html">luakit</a></li>
+    <li><a href="../modules/msg.html">msg</a></li>
+    <li><a href="../modules/newtab_chrome.html">newtab_chrome</a></li>
+    <li><a href="../modules/noscript.html">noscript</a></li>
+    <li><a href="../modules/open_editor.html">open_editor</a></li>
+    <li><a href="../modules/proxy.html">proxy</a></li>
+    <li><a href="../modules/quickmarks.html">quickmarks</a></li>
+    <li><a href="../modules/referer_control_wm.html">referer_control_wm</a></li>
+    <li><a href="../modules/search.html">search</a></li>
+    <li><a href="../modules/select.html">select</a></li>
+    <li><a href="../modules/select_wm.html">select_wm</a></li>
+    <li><a href="../modules/session.html">session</a></li>
+    <li><a href="../modules/soup.html">soup</a></li>
+    <li><a href="../modules/styles.html">styles</a></li>
+    <li><a href="../modules/tab_favicons.html">tab_favicons</a></li>
+    <li><a href="../modules/tabhistory.html">tabhistory</a></li>
+    <li><a href="../modules/taborder.html">taborder</a></li>
+    <li><a href="../modules/tests.lib.html">tests.lib</a></li>
+    <li><a href="../modules/undoclose.html">undoclose</a></li>
+    <li><a href="../modules/unique.html">unique</a></li>
+    <li><a href="../modules/userscripts.html">userscripts</a></li>
+    <li><a href="../modules/vertical_tabs.html">vertical_tabs</a></li>
+    <li><a href="../modules/view_source.html">view_source</a></li>
+    <li><a href="../modules/viewpdf.html">viewpdf</a></li>
+    <li><a href="../modules/webinspector.html">webinspector</a></li>
+    <li><a href="../modules/xdg.html">xdg</a></li>
+</ul>
+<h3>Classes</h3>
+<ul>
+    <li><a href="../classes/dom_document.html">dom_document</a></li>
+    <li><a href="../classes/dom_element.html">dom_element</a></li>
+    <li><a href="../classes/download.html">download</a></li>
+    <li><a href="../classes/page.html">page</a></li>
+    <li><a href="../classes/regex.html">regex</a></li>
+    <li><a href="../classes/sqlite3.html">sqlite3</a></li>
+    <li><a href="../classes/stylesheet.html">stylesheet</a></li>
+    <li><a href="../classes/timer.html">timer</a></li>
+    <li><a href="../classes/widget.html">widget</a></li>
+    <li><a href="../classes/widget:box.html">widget:box</a></li>
+    <li><a href="../classes/widget:drawing_area.html">widget:drawing_area</a></li>
+    <li><a href="../classes/widget:entry.html">widget:entry</a></li>
+    <li><a href="../classes/widget:event_box.html">widget:event_box</a></li>
+    <li><a href="../classes/widget:image.html">widget:image</a></li>
+    <li><a href="../classes/widget:label.html">widget:label</a></li>
+    <li><a href="../classes/widget:notebook.html">widget:notebook</a></li>
+    <li><a href="../classes/widget:overlay.html">widget:overlay</a></li>
+    <li><a href="../classes/widget:paned.html">widget:paned</a></li>
+    <li><a href="../classes/widget:scrolled.html">widget:scrolled</a></li>
+    <li><a href="../classes/widget:socket.html">widget:socket</a></li>
+    <li><a href="../classes/widget:spinner.html">widget:spinner</a></li>
+    <li><a href="../classes/widget:webview.html">widget:webview</a></li>
+    <li><a href="../classes/widget:window.html">widget:window</a></li>
+</ul>
+
+            </div>
+            <div id=content>
+                        <h1>Module <code>lousy.bind</code></h1>
+        <h2 class=tagline>lousy.bind library</h2>
+        
+
+<p>Key, buffer and command binding functions.</p>
+
+
+
+
+
+        <!-- modes and binds --><h2>Functions</h2>
+
+        <h3 class=function id="lousy.bind.parse_mods">
+            <a href="#lousy.bind.parse_mods">lousy.bind.parse_mods (mods, remove_shift)</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Parse a table of modifier keys into a string.</p>
+
+            <h4>Parameters</h4>
+<ul>
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>mods</span>
+                    <div>Type: <span class=type>table</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+The table of modifier keys.
+
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>remove_shift</span>
+                    <div>Type: <span class=type>boolean</span></div>
+                    <div>Optional</div>
+                    <div>Default: 
+<code>false</code>
+</div>
+                </div>
+                <div>
+Remove the shift key from the modifier
+table.
+</div>
+            </div>
+        </li>
+    
+</ul>
+            <h4>Return Values</h4>
+<ul>
+        <li>
+            <div class=two-col>
+                <div><span class=type>string</span></div><div>
+A string of key names, separated by hyphens (-).
+
+</div>
+            </div>
+        </li>
+    
+</ul>
+        </div>
+    
+        <h3 class=function id="lousy.bind.key">
+            <a href="#lousy.bind.key">lousy.bind.key (mods, key, desc, func, opts)</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Create a new key binding.</p>
+
+            <h4>Parameters</h4>
+<ul>
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>mods</span>
+                    <div>Type: <span class=type>table</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+The table of modifier keys.
+
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>key</span>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+The key name.
+
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>desc</span>
+                    <div>Type: <span class=type>string</span></div>
+                    <div>Optional</div>
+                    <div>Default: 
+<code>nil</code>
+</div>
+                </div>
+                <div>
+A description for this key binding.
+
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>func</span>
+                    <div>Type: <span class=type>function</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+The callback function for this key binding.
+
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>opts</span>
+                    <div>Type: <span class=type>table</span></div>
+                    <div>Optional</div>
+                    <div>Default: 
+<code>{}</code>
+</div>
+                </div>
+                <div>
+The table of key binding options.
+
+</div>
+            </div>
+        </li>
+    
+</ul>
+            <h4>Return Values</h4>
+<ul>
+        <li>
+            <div class=two-col>
+                <div><span class=type>table</span></div><div>
+A table representing the new key binding.
+
+</div>
+            </div>
+        </li>
+    
+</ul>
+        </div>
+    
+        <h3 class=function id="lousy.bind.but">
+            <a href="#lousy.bind.but">lousy.bind.but (mods, button, desc, func, opts)</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Create a new button binding.</p>
+
+            <h4>Parameters</h4>
+<ul>
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>mods</span>
+                    <div>Type: <span class=type>table</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+The table of modifier keys.
+
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>button</span>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+The button name.
+
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>desc</span>
+                    <div>Type: <span class=type>string</span></div>
+                    <div>Optional</div>
+                    <div></div>
+                </div>
+                <div>
+A description for this button binding.
+
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>func</span>
+                    <div>Type: <span class=type>function</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+The callback function for this button binding.
+
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>opts</span>
+                    <div>Type: <span class=type>table</span></div>
+                    <div>Optional</div>
+                    <div></div>
+                </div>
+                <div>
+The table of button binding options.
+
+</div>
+            </div>
+        </li>
+    
+</ul>
+            <h4>Return Values</h4>
+<ul>
+        <li>
+            <div class=two-col>
+                <div><span class=type>table</span></div><div>
+A table representing the new button binding.
+
+</div>
+            </div>
+        </li>
+    
+</ul>
+        </div>
+    
+        <h3 class=function id="lousy.bind.buf">
+            <a href="#lousy.bind.buf">lousy.bind.buf (pattern, desc, func, opts)</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Create a new buffer binding.</p>
+
+            <h4>Parameters</h4>
+<ul>
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>pattern</span>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+The text pattern to match.
+
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>desc</span>
+                    <div>Type: <span class=type>string</span></div>
+                    <div>Optional</div>
+                    <div></div>
+                </div>
+                <div>
+A description for this buffer binding.
+
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>func</span>
+                    <div>Type: <span class=type>function</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+The callback function for this buffer binding.
+
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>opts</span>
+                    <div>Type: <span class=type>table</span></div>
+                    <div>Optional</div>
+                    <div></div>
+                </div>
+                <div>
+The table of buffer binding options.
+
+</div>
+            </div>
+        </li>
+    
+</ul>
+            <h4>Return Values</h4>
+<ul>
+        <li>
+            <div class=two-col>
+                <div><span class=type>table</span></div><div>
+A table representing the new buffer binding.
+
+</div>
+            </div>
+        </li>
+    
+</ul>
+        </div>
+    
+        <h3 class=function id="lousy.bind.cmd">
+            <a href="#lousy.bind.cmd">lousy.bind.cmd (cmds, desc, func, opts)</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Create a new command binding.</p>
+
+            <h4>Parameters</h4>
+<ul>
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>cmds</span>
+                    <div>Type: <span class=type>string</span> or <span class=type>table</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+One or more text patterns to match.
+
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>desc</span>
+                    <div>Type: <span class=type>string</span></div>
+                    <div>Optional</div>
+                    <div></div>
+                </div>
+                <div>
+A description for this buffer binding.
+
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>func</span>
+                    <div>Type: <span class=type>function</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+The callback function for this buffer binding.
+
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>opts</span>
+                    <div>Type: <span class=type>table</span></div>
+                    <div>Optional</div>
+                    <div></div>
+                </div>
+                <div>
+The table of buffer binding options.
+
+</div>
+            </div>
+        </li>
+    
+</ul>
+            <h4>Return Values</h4>
+<ul>
+        <li>
+            <div class=two-col>
+                <div><span class=type>table</span></div><div>
+A table representing the new buffer binding.
+
+</div>
+            </div>
+        </li>
+    
+</ul>
+        </div>
+    
+        <h3 class=function id="lousy.bind.any">
+            <a href="#lousy.bind.any">lousy.bind.any (desc, func, opts)</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Create a binding which is always called.</p>
+
+            <h4>Parameters</h4>
+<ul>
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>desc</span>
+                    <div>Type: <span class=type>string</span></div>
+                    <div>Optional</div>
+                    <div></div>
+                </div>
+                <div>
+A description for this binding.
+
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>func</span>
+                    <div>Type: <span class=type>function</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+The callback function for this binding.
+
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>opts</span>
+                    <div>Type: <span class=type>table</span></div>
+                    <div>Optional</div>
+                    <div></div>
+                </div>
+                <div>
+The table of binding options.
+
+</div>
+            </div>
+        </li>
+    
+</ul>
+            <h4>Return Values</h4>
+<ul>
+        <li>
+            <div class=two-col>
+                <div><span class=type>table</span></div><div>
+A table representing the new binding.
+
+</div>
+            </div>
+        </li>
+    
+</ul>
+        </div>
+    
+        <h3 class=function id="lousy.bind.match_any">
+            <a href="#lousy.bind.match_any">lousy.bind.match_any (object, binds, args)</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Match any 'any' bindings in a given table of bindings.</p>
+
+<p>The bindings' callback functions are called in the order that they
+occur in the given table of bindings. If any callback function
+returns a value other than <code>false</code>, then matching stops and this
+function immediately returns <code>true</code>. Otherwise, if the callback
+returns <code>false</code>, matching continues.</p>
+
+
+            <h4>Parameters</h4>
+<ul>
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>object</span>
+                    <div>Type: <span class=any_type>any type</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+An object passed through to any 'any' bindings called.
+
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>binds</span>
+                    <div>Type: <span class=type>table</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+A table of bindings to search.
+
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>args</span>
+                    <div>Type: <span class=type>table</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+A table of arguments passed through to any 'any' bindings
+called.
+</div>
+            </div>
+        </li>
+    
+</ul>
+            <h4>Return Values</h4>
+<ul>
+        <li>
+            <div class=two-col>
+                <div><span class=type>boolean</span></div><div>
+<code>true</code> if an 'any' binding was ran successfully.
+
+</div>
+            </div>
+        </li>
+    
+</ul>
+        </div>
+    
+        <h3 class=function id="lousy.bind.match_key">
+            <a href="#lousy.bind.match_key">lousy.bind.match_key (object, binds, mods, key, args)</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Match any key binding in a given table of bindings.</p>
+
+<p>The bindings' callback functions are called in the order that they
+occur in the given table of bindings. If any callback function
+returns a value other than <code>false</code>, then matching stops and this
+function immediately returns <code>true</code>. Otherwise, if the callback
+returns <code>false</code>, matching continues.</p>
+
+
+            <h4>Parameters</h4>
+<ul>
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>object</span>
+                    <div>Type: <span class=any_type>any type</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+An object passed through to any key bindings called.
+
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>binds</span>
+                    <div>Type: <span class=type>table</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+A table of bindings to search.
+
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>mods</span>
+                    <div>Type: <span class=type>table</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+The table of modifier keys.
+
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>key</span>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+The key name.
+
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>args</span>
+                    <div>Type: <span class=type>table</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+A table of arguments passed through to any key bindings
+called.
+</div>
+            </div>
+        </li>
+    
+</ul>
+            <h4>Return Values</h4>
+<ul>
+        <li>
+            <div class=two-col>
+                <div><span class=type>boolean</span></div><div>
+<code>true</code> if a key binding was ran successfully.
+
+</div>
+            </div>
+        </li>
+    
+</ul>
+        </div>
+    
+        <h3 class=function id="lousy.bind.match_but">
+            <a href="#lousy.bind.match_but">lousy.bind.match_but (object, binds, mods, button, args)</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Match any button binding in a given table of bindings.</p>
+
+<p>The bindings' callback functions are called in the order that they
+occur in the given table of bindings. If any callback function
+returns a value other than <code>false</code>, then matching stops and this
+function immediately returns <code>true</code>. Otherwise, if the callback
+returns <code>false</code>, matching continues.</p>
+
+
+            <h4>Parameters</h4>
+<ul>
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>object</span>
+                    <div>Type: <span class=any_type>any type</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+An object passed through to any key bindings called.
+
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>binds</span>
+                    <div>Type: <span class=type>table</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+A table of bindings to search.
+
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>mods</span>
+                    <div>Type: <span class=type>table</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+The table of modifier keys.
+
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>button</span>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+The button name.
+
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>args</span>
+                    <div>Type: <span class=type>table</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+A table of arguments passed through to any button bindings
+called.
+</div>
+            </div>
+        </li>
+    
+</ul>
+            <h4>Return Values</h4>
+<ul>
+        <li>
+            <div class=two-col>
+                <div><span class=type>boolean</span></div><div>
+<code>true</code> if a key binding was ran successfully.
+
+</div>
+            </div>
+        </li>
+    
+</ul>
+        </div>
+    
+        <h3 class=function id="lousy.bind.match_buf">
+            <a href="#lousy.bind.match_buf">lousy.bind.match_buf (object, binds, buffer, args)</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Try and match a buffer binding in a given table of bindings and call that
+bindings callback function.</p>
+
+            <h4>Parameters</h4>
+<ul>
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>object</span>
+                    <div>Type: <span class=any_type>any type</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+The first argument of the bind callback function.
+
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>binds</span>
+                    <div>Type: <span class=type>table</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+The table of binds in which to check for a match.
+
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>buffer</span>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+The buffer string to match.
+
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>args</span>
+                    <div>Type: <span class=type>table</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+The bind options/state/metadata table which is applied over the
+opts table given when the bind was created.
+</div>
+            </div>
+        </li>
+    
+</ul>
+            <h4>Return Values</h4>
+<ul>
+        <li>
+            <div class=two-col>
+                <div><span class=type>boolean</span></div><div>
+<code>true</code> if a binding was matched and called.
+
+</div>
+            </div>
+        </li>
+    
+        <li>
+            <div class=two-col>
+                <div><span class=type>boolean</span></div><div>
+<code>true</code> if a partial match exists.
+
+</div>
+            </div>
+        </li>
+    
+</ul>
+        </div>
+    
+        <h3 class=function id="lousy.bind.match_cmd">
+            <a href="#lousy.bind.match_cmd">lousy.bind.match_cmd (object, binds, buffer, args)</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Try and match a command or buffer binding in a given table of bindings
+and call that bindings callback function.</p>
+
+            <h4>Parameters</h4>
+<ul>
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>object</span>
+                    <div>Type: <span class=any_type>any type</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+The first argument of the bind callback function.
+
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>binds</span>
+                    <div>Type: <span class=type>table</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+The table of binds in which to check for a match.
+
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>buffer</span>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+The buffer string to match.
+
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>args</span>
+                    <div>Type: <span class=type>table</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+The bind options/state/metadata table which is applied over the
+opts table given when the bind was created.
+</div>
+            </div>
+        </li>
+    
+</ul>
+            <h4>Return Values</h4>
+<ul>
+        <li>
+            <div class=two-col>
+                <div><span class=type>boolean</span></div><div>
+<code>true</code> if either type of binding was matched and called.
+
+</div>
+            </div>
+        </li>
+    
+</ul>
+        </div>
+    
+        <h3 class=function id="lousy.bind.hit">
+            <a href="#lousy.bind.hit">lousy.bind.hit (object, binds, mods, key, args)</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Attempt to match either a key or buffer binding and execute it. This
+function is also responsible for performing operations on the buffer when
+necessary and the buffer is enabled.</p>
+
+            <h4>Parameters</h4>
+<ul>
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>object</span>
+                    <div>Type: <span class=any_type>any type</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+The first argument of the bind callback function.
+
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>binds</span>
+                    <div>Type: <span class=type>table</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+The table of binds in which to check for a match.
+
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>mods</span>
+                    <div>Type: <span class=type>{string}</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+The modifiers to match.
+
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>key</span>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+The key name to match.
+
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>args</span>
+                    <div>Type: <span class=type>table</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+The bind options/state/metadata table which is applied over the
+opts table given when the bind was created.
+</div>
+            </div>
+        </li>
+    
+</ul>
+            <h4>Return Values</h4>
+<ul>
+        <li>
+            <div class=two-col>
+                <div><span class=type>boolean</span></div><div>
+<code>true</code> if a key or buffer binding was matched or if a key was added to
+the buffer.
+</div>
+            </div>
+        </li>
+    
+        <li>
+            <div class=two-col>
+                <div><span class=type>string</span></div><div>
+The new buffer truncated to 10 characters (if you need more buffer
+then use the input bar for whatever you are doing). If no buffer binding
+could be matched, the returned buffer will be the empty string.
+</div>
+            </div>
+        </li>
+    
+</ul>
+        </div>
+    
+        <h3 class=function id="lousy.bind.bind_to_string">
+            <a href="#lousy.bind.bind_to_string">lousy.bind.bind_to_string (b)</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Produce a string describing the action that triggers a given binding.
+For example, a binding for the down-arrow key would produce <code>"&lt;Down&gt;"</code>.</p>
+
+
+            <h4>Parameters</h4>
+<ul>
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>b</span>
+                    <div>Type: <span class=type>table</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+The binding.
+
+</div>
+            </div>
+        </li>
+    
+</ul>
+            <h4>Return Values</h4>
+<ul>
+        <li>
+            <div class=two-col>
+                <div><span class=type>string</span></div><div>
+The binding description string.
+
+</div>
+            </div>
+        </li>
+    
+</ul>
+        </div>
+    <h2>Fields</h2>
+
+        <h3 class=field id="field-ignore_mask">
+            <a href="#field-ignore_mask">lousy.bind.ignore_mask</a>
+        </h3>
+        <div class="two-col field">
+            <div>
+                <div>Type: <span class=any_type>any type</span></div>
+                <div></div>
+                <div>Read-write</div>
+            </div>
+            <div>
+Set of modifiers to ignore.
+</div>
+        </div>
+    
+        <h3 class=field id="field-map">
+            <a href="#field-map">lousy.bind.map</a>
+        </h3>
+        <div class="two-col field">
+            <div>
+                <div>Type: <span class=any_type>any type</span></div>
+                <div></div>
+                <div>Read-write</div>
+            </div>
+            <div>
+A table that contains mappings for key names.
+</div>
+        </div>
+    
+        <h2>Attribution</h2>
+        <div class=attr-wrap>
+    <h4>Authors</h4>
+    <ul class=authors>
+        <li>Mason Larobina <mason.larobina@gmail.com>
+    </ul>
+</div>
+<div class=attr-wrap>
+    <h4>Copyright</h4><ul class=copyright>
+        <li>2010 Mason Larobina
+    </ul>
+</div>
+    
+            </div>
+            <div style='display:none'><a rel=prev href='../modules/ipc.html'><a rel=next href='../modules/lousy.load.html'></div>
+        </div>
+	</div>
+	<footer>
+		<div class="container">
+			<small>Copyright 2017 Aidan Holm</small>
+			<br>
+			<small>All written documentation and luakit code are copyright to their respective authors.</small>
+		</div>
+	</footer>
+</body>
+</html>

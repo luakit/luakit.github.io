@@ -1,0 +1,1813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset='UTF-8'>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Luakit API Documentation</title>
+	<link rel="icon" type="image/png" href="favicon.png" />
+	<style type="text/css">html {
+	color: #333;
+}
+body {
+    margin: 0;
+    font-family: "Helvetica", "Arial", sans-serif;
+}
+
+#hdr {
+    border-bottom: 1px solid #e0e5e6;
+    background-color: #f6f8f8;
+}
+
+#hdr > h1 {
+    color: #555;
+    margin: 0 auto;
+    max-width: 910px;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+}
+
+#wrap {
+    font-size: 14px;
+    line-height: 1.3;
+    padding: 2rem;
+    margin: 0 auto;
+    justify-content: center;
+    max-width: 910px;
+}
+
+h1, h2, strong {
+    line-height: 1.1;
+    margin: 0;
+    color: #111;
+}
+
+.tagline {
+    color: #555;
+    margin: 0 0 1rem;
+    font-size: 1.4rem;
+    font-weight: normal;
+}
+
+h1 { margin: 0 0 0.7rem; }
+h2 { margin: 1.5rem 0 1rem; }
+h4 { margin: 1rem 0; }
+
+code, pre
+{
+	background: #f5f7f9;
+	color: #334;
+}
+code {
+	border: 1px solid #dfdfe9;
+	padding: 0px 4px;
+}
+pre > code {
+    border: none;
+    padding: 0;
+}
+pre {
+	padding: 1rem 1.2rem;
+	border-left: 2px solid #69c;
+}
+
+h3.function > a, h3.property > a, h3.table > a, h3.field > a {
+    font-family: monospace;
+	color: #2B5782;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+span.parameter, span.type {
+    font-family: monospace;
+	color: #2B5782;
+    text-decoration: none;
+    font-size: 1.0rem;
+}
+span.parameter {
+	font-weight: bold;
+}
+
+li.parameter {
+    margin-bottom: 1rem;
+}
+
+span.optional, span.any_type {
+    font-style: italic;
+    color: #777;
+}
+
+div.function, div.property, div.table, div.field {
+    margin-left: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+span.info {
+    margin-right: 0.5rem;
+}
+
+div.alert {
+    padding: 8px 35px 8px 14px;
+    margin-bottom: 20px;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+    position: relative;
+    font-style: italic;
+}
+
+div.warn.alert {
+    color: #635b31;
+    background-color: #fcf8e3;
+    border-color: #bdceaf;
+    border-left: 2px solid #7c723e;
+}
+
+div.good.alert {
+    color: #376d38;
+    background-color: #dff0d8;
+    border-color: #bdceaf;
+    border-left: 2px solid #376d38;
+}
+
+#wrap {
+    display: flex;
+    flex: 1;
+}
+#content {
+    flex: 1;
+    max-width: 48rem;
+}
+#sidebar {
+    flex: 0 0 15rem;
+    margin-right: 2rem;
+}
+
+@media (max-width: 965px) {
+    #sidebar { display: none; }
+}
+
+#sidebar > h2 {
+    margin: 0 0 1rem;
+}
+#sidebar > h3 {
+    margin: 1rem 0 0.5rem;
+}
+#sidebar > ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0 0 0.5rem;
+}
+#sidebar > ul > li {
+    margin: 0.2rem 0.2rem 0.2rem 0.5rem;
+    font-family: monospace;
+}
+#sidebar > ul > li > a, #sidebar > ul > li > span {
+    font-family: monospace;
+    text-decoration: none;
+    font-size: 1.1rem;
+}
+#sidebar > ul > li > span {
+	font-weight: bold;
+}
+
+#content li:not(:last-child) {
+    margin-bottom: 0.5rem;
+}
+
+/* Links */
+a { color: #204a87; text-decoration: none; }
+a:visited { color: #2B2087; }
+a:hover { text-decoration: underline; }
+a:active { color: #0c1d36; }
+li.dummy {
+    list-style-type: none;
+    -webkit-user-select: none;
+}
+
+/* Attribution styling */
+.attr-wrap {
+    display: flex;
+    flex: 1;
+}
+.attr-wrap > h4 {
+    flex: 0 0 8rem;
+    margin-bottom: 0;
+}
+.attr-wrap > ul {
+    flex: 1;
+    padding: 2px 0;
+    list-style-type: none;
+    margin-bottom: 0;
+}
+.attr-wrap > ul > li:before {
+   width: 20px;
+   margin-right: 5px;
+   display: inline-block;
+   text-align: center;
+}
+ul.authors > li:before { content: "•"; }
+ul.copyright > li:before { content: "©"; }
+
+.sourcecode .comment { color: #558817; }
+.sourcecode .constant { color: #a8660d; }
+.sourcecode .escape { color: #844631; }
+.sourcecode .keyword { color: #2239a8; font-weight: bold; }
+.sourcecode .library { color: #0e7c6b !important; text-decoration: none !important; }
+.sourcecode .marker { color: #512b1e; background: #fedc56; font-weight: bold; }
+.sourcecode .number { color: #a8660d; }
+.sourcecode .operator { color: #2239a8; font-weight: bold; }
+.sourcecode .preprocessor { color: #a33243; }
+.sourcecode .prompt { color: #558817; }
+.sourcecode a:link, .sourcecode a:visited { color: #272fc2; }
+
+.two-col { display: flex; }
+.two-col > :first-child { flex: 0 0 200px; margin-right: 10px; }
+.two-col > :first-child > div:not(:first-child) { margin-top: 0.3rem; }
+ul.triggers {
+	list-style-type: none;
+	padding: 0;
+}
+ul.triggers > li {
+	font-family: monospace, sans-serif;
+	color: #2B5782;
+	font-weight: bold;
+}
+
+div.info > div { margin-top: 0.3rem; }
+</style>
+	<link rel=stylesheet href=/luakit/style.css />
+	<link rel="stylesheet" href="https://code.cdn.mozilla.net/fonts/fira.css">
+	<style type="text/css">
+		#wrap { padding: 2em 0; }
+		#content > h1 { font-size: 28px; }
+		body { background-color: #fcfcfc; }
+		body > .container { max-width: unset; }
+		nav { font-size: 16px; background:#F3EFE7;}
+	</style>
+</head>
+<body>
+	<nav>
+		<a href="/luakit/">Home</a>
+		<a href="/luakit/#sec-release">Releases</a>
+		<a href="/luakit/#sec-download">Download</a>
+		<a href="/luakit/docs/">Documentation</a>
+		<a href="/luakit/#sec-contributing">Contributing</a>
+		<a href="https://github.com/luakit/luakit" target="_blank">GitHub</a>
+	</nav>
+	<div class="container">
+		<div id=wrap>
+            <div id=sidebar>
+                <h2>Table of Contents</h2>
+                <h3>Pages</h3>
+<ul>
+    <li><a href="../pages/Authors.html">Authors</a></li>
+    <li><a href="../pages/Tests.html">Tests</a></li>
+</ul>
+<h3>Modules</h3>
+<ul>
+    <li><a href="../modules/adblock.html">adblock</a></li>
+    <li><a href="../modules/adblock_chrome.html">adblock_chrome</a></li>
+    <li><a href="../modules/bookmarks.html">bookmarks</a></li>
+    <li><a href="../modules/bookmarks_chrome.html">bookmarks_chrome</a></li>
+    <li><a href="../modules/chrome.html">chrome</a></li>
+    <li><a href="../modules/cmdhist.html">cmdhist</a></li>
+    <li><a href="../modules/completion.html">completion</a></li>
+    <li><a href="../modules/domain_props.html">domain_props</a></li>
+    <li><a href="../modules/downloads.html">downloads</a></li>
+    <li><a href="../modules/downloads_chrome.html">downloads_chrome</a></li>
+    <li><a href="../modules/editor.html">editor</a></li>
+    <li><a href="../modules/error_page.html">error_page</a></li>
+    <li><a href="../modules/follow.html">follow</a></li>
+    <li><a href="../modules/follow_selected.html">follow_selected</a></li>
+    <li><a href="../modules/formfiller.html">formfiller</a></li>
+    <li><a href="../modules/go_input.html">go_input</a></li>
+    <li><a href="../modules/go_next_prev.html">go_next_prev</a></li>
+    <li><a href="../modules/go_up.html">go_up</a></li>
+    <li><a href="../modules/help_chrome.html">help_chrome</a></li>
+    <li><a href="../modules/hide_scrollbars.html">hide_scrollbars</a></li>
+    <li><a href="../modules/history.html">history</a></li>
+    <li><a href="../modules/history_chrome.html">history_chrome</a></li>
+    <li><a href="../modules/image_css.html">image_css</a></li>
+    <li><a href="../modules/introspector_chrome.html">introspector_chrome</a></li>
+    <li><a href="../modules/ipc.html">ipc</a></li>
+    <li><a href="../modules/lousy.bind.html">lousy.bind</a></li>
+    <li><a href="../modules/lousy.load.html">lousy.load</a></li>
+    <li><a href="../modules/lousy.mode.html">lousy.mode</a></li>
+    <li><a href="../modules/lousy.pickle.html">lousy.pickle</a></li>
+    <li><a href="../modules/lousy.signal.html">lousy.signal</a></li>
+    <li><a href="../modules/lousy.theme.html">lousy.theme</a></li>
+    <li><a href="../modules/lousy.uri.html">lousy.uri</a></li>
+    <li><a href="../modules/lousy.util.html">lousy.util</a></li>
+    <li><a href="../modules/lousy.widget.html">lousy.widget</a></li>
+    <li><a href="../modules/luakit.html">luakit</a></li>
+    <li><a href="../modules/msg.html">msg</a></li>
+    <li><a href="../modules/newtab_chrome.html">newtab_chrome</a></li>
+    <li><a href="../modules/noscript.html">noscript</a></li>
+    <li><a href="../modules/open_editor.html">open_editor</a></li>
+    <li><a href="../modules/proxy.html">proxy</a></li>
+    <li><a href="../modules/quickmarks.html">quickmarks</a></li>
+    <li><a href="../modules/referer_control_wm.html">referer_control_wm</a></li>
+    <li><a href="../modules/search.html">search</a></li>
+    <li><a href="../modules/select.html">select</a></li>
+    <li><a href="../modules/select_wm.html">select_wm</a></li>
+    <li><a href="../modules/session.html">session</a></li>
+    <li><a href="../modules/soup.html">soup</a></li>
+    <li><a href="../modules/styles.html">styles</a></li>
+    <li><a href="../modules/tab_favicons.html">tab_favicons</a></li>
+    <li><a href="../modules/tabhistory.html">tabhistory</a></li>
+    <li><a href="../modules/taborder.html">taborder</a></li>
+    <li><a href="../modules/tests.lib.html">tests.lib</a></li>
+    <li><a href="../modules/undoclose.html">undoclose</a></li>
+    <li><a href="../modules/unique.html">unique</a></li>
+    <li><a href="../modules/userscripts.html">userscripts</a></li>
+    <li><a href="../modules/vertical_tabs.html">vertical_tabs</a></li>
+    <li><a href="../modules/view_source.html">view_source</a></li>
+    <li><a href="../modules/viewpdf.html">viewpdf</a></li>
+    <li><a href="../modules/webinspector.html">webinspector</a></li>
+    <li><a href="../modules/xdg.html">xdg</a></li>
+</ul>
+<h3>Classes</h3>
+<ul>
+    <li><a href="../classes/dom_document.html">dom_document</a></li>
+    <li><a href="../classes/dom_element.html">dom_element</a></li>
+    <li><a href="../classes/download.html">download</a></li>
+    <li><a href="../classes/page.html">page</a></li>
+    <li><a href="../classes/regex.html">regex</a></li>
+    <li><a href="../classes/sqlite3.html">sqlite3</a></li>
+    <li><a href="../classes/stylesheet.html">stylesheet</a></li>
+    <li><a href="../classes/timer.html">timer</a></li>
+    <li><a href="../classes/widget.html">widget</a></li>
+    <li><a href="../classes/widget:box.html">widget:box</a></li>
+    <li><a href="../classes/widget:drawing_area.html">widget:drawing_area</a></li>
+    <li><a href="../classes/widget:entry.html">widget:entry</a></li>
+    <li><a href="../classes/widget:event_box.html">widget:event_box</a></li>
+    <li><a href="../classes/widget:image.html">widget:image</a></li>
+    <li><a href="../classes/widget:label.html">widget:label</a></li>
+    <li><a href="../classes/widget:notebook.html">widget:notebook</a></li>
+    <li><a href="../classes/widget:overlay.html">widget:overlay</a></li>
+    <li><a href="../classes/widget:paned.html">widget:paned</a></li>
+    <li><a href="../classes/widget:scrolled.html">widget:scrolled</a></li>
+    <li><a href="../classes/widget:socket.html">widget:socket</a></li>
+    <li><a href="../classes/widget:spinner.html">widget:spinner</a></li>
+    <li><span>widget:webview</span></li>
+    <li><a href="../classes/widget:window.html">widget:window</a></li>
+</ul>
+
+            </div>
+            <div id=content>
+                        <h1>Class <code>widget:webview</code></h1>
+        <h2 class=tagline>WebKitGTK+ webview widget</h2>
+        
+
+
+<div class="alert warn">This module is only available from the UI process Lua state.</div>
+
+
+<h3>Creating a new webview widget</h3>
+
+<p>To create a new webview widget, use the <code>widget</code> constructor:</p>
+
+<pre class="sourcecode lua"><span class="keyword">local</span> <span class="identifier">view</span> <span class="operator">=</span> <span class="identifier">widget</span><span class="operator">{</span> <a href="http://www.lua.org/manual/5.1/manual.html#pdf-type" class="library">type</a> <span class="operator">=</span> <span class="constant">"webview"</span> <span class="operator">}</span>
+
+<a href="http://www.lua.org/manual/5.1/manual.html#pdf-print" class="library">print</a><span class="operator">(</span><a href="http://www.lua.org/manual/5.1/manual.html#pdf-type" class="library">type</a><span class="operator">(</span><span class="identifier">view</span><span class="operator">)</span><span class="operator">)</span> <span class="comment">-- Prints "widget"
+</span><a href="http://www.lua.org/manual/5.1/manual.html#pdf-print" class="library">print</a><span class="operator">(</span><span class="identifier">view.type</span><span class="operator">)</span>  <span class="comment">-- Prints "webview"
+</span></pre>
+
+<h3>Destroying a webview widget</h3>
+
+<pre class="sourcecode lua"><span class="identifier">view</span><span class="operator">:</span><span class="identifier">destroy</span><span class="operator">(</span><span class="operator">)</span>
+</pre>
+
+
+
+
+
+
+        <!-- modes and binds --><h2>Methods</h2>
+
+        <h3 class=function id="view:search">
+            <a href="#view:search">view:search (text, case_sensitive, forwards, wrap)</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Begin searching the contents of the webview.</p>
+
+<p>This will end any current search, as if <code>clear_search()</code> had been called.</p>
+
+            <h4>Parameters</h4>
+<ul>
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>text</span>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+The text to search for.
+
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>case_sensitive</span>
+                    <div>Type: <span class=type>boolean</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+Whether the search should be case-sensitive.
+
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>forwards</span>
+                    <div>Type: <span class=type>boolean</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+Search direction; <code>true</code> for forwards, <code>false</code> for backwards.
+
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>wrap</span>
+                    <div>Type: <span class=type>boolean</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+Whether searching should wrap at the beginning and end of the document.
+
+</div>
+            </div>
+        </li>
+    
+</ul>
+            
+        </div>
+    
+        <h3 class=function id="view:search_next">
+            <a href="#view:search_next">view:search_next ()</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Focus the next occurrence of the text in the webview.</p>
+
+            
+            
+        </div>
+    
+        <h3 class=function id="view:search_previous">
+            <a href="#view:search_previous">view:search_previous ()</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Focus the previous occurrence of the text in the webview.</p>
+
+            
+            
+        </div>
+    
+        <h3 class=function id="view:clear_search">
+            <a href="#view:clear_search">view:clear_search ()</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Finish searching the contents of the webview.
+This will cause all highlighted matches within the webview to be un-highlighted.</p>
+
+            
+            
+        </div>
+    
+        <h3 class=function id="view:go_back">
+            <a href="#view:go_back">view:go_back ()</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Load the previous item in the webview history.</p>
+
+            
+            <h4>Return Values</h4>
+<ul>
+        <li>
+            <div class=two-col>
+                <div><span class=type>boolean</span></div><div>
+Whether the history item was loaded.
+
+</div>
+            </div>
+        </li>
+    
+</ul>
+        </div>
+    
+        <h3 class=function id="view:go_forward">
+            <a href="#view:go_forward">view:go_forward ()</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Load the next item in the webview history.</p>
+
+            
+            <h4>Return Values</h4>
+<ul>
+        <li>
+            <div class=two-col>
+                <div><span class=type>boolean</span></div><div>
+Whether the history item was loaded.
+
+</div>
+            </div>
+        </li>
+    
+</ul>
+        </div>
+    
+        <h3 class=function id="view:can_go_back">
+            <a href="#view:can_go_back">view:can_go_back ()</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Determine whether the webview has a previous history item.</p>
+
+            
+            <h4>Return Values</h4>
+<ul>
+        <li>
+            <div class=two-col>
+                <div><span class=type>boolean</span></div><div>
+Whether the webview has a previous history item.
+
+</div>
+            </div>
+        </li>
+    
+</ul>
+        </div>
+    
+        <h3 class=function id="view:can_go_forward">
+            <a href="#view:can_go_forward">view:can_go_forward ()</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Determine whether the webview has a subsequent history item.</p>
+
+            
+            <h4>Return Values</h4>
+<ul>
+        <li>
+            <div class=two-col>
+                <div><span class=type>boolean</span></div><div>
+Whether the webview has a subsequent history item.
+
+</div>
+            </div>
+        </li>
+    
+</ul>
+        </div>
+    
+        <h3 class=function id="view:eval_js">
+            <a href="#view:eval_js">view:eval_js (script, options)</a>
+        </h3>
+            <div class=function>
+            
+            
+
+<p>Asynchronously run a string of JavaScript code in the context of the
+webview. The JavaScript will run even if the <code>enable_javascript</code>
+property of the webview is <code>false</code>, as it is run within a separate
+JavaScript script world.</p>
+
+<p>To evaluate a string of JavaScript, provide a callback function within
+the <code>options</code> table:</p>
+
+<pre class="sourcecode lua"><span class="identifier">view</span><span class="operator">:</span><span class="identifier">eval_js</span><span class="operator">(</span><span class="constant">"document.body.clientHeight"</span><span class="operator">,</span> <span class="operator">{</span> <span class="identifier">callback</span> <span class="operator">=</span> <span class="identifier">function</span> <span class="operator">(</span><span class="identifier">ret</span><span class="operator">,</span> <span class="identifier">err</span><span class="operator">)</span>
+    <a href="http://www.lua.org/manual/5.1/manual.html#pdf-assert" class="library">assert</a><span class="operator">(</span><span class="operator">not</span> <span class="identifier">err</span><span class="operator">,</span> <span class="identifier">err</span><span class="operator">)</span> <span class="comment">-- Check for any error
+</span>    <span class="identifier">msg.info</span><span class="operator">(</span><span class="constant">"The document height is </span><span class="escape">%d</span><span class="constant"> pixels"</span><span class="operator">,</span> <span class="identifier">ret</span><span class="operator">)</span>
+<span class="identifier">end</span> <span class="operator">}</span><span class="operator">)</span>
+</pre>
+
+<h4>Calling options</h4>
+
+<p>The following keys can be set in the <code>options</code> argument:</p>
+
+<ul>
+    <li><code>source</code> : A string to be used in error messages.</li>
+    <li><code>no_return</code> : A boolean; if <code>false</code>, no result <em>or error</em> will be returned.</li>
+    <li><code>callback</code> : A callback function.</li>
+</ul>
+
+
+            <h4>Parameters</h4>
+<ul>
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>script</span>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+The JavaScript string to evaluate.
+
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>options</span>
+                    <div>Type: <span class=type>table</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+Additional arguments.
+
+</div>
+            </div>
+        </li>
+    
+</ul>
+            
+        </div>
+    
+        <h3 class=function id="view:load_string">
+            <a href="#view:load_string">view:load_string (string, content_uri)</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Load the given string <code>string</code> into the webview, and set the webview URI
+to <code>content_uri</code>. This replaces the existing contents of the webview.</p>
+
+<p>In order to display an error page, it's recommended to use the <code>error_page</code>
+module. This module automatically implements a number of features, such as
+preventing user styles or userscripts from interfering with error pages, and
+error pages using this module have a consistent theme.</p>
+
+
+            <h4>Parameters</h4>
+<ul>
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>string</span>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+The string to load into the webview.
+
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>content_uri</span>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+The URI to display.
+
+</div>
+            </div>
+        </li>
+    
+</ul>
+            
+        </div>
+    
+        <h3 class=function id="view:reload">
+            <a href="#view:reload">view:reload ()</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Reload the current contents of the webview.</p>
+
+            
+            
+        </div>
+    
+        <h3 class=function id="view:reload_bypass_cache">
+            <a href="#view:reload_bypass_cache">view:reload_bypass_cache ()</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Reload the current contents of the webview, without using any cached data.</p>
+
+            
+            
+        </div>
+    
+        <h3 class=function id="view:stop">
+            <a href="#view:stop">view:stop ()</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Stop any current load operation within the within the webview. If there is no
+such operation, this method does nothing. Otherwise, the <code>load-failed</code> signal
+will be emitted with <code>"cancelled"</code> as the failure reason.</p>
+
+            
+            
+        </div>
+    
+        <h3 class=function id="view:ssl_trusted">
+            <a href="#view:ssl_trusted">view:ssl_trusted ()</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Determine whether any problems have been found with the certificate associated
+with the contents of the webview.</p>
+
+<p>If the contents of the webview were not loaded over HTTPS, <code>nil</code> is returned.</p>
+
+<p>The return value is valid after <code>load-status</code> is emitted on the webview
+with the <code>"committed"</code> status.</p>
+
+
+            
+            <h4>Return Values</h4>
+<ul>
+        <li>
+            <div class=two-col>
+                <div><span class=type>boolean?</span></div><div>
+<code>false</code> if any problems have been found, <code>true</code> if no problems
+were found, and <code>nil</code> if the contents of the webview were not loaded over HTTPS.
+</div>
+            </div>
+        </li>
+    
+</ul>
+        </div>
+    
+        <h3 class=function id="view:show_inspector">
+            <a href="#view:show_inspector">view:show_inspector ()</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Show the web inspector for the webview.</p>
+
+            
+            
+        </div>
+    
+        <h3 class=function id="view:close_inspector">
+            <a href="#view:close_inspector">view:close_inspector ()</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Close the web inspector for the webview.</p>
+
+            
+            
+        </div>
+    
+        <h3 class=function id="view:allow_certificate">
+            <a href="#view:allow_certificate">view:allow_certificate ()</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Allow a certificate.</p>
+
+            
+            
+        </div>
+    <h2>Properties</h2>
+
+        <h3 class=property id="property-inspector">
+            <a href="#property-inspector">view.inspector</a>
+        </h3>
+        <div class="two-col property">
+            <div>
+                <div>Type: <span class=type>boolean</span></div>
+                <div></div>
+                <div>Read-only</div>
+            </div>
+            <div>
+Whether the web inspector is open for the webview.
+</div>
+        </div>
+    
+        <h3 class=property id="property-uri">
+            <a href="#property-uri">view.uri</a>
+        </h3>
+        <div class="two-col property">
+            <div>
+                <div>Type: <span class=type>string</span></div>
+                <div>Default: 
+"about:blank"
+</div>
+                <div>Read-write</div>
+            </div>
+            <div>
+The URI of the current web page.
+</div>
+        </div>
+    
+        <h3 class=property id="property-hovered_uri">
+            <a href="#property-hovered_uri">view.hovered_uri</a>
+        </h3>
+        <div class="two-col property">
+            <div>
+                <div>Type: <span class=type>string?</span></div>
+                <div></div>
+                <div>Read-only</div>
+            </div>
+            <div>
+The URI of the link the mouse cursor is currently hovering over, or
+<code>nil</code> if the mouse cursor is not currently hovering over a link.
+</div>
+        </div>
+    
+        <h3 class=property id="property-source">
+            <a href="#property-source">view.source</a>
+        </h3>
+        <div class="two-col property">
+            <div>
+                <div>Type: <span class=any_type>any type</span></div>
+                <div></div>
+                <div>Read-only</div>
+            </div>
+            <div>
+The source of the current web page.
+</div>
+        </div>
+    
+        <h3 class=property id="property-session_state">
+            <a href="#property-session_state">view.session_state</a>
+        </h3>
+        <div class="two-col property">
+            <div>
+                <div>Type: <span class=type>string</span></div>
+                <div></div>
+                <div>Read-write</div>
+            </div>
+            <div>
+The session state of the current web page.
+</div>
+        </div>
+    
+        <h3 class=property id="property-stylesheets">
+            <a href="#property-stylesheets">view.stylesheets</a>
+        </h3>
+        <div class="two-col property">
+            <div>
+                <div>Type: <span class=type>table</span></div>
+                <div></div>
+                <div>Read-only</div>
+            </div>
+            <div>
+The stylesheets of the webview.
+</div>
+        </div>
+    
+        <h3 class=property id="property-history">
+            <a href="#property-history">view.history</a>
+        </h3>
+        <div class="two-col property">
+            <div>
+                <div>Type: <span class=type>table</span></div>
+                <div></div>
+                <div>Read-only</div>
+            </div>
+            <div>
+The history of the webview.
+</div>
+        </div>
+    
+        <h3 class=property id="property-scroll">
+            <a href="#property-scroll">view.scroll</a>
+        </h3>
+        <div class="two-col property">
+            <div>
+                <div>Type: <span class=type>table</span></div>
+                <div></div>
+                <div>Read-only</div>
+            </div>
+            <div>
+The scroll of the webview.
+</div>
+        </div>
+    
+        <h3 class=property id="property-favicon">
+            <a href="#property-favicon">view.favicon</a>
+        </h3>
+        <div class="two-col property">
+            <div>
+                <div>Type: <span class=type>widget</span></div>
+                <div></div>
+                <div>Read-only</div>
+            </div>
+            <div>
+The favicon of the webview.
+</div>
+        </div>
+    
+        <h3 class=property id="property-certificate">
+            <a href="#property-certificate">view.certificate</a>
+        </h3>
+        <div class="two-col property">
+            <div>
+                <div>Type: <span class=type>string</span></div>
+                <div></div>
+                <div>Read-only</div>
+            </div>
+            <div>
+The certificate of the webview.
+</div>
+        </div>
+    <h2>Signals</h2>
+
+        <h3 class=function id="signal-scheme-request::*">
+            <a href="#signal-scheme-request::*">"scheme-request::*"</a>
+        </h3>
+            <div class=function>
+            
+            
+
+<p>Emitted when the webview attempts to load a URI on a custom URI scheme.
+The signal detail is always present and is equal to the URI scheme.</p>
+
+<h4>Example</h4>
+
+<p>A signal <code>scheme-request::foo</code> will be emitted on a webview in
+response to a <code>foo://</code> load attempt. To display content for this request,
+return a string with the content to display, as well as (optionally) the
+content MIME type.</p>
+
+<p>The type of content to display isn't limited to HTML or other textual
+formats; images and other binary content types are acceptable, as long as the
+MIME type parameter is returned.</p>
+
+
+            <h4>Parameters</h4>
+<ul>
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>uri</span>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+The URI that the webview is attempting to load.
+
+</div>
+            </div>
+        </li>
+    
+</ul>
+            <h4>Return Values</h4>
+<ul>
+        <li>
+            <div class=two-col>
+                <div><span class=type>string</span></div><div>
+The content to display. Embedded NUL bytes are handled
+correctly.
+</div>
+            </div>
+        </li>
+    
+        <li>
+            <div class=two-col>
+                <div><span class=type>string</span></div><div>
+The MIME type of the content. Default: <code>text/html</code>.
+
+</div>
+            </div>
+        </li>
+    
+</ul>
+        </div>
+    
+        <h3 class=function id="signal-property::*">
+            <a href="#signal-property::*">"property::*"</a>
+        </h3>
+            <div class=function>
+            
+            
+
+<p>Emitted when the value of a webview property may have been updated.
+For example, the <code>"property::uri"</code> signal is emitted on a <code>webview</code>
+widget when its <code>uri</code> property changes.</p>
+
+            
+            
+        </div>
+    
+        <h3 class=function id="signal-link-hover">
+            <a href="#signal-link-hover">"link-hover"</a>
+        </h3>
+            <div class=function>
+            <div class="alert warn">Deprecated: 
+use <code>property::hovered_uri</code> signal instead
+</div>
+            
+<p>Emitted when the mouse cursor is moved over a link.</p>
+
+            <h4>Parameters</h4>
+<ul>
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>uri</span>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+The hovered URI.
+
+</div>
+            </div>
+        </li>
+    
+</ul>
+            
+        </div>
+    
+        <h3 class=function id="signal-link-unhover">
+            <a href="#signal-link-unhover">"link-unhover"</a>
+        </h3>
+            <div class=function>
+            <div class="alert warn">Deprecated: 
+use <code>property::hovered_uri</code> signal instead
+</div>
+            
+<p>Emitted when the mouse cursor was over a link and is moved off.</p>
+
+            <h4>Parameters</h4>
+<ul>
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>uri</span>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+The just-unhovered URI.
+
+</div>
+            </div>
+        </li>
+    
+</ul>
+            
+        </div>
+    
+        <h3 class=function id="signal-button-press">
+            <a href="#signal-button-press">"button-press"</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Emitted when a mouse button was pressed with the cursor inside the <code>webview</code> widget.</p>
+
+
+            <h4>Parameters</h4>
+<ul>
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>modifiers</span>
+                    <div>Type: <span class=type>table</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+An array of strings, one for each modifier key held
+at the time of the event.
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>button</span>
+                    <div>Type: <span class=type>integer</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+The number of the button pressed, beginning
+from <code>1</code>; i.e. <code>1</code> corresponds to the left mouse button.
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>hit_test</span>
+                    <div>Type: <span class=type>table</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+A table representing the type of element under the
+cursor at the time of the event.
+</div>
+            </div>
+        </li>
+    
+</ul>
+            <h4>Return Values</h4>
+<ul>
+        <li>
+            <div class=two-col>
+                <div><span class=type>boolean</span></div><div>
+<code>true</code> if the event has been handled and should not be
+propagated further.
+</div>
+            </div>
+        </li>
+    
+</ul>
+        </div>
+    
+        <h3 class=function id="signal-button-release">
+            <a href="#signal-button-release">"button-release"</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Emitted when a mouse button was released with the cursor inside the <code>webview</code> widget.</p>
+
+
+            <h4>Parameters</h4>
+<ul>
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>modifiers</span>
+                    <div>Type: <span class=type>table</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+An array of strings, one for each modifier key held
+at the time of the event.
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>button</span>
+                    <div>Type: <span class=type>integer</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+The number of the button pressed, beginning
+from <code>1</code>; i.e. <code>1</code> corresponds to the left mouse button.
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>hit_test</span>
+                    <div>Type: <span class=type>table</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+A table representing the type of element under the
+cursor at the time of the event.
+</div>
+            </div>
+        </li>
+    
+</ul>
+            <h4>Return Values</h4>
+<ul>
+        <li>
+            <div class=two-col>
+                <div><span class=type>boolean</span></div><div>
+<code>true</code> if the event has been handled and should not be
+propagated further.
+</div>
+            </div>
+        </li>
+    
+</ul>
+        </div>
+    
+        <h3 class=function id="signal-button-double-click">
+            <a href="#signal-button-double-click">"button-double-click"</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Emitted when a mouse button was double-clicked with the cursor inside the <code>webview</code> widget.</p>
+
+
+            <h4>Parameters</h4>
+<ul>
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>modifiers</span>
+                    <div>Type: <span class=type>table</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+An array of strings, one for each modifier key held
+at the time of the event.
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>button</span>
+                    <div>Type: <span class=type>integer</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+The number of the button pressed, beginning
+from <code>1</code>; i.e. <code>1</code> corresponds to the left mouse button.
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>hit_test</span>
+                    <div>Type: <span class=type>table</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+A table representing the type of element under the
+cursor at the time of the event.
+</div>
+            </div>
+        </li>
+    
+</ul>
+            <h4>Return Values</h4>
+<ul>
+        <li>
+            <div class=two-col>
+                <div><span class=type>boolean</span></div><div>
+<code>true</code> if the event has been handled and should not be
+propagated further.
+</div>
+            </div>
+        </li>
+    
+</ul>
+        </div>
+    
+        <h3 class=function id="signal-mouse-enter">
+            <a href="#signal-mouse-enter">"mouse-enter"</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Emitted when the mouse cursor enters the <code>webview</code> widget.</p>
+
+            <h4>Parameters</h4>
+<ul>
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>modifiers</span>
+                    <div>Type: <span class=type>table</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+An array of strings, one for each modifier key held.
+
+</div>
+            </div>
+        </li>
+    
+</ul>
+            <h4>Return Values</h4>
+<ul>
+        <li>
+            <div class=two-col>
+                <div><span class=type>boolean</span></div><div>
+<code>true</code> if the event has been handled and should not be
+propagated further.
+</div>
+            </div>
+        </li>
+    
+</ul>
+        </div>
+    
+        <h3 class=function id="signal-mouse-leave">
+            <a href="#signal-mouse-leave">"mouse-leave"</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Emitted when the mouse cursor leaves the <code>webview</code> widget.</p>
+
+            <h4>Parameters</h4>
+<ul>
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>modifiers</span>
+                    <div>Type: <span class=type>table</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+An array of strings, one for each modifier key held.
+
+</div>
+            </div>
+        </li>
+    
+</ul>
+            <h4>Return Values</h4>
+<ul>
+        <li>
+            <div class=two-col>
+                <div><span class=type>boolean</span></div><div>
+<code>true</code> if the event has been handled and should not be
+propagated further.
+</div>
+            </div>
+        </li>
+    
+</ul>
+        </div>
+    
+        <h3 class=function id="signal-populate-popup">
+            <a href="#signal-populate-popup">"populate-popup"</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Emitted just before the context menu is shown, usually after a right-click.
+This signal allows Lua code to intercept and modify the menu before it is
+shown.</p>
+
+            <h4>Parameters</h4>
+<ul>
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>menu</span>
+                    <div>Type: <span class=type>table</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+A table representing the context menu to be shown.
+
+</div>
+            </div>
+        </li>
+    
+</ul>
+            
+        </div>
+    
+        <h3 class=function id="signal-web-extension-loaded">
+            <a href="#signal-web-extension-loaded">"web-extension-loaded"</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Emitted on a <code>webview</code> widget when its associated web process has finished
+initialization.</p>
+
+            
+            
+        </div>
+    
+        <h3 class=function id="signal-crashed">
+            <a href="#signal-crashed">"crashed"</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Emitted on a <code>webview</code> widget when its associated web process has crashed.
+The <code>"web-extension-loaded"</code> signal will be emitted afterwards, once a
+replacement web process has finished initialization.</p>
+
+            
+            
+        </div>
+    
+        <h3 class=function id="signal-load-status">
+            <a href="#signal-load-status">"load-status"</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Emitted on a <code>webview</code> widget when its load status changes.</p>
+
+            <h4>Parameters</h4>
+<ul>
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>status</span>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+The current load status of the webview. Can be one of
+<code>"provisional"</code>, <code>"redirected"</code>, <code>"committed"</code>, <code>"finished"</code>, and <code>"failed"</code>.
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>uri</span>
+                    <div>Type: <span class=type>string</span> or <span class=type>nil</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+If the load status is <code>"failed"</code>, this will be the
+failing URI; otherwise, it will be <code>nil</code>.
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>err</span>
+                    <div>Type: <span class=type>table</span> or <span class=type>nil</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+If the load status is <code>"failed"</code>, this will be a table
+with an error code and a human-readable message; otherwise, it will be <code>nil</code>.
+</div>
+            </div>
+        </li>
+    
+</ul>
+            
+        </div>
+    
+        <h3 class=function id="signal-create-web-view">
+            <a href="#signal-create-web-view">"create-web-view"</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Emitted on a <code>webview</code> widget when it requests creation of a new <code>webview</code>
+widget.</p>
+
+            
+            <h4>Return Values</h4>
+<ul>
+        <li>
+            <div class=two-col>
+                <div><span class=type>widget[type=webview]</span></div><div>
+The newly created <code>webview</code> widget.
+
+</div>
+            </div>
+        </li>
+    
+</ul>
+        </div>
+    
+        <h3 class=function id="signal-navigation-request">
+            <a href="#signal-navigation-request">"navigation-request"</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Emitted on a <code>webview</code> widget before a navigation request is made, in either
+the main frame or a sub-frame of the webpage.</p>
+
+            <h4>Parameters</h4>
+<ul>
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>uri</span>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+The URI to which navigation is being requested.
+
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>reason</span>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+The reason for the navigation request. Can
+be one of <code>"link-clicked"</code>, <code>"form-submitted"</code>, <code>"back-forward"</code>,
+<code>"reload"</code>, <code>"form-resubmitted"</code>, and <code>"other"</code>.
+</div>
+            </div>
+        </li>
+    
+</ul>
+            <h4>Return Values</h4>
+<ul>
+        <li>
+            <div class=two-col>
+                <div><span class=type>boolean</span></div><div>
+Return <code>false</code> to prevent the requested
+navigation from taking place.
+</div>
+            </div>
+        </li>
+    
+</ul>
+        </div>
+    
+        <h3 class=function id="signal-new-window-decision">
+            <a href="#signal-new-window-decision">"new-window-decision"</a>
+        </h3>
+            <div class=function>
+            
+            
+
+<p>Similar to the <code>"navigation-request"</code> signal, the
+<code>"new-window-decision"</code> signal is emitted on a <code>webview</code> widget when a
+request to open a new window is made.</p>
+
+            <h4>Parameters</h4>
+<ul>
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>uri</span>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+The URI that will open in the new window, if the request
+is allowed.
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>reason</span>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+The reason for the navigation request. Can
+be one of <code>"link-clicked"</code>, <code>"form-submitted"</code>, <code>"back-forward"</code>,
+<code>"reload"</code>, <code>"form-resubmitted"</code>, and <code>"other"</code>.
+</div>
+            </div>
+        </li>
+    
+</ul>
+            <h4>Return Values</h4>
+<ul>
+        <li>
+            <div class=two-col>
+                <div><span class=type>boolean</span></div><div>
+Return <code>false</code> to prevent the requested
+navigation from taking place.
+</div>
+            </div>
+        </li>
+    
+</ul>
+        </div>
+    
+        <h3 class=function id="signal-mime-type-decision">
+            <a href="#signal-mime-type-decision">"mime-type-decision"</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Similar to the <code>"navigation-request"</code> signal, the
+<code>"mime-type-decision"</code> signal is emitted on a <code>webview</code> widget after a
+response has been received for a request, but before loading begins. This
+signal is emitted for all sub-page resources, such as images and stylesheets.</p>
+
+
+            <h4>Parameters</h4>
+<ul>
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>uri</span>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+The URI of the resource for which a response has been
+received.
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>mime</span>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+The MIME type for the resource indicated by the response.
+
+</div>
+            </div>
+        </li>
+    
+</ul>
+            <h4>Return Values</h4>
+<ul>
+        <li>
+            <div class=two-col>
+                <div><span class=type>boolean</span></div><div>
+Return <code>false</code> to prevent the requested
+navigation from taking place.
+</div>
+            </div>
+        </li>
+    
+</ul>
+        </div>
+    
+        <h3 class=function id="signal-favicon">
+            <a href="#signal-favicon">"favicon"</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Emitted when the favicon for the currently loaded webpage becomes available.</p>
+
+            
+            
+        </div>
+    
+        <h3 class=function id="signal-expose">
+            <a href="#signal-expose">"expose"</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Emitted when the <code>webview</code> widget is redrawn.</p>
+
+            
+            
+        </div>
+    
+        <h3 class=function id="signal-key-press">
+            <a href="#signal-key-press">"key-press"</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Emitted when a key is pressed while the <code>webview</code> widget has the
+input focus.</p>
+
+            <h4>Parameters</h4>
+<ul>
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>modifiers</span>
+                    <div>Type: <span class=type>table</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+An array of strings, one for each modifier key held.
+
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>key</span>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+The key that was pressed, if printable, or a keysym
+otherwise.
+</div>
+            </div>
+        </li>
+    
+</ul>
+            <h4>Return Values</h4>
+<ul>
+        <li>
+            <div class=two-col>
+                <div><span class=type>boolean</span></div><div>
+<code>true</code> if the event has been handled and should not be
+propagated further.
+</div>
+            </div>
+        </li>
+    
+</ul>
+        </div>
+    
+        <h2>Attribution</h2>
+        <div class=attr-wrap>
+    <h4>Authors</h4>
+    <ul class=authors>
+        <li>Mason Larobina
+    </ul>
+</div>
+<div class=attr-wrap>
+    <h4>Copyright</h4><ul class=copyright>
+        <li>2010 Mason Larobina
+    </ul>
+</div>
+    
+            </div>
+            <div style='display:none'><a rel=prev href='../classes/widget:spinner.html'><a rel=next href='../classes/widget:window.html'></div>
+        </div>
+	</div>
+	<footer>
+		<div class="container">
+			<small>Copyright 2017 Aidan Holm</small>
+			<br>
+			<small>All written documentation and luakit code are copyright to their respective authors.</small>
+		</div>
+	</footer>
+</body>
+</html>

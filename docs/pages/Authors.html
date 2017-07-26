@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset='UTF-8'>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Luakit API Documentation</title>
+	<link rel="icon" type="image/png" href="favicon.png" />
+	<style type="text/css">html {
+	color: #333;
+}
+body {
+    margin: 0;
+    font-family: "Helvetica", "Arial", sans-serif;
+}
+
+#hdr {
+    border-bottom: 1px solid #e0e5e6;
+    background-color: #f6f8f8;
+}
+
+#hdr > h1 {
+    color: #555;
+    margin: 0 auto;
+    max-width: 910px;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+}
+
+#wrap {
+    font-size: 14px;
+    line-height: 1.3;
+    padding: 2rem;
+    margin: 0 auto;
+    justify-content: center;
+    max-width: 910px;
+}
+
+h1, h2, strong {
+    line-height: 1.1;
+    margin: 0;
+    color: #111;
+}
+
+.tagline {
+    color: #555;
+    margin: 0 0 1rem;
+    font-size: 1.4rem;
+    font-weight: normal;
+}
+
+h1 { margin: 0 0 0.7rem; }
+h2 { margin: 1.5rem 0 1rem; }
+h4 { margin: 1rem 0; }
+
+code, pre
+{
+	background: #f5f7f9;
+	color: #334;
+}
+code {
+	border: 1px solid #dfdfe9;
+	padding: 0px 4px;
+}
+pre > code {
+    border: none;
+    padding: 0;
+}
+pre {
+	padding: 1rem 1.2rem;
+	border-left: 2px solid #69c;
+}
+
+h3.function > a, h3.property > a, h3.table > a, h3.field > a {
+    font-family: monospace;
+	color: #2B5782;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+span.parameter, span.type {
+    font-family: monospace;
+	color: #2B5782;
+    text-decoration: none;
+    font-size: 1.0rem;
+}
+span.parameter {
+	font-weight: bold;
+}
+
+li.parameter {
+    margin-bottom: 1rem;
+}
+
+span.optional, span.any_type {
+    font-style: italic;
+    color: #777;
+}
+
+div.function, div.property, div.table, div.field {
+    margin-left: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+span.info {
+    margin-right: 0.5rem;
+}
+
+div.alert {
+    padding: 8px 35px 8px 14px;
+    margin-bottom: 20px;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+    position: relative;
+    font-style: italic;
+}
+
+div.warn.alert {
+    color: #635b31;
+    background-color: #fcf8e3;
+    border-color: #bdceaf;
+    border-left: 2px solid #7c723e;
+}
+
+div.good.alert {
+    color: #376d38;
+    background-color: #dff0d8;
+    border-color: #bdceaf;
+    border-left: 2px solid #376d38;
+}
+
+#wrap {
+    display: flex;
+    flex: 1;
+}
+#content {
+    flex: 1;
+    max-width: 48rem;
+}
+#sidebar {
+    flex: 0 0 15rem;
+    margin-right: 2rem;
+}
+
+@media (max-width: 965px) {
+    #sidebar { display: none; }
+}
+
+#sidebar > h2 {
+    margin: 0 0 1rem;
+}
+#sidebar > h3 {
+    margin: 1rem 0 0.5rem;
+}
+#sidebar > ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0 0 0.5rem;
+}
+#sidebar > ul > li {
+    margin: 0.2rem 0.2rem 0.2rem 0.5rem;
+    font-family: monospace;
+}
+#sidebar > ul > li > a, #sidebar > ul > li > span {
+    font-family: monospace;
+    text-decoration: none;
+    font-size: 1.1rem;
+}
+#sidebar > ul > li > span {
+	font-weight: bold;
+}
+
+#content li:not(:last-child) {
+    margin-bottom: 0.5rem;
+}
+
+/* Links */
+a { color: #204a87; text-decoration: none; }
+a:visited { color: #2B2087; }
+a:hover { text-decoration: underline; }
+a:active { color: #0c1d36; }
+li.dummy {
+    list-style-type: none;
+    -webkit-user-select: none;
+}
+
+/* Attribution styling */
+.attr-wrap {
+    display: flex;
+    flex: 1;
+}
+.attr-wrap > h4 {
+    flex: 0 0 8rem;
+    margin-bottom: 0;
+}
+.attr-wrap > ul {
+    flex: 1;
+    padding: 2px 0;
+    list-style-type: none;
+    margin-bottom: 0;
+}
+.attr-wrap > ul > li:before {
+   width: 20px;
+   margin-right: 5px;
+   display: inline-block;
+   text-align: center;
+}
+ul.authors > li:before { content: "•"; }
+ul.copyright > li:before { content: "©"; }
+
+.sourcecode .comment { color: #558817; }
+.sourcecode .constant { color: #a8660d; }
+.sourcecode .escape { color: #844631; }
+.sourcecode .keyword { color: #2239a8; font-weight: bold; }
+.sourcecode .library { color: #0e7c6b !important; text-decoration: none !important; }
+.sourcecode .marker { color: #512b1e; background: #fedc56; font-weight: bold; }
+.sourcecode .number { color: #a8660d; }
+.sourcecode .operator { color: #2239a8; font-weight: bold; }
+.sourcecode .preprocessor { color: #a33243; }
+.sourcecode .prompt { color: #558817; }
+.sourcecode a:link, .sourcecode a:visited { color: #272fc2; }
+
+.two-col { display: flex; }
+.two-col > :first-child { flex: 0 0 200px; margin-right: 10px; }
+.two-col > :first-child > div:not(:first-child) { margin-top: 0.3rem; }
+ul.triggers {
+	list-style-type: none;
+	padding: 0;
+}
+ul.triggers > li {
+	font-family: monospace, sans-serif;
+	color: #2B5782;
+	font-weight: bold;
+}
+
+div.info > div { margin-top: 0.3rem; }
+</style>
+	<link rel=stylesheet href=/luakit/style.css />
+	<link rel="stylesheet" href="https://code.cdn.mozilla.net/fonts/fira.css">
+	<style type="text/css">
+		#wrap { padding: 2em 0; }
+		#content > h1 { font-size: 28px; }
+		body { background-color: #fcfcfc; }
+		body > .container { max-width: unset; }
+		nav { font-size: 16px; background:#F3EFE7;}
+	</style>
+</head>
+<body>
+	<nav>
+		<a href="/luakit/">Home</a>
+		<a href="/luakit/#sec-release">Releases</a>
+		<a href="/luakit/#sec-download">Download</a>
+		<a href="/luakit/docs/">Documentation</a>
+		<a href="/luakit/#sec-contributing">Contributing</a>
+		<a href="https://github.com/luakit/luakit" target="_blank">GitHub</a>
+	</nav>
+	<div class="container">
+		<div id=wrap>
+            <div id=sidebar>
+                <h2>Table of Contents</h2>
+                <h3>Pages</h3>
+<ul>
+    <li><span>Authors</span></li>
+    <li><a href="../pages/Tests.html">Tests</a></li>
+</ul>
+<h3>Modules</h3>
+<ul>
+    <li><a href="../modules/adblock.html">adblock</a></li>
+    <li><a href="../modules/adblock_chrome.html">adblock_chrome</a></li>
+    <li><a href="../modules/bookmarks.html">bookmarks</a></li>
+    <li><a href="../modules/bookmarks_chrome.html">bookmarks_chrome</a></li>
+    <li><a href="../modules/chrome.html">chrome</a></li>
+    <li><a href="../modules/cmdhist.html">cmdhist</a></li>
+    <li><a href="../modules/completion.html">completion</a></li>
+    <li><a href="../modules/domain_props.html">domain_props</a></li>
+    <li><a href="../modules/downloads.html">downloads</a></li>
+    <li><a href="../modules/downloads_chrome.html">downloads_chrome</a></li>
+    <li><a href="../modules/editor.html">editor</a></li>
+    <li><a href="../modules/error_page.html">error_page</a></li>
+    <li><a href="../modules/follow.html">follow</a></li>
+    <li><a href="../modules/follow_selected.html">follow_selected</a></li>
+    <li><a href="../modules/formfiller.html">formfiller</a></li>
+    <li><a href="../modules/go_input.html">go_input</a></li>
+    <li><a href="../modules/go_next_prev.html">go_next_prev</a></li>
+    <li><a href="../modules/go_up.html">go_up</a></li>
+    <li><a href="../modules/help_chrome.html">help_chrome</a></li>
+    <li><a href="../modules/hide_scrollbars.html">hide_scrollbars</a></li>
+    <li><a href="../modules/history.html">history</a></li>
+    <li><a href="../modules/history_chrome.html">history_chrome</a></li>
+    <li><a href="../modules/image_css.html">image_css</a></li>
+    <li><a href="../modules/introspector_chrome.html">introspector_chrome</a></li>
+    <li><a href="../modules/ipc.html">ipc</a></li>
+    <li><a href="../modules/lousy.bind.html">lousy.bind</a></li>
+    <li><a href="../modules/lousy.load.html">lousy.load</a></li>
+    <li><a href="../modules/lousy.mode.html">lousy.mode</a></li>
+    <li><a href="../modules/lousy.pickle.html">lousy.pickle</a></li>
+    <li><a href="../modules/lousy.signal.html">lousy.signal</a></li>
+    <li><a href="../modules/lousy.theme.html">lousy.theme</a></li>
+    <li><a href="../modules/lousy.uri.html">lousy.uri</a></li>
+    <li><a href="../modules/lousy.util.html">lousy.util</a></li>
+    <li><a href="../modules/lousy.widget.html">lousy.widget</a></li>
+    <li><a href="../modules/luakit.html">luakit</a></li>
+    <li><a href="../modules/msg.html">msg</a></li>
+    <li><a href="../modules/newtab_chrome.html">newtab_chrome</a></li>
+    <li><a href="../modules/noscript.html">noscript</a></li>
+    <li><a href="../modules/open_editor.html">open_editor</a></li>
+    <li><a href="../modules/proxy.html">proxy</a></li>
+    <li><a href="../modules/quickmarks.html">quickmarks</a></li>
+    <li><a href="../modules/referer_control_wm.html">referer_control_wm</a></li>
+    <li><a href="../modules/search.html">search</a></li>
+    <li><a href="../modules/select.html">select</a></li>
+    <li><a href="../modules/select_wm.html">select_wm</a></li>
+    <li><a href="../modules/session.html">session</a></li>
+    <li><a href="../modules/soup.html">soup</a></li>
+    <li><a href="../modules/styles.html">styles</a></li>
+    <li><a href="../modules/tab_favicons.html">tab_favicons</a></li>
+    <li><a href="../modules/tabhistory.html">tabhistory</a></li>
+    <li><a href="../modules/taborder.html">taborder</a></li>
+    <li><a href="../modules/tests.lib.html">tests.lib</a></li>
+    <li><a href="../modules/undoclose.html">undoclose</a></li>
+    <li><a href="../modules/unique.html">unique</a></li>
+    <li><a href="../modules/userscripts.html">userscripts</a></li>
+    <li><a href="../modules/vertical_tabs.html">vertical_tabs</a></li>
+    <li><a href="../modules/view_source.html">view_source</a></li>
+    <li><a href="../modules/viewpdf.html">viewpdf</a></li>
+    <li><a href="../modules/webinspector.html">webinspector</a></li>
+    <li><a href="../modules/xdg.html">xdg</a></li>
+</ul>
+<h3>Classes</h3>
+<ul>
+    <li><a href="../classes/dom_document.html">dom_document</a></li>
+    <li><a href="../classes/dom_element.html">dom_element</a></li>
+    <li><a href="../classes/download.html">download</a></li>
+    <li><a href="../classes/page.html">page</a></li>
+    <li><a href="../classes/regex.html">regex</a></li>
+    <li><a href="../classes/sqlite3.html">sqlite3</a></li>
+    <li><a href="../classes/stylesheet.html">stylesheet</a></li>
+    <li><a href="../classes/timer.html">timer</a></li>
+    <li><a href="../classes/widget.html">widget</a></li>
+    <li><a href="../classes/widget:box.html">widget:box</a></li>
+    <li><a href="../classes/widget:drawing_area.html">widget:drawing_area</a></li>
+    <li><a href="../classes/widget:entry.html">widget:entry</a></li>
+    <li><a href="../classes/widget:event_box.html">widget:event_box</a></li>
+    <li><a href="../classes/widget:image.html">widget:image</a></li>
+    <li><a href="../classes/widget:label.html">widget:label</a></li>
+    <li><a href="../classes/widget:notebook.html">widget:notebook</a></li>
+    <li><a href="../classes/widget:overlay.html">widget:overlay</a></li>
+    <li><a href="../classes/widget:paned.html">widget:paned</a></li>
+    <li><a href="../classes/widget:scrolled.html">widget:scrolled</a></li>
+    <li><a href="../classes/widget:socket.html">widget:socket</a></li>
+    <li><a href="../classes/widget:spinner.html">widget:spinner</a></li>
+    <li><a href="../classes/widget:webview.html">widget:webview</a></li>
+    <li><a href="../classes/widget:window.html">widget:window</a></li>
+</ul>
+
+            </div>
+            <div id=content>
+                
+<h1>Luakit Authors</h1>
+
+<p><strong>Authors of luakit</strong></p>
+
+<ul>
+    <li>Aidan Holm        (aidanholm) <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#x3a;a&#105;&#x64;&#97;&#x6e;&#104;&#x6f;&#108;&#x6d;&#64;&#x67;m&#97;&#x69;&#108;&#x2e;&#99;&#x6f;&#109;">&#x61;&#105;&#x64;&#97;&#x6e;&#104;&#x6f;l&#109;&#x40;&#103;&#x6d;&#97;&#x69;&#108;&#x2e;c&#111;&#x6d;</a>       2016-2017</li>
+    <li>Mason Larobina    (mason-l)   <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#x3a;m&#97;&#x73;&#111;&#x6e;&#46;&#x6c;&#97;&#x72;o&#98;&#x69;&#110;&#x61;&#64;&#x67;&#109;&#x61;&#105;&#x6c;.&#99;&#x6f;&#109;">&#x6d;&#97;&#x73;&#111;&#x6e;&#46;&#x6c;a&#114;&#x6f;&#98;&#x69;&#110;&#x61;&#64;&#x67;m&#97;&#x69;&#108;&#x2e;&#99;&#x6f;&#109;</a>  2010-2012</li>
+</ul>
+
+<p><strong>Contributors to luakit (A to Z)</strong></p>
+
+<ul>
+    <li>Alexis Daboville                   <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#x3a;a&#108;&#x65;&#120;&#x69;&#115;&#x2e;&#100;&#x61;b&#111;&#x76;&#105;&#x6c;&#108;&#x65;&#64;&#x67;&#109;&#x61;i&#108;&#x2e;&#99;&#x6f;&#109;">&#x61;&#108;&#x65;&#120;&#x69;&#115;&#x2e;d&#97;&#x62;&#111;&#x76;&#105;&#x6c;&#108;&#x65;&#64;&#x67;m&#97;&#x69;&#108;&#x2e;&#99;&#x6f;&#109;</a> 2011</li>
+    <li>André Aparício                     <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#x3a;a&#112;&#x61;&#114;&#x69;&#99;&#x69;&#111;&#x39;9&#64;&#x67;&#109;&#x61;&#105;&#x6c;&#46;&#x63;&#111;&#x6d;">&#x61;&#112;&#x61;&#114;&#x69;&#99;&#x69;o&#57;&#x39;&#64;&#x67;&#109;&#x61;&#105;&#x6c;.&#99;&#x6f;&#109;</a>       2011</li>
+    <li>Ben Armston                        <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#x3a;b&#101;&#x6e;&#46;&#x61;&#114;&#x6d;&#115;&#x74;o&#110;&#x40;&#103;&#x6f;&#111;&#x67;&#108;&#x65;&#109;&#x61;i&#108;&#x2e;&#99;&#x6f;&#109;">&#x62;&#101;&#x6e;&#46;&#x61;&#114;&#x6d;s&#116;&#x6f;&#110;&#x40;&#103;&#x6f;&#111;&#x67;l&#101;&#x6d;&#97;&#x69;&#108;&#x2e;&#99;&#x6f;&#109;</a> 2012</li>
+    <li>Chris van Dijk        (quigybo)    <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#x3a;q&#117;&#x69;&#103;&#x79;&#98;&#x6f;&#64;&#x68;o&#116;&#x6d;&#97;&#x69;&#108;&#x2e;&#99;&#x6f;&#109;">&#x71;&#117;&#x69;&#103;&#x79;&#98;&#x6f;&#64;&#x68;o&#116;&#x6d;&#97;&#x69;&#108;&#x2e;c&#111;&#x6d;</a>        2010</li>
+    <li>Clint Adams           (Clint)      <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#x3a;s&#99;&#x68;&#105;&#x7a;&#111;&#x40;&#100;&#x65;b&#105;&#x61;&#110;&#x2e;&#111;&#x72;&#103;">&#x73;&#99;&#x68;&#105;&#x7a;&#111;&#x40;d&#101;&#x62;&#105;&#x61;&#110;&#x2e;&#111;&#x72;g</a>          2010</li>
+    <li>Constantin Schomburg  (xconstruct) <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#x3a;m&#101;&#x40;&#120;&#x63;&#111;&#x6e;&#115;&#x74;r&#117;&#x63;&#116;&#x2e;&#110;&#x65;&#116;">&#x6d;&#101;&#x40;&#120;&#x63;&#111;&#x6e;s&#116;&#x72;&#117;&#x63;&#116;&#x2e;&#110;&#x65;t</a>          2011</li>
+    <li>Fabian Streitel                    <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#x3a;k&#97;&#x72;&#111;&#x74;&#116;&#x65;&#110;&#x72;e&#105;&#x62;&#101;&#x40;&#103;&#x6d;&#97;&#x69;&#108;&#x2e;c&#111;&#x6d;">&#x6b;&#97;&#x72;&#111;&#x74;&#116;&#x65;n&#114;&#x65;&#105;&#x62;&#101;&#x40;&#103;&#x6d;a&#105;&#x6c;&#46;&#x63;&#111;&#x6d;</a>    2010-2011</li>
+    <li>Gregor Uhlenheuer     (kongo)      <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#x3a;k&#111;&#x6e;&#103;&#x6f;&#50;&#x30;&#48;&#x32;&#64;&#x67;o&#111;&#x67;&#108;&#x65;&#109;&#x61;&#105;&#x6c;.&#99;&#x6f;&#109;">&#x6b;&#111;&#x6e;&#103;&#x6f;&#50;&#x30;0&#50;&#x40;&#103;&#x6f;&#111;&#x67;&#108;&#x65;m&#97;&#x69;&#108;&#x2e;&#99;&#x6f;&#109;</a>   2010</li>
+    <li>HarryD                             <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#x3a;h&#97;&#x72;&#114;&#x79;&#64;&#x61;&#110;&#x61;p&#110;&#x65;&#97;&#x2e;&#110;&#x65;&#116;">&#x68;&#97;&#x72;&#114;&#x79;&#64;&#x61;n&#97;&#x70;&#110;&#x65;&#97;&#x2e;&#110;&#x65;t</a>          2010</li>
+    <li>Henning Hasemann                   <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#x3a;h&#104;&#x61;&#115;&#x65;&#109;&#x61;&#110;&#x6e;&#64;&#x77;e&#98;&#x2e;&#100;&#x65;">&#x68;&#104;&#x61;&#115;&#x65;&#109;&#x61;n&#110;&#x40;&#119;&#x65;&#98;&#x2e;&#100;&#x65;</a>           2010</li>
+    <li>Henrik Hallberg       (halhen)     <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#x3a;h&#97;&#x6c;&#104;&#x65;&#110;&#x40;&#107;&#x32;h&#46;&#x73;&#101;">&#x68;&#97;&#x6c;&#104;&#x65;&#110;&#x40;k&#50;&#x68;&#46;&#x73;&#101;</a>              2010</li>
+    <li>Javier Rojas          (jerojasro)  <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#x3a;j&#101;&#x72;&#111;&#x6a;&#97;&#x73;&#114;&#x6f;&#64;&#x64;e&#118;&#x6e;&#117;&#x6c;&#108;&#x2e;&#108;&#x69;">&#x6a;&#101;&#x72;&#111;&#x6a;&#97;&#x73;r&#111;&#x40;&#100;&#x65;&#118;&#x6e;&#117;&#x6c;l&#46;&#x6c;&#105;</a>       2011</li>
+    <li>Jonas Höglund         (FireFly)    <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#x3a;f&#105;&#x72;&#101;&#x66;&#108;&#x79;&#64;&#x66;i&#114;&#x65;&#102;&#x6c;&#121;&#x2e;&#110;&#x75;">&#x66;&#105;&#x72;&#101;&#x66;&#108;&#x79;&#64;&#x66;i&#114;&#x65;&#102;&#x6c;&#121;&#x2e;n&#117;</a>         2012</li>
+    <li>Kumar Appaiah         (kmap)       <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#x3a;a&#46;&#x6b;&#117;&#x6d;&#97;&#x72;&#64;&#x61;l&#117;&#x6d;&#110;&#x69;&#46;&#x69;&#105;&#x74;&#109;&#x2e;a&#99;&#x2e;&#105;&#x6e;">&#x61;&#46;&#x6b;&#117;&#x6d;&#97;&#x72;&#64;&#x61;l&#117;&#x6d;&#110;&#x69;&#46;&#x69;i&#116;&#x6d;&#46;&#x61;&#99;&#x2e;&#105;&#x6e;</a>  2010</li>
+    <li>LokiChaos                          <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#x3a;l&#111;&#x6b;&#105;&#x2e;&#99;&#x68;&#97;&#x6f;s&#64;&#x67;&#109;&#x61;&#105;&#x6c;&#46;&#x63;&#111;&#x6d;">&#x6c;&#111;&#x6b;&#105;&#x2e;&#99;&#x68;a&#111;&#x73;&#64;&#x67;&#109;&#x61;&#105;&#x6c;.&#99;&#x6f;&#109;</a>       2012</li>
+    <li>Matthew Wild          (MattJ)      <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#x3a;m&#119;&#x69;&#108;&#x64;&#49;&#x40;&#103;&#x6d;a&#105;&#x6c;&#46;&#x63;&#111;&#x6d;">&#x6d;&#119;&#x69;&#108;&#x64;&#49;&#x40;g&#109;&#x61;&#105;&#x6c;&#46;&#x63;&#111;&#x6d;</a>           2010</li>
+    <li>Michael Dietrich      (emdete)     <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#x3a;m&#100;&#x74;&#64;&#x65;&#109;&#x64;&#101;&#x74;e&#46;&#x64;&#101;">&#x6d;&#100;&#x74;&#64;&#x65;&#109;&#x64;e&#116;&#x65;&#46;&#x64;&#101;</a>              2010</li>
+    <li>Michishige Kaito      (mkaito)     <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#x3a;m&#101;&#x40;&#109;&#x6b;&#97;&#x69;&#116;&#x6f;.&#99;&#x6f;&#109;">&#x6d;&#101;&#x40;&#109;&#x6b;&#97;&#x69;t&#111;&#x2e;&#99;&#x6f;&#109;</a>              2012</li>
+    <li>Pawel Tomak           (grodzik)    <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#x3a;p&#97;&#x77;&#101;&#x6c;&#46;&#x74;&#111;&#x6d;a&#107;&#x40;&#103;&#x6d;&#97;&#x69;&#108;&#x2e;&#99;&#x6f;m">&#x70;&#97;&#x77;&#101;&#x6c;&#46;&#x74;o&#109;&#x61;&#107;&#x40;&#103;&#x6d;&#97;&#x69;l&#46;&#x63;&#111;&#x6d;</a>      2010</li>
+    <li>Pawel Zuzelski        (pawelz)     <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#x3a;p&#97;&#x77;&#101;&#x6c;&#122;&#x40;&#112;&#x6c;d&#45;&#x6c;&#105;&#x6e;&#117;&#x78;&#46;&#x6f;&#114;&#x67;">&#x70;&#97;&#x77;&#101;&#x6c;&#122;&#x40;p&#108;&#x64;&#45;&#x6c;&#105;&#x6e;&#117;&#x78;.&#111;&#x72;&#103;</a>       2010</li>
+    <li>Pete Elmore                        <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#x3a;p&#101;&#x74;&#101;&#x40;&#100;&#x65;&#98;&#x75;.&#103;&#x73;">&#x70;&#101;&#x74;&#101;&#x40;&#100;&#x65;b&#117;&#x2e;&#103;&#x73;</a>               2010</li>
+    <li>Piotr Husiatyński     (husio)      <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#x3a;p&#104;&#x75;&#115;&#x69;&#97;&#x74;&#121;&#x6e;s&#107;&#x69;&#64;&#x67;&#109;&#x61;&#105;&#x6c;&#46;&#x63;o&#109;">&#x70;&#104;&#x75;&#115;&#x69;&#97;&#x74;y&#110;&#x73;&#107;&#x69;&#64;&#x67;&#109;&#x61;i&#108;&#x2e;&#99;&#x6f;&#109;</a>     2010</li>
+    <li>Richard Gay                        <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#x3a;r&#105;&#x63;&#104;&#x61;&#114;&#x64;&#46;&#x67;a&#121;&#x40;&#116;&#x2d;&#111;&#x6e;&#108;&#x69;&#110;&#x65;.&#100;&#x65;">&#x72;&#105;&#x63;&#104;&#x61;&#114;&#x64;.&#103;&#x61;&#121;&#x40;&#116;&#x2d;&#111;&#x6e;l&#105;&#x6e;&#101;&#x2e;&#100;&#x65;</a>    2010</li>
+    <li>Roman Leonov          (liaonau)    <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#x3a;r&#108;&#x69;&#97;&#x6f;&#110;&#x61;&#117;&#x40;g&#109;&#x61;&#105;&#x6c;&#46;&#x63;&#111;&#x6d;">&#x72;&#108;&#x69;&#97;&#x6f;&#110;&#x61;u&#64;&#x67;&#109;&#x61;&#105;&#x6c;&#46;&#x63;o&#109;</a>         2011</li>
+    <li>Stefan Bolte          (portix)     <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#x3a;p&#111;&#x72;&#116;&#x69;&#120;&#x40;&#103;&#x6d;x&#46;&#x6e;&#101;&#x74;">&#x70;&#111;&#x72;&#116;&#x69;&#120;&#x40;g&#109;&#x78;&#46;&#x6e;&#101;&#x74;</a>             2011</li>
+    <li>Stjujsckij Nickolaj                <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#x3a;s&#116;&#x65;&#114;&#x6b;&#114;&#x69;&#103;&#x40;h&#111;&#x6d;&#101;&#x2e;&#110;&#x6f;">&#x73;&#116;&#x65;&#114;&#x6b;&#114;&#x69;g&#64;&#x68;&#111;&#x6d;&#101;&#x2e;&#110;&#x6f;</a>           2011</li>
+    <li>Vasuvi                             <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#x3a;v&#97;&#x73;&#117;&#x76;&#105;&#x40;&#105;&#x6e;b&#111;&#x78;&#46;&#x63;&#111;&#x6d;">&#x76;&#97;&#x73;&#117;&#x76;&#105;&#x40;i&#110;&#x62;&#111;&#x78;&#46;&#x63;&#111;&#x6d;</a>           2010-2011</li>
+</ul>
+
+<p><strong>Author of <code>lib/markdown.lua</code></strong></p>
+
+<ul>
+    <li>Niklas Frykholm               <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#x3a;n&#105;&#x6b;&#108;&#x61;&#115;&#x40;&#102;&#x72;y&#107;&#x68;&#111;&#x6c;&#109;&#x2e;&#115;&#x65;">&#x6e;&#105;&#x6b;&#108;&#x61;&#115;&#x40;f&#114;&#x79;&#107;&#x68;&#111;&#x6c;&#109;&#x2e;s&#101;</a>        2008</li>
+</ul>
+
+<p><strong>Author of the JavaScript greasemonkey methods in <code>lib/userscripts.lua</code></strong></p>
+
+<ul>
+    <li>Jim Tuttle                                                2009</li>
+</ul>
+
+<p><strong>Author of the <code>lib/go_input.lua</code> JavaScript</strong></p>
+
+<ul>
+    <li>Aldrik Dunbar     (n30n)                                  2009</li>
+</ul>
+
+<p><strong>Author of the <code>lib/follow_selected.lua</code> javascript</strong></p>
+
+<ul>
+    <li>israellevin                                               2009</li>
+</ul>
+
+<p><strong>Inherited authors from the awesomewm project</strong></p>
+
+<ul>
+    <li>Julien Danjou                 <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#x3a;j&#117;&#x6c;&#105;&#x65;&#110;&#x40;&#100;&#x61;n&#106;&#x6f;&#117;&#x2e;&#105;&#x6e;&#102;&#x6f;">&#x6a;&#117;&#x6c;&#105;&#x65;&#110;&#x40;d&#97;&#x6e;&#106;&#x6f;&#117;&#x2e;&#105;&#x6e;f&#111;</a>        2007-2009</li>
+    <li>Pierre Habouzit               <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#x3a;m&#97;&#x64;&#99;&#x6f;&#100;&#x65;&#114;&#x40;d&#101;&#x62;&#105;&#x61;&#110;&#x2e;&#111;&#x72;&#103;">&#x6d;&#97;&#x64;&#99;&#x6f;&#100;&#x65;r&#64;&#x64;&#101;&#x62;&#105;&#x61;&#110;&#x2e;o&#114;&#x67;</a>       2008</li>
+    <li>Michael Gehring               <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#x3a;m&#103;&#x40;&#101;&#x62;&#102;&#x65;&#46;&#x6f;r&#103;">&#x6d;&#103;&#x40;&#101;&#x62;&#102;&#x65;.&#111;&#x72;&#103;</a>               2008</li>
+    <li>Aldo Cortesi                  <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#x3a;a&#108;&#x64;&#111;&#x40;&#110;&#x75;&#108;&#x6c;c&#117;&#x62;&#101;&#x2e;&#99;&#x6f;&#109;">&#x61;&#108;&#x64;&#111;&#x40;&#110;&#x75;l&#108;&#x63;&#117;&#x62;&#101;&#x2e;&#99;&#x6f;m</a>         2007-2008</li>
+</ul>
+
+<p><strong>Special thanks to authors from the uzbl &amp; surf projects for inspiration and support</strong></p>
+
+<ul>
+    <li>Dieter Plaetinck  (Dieter@be) <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#x3a;d&#105;&#x65;&#116;&#x65;&#114;&#x40;&#112;&#x6c;a&#101;&#x74;&#105;&#x6e;&#99;&#x6b;&#46;&#x62;&#101;">&#x64;&#105;&#x65;&#116;&#x65;&#114;&#x40;p&#108;&#x61;&#101;&#x74;&#105;&#x6e;&#99;&#x6b;.&#98;&#x65;</a>       2009-2010</li>
+    <li>Enno Boland       (tox)       <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#x3a;t&#111;&#x78;&#64;&#x73;&#48;&#x31;&#46;&#x64;e">&#x74;&#111;&#x78;&#64;&#x73;&#48;&#x31;.&#100;&#x65;</a>                2009-2010</li>
+    <li>Dequis                        <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#x3a;d&#120;&#x40;&#100;&#x78;&#122;&#x6f;&#110;&#x65;.&#99;&#x6f;&#109;&#x2e;&#97;&#x72;">&#x64;&#120;&#x40;&#100;&#x78;&#122;&#x6f;n&#101;&#x2e;&#99;&#x6f;&#109;&#x2e;&#97;&#x72;</a>          2009</li>
+    <li>Robert Manea      (robm)      <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#x3a;r&#111;&#x62;&#46;&#x6d;&#97;&#x6e;&#101;&#x61;&#64;&#x67;m&#97;&#x69;&#108;&#x2e;&#99;&#x6f;&#109;">&#x72;&#111;&#x62;&#46;&#x6d;&#97;&#x6e;e&#97;&#x40;&#103;&#x6d;&#97;&#x69;&#108;&#x2e;c&#111;&#x6d;</a>       2009-2010</li>
+    <li>Simon Lipp        (sloonz)    <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#x3a;s&#108;&#x6f;&#111;&#x6e;&#122;&#x40;&#103;&#x6d;a&#105;&#x6c;&#46;&#x63;&#111;&#x6d;">&#x73;&#108;&#x6f;&#111;&#x6e;&#122;&#x40;g&#109;&#x61;&#105;&#x6c;&#46;&#x63;&#111;&#x6d;</a>          2010</li>
+</ul>
+
+<p><strong>License</strong></p>
+
+<p>Luakit is licensed under the GNU General Public License version 3 or later.
+The abbreviated text of the license is as follows:</p>
+
+
+<div class=license>
+    <p>This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.</p>
+
+    <p>This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.</p>
+
+    <p>You should have received a copy of the GNU General Public License
+    along with this program.  If not, see
+    <a href="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</a>.</p>
+</div>
+
+
+
+            </div>
+            <div style='display:none'><a rel=next href='../pages/Tests.html'></div>
+        </div>
+	</div>
+	<footer>
+		<div class="container">
+			<small>Copyright 2017 Aidan Holm</small>
+			<br>
+			<small>All written documentation and luakit code are copyright to their respective authors.</small>
+		</div>
+	</footer>
+</body>
+</html>

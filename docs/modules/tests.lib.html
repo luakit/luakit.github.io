@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset='UTF-8'>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Luakit API Documentation</title>
+	<link rel="icon" type="image/png" href="favicon.png" />
+	<style type="text/css">html {
+	color: #333;
+}
+body {
+    margin: 0;
+    font-family: "Helvetica", "Arial", sans-serif;
+}
+
+#hdr {
+    border-bottom: 1px solid #e0e5e6;
+    background-color: #f6f8f8;
+}
+
+#hdr > h1 {
+    color: #555;
+    margin: 0 auto;
+    max-width: 910px;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+}
+
+#wrap {
+    font-size: 14px;
+    line-height: 1.3;
+    padding: 2rem;
+    margin: 0 auto;
+    justify-content: center;
+    max-width: 910px;
+}
+
+h1, h2, strong {
+    line-height: 1.1;
+    margin: 0;
+    color: #111;
+}
+
+.tagline {
+    color: #555;
+    margin: 0 0 1rem;
+    font-size: 1.4rem;
+    font-weight: normal;
+}
+
+h1 { margin: 0 0 0.7rem; }
+h2 { margin: 1.5rem 0 1rem; }
+h4 { margin: 1rem 0; }
+
+code, pre
+{
+	background: #f5f7f9;
+	color: #334;
+}
+code {
+	border: 1px solid #dfdfe9;
+	padding: 0px 4px;
+}
+pre > code {
+    border: none;
+    padding: 0;
+}
+pre {
+	padding: 1rem 1.2rem;
+	border-left: 2px solid #69c;
+}
+
+h3.function > a, h3.property > a, h3.table > a, h3.field > a {
+    font-family: monospace;
+	color: #2B5782;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+span.parameter, span.type {
+    font-family: monospace;
+	color: #2B5782;
+    text-decoration: none;
+    font-size: 1.0rem;
+}
+span.parameter {
+	font-weight: bold;
+}
+
+li.parameter {
+    margin-bottom: 1rem;
+}
+
+span.optional, span.any_type {
+    font-style: italic;
+    color: #777;
+}
+
+div.function, div.property, div.table, div.field {
+    margin-left: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+span.info {
+    margin-right: 0.5rem;
+}
+
+div.alert {
+    padding: 8px 35px 8px 14px;
+    margin-bottom: 20px;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+    position: relative;
+    font-style: italic;
+}
+
+div.warn.alert {
+    color: #635b31;
+    background-color: #fcf8e3;
+    border-color: #bdceaf;
+    border-left: 2px solid #7c723e;
+}
+
+div.good.alert {
+    color: #376d38;
+    background-color: #dff0d8;
+    border-color: #bdceaf;
+    border-left: 2px solid #376d38;
+}
+
+#wrap {
+    display: flex;
+    flex: 1;
+}
+#content {
+    flex: 1;
+    max-width: 48rem;
+}
+#sidebar {
+    flex: 0 0 15rem;
+    margin-right: 2rem;
+}
+
+@media (max-width: 965px) {
+    #sidebar { display: none; }
+}
+
+#sidebar > h2 {
+    margin: 0 0 1rem;
+}
+#sidebar > h3 {
+    margin: 1rem 0 0.5rem;
+}
+#sidebar > ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0 0 0.5rem;
+}
+#sidebar > ul > li {
+    margin: 0.2rem 0.2rem 0.2rem 0.5rem;
+    font-family: monospace;
+}
+#sidebar > ul > li > a, #sidebar > ul > li > span {
+    font-family: monospace;
+    text-decoration: none;
+    font-size: 1.1rem;
+}
+#sidebar > ul > li > span {
+	font-weight: bold;
+}
+
+#content li:not(:last-child) {
+    margin-bottom: 0.5rem;
+}
+
+/* Links */
+a { color: #204a87; text-decoration: none; }
+a:visited { color: #2B2087; }
+a:hover { text-decoration: underline; }
+a:active { color: #0c1d36; }
+li.dummy {
+    list-style-type: none;
+    -webkit-user-select: none;
+}
+
+/* Attribution styling */
+.attr-wrap {
+    display: flex;
+    flex: 1;
+}
+.attr-wrap > h4 {
+    flex: 0 0 8rem;
+    margin-bottom: 0;
+}
+.attr-wrap > ul {
+    flex: 1;
+    padding: 2px 0;
+    list-style-type: none;
+    margin-bottom: 0;
+}
+.attr-wrap > ul > li:before {
+   width: 20px;
+   margin-right: 5px;
+   display: inline-block;
+   text-align: center;
+}
+ul.authors > li:before { content: "•"; }
+ul.copyright > li:before { content: "©"; }
+
+.sourcecode .comment { color: #558817; }
+.sourcecode .constant { color: #a8660d; }
+.sourcecode .escape { color: #844631; }
+.sourcecode .keyword { color: #2239a8; font-weight: bold; }
+.sourcecode .library { color: #0e7c6b !important; text-decoration: none !important; }
+.sourcecode .marker { color: #512b1e; background: #fedc56; font-weight: bold; }
+.sourcecode .number { color: #a8660d; }
+.sourcecode .operator { color: #2239a8; font-weight: bold; }
+.sourcecode .preprocessor { color: #a33243; }
+.sourcecode .prompt { color: #558817; }
+.sourcecode a:link, .sourcecode a:visited { color: #272fc2; }
+
+.two-col { display: flex; }
+.two-col > :first-child { flex: 0 0 200px; margin-right: 10px; }
+.two-col > :first-child > div:not(:first-child) { margin-top: 0.3rem; }
+ul.triggers {
+	list-style-type: none;
+	padding: 0;
+}
+ul.triggers > li {
+	font-family: monospace, sans-serif;
+	color: #2B5782;
+	font-weight: bold;
+}
+
+div.info > div { margin-top: 0.3rem; }
+</style>
+	<link rel=stylesheet href=/luakit/style.css />
+	<link rel="stylesheet" href="https://code.cdn.mozilla.net/fonts/fira.css">
+	<style type="text/css">
+		#wrap { padding: 2em 0; }
+		#content > h1 { font-size: 28px; }
+		body { background-color: #fcfcfc; }
+		body > .container { max-width: unset; }
+		nav { font-size: 16px; background:#F3EFE7;}
+	</style>
+</head>
+<body>
+	<nav>
+		<a href="/luakit/">Home</a>
+		<a href="/luakit/#sec-release">Releases</a>
+		<a href="/luakit/#sec-download">Download</a>
+		<a href="/luakit/docs/">Documentation</a>
+		<a href="/luakit/#sec-contributing">Contributing</a>
+		<a href="https://github.com/luakit/luakit" target="_blank">GitHub</a>
+	</nav>
+	<div class="container">
+		<div id=wrap>
+            <div id=sidebar>
+                <h2>Table of Contents</h2>
+                <h3>Pages</h3>
+<ul>
+    <li><a href="../pages/Authors.html">Authors</a></li>
+    <li><a href="../pages/Tests.html">Tests</a></li>
+</ul>
+<h3>Modules</h3>
+<ul>
+    <li><a href="../modules/adblock.html">adblock</a></li>
+    <li><a href="../modules/adblock_chrome.html">adblock_chrome</a></li>
+    <li><a href="../modules/bookmarks.html">bookmarks</a></li>
+    <li><a href="../modules/bookmarks_chrome.html">bookmarks_chrome</a></li>
+    <li><a href="../modules/chrome.html">chrome</a></li>
+    <li><a href="../modules/cmdhist.html">cmdhist</a></li>
+    <li><a href="../modules/completion.html">completion</a></li>
+    <li><a href="../modules/domain_props.html">domain_props</a></li>
+    <li><a href="../modules/downloads.html">downloads</a></li>
+    <li><a href="../modules/downloads_chrome.html">downloads_chrome</a></li>
+    <li><a href="../modules/editor.html">editor</a></li>
+    <li><a href="../modules/error_page.html">error_page</a></li>
+    <li><a href="../modules/follow.html">follow</a></li>
+    <li><a href="../modules/follow_selected.html">follow_selected</a></li>
+    <li><a href="../modules/formfiller.html">formfiller</a></li>
+    <li><a href="../modules/go_input.html">go_input</a></li>
+    <li><a href="../modules/go_next_prev.html">go_next_prev</a></li>
+    <li><a href="../modules/go_up.html">go_up</a></li>
+    <li><a href="../modules/help_chrome.html">help_chrome</a></li>
+    <li><a href="../modules/hide_scrollbars.html">hide_scrollbars</a></li>
+    <li><a href="../modules/history.html">history</a></li>
+    <li><a href="../modules/history_chrome.html">history_chrome</a></li>
+    <li><a href="../modules/image_css.html">image_css</a></li>
+    <li><a href="../modules/introspector_chrome.html">introspector_chrome</a></li>
+    <li><a href="../modules/ipc.html">ipc</a></li>
+    <li><a href="../modules/lousy.bind.html">lousy.bind</a></li>
+    <li><a href="../modules/lousy.load.html">lousy.load</a></li>
+    <li><a href="../modules/lousy.mode.html">lousy.mode</a></li>
+    <li><a href="../modules/lousy.pickle.html">lousy.pickle</a></li>
+    <li><a href="../modules/lousy.signal.html">lousy.signal</a></li>
+    <li><a href="../modules/lousy.theme.html">lousy.theme</a></li>
+    <li><a href="../modules/lousy.uri.html">lousy.uri</a></li>
+    <li><a href="../modules/lousy.util.html">lousy.util</a></li>
+    <li><a href="../modules/lousy.widget.html">lousy.widget</a></li>
+    <li><a href="../modules/luakit.html">luakit</a></li>
+    <li><a href="../modules/msg.html">msg</a></li>
+    <li><a href="../modules/newtab_chrome.html">newtab_chrome</a></li>
+    <li><a href="../modules/noscript.html">noscript</a></li>
+    <li><a href="../modules/open_editor.html">open_editor</a></li>
+    <li><a href="../modules/proxy.html">proxy</a></li>
+    <li><a href="../modules/quickmarks.html">quickmarks</a></li>
+    <li><a href="../modules/referer_control_wm.html">referer_control_wm</a></li>
+    <li><a href="../modules/search.html">search</a></li>
+    <li><a href="../modules/select.html">select</a></li>
+    <li><a href="../modules/select_wm.html">select_wm</a></li>
+    <li><a href="../modules/session.html">session</a></li>
+    <li><a href="../modules/soup.html">soup</a></li>
+    <li><a href="../modules/styles.html">styles</a></li>
+    <li><a href="../modules/tab_favicons.html">tab_favicons</a></li>
+    <li><a href="../modules/tabhistory.html">tabhistory</a></li>
+    <li><a href="../modules/taborder.html">taborder</a></li>
+    <li><span>tests.lib</span></li>
+    <li><a href="../modules/undoclose.html">undoclose</a></li>
+    <li><a href="../modules/unique.html">unique</a></li>
+    <li><a href="../modules/userscripts.html">userscripts</a></li>
+    <li><a href="../modules/vertical_tabs.html">vertical_tabs</a></li>
+    <li><a href="../modules/view_source.html">view_source</a></li>
+    <li><a href="../modules/viewpdf.html">viewpdf</a></li>
+    <li><a href="../modules/webinspector.html">webinspector</a></li>
+    <li><a href="../modules/xdg.html">xdg</a></li>
+</ul>
+<h3>Classes</h3>
+<ul>
+    <li><a href="../classes/dom_document.html">dom_document</a></li>
+    <li><a href="../classes/dom_element.html">dom_element</a></li>
+    <li><a href="../classes/download.html">download</a></li>
+    <li><a href="../classes/page.html">page</a></li>
+    <li><a href="../classes/regex.html">regex</a></li>
+    <li><a href="../classes/sqlite3.html">sqlite3</a></li>
+    <li><a href="../classes/stylesheet.html">stylesheet</a></li>
+    <li><a href="../classes/timer.html">timer</a></li>
+    <li><a href="../classes/widget.html">widget</a></li>
+    <li><a href="../classes/widget:box.html">widget:box</a></li>
+    <li><a href="../classes/widget:drawing_area.html">widget:drawing_area</a></li>
+    <li><a href="../classes/widget:entry.html">widget:entry</a></li>
+    <li><a href="../classes/widget:event_box.html">widget:event_box</a></li>
+    <li><a href="../classes/widget:image.html">widget:image</a></li>
+    <li><a href="../classes/widget:label.html">widget:label</a></li>
+    <li><a href="../classes/widget:notebook.html">widget:notebook</a></li>
+    <li><a href="../classes/widget:overlay.html">widget:overlay</a></li>
+    <li><a href="../classes/widget:paned.html">widget:paned</a></li>
+    <li><a href="../classes/widget:scrolled.html">widget:scrolled</a></li>
+    <li><a href="../classes/widget:socket.html">widget:socket</a></li>
+    <li><a href="../classes/widget:spinner.html">widget:spinner</a></li>
+    <li><a href="../classes/widget:webview.html">widget:webview</a></li>
+    <li><a href="../classes/widget:window.html">widget:window</a></li>
+</ul>
+
+            </div>
+            <div id=content>
+                        <h1>Module <code>tests.lib</code></h1>
+        <h2 class=tagline>Testing interface</h2>
+        
+
+<p>This module provides useful functions for use in luakit tests.</p>
+
+
+
+
+        <!-- modes and binds --><h2>Functions</h2>
+
+        <h3 class=function id="tests.lib.wait_for_view">
+            <a href="#tests.lib.wait_for_view">tests.lib.wait_for_view (view)</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Pause test execution until a webview widget finishes loading.</p>
+
+
+            <h4>Parameters</h4>
+<ul>
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>view</span>
+                    <div>Type: <span class=type>widget</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+The webview widget to wait on.
+
+</div>
+            </div>
+        </li>
+    
+</ul>
+            
+        </div>
+    
+        <h3 class=function id="tests.lib.delay">
+            <a href="#tests.lib.delay">tests.lib.delay (timeout)</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Pause test execution for a short time.</p>
+
+
+            <h4>Parameters</h4>
+<ul>
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>timeout</span>
+                    <div>Type: <span class=type>number</span></div>
+                    <div>Optional</div>
+                    <div></div>
+                </div>
+                <div>
+The time to delay, in milliseconds.
+Defaults to 5 milliseconds.
+</div>
+            </div>
+        </li>
+    
+</ul>
+            
+        </div>
+    
+        <h3 class=function id="tests.lib.wait_until">
+            <a href="#tests.lib.wait_until">tests.lib.wait_until (func, poll_time, timeout)</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Pause test execution until a predicate returns <code>true</code>.</p>
+
+<p>Suspends test execution, polling the provided predicate function at an
+interval, until the predicate returns a truthy value. If the predicate does
+not return a truthy value within a certain time period, the running test fails.</p>
+
+
+            <h4>Parameters</h4>
+<ul>
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>func</span>
+                    <div>Type: <span class=type>function</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+The predicate function.
+
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>poll_time</span>
+                    <div>Type: <span class=type>number</span></div>
+                    <div>Optional</div>
+                    <div></div>
+                </div>
+                <div>
+The interval at which to poll the predicate, in
+milliseconds. Defaults to 5 milliseconds.
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>timeout</span>
+                    <div>Type: <span class=type>number</span></div>
+                    <div>Optional</div>
+                    <div></div>
+                </div>
+                <div>
+Maximum time to wait before failing the running test,
+in milliseconds. Defaults to 200 milliseconds.
+</div>
+            </div>
+        </li>
+    
+</ul>
+            
+        </div>
+    
+        <h3 class=function id="tests.lib.wait_for_signal">
+            <a href="#tests.lib.wait_for_signal">tests.lib.wait_for_signal (object, signal, timeout)</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Pause test execution until a particular signal is emitted on an object.</p>
+
+<p>Suspends test execution until <code>signal</code> is emitted on <code>object</code>. If no such
+signal is emitted on <code>object</code> within <code>timeout</code> milliseconds, the running test
+fails.</p>
+
+
+            <h4>Parameters</h4>
+<ul>
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>object</span>
+                    <div>Type: <span class=any_type>any type</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+The object to wait for <code>signal</code> on.
+
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>signal</span>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+The signal to wait for.
+
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>timeout</span>
+                    <div>Type: <span class=type>number</span></div>
+                    <div>Optional</div>
+                    <div></div>
+                </div>
+                <div>
+Maximum time to wait before failing the running test,
+in milliseconds. Defaults to 200 milliseconds.
+</div>
+            </div>
+        </li>
+    
+</ul>
+            
+        </div>
+    
+        <h3 class=function id="tests.lib.wait">
+            <a href="#tests.lib.wait">tests.lib.wait (timeout)</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Pause test execution indefinitely.</p>
+
+<p>The running test is suspended until <code>continue()</code> is called. If <code>continue()</code>
+is not called within <code>timeout</code> milliseconds, the running test fails.</p>
+
+
+            <h4>Parameters</h4>
+<ul>
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>timeout</span>
+                    <div>Type: <span class=type>number</span></div>
+                    <div>Optional</div>
+                    <div></div>
+                </div>
+                <div>
+Maximum time to wait before failing the running test,
+in milliseconds. Defaults to 200 milliseconds.
+</div>
+            </div>
+        </li>
+    
+</ul>
+            <h4>Return Values</h4>
+<ul>
+        <li>
+            <div class=two-col>
+                <div><span class=any_type>any type</span></div><div>
+All parameters to <code>continue()</code>.
+
+</div>
+            </div>
+        </li>
+    
+</ul>
+        </div>
+    
+        <h3 class=function id="tests.lib.continue">
+            <a href="#tests.lib.continue">tests.lib.continue (...)</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Continue test execution.</p>
+
+<p>The running test, currently suspended after a call to <code>wait()</code>, is resumed.
+<code>wait()</code> must have been previously called.</p>
+
+<p>All parameters to <code>continue()</code> are returned by <code>wait()</code>.</p>
+
+            <h4>Parameters</h4>
+<ul>
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>...</span>
+                    <div>Type: <span class=any_type>any type</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+Values to return from <code>wait()</code>.
+
+</div>
+            </div>
+        </li>
+    
+</ul>
+            
+        </div>
+    
+        <h3 class=function id="tests.lib.http_server">
+            <a href="#tests.lib.http_server">tests.lib.http_server ()</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Get the URI prefix for the test HTTP server.</p>
+
+<p>The port the test server listens on may not always be the same. This function
+returns the current URI prefix, which looks like <code>http://127.0.0.1:8888/</code>.</p>
+
+<p>Currently, however, there is no HTTP server; instead, the custom URI scheme
+<code>luakit-test://</code> is used.</p>
+
+            
+            <h4>Return Values</h4>
+<ul>
+        <li>
+            <div class=two-col>
+                <div><span class=type>string</span></div><div>
+The URI prefix for the test HTTP server.
+
+</div>
+            </div>
+        </li>
+    
+</ul>
+        </div>
+    
+        <h3 class=function id="tests.lib.find_files">
+            <a href="#tests.lib.find_files">tests.lib.find_files (dirs, patterns, excludes)</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Retrieve a subset of files in the current directory.</p>
+
+<p>This function searches the directory and then filters the result
+according to the provided parameters and the <code>.gitignore</code> file. It
+is mostly intended for use in code style tests. The returned list of
+file paths includes all files that:</p>
+
+<ul>
+    <li>are within at least one of the directories in <code>dirs</code>,</li>
+    <li>match at least one of the Lua patterns in <code>patterns</code>, and</li>
+    <li>do <em>not</em> match any of the Lua patterns in <code>excludes</code>.</li>
+</ul>
+
+
+            <h4>Parameters</h4>
+<ul>
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>dirs</span>
+                    <div>Type: <span class=type>string</span> or <span class=type>table</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+The directory prefix (or list of prefixes) in which
+to look for files.
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>patterns</span>
+                    <div>Type: <span class=type>string</span> or <span class=type>table</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+A Lua pattern (or list of patterns) with which
+to filter file paths; non-matching files are removed.
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>excludes</span>
+                    <div>Type: <span class=type>table</span></div>
+                    <div>Optional</div>
+                    <div></div>
+                </div>
+                <div>
+A list of Lua patterns with which to filter file
+paths; matching files are removed.
+</div>
+            </div>
+        </li>
+    
+</ul>
+            <h4>Return Values</h4>
+<ul>
+        <li>
+            <div class=two-col>
+                <div><span class=type>table</span></div><div>
+A list of matching file paths.
+
+</div>
+            </div>
+        </li>
+    
+</ul>
+        </div>
+    
+        <h3 class=function id="tests.lib.format_file_errors">
+            <a href="#tests.lib.format_file_errors">tests.lib.format_file_errors (entries)</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Helper function to format a list of file errors.</p>
+
+<p>Aligns file names and file errors into two separate columns.</p>
+
+
+            <h4>Parameters</h4>
+<ul>
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>entries</span>
+                    <div>Type: <span class=type>{entry}</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+A list of file error entries.
+
+<h4><code>entry</code> format</h4>
+
+<ul>
+    <li>file: The path of the file.</li>
+    <li>err: The error string.</li>
+</ul>
+</div>
+            </div>
+        </li>
+    
+</ul>
+            <h4>Return Values</h4>
+<ul>
+        <li>
+            <div class=two-col>
+                <div><span class=type>string</span></div><div>
+The formatted output string.
+
+</div>
+            </div>
+        </li>
+    
+</ul>
+        </div>
+    
+        <h2>Attribution</h2>
+        <div class=attr-wrap>
+    <h4>Authors</h4>
+    <ul class=authors>
+    </ul>
+</div>
+<div class=attr-wrap>
+    <h4>Copyright</h4><ul class=copyright>
+        <li>2017 Aidan Holm
+    </ul>
+</div>
+    
+            </div>
+            <div style='display:none'><a rel=prev href='../modules/taborder.html'><a rel=next href='../modules/undoclose.html'></div>
+        </div>
+	</div>
+	<footer>
+		<div class="container">
+			<small>Copyright 2017 Aidan Holm</small>
+			<br>
+			<small>All written documentation and luakit code are copyright to their respective authors.</small>
+		</div>
+	</footer>
+</body>
+</html>
