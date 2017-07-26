@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<meta charset='UTF-8'>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,156 +11,180 @@
 
 <body>
 	<nav>
-		<a href="#sec-features">Features</a>
-		<a href="#sec-announcements">Announcements</a>
+		<a href="#">Home</a>
+		<a href="#sec-release">Releases</a>
 		<a href="#sec-download">Download</a>
+		<a href="/luakit/docs/">Documentation</a>
 		<a href="#sec-contributing">Contributing</a>
 		<a href="https://github.com/luakit/luakit" target="_blank">GitHub</a>
 	</nav>
-	<div id="container">
-		<header>
+	<header>
+		<div class="container">
 			<h1>
 				<a href="https://github.com/luakit/luakit" target="_blank">luakit</a>
 			</h1>
-			<div>
-				Now updated for WebKit 2 and GTK+ 3.
+			<div id=slogan>
+				A fast, extensible, and<br> customizable web browser.
 			</div>
-		</header>
+		</div>
+	</header>
+	<section id=sec-description>
+		<div class="container">
+			<p>Luakit is a highly configurable browser framework based on the <a
+			href="http://webkit.org/" target="_blank">WebKit</a> web content engine and the <a
+			href="http://gtk.org/" target="_blank">GTK+</a> toolkit. It is very fast, extensible with <a
+			href="http://lua.org/" target="_blank">Lua</a>, and licensed under the <a
+			href="https://raw.github.com/luakit/luakit/develop/COPYING.GPLv3" target="_blank">GNU GPLv3</a>
+			license.  It is primarily targeted at power users, developers and anyone who wants to have fine-grained control over their web browser&rsquo;s behaviour and
+			interface.</p>
+		</div>
+	</section>
+	<section id=sec-release>
+		<div class="container">
+			<h2>Latest release &mdash; <a href="news/luakit-2017.07.26.html">Luakit 2017-07-26</a></h2>
+		</div>
+	</section>
+	<section id=sec-screenshots>
+		<div class="container">
+			<h2>Screenshots</h2>
 
-		<p>Luakit is a highly configurable, browser framework based on the <a
-		href="http://webkit.org/" target="_blank">WebKit</a> web content engine and the <a
-		href="http://gtk.org/" target="_blank">GTK+</a> toolkit. It is very fast, extensible with <a
-		href="http://lua.org/" target="_blank">Lua</a> and licensed under the <a
-		href="https://raw.github.com/luakit/luakit/develop/COPYING.GPLv3" target="_blank">GNU GPLv3</a>
-		license.  It is primarily targeted at power users, developers and any people with too much time
-		on their hands who want to have fine-grained control over their web browser&rsquo;s behaviour and
-		interface.</p>
+			<div><div class=thumb>
+					<a href="screenshots/1.png"><img src="thumbs/1.png" alt="Screenshot of Luakit." /></a>
+					<div>Luakit in normal mode when reading a web page.</div>
+				</div><div class=thumb>
+					<a href="screenshots/2.png"><img src="thumbs/2.png" alt="Screenshot of Luakit." /></a>
+					<div>Luakit in follow mode with several link hints visible.</div>
+				</div><div class=thumb>
+					<a href="screenshots/3.png"><img src="thumbs/3.png" alt="Screenshot of Luakit." /></a>
+					<div>Luakit showing the ad blocker settings page, listing currently active filter lists.</div>
+				</div><div class=thumb>
+					<a href="screenshots/4.png"><img src="thumbs/4.png" alt="Screenshot of Luakit." /></a>
+					<div>Luakit with a different theme and with vertical tabs enabled.</div>
+			</div></div>
+		</div>
+	</section>
+	<section id=sec-download>
+		<div class="container">
+			<h2>Downloading Luakit</h2>
 
-		<h2>Screenshots</h2>
+			<h3>Supported Operating Systems</h3>
 
-		<div><div class=thumb>
-				<a href="screenshots/1.png"><img src="thumbs/1.png" alt="Screenshot of Luakit." /></a>
-				<div>Luakit in normal mode when reading a web page.</div>
-			</div><div class=thumb>
-				<a href="screenshots/2.png"><img src="thumbs/2.png" alt="Screenshot of Luakit." /></a>
-				<div>Luakit in follow mode with several link hints visible.</div>
-			</div><div class=thumb>
-				<a href="screenshots/3.png"><img src="thumbs/3.png" alt="Screenshot of Luakit." /></a>
-				<div>Luakit showing the ad blocker settings page, listing currently active filter lists.</div>
-			</div><div class=thumb>
-				<a href="screenshots/4.png"><img src="thumbs/4.png" alt="Screenshot of Luakit." /></a>
-				<div>Luakit with a different theme and with vertical tabs enabled.</div>
-		</div></div>
+			<ul id=osicons>
+				<li>
+					<img src="/luakit/images/windows.svg" alt="" />
+					<span>Windows 10 with <abbr title="Windows Subsystem for Linux">WSL</abbr></span>
+				<li>
+					<img src="/luakit/images/linux.svg" alt="" />
+					<span>Linux</span>
+				<li>
+					<img src="/luakit/images/bsd.svg" alt="" />
+					<span>BSD</span>
+			</ul>
+		</div>
+	</section>
 
-		<h2 id=sec-features>New Features</h2>
-		<ul>
-			<li>Updated to use the WebKit 2 API. This is a critical change, since the older WebKit 1 API that the original Luakit is based on has over two hundred security vulnerabilities that will never be fixed (See <a href="https://blogs.gnome.org/mcatanzaro/2016/02/01/on-webkit-security-updates/" target="_blank">here</a> for more details).</li>
-			<li>Updated and optimized ad blocker included.</li>
-			<li>Added several new widget types, including overlay and drawing area widgets.</li>
-			<li>Improved API and usage documentation.</li>
-			<li>Improved test coverage.</li>
-			<li>Improved test runner that supports running simulated browsing scenarios.</li>
-			<li>Added support for detaching tabs into new windows. No support yet for reattaching them.</li>
-			<li>Added support for vertical tabs.</li>
-			<li>Key presses that do not prefix any valid bindings are now ignored. This prevents key bindings like <code>gg</code> being ignored because the input buffer has filled up with garbage.</li>
-			<li>Inputs can now be focused in follow mode by typing their placeholder text.</li>
-			<li>Adding a form to the form-filler file now uses visual element selection, similar to follow mode.</li>
-			<li>Added a status bar widget indicating NoScript status on the current page.</li>
-			<li>Improved exit-prevention when restarting, quitting via key binding, and quitting via the window manager.</li>
-			<li>Added recovery session auto-saving. If Luakit crashes, a recent snapshot of your session can be restored.</li>
+	<section id=security-notice class=sec-install>
+		<div class="container">
+			<h3>Important WebKit Security Notice</h3>
 
-		</ul>
+			<p>While switching to the
+			WebKit 2 API means a vastly improved security situation, not all distributions of Linux package the
+			most up-to-date version of WebKitGTK+, and several package very outdated versions that
+			have many known vulnerabilities. As of February 2017, Arch, Fedora,
+			and Ubuntu all have the latest version of WebKitGTK+; but Debian,
+			Gentoo, and OpenSUSE ship outdated and vulnerable versions in their
+			stable channel. See <a href="https://blogs.gnome.org/mcatanzaro/2017/02/08/an-update-on-webkit-security-updates/" target="_blank">here</a> for more details.</p>
 
-		<h2>Miscellaneous Changes and Bug Fixes</h2>
-		<ul>
-			<li>Removed usage of <code>module()</code> in Lua code.</li>
-			<li>Saving and restoring a session now restores the set of closed tabs, allowing you to &lsquo;undo-close&rsquo; them.</li>
-			<li>Reopened tabs that were closed in a previous session are now restored in the correct place.</li>
-			<li><code>:wqall</code> now saves and closes all windows, not just the current one.</li>
-			<li>Idle callback functions that have errors are removed; this prevents error message spam.</li>
-			<li>Fixed Lua errors when closing windows with multiple tabs.</li>
-			<li>Fixed various bugs in various Luakit chrome pages.</li>
-			<li>Completion now works with commands that contain hyphens.</li>
+			<p>If you use Luakit for browsing, it is <i>your</i> responsibility to ensure that
+			your distribution packages an up-to-date version of WebKitGTK+!</p>
+		</div>
+	</section>
 
-		</ul>
+	<section class=sec-install>
+		<div class="container">
+			<h3>Installing on Windows 10</h3>
+			<ol>
+				<li><p>First, install the <a href="https://msdn.microsoft.com/en-us/commandline/wsl/install_guide" target=_blank>Windows Subsystem for Linux</a> if you have not already done so, as WebKitGTK+ does not natively support Windows.
+				<li><p>The default Linux system is based on Ubuntu &ldquo;Trusty&rdquo;; upgrade your system to Ubuntu &ldquo;Xenial&rdquo; by running the following command at the Linux terminal:
+				<pre>do-release-upgrade</pre>
+				This is required due to a missing dependency (Lua File System) in the earlier version of Ubuntu.
+				<li><p>Download, build, and install luakit from source, following the instructions below.
+			</ol>
+		</div>
+	</section>
 
-		<h2 id=sec-announcements>Announcements</h2>
 
-		<p>Currently development is still ongoing, and although many parts of
-		Luakit are now relatively stable, some parts are in a state of flux.
-		This is complicated by the separation of Luakit&rsquo;s Lua code into the
-		<code>config/</code> and <code>lib/</code> directories; while
-		development changes can be made to Lua modules within <code>lib/</code>,
-		occasionally it is necessary to modify Lua code within
-		<code>config/</code>. This risks breaking users&rsquo; configuration, as it is
-		expected for users to copy files from <code>config/</code> to their home
-		directory and modify them as they see fit.</p>
+	<section class=sec-install>
+		<div class="container">
+			<h3>Installing on Linux</h3>
+			<ul>
+				<li><p>Arch Linux users can install the <a href="https://aur.archlinux.org/packages/luakit-git/" target="_blank">luakit-git</a> package from the AUR.
+				<li><p>Other users will need to download and build from source. A Debian package is in the works. Luakit contains only around 9000 lines of code, so this process is usually very fast.
+			</ul>
+		</div>
+	</section>
 
-		<p>I am considering ways to mitigate this problem for a variety of common
-		use-cases. Currently, however, it is necessary for users to check for
-		changes to files in <code>config/</code> whenever they update, and
-		manually merge any changes into any modified files.</p>
+	<section class=sec-install>
+		<div class="container">
+			<h3>Installing on BSD</h3>
+			<p>FreeBSD and OpenBSD users can install the <code>luakit</code> package.</p>
+		</div>
+	</section>
 
-		<h2 id=sec-download>Downloading, Installing, &amp; Running</h2>
+	<section class=sec-install>
+		<div class="container">
+			<h3>Installing from source</h3>
+			<ol>
+				<li><p>Ensure you have the following required dependencies installed:</p>
+				<ul>
+					<li><a href="https://www.gtk.org/" target="_blank">GTK 3</a></li>
+					<li><a href="https://webkitgtk.org/" target="_blank">WebKitGTK+</a> (webkit2gtk)</li>
+					<li><a href="https://www.lua.org/" target="_blank">Lua 5.1</a> or <a href="http://luajit.org/" target="_blank">LuaJIT</a></li>
+					<li><a href="https://keplerproject.github.io/luafilesystem/" target="_blank">lfs (Lua File System)</a></li>
+					<li><a href="https://sqlite.org/" target="_blank">SQLite 3</a></li>
+				</ul>
+				<li><p>Download the latest development version:
+				<a href="https://github.com/luakit/luakit/zipball/develop">zip</a>,
+				<a href="https://github.com/luakit/luakit/tarball/develop">tar</a>.
+				Alternatively, clone the project with <a href="http://git-scm.com" target="_blank">Git</a>
+				by running:</p><pre>git clone git://github.com/luakit/luakit</pre>
+				<li><p>Change into the target directory and run <code>make DEVELOPMENT_PATHS=0 install</code>. You will probably also want to customize the prefix, which is <code>/usr/local</code> by default.
+				Full instructions on building Luakit are available in the <code>README.md</code> file.</p>
+				<li><p>After successfully building and installing luakit, run <code>luakit</code> from the command line or launch luakit from your application launcher.</p>
+			</ol>
+		</div>
+	</section>
 
-		<h3>WebKit Security</h3>
+	<section class=sec-help>
+		<div class="container">
+			<h2>Getting Help</h2>
 
-		<p><strong>Important security notice:</strong> While switching to the
-		WebKit 2 API means a vastly improved security situation, not all distributions of Linux package the
-		most up-to-date version of WebKitGTK+, and several package very outdated versions that
-		have many known vulnerabilities. As of February 2017, Arch, Fedora,
-		and Ubuntu all have the latest version of WebKitGTK+; but Debian,
-		Gentoo, and OpenSUSE ship outdated and vulnerable versions in their
-		stable channel. See <a href="https://blogs.gnome.org/mcatanzaro/2017/02/08/an-update-on-webkit-security-updates/" target="_blank">here</a> for more details.</p>
+			<p>If you run into trouble installing luakit, or if you find a bug, please open an issue at
+			the GitHub <a href="https://github.com/luakit/luakit/issues" target="_blank">issue tracker</a>,
+			and we'll be happy to help you!
 
-		<p>If you use Luakit for browsing, it is <i>your</i> responsibility to ensure that
-		your distribution packages an up-to-date version of WebKitGTK+!</p>
+			<p>The <code>#luakit</code> IRC channel is also a great place to ask questions; join <code>#luakit</code> on the OFTC network.</p>
+		</div>
+	</section>
 
-		<h3>Supported Operating Systems</h3>
+	<section id=sec-contributing>
+		<div class="container">
 
-		At this point in time, only Linux and similar Unix-like operating systems are supported. I&rsquo;ve only tested Luakit on Linux.
+			<h2>Contributing to Luakit</h2>
 
-		<h3>Required Dependencies</h3>
-
-		<ul>
-			<li><a href="https://www.gtk.org/" target="_blank">GTK 3</a></li>
-			<li><a href="https://webkitgtk.org/" target="_blank">WebKitGTK+</a> (webkit2gtk)</li>
-			<li><a href="https://www.lua.org/" target="_blank">Lua 5.1</a> or <a href="http://luajit.org/" target="_blank">LuaJIT</a></li>
-			<li><a href="https://keplerproject.github.io/luafilesystem/" target="_blank">lfs (Lua File System)</a></li>
-			<li><a href="https://sqlite.org/" target="_blank">SQLite 3</a></li>
-		</ul>
-
-		<h3>Installing</h3>
-
-		<p>
-		Arch Linux users can install the <a href="https://aur.archlinux.org/packages/luakit-git/" target="_blank">luakit-git</a> package from the AUR. Other users will need to download and build from source. Luakit contains only around 9000 lines of code, so this process is usually very fast.
-		</p>
-
-		<h3>Downloading The Source</h3>
-
-		<p>
-			You can download the latest development version in either
-			<a href="https://github.com/luakit/luakit/zipball/develop">zip</a> or
-			<a href="https://github.com/luakit/luakit/tarball/develop">tar</a> formats.
-		</p>
-
-		<p>
-			You can also clone the project with <a href="http://git-scm.com" target="_blank">Git</a>
-			by running: <pre>git clone git://github.com/luakit/luakit</pre>
-		</p>
-		<p>After downloading, full instructions on building and running Luakit are available in the <code>README.md</code> file.</p>
-
-		<h2 id=sec-contributing>Contributing to Luakit</h2>
-
-		Please report any bugs or issues you find at the GitHub <a href="https://github.com/luakit/luakit/issues" target="_blank">issue tracker</a>.
-		If you have any feature requests or questions, feel free to open an
-		issue for those as well. Pull requests and patches are both welcome,
-		and there are plenty of areas that could be improved, especially tests
-		and documentation.
-
-		<footer>
+			Please report any bugs or issues you find at the GitHub <a href="https://github.com/luakit/luakit/issues" target="_blank">issue tracker</a>.
+			If you have any feature requests or questions, feel free to open an
+			issue for those as well. Pull requests and patches are both welcome,
+			and there are plenty of areas that could be improved, especially tests
+			and documentation.
+		</div>
+	</section>
+	<footer>
+		<div class="container">
 			<small>Copyright 2017 Aidan Holm</small>
-		</footer>
-	</div>
+			<br>
+			<small>All written documentation and luakit code are copyright to their respective authors.</small>
+		</div>
+	</footer>
 </body>
 </html>

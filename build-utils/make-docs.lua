@@ -30,7 +30,6 @@ local make_doc_html = function (blob, path)
     if path == opts.source_dir .. "/index.html" then
         style = style .. [===[
             div#wrap { padding-top: 0; }
-            h2 { margin: 1.5em 0 0.75em; }
             h2 + ul { margin: 0.5em 0; }
             ul {
                 display: flex;

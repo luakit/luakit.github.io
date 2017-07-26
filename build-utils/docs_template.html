@@ -1,39 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<meta charset='UTF-8'>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Luakit API Documentation</title>
 	<link rel="icon" type="image/png" href="favicon.png" />
-    <style type="text/css">
-    {style}
-    </style>
+	<style type="text/css">{style}</style>
 	<link rel=stylesheet href=/luakit/style.css />
 	<link rel="stylesheet" href="https://code.cdn.mozilla.net/fonts/fira.css">
-    <style type="text/css">
-    #wrap { padding: 2em 0; }
-    #content > h1 { font-size: 28px; }
-    #container { max-width: none; }
-	html { font-size: unset; }
-	body { background-color: #f6f6f6; }
-	#container { font-size: 14px; }
-    </style>
+	<style type="text/css">
+		#wrap { padding: 2em 0; }
+		#content > h1 { font-size: 28px; }
+		body { background-color: #fcfcfc; }
+		body > .container { max-width: unset; }
+		nav { font-size: 16px; background:#F3EFE7;}
+	</style>
 </head>
-
 <body>
 	<nav>
-		<a href="/luakit/index.html">Home</a>
-		<a href="/luakit/index.html#sec-releases">Releases</a>
-		<a href="/luakit/index.html#sec-download">Download</a>
-		<a href="/luakit/docs/index.html">Documentation</a>
-		<a href="/luakit/index.html#sec-contributing">Contributing</a>
-		<a href="https://github.com/aidanholm/luakit" target="_blank">GitHub</a>
+		<a href="/luakit/">Home</a>
+		<a href="/luakit/#sec-release">Releases</a>
+		<a href="/luakit/#sec-download">Download</a>
+		<a href="/luakit/docs/">Documentation</a>
+		<a href="/luakit/#sec-contributing">Contributing</a>
+		<a href="https://github.com/luakit/luakit" target="_blank">GitHub</a>
 	</nav>
-	<div id="container">
+	<div class="container">
 		{inner}
-		<footer>
-			<small>Copyright 2017 Aidan Holm</small>
-		</footer>
 	</div>
+	<footer>
+		<div class="container">
+			<small>Copyright 2017 Aidan Holm</small>
+			<br>
+			<small>All written documentation and luakit code are copyright to their respective authors.</small>
+		</div>
+	</footer>
 </body>
 </html>

@@ -12,7 +12,7 @@ body {
 	padding: 0;
 	font-family: "Fira Sans", sans-serif;
 	font-size: 1.0em;
-	position: relative; 
+	position: relative;
 	line-height: 1.5;
 	margin: 0 auto;
 }
@@ -23,19 +23,17 @@ body {
 }
 
 /* Link styles */
-a {
-	color: #0072b1;
-}
-a:hover {
-	color: #7DC1fF;
-}
+a { color: #0072b1; }
+a:hover { color: #7DC1fF; }
+#sec-description a, #sec-screenshots a { color: #2892cc; text-decoration: none; }
+#sec-description a:hover, #sec-screenshots a:hover { color: #7DC1fF; }
 
 /* Nav */
 nav {
-	background: #efece1;
-	border-bottom: 1px solid #D4CBB6;
+	background: #fcfcfc;
+	border-bottom: 1px solid rgba(0,0,0,0.2);
+	/* #D4CBB6; */
 	padding: 7px;
-	margin-bottom: 20px;
 	text-align: center;
 	font-size: 1.0em;
 	font-weight: 400;
@@ -48,26 +46,31 @@ nav > a {
 	line-height: 2em;
 }
 
+nav > a[href*="//"]:after { content: "↗"; }
+
 /* Header */
-header {
-	margin: 3em 0;
-}
-header > h1 {
-	font-size: 4.8em;
+header h1 {
+	font-size: 5.8em;
+	line-height: 1.3;
+	font-style: italic;
 	margin: 0;
+	padding: 0;
 	color: #888;
 	text-align: center;
 	font-weight: 500;
 }
-header > h1 > a {
+header h1 > a {
 	color: #8a8a8a;
 	text-decoration: none;
-}
-header > h1 > a:hover { color: #268bd2; }
-header > h1 > a:active { color: #175784; }
-header > div {
 	margin: 0;
-	font-size: 1.2em;
+	margin: 0;
+}
+header h1 > a:hover { color: #268bd2; }
+header h1 > a:active { color: #175784; }
+
+#slogan {
+	margin: 0;
+	font-size: 1.6em;
 	font-style: italic;
 	text-align: center;
 	font-weight: 400;
@@ -75,41 +78,44 @@ header > div {
 
 /* Code */
 code, pre {
-	background: #ddd;
-	color: #333;
+	background: #f5f7f9;
+	color: #334;
 	padding: 0.2em;
 	overflow-x: scroll;
 }
 pre {
-	padding: 1em;
+	padding: 1rem 1.2rem;
 	font-size: 1.1em;
-	border-left: 3px solid #aaa;
+	border: 1px solid #ddd;
+	border-left: 2px solid #69c;
 }
 
 pre:before { content: '$ '; }
 
 /* Main content */
-#container {
+.container {
 	margin: 0 auto;
-	max-width: 700px;
-	padding: 0 1em;
-	padding: 0 5vw;
+	max-width: 900px;
+	padding: 40px 1em;
+	padding: 40px 5vw;
 }
-@media screen and (min-width: 800px) { #container {
-	padding: 0 40px;
+@media screen and (min-width: 800px) { .container {
+	padding: 40px 40px;
 } }
-#container > h2 {
-	font-size: 1.5em;
+.container > h2 {
+	font-size: 2.0em;
 	color: #268bd2;
+	margin-top: 0;
+	text-align: center;
 }
-#container > h3 {
+.container > h3 {
 	font-size: 1.2em;
 	margin-bottom: 0.5em;
 	color: #1c689e;
 }
 
 /* Footer */
-footer { text-align:center; margin: 30px 0; font-style: italic; }
+small { text-align:center; margin: 30px 0; font-style: italic; }
 
 /* Screenshot thumbnails */
 .thumb {
@@ -123,6 +129,9 @@ footer { text-align:center; margin: 30px 0; font-style: italic; }
 	display: inline-block;
 	vertical-align: top;
 }
+@media screen and (max-width: 400px) { .thumb {
+	width: 96%;
+}}
 
 .thumb > div {
 	font-size: 0.8em;
@@ -132,4 +141,94 @@ footer { text-align:center; margin: 30px 0; font-style: italic; }
 .thumb > a > img {
 	width: 100%;
 	height: auto;
+}
+
+header > .container {
+	padding-top: 60px;
+	padding-bottom: 60px;
+}
+
+#sec-description {
+	color: #ddd;
+	font-size: 1.3em;
+	font-style: italic;
+	text-align: center;
+}
+
+#sec-description,
+#sec-screenshots {
+	background: #222229;
+	background: linear-gradient(0deg, rgba(0,0,0,0.2) 0px, rgba(0,0,0,0) 50px),
+		linear-gradient(180deg, rgba(0,0,0,0.2) 0px, rgba(0,0,0,0) 50px),
+		linear-gradient(0deg, #222229 0%, #222229 100%);
+}
+
+#sec-release {
+	background: #61c13e;
+	font-size: 1.2em;
+	font-style: italic;
+	border-top: 4px solid #4c9930;
+	border-bottom: 4px solid #4c9930;
+}
+#sec-release h2 { color: #222; margin: 0;}
+#sec-release a { color: #0083ff; text-decoration: none;}
+#sec-release b, #sec-release a {
+	display: inline-block;
+}
+
+#sec-screenshots {
+	font-size: 1.2em;
+}
+
+#sec-download h3 {
+	text-align:center;
+}
+
+footer {
+	background: #222229;
+	color: #aaa;
+	text-align: center;
+}
+
+.sec-install:nth-child(2n+1) { background: #ddd; }
+.sec-install:nth-child(2n) { background: #eee; }
+.sec-install > .container {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+#sec-contributing { background: #fcfcfc; }
+
+#security-notice {
+	background: #f7a8a2;
+}
+
+/* OS Icons */
+#osicons {
+	text-align: center;
+	margin: 1em auto;
+	width: 70%;
+	opacity: 0.8;
+	padding: 0;
+}
+
+#osicons > li {
+	vertical-align: top;
+	width: 33%;
+	display: inline-block;
+	font-size: 1.2em;
+}
+#osicons img {
+	margin: 0 auto;
+	min-width: 80px;
+	width: 15vw;
+	max-width: 130px;
+	padding: 15px;
+	display: block;
+}
+@media screen and (max-width: 400px) {
+	#osicons > li {
+		display: block;
+		width: auto;
+	}
 }
