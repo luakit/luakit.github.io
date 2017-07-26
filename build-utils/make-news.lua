@@ -1,3 +1,4 @@
+local util = require "build-utils.util"
 -- Use luakit's customized markdown: it linkifies luakit:// URIs
 package.path = "../luakit/lib/?.lua;" .. package.path
 local markdown = require "markdown"
@@ -7,13 +8,6 @@ local opts = {
     template = "build-utils/news_template.html",
     target_dir = "news",
 }
-
-local read_file = function (path)
-    local f = assert(io.open(assert(path, "No path provided!"), "r"))
-    local contents = f:read("*all")
-    f:close()
-    return contents
-end
 
 local split_string = function (s, pattern)
     local pos, ret = 1, {}
@@ -32,7 +26,7 @@ local make_news_html = function (md, is_latest)
     local ver = assert(md:match("^## %[([0-9-]+)%]\n"), "Bad version!")
     local lrt = is_latest and " - latest release" or ""
     md = md:gsub("^## %[([0-9-]+)%]\n", "## Luakit " .. ver .. lrt .. "\n")
-    html_template = html_template or read_file(opts.template)
+    html_template = html_template or util.read_file(opts.template)
     local html = html_template:gsub("{(%w+)}", {
         changelog = markdown(md),
         version = ver,
@@ -46,7 +40,7 @@ local make_news_html = function (md, is_latest)
 end
 
 local split_changelog = function ()
-    local changelog = read_file(opts.changelog)
+    local changelog = util.read_file(opts.changelog)
     changelog = "\n" .. changelog:gsub("## %[Unreleased%]", ""):gsub("# Changelog.-\n## ", "## ")
 
     local parts = split_string(changelog, "\n## ")
@@ -56,5 +50,6 @@ local split_changelog = function ()
     end
 end
 
-assert(pcall(read_file, ".git/HEAD"), "Not at git root!")
+assert(pcall(util.read_file, ".git/HEAD"), "Not at git root!")
+util.mkdir(opts.target_dir)
 split_changelog()
