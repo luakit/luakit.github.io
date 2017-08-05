@@ -171,7 +171,9 @@ header > .container {
 	border-bottom: 4px solid #4c9930;
 }
 #sec-release h2 { color: #222; margin: 0;}
-#sec-release a { color: #0083ff; text-decoration: none;}
+#sec-release a { color: #005cb2; text-decoration: none;}
+#sec-release a:hover { color: #0083ff; }
+#sec-release a:active { color: #005cb2; }
 #sec-release b, #sec-release a {
 	display: inline-block;
 }
