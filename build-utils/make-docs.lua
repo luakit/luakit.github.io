@@ -29,26 +29,13 @@ local make_doc_html = function (blob, path)
 
     if path == opts.source_dir .. "/index.html" then
         style = style .. [===[
-            div#wrap { padding-top: 0; }
+            #content > h2:first-child { margin-top: 0; }
             h2 + ul { margin: 0.5em 0; }
-            ul {
-                display: flex;
-                flex-wrap: wrap;
-            }
-            ul > li {
-                flex: 1 0 200px;
-                max-width: 243px;
-            }
-            ul > li:before {
-                font-weight: bold;
-                width: 1.5em;
-                text-align: center;
-                left: 0;
-                position: absolute;
-            }
-            #page-header { z-index: 100; }
         ]===]
     end
+    style = style .. [===[
+        div#wrap { padding: 0; }
+    ]===]
 
     html_template = html_template or util.read_file(opts.template)
     html = html_template:gsub("{(%w+)}", {
