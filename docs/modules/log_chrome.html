@@ -329,7 +329,7 @@ span.target {
 </ul>
 <h3>Modules</h3>
 <ul class=modules>
-    <li><span>adblock</span></li>
+    <li><a href="../modules/adblock.html">adblock</a></li>
     <li><a href="../modules/adblock_chrome.html">adblock_chrome</a></li>
     <li><a href="../modules/binds.html">binds</a></li>
     <li><a href="../modules/bookmarks.html">bookmarks</a></li>
@@ -355,7 +355,7 @@ span.target {
     <li><a href="../modules/image_css.html">image_css</a></li>
     <li><a href="../modules/introspector_chrome.html">introspector_chrome</a></li>
     <li><a href="../modules/ipc.html">ipc</a></li>
-    <li><a href="../modules/log_chrome.html">log_chrome</a></li>
+    <li><span>log_chrome</span></li>
     <li><a href="../modules/lousy.bind.html">lousy.bind</a></li>
     <li><a href="../modules/lousy.load.html">lousy.load</a></li>
     <li><a href="../modules/lousy.mode.html">lousy.mode</a></li>
@@ -422,70 +422,13 @@ span.target {
 
             </div>
             <div id=content>
-                        <h1>Module <code>adblock</code></h1>
+                        <h1>Module <code>log_chrome</code></h1>
         <!-- status indicator -->
-        <span class=tagline>Simple URI-based content filter</span>
+        <span class=tagline>Luakit log viewer</span>
         
 
-<p>This is a simple, fast ad blocker module that works by blocking requests to
-domains that only serve advertisements. It does not currently do any form of
-cosmetic ad blocking (i.e. element hiding with CSS).</p>
-
-<p>See also: <a href="../modules/adblock_chrome.html"><code>adblock_chrome</code></code></a>.</p>
-
-<h2>Capabilities</h2>
-
-<ul>
-    <li>You can allow specific content to be loaded if it is inadvertently
-    blocked: simply add whitelisting rules formed by <code>@@</code> and the pattern to
-    allow.</li>
-    <li>Supports multiple filter list files.</li>
-    <li>Filter files can be enabled, disabled and reloaded from disk
-    without restarting luakit.</li>
-    <li>A configuration chrome page is provided by <a href="../modules/adblock_chrome.html"><code>adblock_chrome</code></code></a>.</li>
-</ul>
-
-<h2>Usage</h2>
-
-<ul>
-    <li>Add <code>require "adblock"</code> and <code>require "adblock_chrome"</code> to your <code>config.rc</code>.</li>
-    <li>Download AdblockPlus-compatible filter lists to the adblock directory.
-    Multiple lists are supported.
-    EasyList is the most popular Adblock Plus filter list, and can be
-    downloaded from <a href="https://easylist.to/">https://easylist.to/</a>.</li>
-    <li>Filter lists downloaded to the adblock directory must have a
-    filename ending in <code>.txt</code> in order to be loaded.</li>
-    <li>Filter lists need to be updated regularly (~weekly), use cron!</li>
-</ul>
-
-<h2>Troubleshooting</h2>
-
-<p>If ad blocking is not working as expected, the easiest way to determine
-what is happening is to set the appropriate log levels to <code>debug</code>:</p>
-
-<p>If a filterlist is not being loaded for some reason, start luakit with
-  the following:</p>
-
-<pre class="sourcecode lua"><span class="comment">--log=lua/lib/adblock=debug
-</span></pre>
-
-<p>If a filterlist is not behaving correctly, by blocking too much or too
-  little, start luakit with the following:</p>
-
-<pre class="sourcecode lua"><span class="comment">--log=lua/lib/adblock_wm=debug
-</span></pre>
-
-<h2>Files and Directories</h2>
-
-<ul>
-    <li>All filterlists should be downloaded to the adblock data directory.
-    By default, this is the <code>adblock</code> sub-directory of the luakit data
-    directory. All filterlists must have a filename ending in <code>.txt</code>.</li>
-</ul>
-
-
-
-
+<p>This module supplies the <a href="luakit://log/">luakit://log/</a> chrome page, which displays the most
+recent log messages.</p>
 
 
 
@@ -494,201 +437,158 @@ what is happening is to set the appropriate log levels to <code>debug</code>:</p
         <!-- modes and binds --><h2>Functions</h2>
 
         <h3 class=function>
-            <span class=target id="function-load"></span>
-            <a href="#function-load">adblock.load (reload, single_list, no_sync)</a>
+            <span class=target id="function-widget"></span>
+            <a href="#function-widget">log_chrome.widget ()</a>
         </h3>
             <div class=function>
             
             
-<p>Load filter list files, and refresh any adblock pages that are open.</p>
+<p>Construct a new error/warning status bar widget.
+This widget will stay hidden, until a luakit error or warning is logged.
+Once shown, clicking on the widget will hide it and all other such widgets.</p>
 
-            <h4>Parameters</h4>
+            
+            <h4>Return Values</h4>
 <ul>
-        <li class=parameter>
+        <li>
             <div class=two-col>
-                <div>
-                    <span class=parameter>reload</span>
-                    <div>Type: <span class=type>boolean</span></div>
-                    <div></div>
-                    <div></div>
-                </div>
-                <div>
-<code>true</code> if all subscriptions already loaded
-should be fully reloaded.
-</div>
-            </div>
-        </li>
-    
-        <li class=parameter>
-            <div class=two-col>
-                <div>
-                    <span class=parameter>single_list</span>
-                    <div>Type: <span class=type>string</span></div>
-                    <div></div>
-                    <div></div>
-                </div>
-                <div>
-Single list file.
-
-</div>
-            </div>
-        </li>
-    
-        <li class=parameter>
-            <div class=two-col>
-                <div>
-                    <span class=parameter>no_sync</span>
-                    <div>Type: <span class=type>boolean</span></div>
-                    <div></div>
-                    <div></div>
-                </div>
-                <div>
-<code>true</code> if subscriptions should not be synchronized to
-the web process.
-</div>
-            </div>
-        </li>
-    
-</ul>
-            
-        </div>
-    
-        <h3 class=function>
-            <span class=target id="function-list_set_enabled"></span>
-            <a href="#function-list_set_enabled">adblock.list_set_enabled (a, enabled)</a>
-        </h3>
-            <div class=function>
-            
-            
-<p>Enable or disable an adblock filter list.</p>
-
-            <h4>Parameters</h4>
-<ul>
-        <li class=parameter>
-            <div class=two-col>
-                <div>
-                    <span class=parameter>a</span>
-                    <div>Type: <span class=type>number</span> or <span class=type>string</span></div>
-                    <div></div>
-                    <div></div>
-                </div>
-                <div>
-The number of the list to enable or disable.
-
-</div>
-            </div>
-        </li>
-    
-        <li class=parameter>
-            <div class=two-col>
-                <div>
-                    <span class=parameter>enabled</span>
-                    <div>Type: <span class=type>boolean</span></div>
-                    <div></div>
-                    <div></div>
-                </div>
-                <div>
-<code>true</code> to enable, <code>false</code> to disable.
+                <div><span class=type>widget</span></div><div>
+The newly-constructed status bar widget.
 
 </div>
             </div>
         </li>
     
 </ul>
-            
-        </div>
-    
-        <h3 class=function>
-            <span class=target id="function-whitelist_domain_access"></span>
-            <a href="#function-whitelist_domain_access">adblock.whitelist_domain_access (domain)</a>
-        </h3>
-            <div class=function>
-            
-            
-<p>Whitelist accessing a blocked domain for the current session.</p>
-
-            <h4>Parameters</h4>
-<ul>
-        <li class=parameter>
-            <div class=two-col>
-                <div>
-                    <span class=parameter>domain</span>
-                    <div>Type: <span class=type>string</span></div>
-                    <div></div>
-                    <div></div>
-                </div>
-                <div>
-The domain to whitelist.
-
-</div>
-            </div>
-        </li>
-    
-</ul>
-            
         </div>
     <h2>Properties</h2>
 
         <h3 class=property>
-            <span class=target id="property-subscriptions"></span>
-            <a href="#property-subscriptions">adblock.subscriptions</a>
+            <span class=target id="property-buffer_size"></span>
+            <a href="#property-buffer_size">log_chrome.buffer_size</a>
         </h3>
         <div class="two-col property">
             <div>
-                <div>Type: <span class=type>table</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
-The set of ad blocking subscriptions that are active.
-</div>
-        </div>
-    
-        <h3 class=property>
-            <span class=target id="property-rules"></span>
-            <a href="#property-rules">adblock.rules</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>table</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
-String patterns to filter URIs with.
-</div>
-        </div>
-    
-        <h3 class=property>
-            <span class=target id="property-enabled"></span>
-            <a href="#property-enabled">adblock.enabled</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>boolean</span></div>
+                <div>Type: <span class=type>number</span></div>
                 <div>Default: 
-true
+500
 </div>
                 <div>Read-write</div>
             </div>
             <div>
-Whether ad blocking is enabled. Modifying this value will modify adblock
-state; setting it to <code>true</code> will enable ad blocking, while setting it to
-<code>false</code> will disable ad blocking.
+The size of the buffer in which the most recent log messages are stored.
+This is the maximum number of entries that will be shown on the log page.
+</div>
+        </div>
+    
+        <h3 class=property>
+            <span class=target id="property-html_template"></span>
+            <a href="#property-html_template">log_chrome.html_template</a>
+        </h3>
+        <div class="two-col property">
+            <div>
+                <div>Type: <span class=type>string</span></div>
+                <div></div>
+                <div>Read-write</div>
+            </div>
+            <div>
+HTML template for luakit log chrome page content.
+</div>
+        </div>
+    
+        <h3 class=property>
+            <span class=target id="property-html_page_title"></span>
+            <a href="#property-html_page_title">log_chrome.html_page_title</a>
+        </h3>
+        <div class="two-col property">
+            <div>
+                <div>Type: <span class=type>string</span></div>
+                <div></div>
+                <div>Read-write</div>
+            </div>
+            <div>
+Title for the log chrome page.
+</div>
+        </div>
+    
+        <h3 class=property>
+            <span class=target id="property-html_style"></span>
+            <a href="#property-html_style">log_chrome.html_style</a>
+        </h3>
+        <div class="two-col property">
+            <div>
+                <div>Type: <span class=type>string</span></div>
+                <div></div>
+                <div>Read-write</div>
+            </div>
+            <div>
+CSS applied to the log chrome page.
+</div>
+        </div>
+    
+        <h3 class=property>
+            <span class=target id="property-widget_error_format"></span>
+            <a href="#property-widget_error_format">log_chrome.widget_error_format</a>
+        </h3>
+        <div class="two-col property">
+            <div>
+                <div>Type: <span class=type>string</span></div>
+                <div></div>
+                <div>Read-write</div>
+            </div>
+            <div>
+Format string which defines the appearance of the error/warning widget.
+This is passed to <code>string.format</code> with the number of errors as a
+numerical argument, the result of which is substituted into <a href="../modules/log_chrome.html#property-widget_format"><code>widget_format</code></code></a>.
+</div>
+        </div>
+    
+        <h3 class=property>
+            <span class=target id="property-widget_warning_format"></span>
+            <a href="#property-widget_warning_format">log_chrome.widget_warning_format</a>
+        </h3>
+        <div class="two-col property">
+            <div>
+                <div>Type: <span class=type>string</span></div>
+                <div></div>
+                <div>Read-write</div>
+            </div>
+            <div>
+Format string which defines the appearance of the error/warning widget.
+This is passed to <code>string.format</code> with the number of warnings as a
+numerical argument, the result of which is substituted into <a href="../modules/log_chrome.html#property-widget_format"><code>widget_format</code></code></a>.
+</div>
+        </div>
+    
+        <h3 class=property>
+            <span class=target id="property-widget_format"></span>
+            <a href="#property-widget_format">log_chrome.widget_format</a>
+        </h3>
+        <div class="two-col property">
+            <div>
+                <div>Type: <span class=type>string</span></div>
+                <div></div>
+                <div>Read-write</div>
+            </div>
+            <div>
+Format string which defines the appearance of the error/warning widget.
+This combines the error and warning sub-format strings. <code>{errors}</code> will be
+replaced with the result of formatting <a href="../modules/log_chrome.html#property-widget_error_format"><code>widget_error_format</code></code></a>, or the
+empty string if there have been no errors. Likewise, <code>{warnings}</code> will be
+replaced with the result of formatting <a href="../modules/log_chrome.html#property-widget_warning_format"><code>widget_warning_format</code></code></a>, or the
+empty string if there have been no warnings
 </div>
         </div>
     
         <h2>Attribution</h2>
         <div class=attr-wrap>
     <h4>Copyright</h4><ul class=copyright>
-        <li>2010 Chris van Dijk (quigybo) <quigybo@hotmail.com>
-        <li>2010 Mason Larobina (mason-l) <mason.larobina@gmail.com>
-        <li>2012 Plaque FCC <Reslayer@ya.ru>
+        <li>2017 Aidan Holm
     </ul>
 </div>
     
             </div>
-            <div style='display:none'><a rel=prev href='../pages/06-tests.html'><a rel=next href='../modules/adblock_chrome.html'></div>
+            <div style='display:none'><a rel=prev href='../modules/ipc.html'><a rel=next href='../modules/lousy.bind.html'></div>
         </div>
 	</div>
 	<footer>

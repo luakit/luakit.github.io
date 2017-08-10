@@ -5,12 +5,15 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Luakit API Documentation</title>
 	<link rel="icon" type="image/png" href="favicon.png" />
-	<style type="text/css">html {
-	color: #333;
+	<style type="text/css">* {
+    box-sizing: border-box;
 }
+
 body {
     margin: 0;
-    font-family: "Helvetica", "Arial", sans-serif;
+    font-family: "Arial", sans-serif;
+    color: #333;
+    line-height: 1.4;
 }
 
 #hdr {
@@ -21,70 +24,42 @@ body {
 #hdr > h1 {
     color: #555;
     margin: 0 auto;
-    max-width: 910px;
-    padding: 1rem 2rem;
+    padding: 1rem;
     font-size: 1rem;
+    line-height: 1;
+}
+
+#hdr > h1, #wrap {
+    max-width: 55rem;
 }
 
 #wrap {
-    font-size: 14px;
-    line-height: 1.3;
-    padding: 2rem;
+    padding: 1rem;
     margin: 0 auto;
     justify-content: center;
-    max-width: 910px;
-}
-
-h1, h2, strong {
-    line-height: 1.1;
-    margin: 0;
-    color: #111;
 }
 
 .tagline {
+    font-size: 1.5rem;
     color: #555;
     margin: 0 0 1rem;
-    font-size: 1.4rem;
     font-weight: normal;
-}
-
-h1 { margin: 0 0 0.7rem; }
-h2 { margin: 1.5rem 0 1rem; }
-h4 { margin: 1rem 0; }
-
-code, pre
-{
-	background: #f5f7f9;
-	color: #334;
-}
-code {
-	border: 1px solid #dfdfe9;
-	padding: 0px 4px;
-}
-pre > code {
-    border: none;
-    padding: 0;
-}
-pre {
-	padding: 1rem 1.2rem;
-	border-left: 2px solid #69c;
 }
 
 h3.function > a, h3.property > a, h3.table > a, h3.field > a {
     font-family: monospace;
-	color: #2B5782;
+    color: #2B5782;
     text-decoration: none;
-    font-size: 0.9rem;
+    font-size: 1rem;
 }
 
 span.parameter, span.type {
     font-family: monospace;
-	color: #2B5782;
+    color: #2B5782;
     text-decoration: none;
-    font-size: 1.0rem;
 }
 span.parameter {
-	font-weight: bold;
+    font-weight: bold;
 }
 
 li.parameter {
@@ -133,22 +108,28 @@ div.good.alert {
 }
 #content {
     flex: 1;
-    max-width: 48rem;
+    position: relative;
 }
 #sidebar {
-    flex: 0 0 15rem;
-    margin-right: 2rem;
+    flex: 0 0 13rem;
+    margin-right: 1rem;
+    font-family: "Open Sans", "DejaVu Sans", sans-serif;
 }
 
-@media (max-width: 965px) {
+@media (max-width: 55rem) {
     #sidebar { display: none; }
 }
 
 #sidebar > h2 {
     margin: 0 0 1rem;
+    font-size: 1.3rem;
+    font-weight: normal;
 }
 #sidebar > h3 {
     margin: 1rem 0 0.5rem;
+    font-size: 1.1rem;
+    font-weight: normal;
+    color: #444;
 }
 #sidebar > ul {
     list-style-type: none;
@@ -157,19 +138,45 @@ div.good.alert {
 }
 #sidebar > ul > li {
     margin: 0.2rem 0.2rem 0.2rem 0.5rem;
-    font-family: monospace;
+    font-size: 0.9rem;
 }
 #sidebar > ul > li > a, #sidebar > ul > li > span {
-    font-family: monospace;
     text-decoration: none;
-    font-size: 1.1rem;
+    font-size: 0.9rem;
 }
 #sidebar > ul > li > span {
-	font-weight: bold;
+    color: black;
+    font-weight: 500;
+}
+#sidebar > ul.modules > li, #sidebar > ul.classes > li,
+#sidebar > ul.modules > li > a, #sidebar > ul.modules > li > span,
+#sidebar > ul.classes > li > a, #sidebar > ul.classes > li > span {
+    font-family: monospace;
 }
 
 #content li:not(:last-child) {
     margin-bottom: 0.5rem;
+}
+
+/*
+ * Content typography
+ */
+
+#content > h1 {
+    font-size: 1.7rem;
+    color: #000;
+    margin: 0 0 0.7rem;
+}
+
+#content > h2 {
+    font-size: 1.3rem;
+    color: #000;
+    margin: 1.5rem 0 1rem;
+}
+
+#content > h3 {
+    font-size: 1.0rem;
+    color: #000;
 }
 
 /* Links */
@@ -189,13 +196,13 @@ li.dummy {
 }
 .attr-wrap > h4 {
     flex: 0 0 8rem;
-    margin-bottom: 0;
+    margin: 0;
 }
 .attr-wrap > ul {
     flex: 1;
     padding: 2px 0;
     list-style-type: none;
-    margin-bottom: 0;
+    margin: 0;
 }
 .attr-wrap > ul > li:before {
    width: 20px;
@@ -205,6 +212,10 @@ li.dummy {
 }
 ul.authors > li:before { content: "•"; }
 ul.copyright > li:before { content: "©"; }
+
+/*
+ * Code blocks and inline code
+ */
 
 .sourcecode .comment { color: #558817; }
 .sourcecode .constant { color: #a8660d; }
@@ -218,21 +229,72 @@ ul.copyright > li:before { content: "©"; }
 .sourcecode .prompt { color: #558817; }
 .sourcecode a:link, .sourcecode a:visited { color: #272fc2; }
 
+code, pre {
+    background: #f5f7f9;
+    color: #334;
+}
+code {
+    border: 1px solid #dfdfe9;
+    padding: 0px 4px;
+}
+pre > code {
+    border: none;
+    padding: 0;
+}
+pre {
+    padding: 1rem 1.2rem;
+    border-left: 2px solid #69c;
+}
+
+/*
+ * Binding styles
+ */
+
+kbd, .cmd {
+    border-radius: .2rem;
+    display: inline-block;
+    line-height: 1;
+    padding: .3rem .4rem;
+    vertical-align: baseline;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+kbd {
+    background: #444b5b;
+    color: #fff;
+}
+
+.cmd {
+    background: #ffeab5;
+    color: #40495c;
+}
+
 .two-col { display: flex; }
 .two-col > :first-child { flex: 0 0 200px; margin-right: 10px; }
 .two-col > :first-child > div:not(:first-child) { margin-top: 0.3rem; }
 ul.triggers {
-	list-style-type: none;
-	padding: 0;
+    list-style-type: none;
+    padding: 0;
 }
 ul.triggers > li {
-	font-family: monospace, sans-serif;
-	color: #2B5782;
-	font-weight: bold;
+    font-family: monospace, sans-serif;
+    color: #2B5782;
+    font-weight: bold;
+    font-size: 1rem;
 }
 
 div.info > div { margin-top: 0.3rem; }
-</style>
+
+span.target {
+    position: absolute;
+    display: block;
+    margin-top: -100px;
+    height: 100px;
+    visibility: hidden;
+}
+        div#wrap { padding: 0; }
+    </style>
 	<link rel=stylesheet href=/luakit/style.css />
 	<link rel="stylesheet" href="https://code.cdn.mozilla.net/fonts/fira.css">
 	<style type="text/css">
@@ -246,7 +308,7 @@ div.info > div { margin-top: 0.3rem; }
 <body>
 	<nav>
 		<a href="/luakit/">Home</a>
-		<a href="/luakit/#sec-release">Releases</a>
+		<a href="/luakit/news/">Releases</a>
 		<a href="/luakit/#sec-download">Download</a>
 		<a href="/luakit/docs/">Documentation</a>
 		<a href="/luakit/#sec-contributing">Contributing</a>
@@ -257,14 +319,19 @@ div.info > div { margin-top: 0.3rem; }
             <div id=sidebar>
                 <h2>Table of Contents</h2>
                 <h3>Pages</h3>
-<ul>
-    <li><a href="../pages/Authors.html">Authors</a></li>
-    <li><a href="../pages/Tests.html">Tests</a></li>
+<ul class=pages>
+    <li><a href="../pages/01-authors.html">Authors</a></li>
+    <li><a href="../pages/02-faq.html">Frequently Asked Questions</a></li>
+    <li><a href="../pages/03-quick-start-guide.html">Quick-start guide</a></li>
+    <li><a href="../pages/04-migration-guide.html">Migration Guide</a></li>
+    <li><a href="../pages/05-configuration.html">Files and Directories</a></li>
+    <li><a href="../pages/06-tests.html">Tests</a></li>
 </ul>
 <h3>Modules</h3>
-<ul>
+<ul class=modules>
     <li><a href="../modules/adblock.html">adblock</a></li>
     <li><a href="../modules/adblock_chrome.html">adblock_chrome</a></li>
+    <li><a href="../modules/binds.html">binds</a></li>
     <li><a href="../modules/bookmarks.html">bookmarks</a></li>
     <li><a href="../modules/bookmarks_chrome.html">bookmarks_chrome</a></li>
     <li><a href="../modules/chrome.html">chrome</a></li>
@@ -288,6 +355,7 @@ div.info > div { margin-top: 0.3rem; }
     <li><a href="../modules/image_css.html">image_css</a></li>
     <li><a href="../modules/introspector_chrome.html">introspector_chrome</a></li>
     <li><a href="../modules/ipc.html">ipc</a></li>
+    <li><a href="../modules/log_chrome.html">log_chrome</a></li>
     <li><a href="../modules/lousy.bind.html">lousy.bind</a></li>
     <li><a href="../modules/lousy.load.html">lousy.load</a></li>
     <li><a href="../modules/lousy.mode.html">lousy.mode</a></li>
@@ -298,6 +366,7 @@ div.info > div { margin-top: 0.3rem; }
     <li><a href="../modules/lousy.util.html">lousy.util</a></li>
     <li><a href="../modules/lousy.widget.html">lousy.widget</a></li>
     <li><span>luakit</span></li>
+    <li><a href="../modules/modes.html">modes</a></li>
     <li><a href="../modules/msg.html">msg</a></li>
     <li><a href="../modules/newtab_chrome.html">newtab_chrome</a></li>
     <li><a href="../modules/noscript.html">noscript</a></li>
@@ -325,7 +394,7 @@ div.info > div { margin-top: 0.3rem; }
     <li><a href="../modules/xdg.html">xdg</a></li>
 </ul>
 <h3>Classes</h3>
-<ul>
+<ul class=classes>
     <li><a href="../classes/dom_document.html">dom_document</a></li>
     <li><a href="../classes/dom_element.html">dom_element</a></li>
     <li><a href="../classes/download.html">download</a></li>
@@ -354,15 +423,17 @@ div.info > div { margin-top: 0.3rem; }
             </div>
             <div id=content>
                         <h1>Module <code>luakit</code></h1>
-        <h2 class=tagline>Luakit core API</h2>
+        <!-- status indicator -->
+        <span class=tagline>Luakit core API</span>
         
-
-
-<div class="alert good">This module is builtin and does not need to be manually loaded.</div>
 
 
 <div class="alert warn">Some functions and fields are not available from web processes.</div>
 
+
+<p>This library provides a set of infrastructure and utility functions for
+controlling luakit, accessing and modifying current settings, running
+background programs, and more.</p>
 
 
 
@@ -373,8 +444,9 @@ div.info > div { margin-top: 0.3rem; }
 
         <!-- modes and binds --><h2>Functions</h2>
 
-        <h3 class=function id="luakit.quit">
-            <a href="#luakit.quit">luakit.quit ()</a>
+        <h3 class=function>
+            <span class=target id="function-quit"></span>
+            <a href="#function-quit">luakit.quit ()</a>
         </h3>
             <div class=function>
             
@@ -385,92 +457,9 @@ div.info > div { margin-top: 0.3rem; }
             
         </div>
     
-        <h3 class=function id="luakit.get_selection">
-            <a href="#luakit.get_selection">luakit.get_selection (clipboard)</a>
-        </h3>
-            <div class=function>
-            
-            
-<p>Get the contents of the X selection.</p>
-
-            <h4>Parameters</h4>
-<ul>
-        <li class=parameter>
-            <div class=two-col>
-                <div>
-                    <span class=parameter>clipboard</span>
-                    <div>Type: <span class=type>string</span></div>
-                    <div></div>
-                    <div></div>
-                </div>
-                <div>
-The name of the X clipboard to use (one of <code>"primary"</code>, <code>"secondary"</code> or <code>"clipboard"</code>).
-
-</div>
-            </div>
-        </li>
-    
-</ul>
-            <h4>Return Values</h4>
-<ul>
-        <li>
-            <div class=two-col>
-                <div><span class=type>string</span></div><div>
-The contents of the named selection.
-
-</div>
-            </div>
-        </li>
-    
-</ul>
-        </div>
-    
-        <h3 class=function id="luakit.set_selection">
-            <a href="#luakit.set_selection">luakit.set_selection (text, clipboard)</a>
-        </h3>
-            <div class=function>
-            
-            
-<p>Set the contents of the X selection.</p>
-
-            <h4>Parameters</h4>
-<ul>
-        <li class=parameter>
-            <div class=two-col>
-                <div>
-                    <span class=parameter>text</span>
-                    <div>Type: <span class=type>string</span></div>
-                    <div></div>
-                    <div></div>
-                </div>
-                <div>
-The UTF-8 string to be copied to the named selection.
-
-</div>
-            </div>
-        </li>
-    
-        <li class=parameter>
-            <div class=two-col>
-                <div>
-                    <span class=parameter>clipboard</span>
-                    <div>Type: <span class=type>string</span></div>
-                    <div></div>
-                    <div></div>
-                </div>
-                <div>
-The name of the X clipboard to use (one of <code>"primary"</code>, <code>"secondary"</code> or <code>"clipboard"</code>).
-
-</div>
-            </div>
-        </li>
-    
-</ul>
-            
-        </div>
-    
-        <h3 class=function id="luakit.spawn">
-            <a href="#luakit.spawn">luakit.spawn (cmd, callback)</a>
+        <h3 class=function>
+            <span class=target id="function-spawn"></span>
+            <a href="#function-spawn">luakit.spawn (cmd, callback)</a>
         </h3>
             <div class=function>
             
@@ -504,10 +493,7 @@ The command to execute. It is parsed with a simple shell-like parser.
                 </div>
                 <div>
 A callback function to execute when the spawned
-process is terminated. It receives two parameters <code>reason</code> and <code>status</code>,
-which are the reason for the process exit and the exit status code respectively.
-<code>reason</code> can be one of <code>"exit"</code>, indicating normal termination;
-<code>"signal"</code>, indicating the process was killed with a signal; and <code>"unknown"</code>.
+process is terminated, of type <a href="../modules/luakit.html#callback-process_exit_cb"><code>process_exit_cb</code></code></a>.
 </div>
             </div>
         </li>
@@ -516,8 +502,9 @@ which are the reason for the process exit and the exit status code respectively.
             
         </div>
     
-        <h3 class=function id="luakit.spawn_sync">
-            <a href="#luakit.spawn_sync">luakit.spawn_sync (cmd)</a>
+        <h3 class=function>
+            <span class=target id="function-spawn_sync"></span>
+            <a href="#function-spawn_sync">luakit.spawn_sync (cmd)</a>
         </h3>
             <div class=function>
             
@@ -577,8 +564,9 @@ A string containig data printed on <code>stderr</code>.
 </ul>
         </div>
     
-        <h3 class=function id="luakit.time">
-            <a href="#luakit.time">luakit.time ()</a>
+        <h3 class=function>
+            <span class=target id="function-time"></span>
+            <a href="#function-time">luakit.time ()</a>
         </h3>
             <div class=function>
             
@@ -600,8 +588,9 @@ The number of seconds Luakit has been running.
 </ul>
         </div>
     
-        <h3 class=function id="luakit.uri_encode">
-            <a href="#luakit.uri_encode">luakit.uri_encode (str)</a>
+        <h3 class=function>
+            <span class=target id="function-uri_encode"></span>
+            <a href="#function-uri_encode">luakit.uri_encode (str)</a>
         </h3>
             <div class=function>
             
@@ -640,8 +629,9 @@ The escaped/encoded string.
 </ul>
         </div>
     
-        <h3 class=function id="luakit.uri_encode">
-            <a href="#luakit.uri_encode">luakit.uri_encode (str)</a>
+        <h3 class=function>
+            <span class=target id="function-uri_encode"></span>
+            <a href="#function-uri_encode">luakit.uri_encode (str)</a>
         </h3>
             <div class=function>
             
@@ -693,8 +683,9 @@ Error message.
 </ul>
         </div>
     
-        <h3 class=function id="luakit.idle_add">
-            <a href="#luakit.idle_add">luakit.idle_add (cb)</a>
+        <h3 class=function>
+            <span class=target id="function-idle_add"></span>
+            <a href="#function-idle_add">luakit.idle_add (cb)</a>
         </h3>
             <div class=function>
             
@@ -719,7 +710,7 @@ context to the callback function, use a closure.</p>
                     <div></div>
                 </div>
                 <div>
-The function to call when Luakit is idle.
+The function to call when Luakit is idle, of type <a href="../modules/luakit.html#callback-idle_cb"><code>idle_cb</code></code></a>.
 
 </div>
             </div>
@@ -729,13 +720,14 @@ The function to call when Luakit is idle.
             
         </div>
     
-        <h3 class=function id="luakit.idle_remove">
-            <a href="#luakit.idle_remove">luakit.idle_remove (cb)</a>
+        <h3 class=function>
+            <span class=target id="function-idle_remove"></span>
+            <a href="#function-idle_remove">luakit.idle_remove (cb)</a>
         </h3>
             <div class=function>
             
             
-<p>Remove a function previously registered with <code>idle_add</code>.</p>
+<p>Remove a function previously registered with <a href="../modules/luakit.html#function-idle_add"><code>idle_add</code></code></a>.</p>
 
 
             <h4>Parameters</h4>
@@ -770,8 +762,9 @@ callback was not found.
 </ul>
         </div>
     
-        <h3 class=function id="luakit.register_scheme">
-            <a href="#luakit.register_scheme">luakit.register_scheme (scheme)</a>
+        <h3 class=function>
+            <span class=target id="function-register_scheme"></span>
+            <a href="#function-register_scheme">luakit.register_scheme (scheme)</a>
         </h3>
             <div class=function>
             
@@ -816,9 +809,198 @@ The network scheme to register.
 </ul>
             
         </div>
+    
+        <h3 class=function>
+            <span class=target id="function-wch_upper"></span>
+            <a href="#function-wch_upper">luakit.wch_upper (key)</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Convert a key or key name to uppercase.</p>
+
+            <h4>Parameters</h4>
+<ul>
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>key</span>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+The key or key name to convert.
+
+</div>
+            </div>
+        </li>
+    
+</ul>
+            <h4>Return Values</h4>
+<ul>
+        <li>
+            <div class=two-col>
+                <div><span class=type>string</span></div><div>
+The converted key. This will be the same as <code>key</code> if the key
+is already uppercase or if case conversion does not apply to the key.
+</div>
+            </div>
+        </li>
+    
+</ul>
+        </div>
+    
+        <h3 class=function>
+            <span class=target id="function-wch_lower"></span>
+            <a href="#function-wch_lower">luakit.wch_lower (key)</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Convert a key or key name to lowercase.</p>
+
+            <h4>Parameters</h4>
+<ul>
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>key</span>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+The key or key name to convert.
+
+</div>
+            </div>
+        </li>
+    
+</ul>
+            <h4>Return Values</h4>
+<ul>
+        <li>
+            <div class=two-col>
+                <div><span class=type>string</span></div><div>
+The converted key. This will be the same as <code>key</code> if the key
+is already lowercase or if case conversion does not apply to the key.
+</div>
+            </div>
+        </li>
+    
+</ul>
+        </div>
     <h2>Properties</h2>
 
-        <h3 class=property id="property-enable_spell_checking">
+        <h3 class=property>
+            <span class=target id="property-config_dir"></span>
+            <a href="#property-config_dir">luakit.config_dir</a>
+        </h3>
+        <div class="two-col property">
+            <div>
+                <div>Type: <span class=type>string</span></div>
+                <div></div>
+                <div>Read-only</div>
+            </div>
+            <div>
+The path to the luakit configuration directory.
+</div>
+        </div>
+    
+        <h3 class=property>
+            <span class=target id="property-data_dir"></span>
+            <a href="#property-data_dir">luakit.data_dir</a>
+        </h3>
+        <div class="two-col property">
+            <div>
+                <div>Type: <span class=type>string</span></div>
+                <div></div>
+                <div>Read-only</div>
+            </div>
+            <div>
+The path to the luakit data directory.
+</div>
+        </div>
+    
+        <h3 class=property>
+            <span class=target id="property-cache_dir"></span>
+            <a href="#property-cache_dir">luakit.cache_dir</a>
+        </h3>
+        <div class="two-col property">
+            <div>
+                <div>Type: <span class=type>string</span></div>
+                <div></div>
+                <div>Read-only</div>
+            </div>
+            <div>
+The path to the luakit cache directory.
+</div>
+        </div>
+    
+        <h3 class=property>
+            <span class=target id="property-verbose"></span>
+            <a href="#property-verbose">luakit.verbose</a>
+        </h3>
+        <div class="two-col property">
+            <div>
+                <div>Type: <span class=type>boolean</span></div>
+                <div></div>
+                <div>Read-only</div>
+            </div>
+            <div>
+Whether luakit is using verbose logging. <code>true</code> if logging in <code>verbose</code> or
+<code>debug</code> mode.
+</div>
+        </div>
+    
+        <h3 class=property>
+            <span class=target id="property-install_path"></span>
+            <a href="#property-install_path">luakit.install_path</a>
+        </h3>
+        <div class="two-col property">
+            <div>
+                <div>Type: <span class=type>string</span></div>
+                <div></div>
+                <div>Read-only</div>
+            </div>
+            <div>
+The luakit installation path.
+</div>
+        </div>
+    
+        <h3 class=property>
+            <span class=target id="property-version"></span>
+            <a href="#property-version">luakit.version</a>
+        </h3>
+        <div class="two-col property">
+            <div>
+                <div>Type: <span class=type>string</span></div>
+                <div></div>
+                <div>Read-only</div>
+            </div>
+            <div>
+The luakit version.
+</div>
+        </div>
+    
+        <h3 class=property>
+            <span class=target id="property-windows"></span>
+            <a href="#property-windows">luakit.windows</a>
+        </h3>
+        <div class="two-col property">
+            <div>
+                <div>Type: <span class=type>{widget}</span></div>
+                <div></div>
+                <div>Read-only</div>
+            </div>
+            <div>
+An array of all active window widgets.
+</div>
+        </div>
+    
+        <h3 class=property>
+            <span class=target id="property-enable_spell_checking"></span>
             <a href="#property-enable_spell_checking">luakit.enable_spell_checking</a>
         </h3>
         <div class="two-col property">
@@ -834,7 +1016,8 @@ Whether spell checking is enabled.
 </div>
         </div>
     
-        <h3 class=property id="property-spell_checking_languages">
+        <h3 class=property>
+            <span class=target id="property-spell_checking_languages"></span>
             <a href="#property-spell_checking_languages">luakit.spell_checking_languages</a>
         </h3>
         <div class="two-col property">
@@ -859,9 +1042,36 @@ value to <code>{}</code> will reset it to the default value.</p>
 
 </div>
         </div>
+    
+        <h3 class=property>
+            <span class=target id="property-selection"></span>
+            <a href="#property-selection">luakit.selection</a>
+        </h3>
+        <div class="two-col property">
+            <div>
+                <div>Type: <span class=type>{[string]=string}</span></div>
+                <div></div>
+                <div>Read-write</div>
+            </div>
+            <div>
+The current contents of the different X selections.
+The key used to access this table must be the name of the X clipboard
+to use (one of <code>"primary"</code>, <code>"secondary"</code> or <code>"clipboard"</code>).
+<h4>Primary</h4>
+<p>When the user selects some text with the mouse, the primary selection
+is filled automatically with the contents of that text selection.</p>
+<h4>Secondary</h4>
+<p>The secondary selection is not used as much as the primary and clipboard
+selections, but is included here for completeness.</p>
+<h4>Clipboard</h4>
+<p>The clipboard selection is filled with the contents of the primary selection
+when the user explicitly requests a copy operation.</p>
+</div>
+        </div>
     <h2>Signals</h2>
 
-        <h3 class=function id="signal-page-created">
+        <h3 class=function>
+            <span class=target id="signal-page-created"></span>
             <a href="#signal-page-created">"page-created"</a>
         </h3>
             <div class=function>
@@ -876,7 +1086,7 @@ newly-created page.</div>
 <p>Emitted after the creation of a <a href="../classes/page.html"><code>page</code></a> object; i.e. after
 a new webview widget has been created in the UI process.</p>
 
-<h3>Usage</h3>
+<h6>Usage</h6>
 
 <pre class="sourcecode lua"><span class="identifier">luakit.add_signal</span><span class="operator">(</span><span class="constant">"page-created"</span><span class="operator">,</span> <span class="identifier">function</span> <span class="operator">(</span><span class="identifier">page</span><span class="operator">)</span>
     <span class="comment">-- Add more signals to page
@@ -904,117 +1114,82 @@ The new page object.
 </ul>
             
         </div>
-    <h2>Fields</h2>
+    <h2>Callback Types</h2>
 
-        <h3 class=field id="field-config_dir">
-            <a href="#field-config_dir">luakit.config_dir</a>
+        <h3 class=function>
+            <span class=target id="callback-process_exit_cb"></span>
+            <a href="#callback-process_exit_cb">process_exit_cb (reason, status)</a>
         </h3>
-        <div class="two-col field">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
-The configuration directory path (default: <code>$XDG_CONFIG_HOME</code>).
+            <div class=function>
+            
+            
+<p>Callback type for <a href="../modules/luakit.html#function-spawn"><code>spawn</code></code></a>.</p>
+
+            <h4>Parameters</h4>
+<ul>
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>reason</span>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+The reason for process termination. Can be one of <code>"exit"</code>, indicating normal termination;
+<code>"signal"</code>, indicating the process was killed with a signal; and <code>"unknown"</code>.
 </div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>status</span>
+                    <div>Type: <span class=type>integer</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+The exit status code of the process. Its meaning is system-dependent.
+
+</div>
+            </div>
+        </li>
+    
+</ul>
+            
         </div>
     
-        <h3 class=field id="field-data_dir">
-            <a href="#field-data_dir">luakit.data_dir</a>
+        <h3 class=function>
+            <span class=target id="callback-idle_cb"></span>
+            <a href="#callback-idle_cb">idle_cb ()</a>
         </h3>
-        <div class="two-col field">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
-The data directory path (default: <code>$XDG_DATA_HOME</code>).
+            <div class=function>
+            
+            
+<p>Idle callback function type.
+Return <code>true</code> to keep the callback running on idle.
+Returning <code>false</code> or <code>nil</code> will cause the callback to be
+automatically removed from the set of registered idle functions.</p>
+
+            
+            <h4>Return Values</h4>
+<ul>
+        <li>
+            <div class=two-col>
+                <div><span class=type>boolean</span></div><div>
+Whether the callback should be kept running on idle.
+
 </div>
-        </div>
+            </div>
+        </li>
     
-        <h3 class=field id="field-cache_dir">
-            <a href="#field-cache_dir">luakit.cache_dir</a>
-        </h3>
-        <div class="two-col field">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
-The cache directory path (default: <code>$XDG_CACHE_HOME</code>).
-</div>
-        </div>
-    
-        <h3 class=field id="field-verbose">
-            <a href="#field-verbose">luakit.verbose</a>
-        </h3>
-        <div class="two-col field">
-            <div>
-                <div>Type: <span class=type>boolean</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
-Whether luakit is using verbose logging. <code>true</code> if logging in <code>verbose</code> or
-<code>debug</code> mode.
-</div>
-        </div>
-    
-        <h3 class=field id="field-install_path">
-            <a href="#field-install_path">luakit.install_path</a>
-        </h3>
-        <div class="two-col field">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
-The luakit installation path.
-</div>
-        </div>
-    
-        <h3 class=field id="field-version">
-            <a href="#field-version">luakit.version</a>
-        </h3>
-        <div class="two-col field">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
-The luakit version.
-</div>
-        </div>
-    
-        <h3 class=field id="field-windows">
-            <a href="#field-windows">luakit.windows</a>
-        </h3>
-        <div class="two-col field">
-            <div>
-                <div>Type: <span class=type>{widget}</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
-An array of all active window widgets.
-</div>
+</ul>
         </div>
     
         <h2>Attribution</h2>
         <div class=attr-wrap>
-    <h4>Authors</h4>
-    <ul class=authors>
-        <li>Aidan Holm <aidanholm@gmail.com>
-        <li>Mason Larobina <mason.larobina@gmail.com>
-        <li>Paweł Zuzelski <pawelz@pld-linux.org>
-    </ul>
-</div>
-<div class=attr-wrap>
     <h4>Copyright</h4><ul class=copyright>
         <li>2016 Aidan Holm
         <li>2010 Mason Larobina, Paweł Zuzelski
@@ -1022,7 +1197,7 @@ An array of all active window widgets.
 </div>
     
             </div>
-            <div style='display:none'><a rel=prev href='../modules/lousy.widget.html'><a rel=next href='../modules/msg.html'></div>
+            <div style='display:none'><a rel=prev href='../modules/lousy.widget.html'><a rel=next href='../modules/modes.html'></div>
         </div>
 	</div>
 	<footer>

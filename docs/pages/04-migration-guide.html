@@ -323,13 +323,13 @@ span.target {
     <li><a href="../pages/01-authors.html">Authors</a></li>
     <li><a href="../pages/02-faq.html">Frequently Asked Questions</a></li>
     <li><a href="../pages/03-quick-start-guide.html">Quick-start guide</a></li>
-    <li><a href="../pages/04-migration-guide.html">Migration Guide</a></li>
+    <li><span>Migration Guide</span></li>
     <li><a href="../pages/05-configuration.html">Files and Directories</a></li>
     <li><a href="../pages/06-tests.html">Tests</a></li>
 </ul>
 <h3>Modules</h3>
 <ul class=modules>
-    <li><span>adblock</span></li>
+    <li><a href="../modules/adblock.html">adblock</a></li>
     <li><a href="../modules/adblock_chrome.html">adblock_chrome</a></li>
     <li><a href="../modules/binds.html">binds</a></li>
     <li><a href="../modules/bookmarks.html">bookmarks</a></li>
@@ -422,273 +422,107 @@ span.target {
 
             </div>
             <div id=content>
-                        <h1>Module <code>adblock</code></h1>
-        <!-- status indicator -->
-        <span class=tagline>Simple URI-based content filter</span>
-        
+                
+<h1>Migration Guide</h1>
 
-<p>This is a simple, fast ad blocker module that works by blocking requests to
-domains that only serve advertisements. It does not currently do any form of
-cosmetic ad blocking (i.e. element hiding with CSS).</p>
+<h2>Migrating from a pre-WebKit2 Version</h2>
 
-<p>See also: <a href="../modules/adblock_chrome.html"><code>adblock_chrome</code></code></a>.</p>
+<p>The latest luakit release is built around the WebKit 2 APIs. Changes in the APIs
+provided by WebKit have necessitated some corresponding changes in luakit's
+APIs, and as a result there have been many breaking changes.</p>
 
-<h2>Capabilities</h2>
+<h3>Remove any existing personal configuration</h3>
 
-<ul>
-    <li>You can allow specific content to be loaded if it is inadvertently
-    blocked: simply add whitelisting rules formed by <code>@@</code> and the pattern to
-    allow.</li>
-    <li>Supports multiple filter list files.</li>
-    <li>Filter files can be enabled, disabled and reloaded from disk
-    without restarting luakit.</li>
-    <li>A configuration chrome page is provided by <a href="../modules/adblock_chrome.html"><code>adblock_chrome</code></code></a>.</li>
-</ul>
+<p>Luakit's configuration file has seen many changes; as a result, you are likely
+to encounter errors unless you remove any personal configuration for a previous
+luakit version. You may wish to back up your configuration if you have made
+extensive changes; such changes can then be merged in to the up-to-date
+configuration.</p>
 
-<h2>Usage</h2>
+<p><strong><em>Note:</em></strong> It is inadvisable to copy luakit's entire system configuration
+directory to make a personal copy, as was previously encouraged. This
+makes it harder for you to upgrade luakit, as you have more files to
+merge upstream changes into, and you are more likely to experience
+errors caused by such upstream changes (until those changes are merged with your
+personal configuration).</p>
 
-<ul>
-    <li>Add <code>require "adblock"</code> and <code>require "adblock_chrome"</code> to your <code>config.rc</code>.</li>
-    <li>Download AdblockPlus-compatible filter lists to the adblock directory.
-    Multiple lists are supported.
-    EasyList is the most popular Adblock Plus filter list, and can be
-    downloaded from <a href="https://easylist.to/">https://easylist.to/</a>.</li>
-    <li>Filter lists downloaded to the adblock directory must have a
-    filename ending in <code>.txt</code> in order to be loaded.</li>
-    <li>Filter lists need to be updated regularly (~weekly), use cron!</li>
-</ul>
+<h3>Migrate personal key bindings</h3>
 
-<h2>Troubleshooting</h2>
+<p>The <code>binds.lua</code> and <code>modes.lua</code> configuration files have been removed.
+It is no longer necessary to copy the entire set of key bindings to
+your configuration to change or add just a few key bindings. Instead,
+use <a href="../modules/modes.html#function-add_binds"><code>add_binds</code></code></a> and <a href="../modules/modes.html#function-remove_binds"><code>remove_binds</code></code></a> to add and remove key
+bindings.</p>
 
-<p>If ad blocking is not working as expected, the easiest way to determine
-what is happening is to set the appropriate log levels to <code>debug</code>:</p>
+<h3>Remove use of <code>module()</code> in scripts</h3>
 
-<p>If a filterlist is not being loaded for some reason, start luakit with
-  the following:</p>
+<p>Lua's <code>module()</code> function sets a global variable of the same name as the module,
+which pollutes the global namespace for <em>all</em> Lua code. A recent effort
+was made to remove all usage of <code>module()</code> within Luakit. While <code>module()</code> is
+still accessible, its use is not advised.</p>
 
-<pre class="sourcecode lua"><span class="comment">--log=lua/lib/adblock=debug
-</span></pre>
+<p>This has the side effect that many variables once assumed globally accessible
+must now be retrieved with a call to <code>require()</code>.</p>
 
-<p>If a filterlist is not behaving correctly, by blocking too much or too
-  little, start luakit with the following:</p>
+<h3>Remove use of <code>init_funcs</code></h3>
 
-<pre class="sourcecode lua"><span class="comment">--log=lua/lib/adblock_wm=debug
-</span></pre>
+<p>The <code>window</code> and <code>webview</code> classes previously had a method of registering
+functions to be called when a new window or webview was created, called
+<code>init_funcs</code>. This has been removed entirely in favor of a signals-based
+approach, which does not run the risk of name collision.</p>
 
-<h2>Files and Directories</h2>
+<p>The <code>window</code> and <code>webview</code> classes now emit the <code>"init"</code> signal. To replace any
+functions previously registered via <code>init_funcs</code>, add a signal handler:</p>
 
-<ul>
-    <li>All filterlists should be downloaded to the adblock data directory.
-    By default, this is the <code>adblock</code> sub-directory of the luakit data
-    directory. All filterlists must have a filename ending in <code>.txt</code>.</li>
-</ul>
+<pre class="sourcecode lua"><span class="identifier">webview.add_signal</span><span class="operator">(</span><span class="constant">"init"</span><span class="operator">,</span> <span class="identifier">function</span> <span class="operator">(</span><span class="identifier">view</span><span class="operator">)</span>
+    <span class="comment">-- Do something with new view
+</span><span class="identifier">end</span><span class="operator">)</span>
+</pre>
+
+<p>One important difference between the <code>"init"</code> signal and the
+<code>init_funcs</code> method is that the former no longer passes the current
+window table <code>w</code> as a parameter. This is because views may be moved
+between windows (for example, with the <code>:tabdetach</code> command).</p>
+
+<p>The <code>window</code> class also emits a <code>"build"</code> signal <em>before</em> emitting the
+init signal. This provides an opportunity for modules to change the layout and
+arrangement of widgets within the window, before the <code>"init"</code> signal is emitted.</p>
+
+<h3>Remove use of <code>local capi</code> table</h3>
+
+<p>Some old code wraps references to several builtin variables in a <code>capi</code> table.
+This does <code>not</code> namespace the builtin variables wrapped in this manner; they are
+still globally accessible (and otherwise could not be wrapped in this fashion),
+and so all this accomplishes is the addition of more code, more indirection, and
+confusion about luakit's and Lua's namespacing rules, for no actual advantage.</p>
+
+<p>As such, it is advised to remove any such wrapper tables, and reference the
+globally-accessible builtin luakit libraries directly.</p>
+
+<h3>Use <a href="../modules/styles.html"><code>styles</code></code></a> module instead of <code>user_stylesheet_uri</code></h3>
+
+<p>The <a href="../modules/styles.html"><code>styles</code></code></a> module offers a replacement for the old <code>user_stylesheet_uri</code>
+property, which was used to set a stylesheet to customize web behavior. This
+module has a number of advantages over the old method, including the ability to
+enable/disable stylesheets at runtime, the ability to have multiple stylesheets,
+and the ability to use <code>@-moz-document</code> rules in your stylesheets.</p>
+
+<ol>
+    <li>Ensure the <a href="../modules/styles.html"><code>styles</code></code></a> module is enabled in your <code>rc.lua</code>.</li>
+    <li>Locate the <a href="../modules/styles.html"><code>styles</code></code></a> sub-directory within luakit's data storage directory.
+    Normally, this is located at <code>~/.local/share/luakit/styles/</code>. Create the
+    directory if it does not already exist.</li>
+    <li>Move any CSS rules to a new file within that directory. In order for the
+    <a href="../modules/styles.html"><code>styles</code></code></a> module to load the stylesheet, the filename must end in <code>.css</code>.</li>
+    <li>Make sure you specify which sites your stylesheet should apply to. The way to
+    do this is to use <code>@-moz-document</code> rules. The Stylish wiki page <a href="https://github.com/stylish-userstyles/stylish/wiki/Applying-styles-to-specific-sites">Applying styles to specific sites</a> may be helpful.</li>
+    <li>Run <code>:styles-reload</code> to detect new stylesheet files and reload any changes to
+    existing stylesheet files; it isn't necessary to restart luakit.</li>
+</ol>
 
 
-
-
-
-
-
-
-
-        <!-- modes and binds --><h2>Functions</h2>
-
-        <h3 class=function>
-            <span class=target id="function-load"></span>
-            <a href="#function-load">adblock.load (reload, single_list, no_sync)</a>
-        </h3>
-            <div class=function>
-            
-            
-<p>Load filter list files, and refresh any adblock pages that are open.</p>
-
-            <h4>Parameters</h4>
-<ul>
-        <li class=parameter>
-            <div class=two-col>
-                <div>
-                    <span class=parameter>reload</span>
-                    <div>Type: <span class=type>boolean</span></div>
-                    <div></div>
-                    <div></div>
-                </div>
-                <div>
-<code>true</code> if all subscriptions already loaded
-should be fully reloaded.
-</div>
             </div>
-        </li>
-    
-        <li class=parameter>
-            <div class=two-col>
-                <div>
-                    <span class=parameter>single_list</span>
-                    <div>Type: <span class=type>string</span></div>
-                    <div></div>
-                    <div></div>
-                </div>
-                <div>
-Single list file.
-
-</div>
-            </div>
-        </li>
-    
-        <li class=parameter>
-            <div class=two-col>
-                <div>
-                    <span class=parameter>no_sync</span>
-                    <div>Type: <span class=type>boolean</span></div>
-                    <div></div>
-                    <div></div>
-                </div>
-                <div>
-<code>true</code> if subscriptions should not be synchronized to
-the web process.
-</div>
-            </div>
-        </li>
-    
-</ul>
-            
-        </div>
-    
-        <h3 class=function>
-            <span class=target id="function-list_set_enabled"></span>
-            <a href="#function-list_set_enabled">adblock.list_set_enabled (a, enabled)</a>
-        </h3>
-            <div class=function>
-            
-            
-<p>Enable or disable an adblock filter list.</p>
-
-            <h4>Parameters</h4>
-<ul>
-        <li class=parameter>
-            <div class=two-col>
-                <div>
-                    <span class=parameter>a</span>
-                    <div>Type: <span class=type>number</span> or <span class=type>string</span></div>
-                    <div></div>
-                    <div></div>
-                </div>
-                <div>
-The number of the list to enable or disable.
-
-</div>
-            </div>
-        </li>
-    
-        <li class=parameter>
-            <div class=two-col>
-                <div>
-                    <span class=parameter>enabled</span>
-                    <div>Type: <span class=type>boolean</span></div>
-                    <div></div>
-                    <div></div>
-                </div>
-                <div>
-<code>true</code> to enable, <code>false</code> to disable.
-
-</div>
-            </div>
-        </li>
-    
-</ul>
-            
-        </div>
-    
-        <h3 class=function>
-            <span class=target id="function-whitelist_domain_access"></span>
-            <a href="#function-whitelist_domain_access">adblock.whitelist_domain_access (domain)</a>
-        </h3>
-            <div class=function>
-            
-            
-<p>Whitelist accessing a blocked domain for the current session.</p>
-
-            <h4>Parameters</h4>
-<ul>
-        <li class=parameter>
-            <div class=two-col>
-                <div>
-                    <span class=parameter>domain</span>
-                    <div>Type: <span class=type>string</span></div>
-                    <div></div>
-                    <div></div>
-                </div>
-                <div>
-The domain to whitelist.
-
-</div>
-            </div>
-        </li>
-    
-</ul>
-            
-        </div>
-    <h2>Properties</h2>
-
-        <h3 class=property>
-            <span class=target id="property-subscriptions"></span>
-            <a href="#property-subscriptions">adblock.subscriptions</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>table</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
-The set of ad blocking subscriptions that are active.
-</div>
-        </div>
-    
-        <h3 class=property>
-            <span class=target id="property-rules"></span>
-            <a href="#property-rules">adblock.rules</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>table</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
-String patterns to filter URIs with.
-</div>
-        </div>
-    
-        <h3 class=property>
-            <span class=target id="property-enabled"></span>
-            <a href="#property-enabled">adblock.enabled</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>boolean</span></div>
-                <div>Default: 
-true
-</div>
-                <div>Read-write</div>
-            </div>
-            <div>
-Whether ad blocking is enabled. Modifying this value will modify adblock
-state; setting it to <code>true</code> will enable ad blocking, while setting it to
-<code>false</code> will disable ad blocking.
-</div>
-        </div>
-    
-        <h2>Attribution</h2>
-        <div class=attr-wrap>
-    <h4>Copyright</h4><ul class=copyright>
-        <li>2010 Chris van Dijk (quigybo) <quigybo@hotmail.com>
-        <li>2010 Mason Larobina (mason-l) <mason.larobina@gmail.com>
-        <li>2012 Plaque FCC <Reslayer@ya.ru>
-    </ul>
-</div>
-    
-            </div>
-            <div style='display:none'><a rel=prev href='../pages/06-tests.html'><a rel=next href='../modules/adblock_chrome.html'></div>
+            <div style='display:none'><a rel=prev href='../pages/03-quick-start-guide.html'><a rel=next href='../pages/05-configuration.html'></div>
         </div>
 	</div>
 	<footer>

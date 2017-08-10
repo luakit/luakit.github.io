@@ -5,12 +5,15 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Luakit API Documentation</title>
 	<link rel="icon" type="image/png" href="favicon.png" />
-	<style type="text/css">html {
-	color: #333;
+	<style type="text/css">* {
+    box-sizing: border-box;
 }
+
 body {
     margin: 0;
-    font-family: "Helvetica", "Arial", sans-serif;
+    font-family: "Arial", sans-serif;
+    color: #333;
+    line-height: 1.4;
 }
 
 #hdr {
@@ -21,70 +24,42 @@ body {
 #hdr > h1 {
     color: #555;
     margin: 0 auto;
-    max-width: 910px;
-    padding: 1rem 2rem;
+    padding: 1rem;
     font-size: 1rem;
+    line-height: 1;
+}
+
+#hdr > h1, #wrap {
+    max-width: 55rem;
 }
 
 #wrap {
-    font-size: 14px;
-    line-height: 1.3;
-    padding: 2rem;
+    padding: 1rem;
     margin: 0 auto;
     justify-content: center;
-    max-width: 910px;
-}
-
-h1, h2, strong {
-    line-height: 1.1;
-    margin: 0;
-    color: #111;
 }
 
 .tagline {
+    font-size: 1.5rem;
     color: #555;
     margin: 0 0 1rem;
-    font-size: 1.4rem;
     font-weight: normal;
-}
-
-h1 { margin: 0 0 0.7rem; }
-h2 { margin: 1.5rem 0 1rem; }
-h4 { margin: 1rem 0; }
-
-code, pre
-{
-	background: #f5f7f9;
-	color: #334;
-}
-code {
-	border: 1px solid #dfdfe9;
-	padding: 0px 4px;
-}
-pre > code {
-    border: none;
-    padding: 0;
-}
-pre {
-	padding: 1rem 1.2rem;
-	border-left: 2px solid #69c;
 }
 
 h3.function > a, h3.property > a, h3.table > a, h3.field > a {
     font-family: monospace;
-	color: #2B5782;
+    color: #2B5782;
     text-decoration: none;
-    font-size: 0.9rem;
+    font-size: 1rem;
 }
 
 span.parameter, span.type {
     font-family: monospace;
-	color: #2B5782;
+    color: #2B5782;
     text-decoration: none;
-    font-size: 1.0rem;
 }
 span.parameter {
-	font-weight: bold;
+    font-weight: bold;
 }
 
 li.parameter {
@@ -133,22 +108,28 @@ div.good.alert {
 }
 #content {
     flex: 1;
-    max-width: 48rem;
+    position: relative;
 }
 #sidebar {
-    flex: 0 0 15rem;
-    margin-right: 2rem;
+    flex: 0 0 13rem;
+    margin-right: 1rem;
+    font-family: "Open Sans", "DejaVu Sans", sans-serif;
 }
 
-@media (max-width: 965px) {
+@media (max-width: 55rem) {
     #sidebar { display: none; }
 }
 
 #sidebar > h2 {
     margin: 0 0 1rem;
+    font-size: 1.3rem;
+    font-weight: normal;
 }
 #sidebar > h3 {
     margin: 1rem 0 0.5rem;
+    font-size: 1.1rem;
+    font-weight: normal;
+    color: #444;
 }
 #sidebar > ul {
     list-style-type: none;
@@ -157,19 +138,45 @@ div.good.alert {
 }
 #sidebar > ul > li {
     margin: 0.2rem 0.2rem 0.2rem 0.5rem;
-    font-family: monospace;
+    font-size: 0.9rem;
 }
 #sidebar > ul > li > a, #sidebar > ul > li > span {
-    font-family: monospace;
     text-decoration: none;
-    font-size: 1.1rem;
+    font-size: 0.9rem;
 }
 #sidebar > ul > li > span {
-	font-weight: bold;
+    color: black;
+    font-weight: 500;
+}
+#sidebar > ul.modules > li, #sidebar > ul.classes > li,
+#sidebar > ul.modules > li > a, #sidebar > ul.modules > li > span,
+#sidebar > ul.classes > li > a, #sidebar > ul.classes > li > span {
+    font-family: monospace;
 }
 
 #content li:not(:last-child) {
     margin-bottom: 0.5rem;
+}
+
+/*
+ * Content typography
+ */
+
+#content > h1 {
+    font-size: 1.7rem;
+    color: #000;
+    margin: 0 0 0.7rem;
+}
+
+#content > h2 {
+    font-size: 1.3rem;
+    color: #000;
+    margin: 1.5rem 0 1rem;
+}
+
+#content > h3 {
+    font-size: 1.0rem;
+    color: #000;
 }
 
 /* Links */
@@ -189,13 +196,13 @@ li.dummy {
 }
 .attr-wrap > h4 {
     flex: 0 0 8rem;
-    margin-bottom: 0;
+    margin: 0;
 }
 .attr-wrap > ul {
     flex: 1;
     padding: 2px 0;
     list-style-type: none;
-    margin-bottom: 0;
+    margin: 0;
 }
 .attr-wrap > ul > li:before {
    width: 20px;
@@ -205,6 +212,10 @@ li.dummy {
 }
 ul.authors > li:before { content: "•"; }
 ul.copyright > li:before { content: "©"; }
+
+/*
+ * Code blocks and inline code
+ */
 
 .sourcecode .comment { color: #558817; }
 .sourcecode .constant { color: #a8660d; }
@@ -218,21 +229,72 @@ ul.copyright > li:before { content: "©"; }
 .sourcecode .prompt { color: #558817; }
 .sourcecode a:link, .sourcecode a:visited { color: #272fc2; }
 
+code, pre {
+    background: #f5f7f9;
+    color: #334;
+}
+code {
+    border: 1px solid #dfdfe9;
+    padding: 0px 4px;
+}
+pre > code {
+    border: none;
+    padding: 0;
+}
+pre {
+    padding: 1rem 1.2rem;
+    border-left: 2px solid #69c;
+}
+
+/*
+ * Binding styles
+ */
+
+kbd, .cmd {
+    border-radius: .2rem;
+    display: inline-block;
+    line-height: 1;
+    padding: .3rem .4rem;
+    vertical-align: baseline;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+kbd {
+    background: #444b5b;
+    color: #fff;
+}
+
+.cmd {
+    background: #ffeab5;
+    color: #40495c;
+}
+
 .two-col { display: flex; }
 .two-col > :first-child { flex: 0 0 200px; margin-right: 10px; }
 .two-col > :first-child > div:not(:first-child) { margin-top: 0.3rem; }
 ul.triggers {
-	list-style-type: none;
-	padding: 0;
+    list-style-type: none;
+    padding: 0;
 }
 ul.triggers > li {
-	font-family: monospace, sans-serif;
-	color: #2B5782;
-	font-weight: bold;
+    font-family: monospace, sans-serif;
+    color: #2B5782;
+    font-weight: bold;
+    font-size: 1rem;
 }
 
 div.info > div { margin-top: 0.3rem; }
-</style>
+
+span.target {
+    position: absolute;
+    display: block;
+    margin-top: -100px;
+    height: 100px;
+    visibility: hidden;
+}
+        div#wrap { padding: 0; }
+    </style>
 	<link rel=stylesheet href=/luakit/style.css />
 	<link rel="stylesheet" href="https://code.cdn.mozilla.net/fonts/fira.css">
 	<style type="text/css">
@@ -246,7 +308,7 @@ div.info > div { margin-top: 0.3rem; }
 <body>
 	<nav>
 		<a href="/luakit/">Home</a>
-		<a href="/luakit/#sec-release">Releases</a>
+		<a href="/luakit/news/">Releases</a>
 		<a href="/luakit/#sec-download">Download</a>
 		<a href="/luakit/docs/">Documentation</a>
 		<a href="/luakit/#sec-contributing">Contributing</a>
@@ -257,14 +319,19 @@ div.info > div { margin-top: 0.3rem; }
             <div id=sidebar>
                 <h2>Table of Contents</h2>
                 <h3>Pages</h3>
-<ul>
-    <li><a href="../pages/Authors.html">Authors</a></li>
-    <li><a href="../pages/Tests.html">Tests</a></li>
+<ul class=pages>
+    <li><a href="../pages/01-authors.html">Authors</a></li>
+    <li><a href="../pages/02-faq.html">Frequently Asked Questions</a></li>
+    <li><a href="../pages/03-quick-start-guide.html">Quick-start guide</a></li>
+    <li><a href="../pages/04-migration-guide.html">Migration Guide</a></li>
+    <li><a href="../pages/05-configuration.html">Files and Directories</a></li>
+    <li><a href="../pages/06-tests.html">Tests</a></li>
 </ul>
 <h3>Modules</h3>
-<ul>
+<ul class=modules>
     <li><a href="../modules/adblock.html">adblock</a></li>
     <li><a href="../modules/adblock_chrome.html">adblock_chrome</a></li>
+    <li><a href="../modules/binds.html">binds</a></li>
     <li><a href="../modules/bookmarks.html">bookmarks</a></li>
     <li><a href="../modules/bookmarks_chrome.html">bookmarks_chrome</a></li>
     <li><a href="../modules/chrome.html">chrome</a></li>
@@ -288,6 +355,7 @@ div.info > div { margin-top: 0.3rem; }
     <li><a href="../modules/image_css.html">image_css</a></li>
     <li><a href="../modules/introspector_chrome.html">introspector_chrome</a></li>
     <li><a href="../modules/ipc.html">ipc</a></li>
+    <li><a href="../modules/log_chrome.html">log_chrome</a></li>
     <li><a href="../modules/lousy.bind.html">lousy.bind</a></li>
     <li><a href="../modules/lousy.load.html">lousy.load</a></li>
     <li><a href="../modules/lousy.mode.html">lousy.mode</a></li>
@@ -298,6 +366,7 @@ div.info > div { margin-top: 0.3rem; }
     <li><a href="../modules/lousy.util.html">lousy.util</a></li>
     <li><a href="../modules/lousy.widget.html">lousy.widget</a></li>
     <li><a href="../modules/luakit.html">luakit</a></li>
+    <li><a href="../modules/modes.html">modes</a></li>
     <li><a href="../modules/msg.html">msg</a></li>
     <li><a href="../modules/newtab_chrome.html">newtab_chrome</a></li>
     <li><a href="../modules/noscript.html">noscript</a></li>
@@ -325,7 +394,7 @@ div.info > div { margin-top: 0.3rem; }
     <li><a href="../modules/xdg.html">xdg</a></li>
 </ul>
 <h3>Classes</h3>
-<ul>
+<ul class=classes>
     <li><a href="../classes/dom_document.html">dom_document</a></li>
     <li><a href="../classes/dom_element.html">dom_element</a></li>
     <li><a href="../classes/download.html">download</a></li>
@@ -354,14 +423,15 @@ div.info > div { margin-top: 0.3rem; }
             </div>
             <div id=content>
                         <h1>Class <code>widget:webview</code></h1>
-        <h2 class=tagline>WebKitGTK+ webview widget</h2>
+        <!-- status indicator -->
+        <span class=tagline>WebKitGTK+ webview widget</span>
         
 
 
 <div class="alert warn">This module is only available from the UI process Lua state.</div>
 
 
-<h3>Creating a new webview widget</h3>
+<h2>Creating a new webview widget</h2>
 
 <p>To create a new webview widget, use the <code>widget</code> constructor:</p>
 
@@ -371,7 +441,7 @@ div.info > div { margin-top: 0.3rem; }
 </span><a href="http://www.lua.org/manual/5.1/manual.html#pdf-print" class="library">print</a><span class="operator">(</span><span class="identifier">view.type</span><span class="operator">)</span>  <span class="comment">-- Prints "webview"
 </span></pre>
 
-<h3>Destroying a webview widget</h3>
+<h2>Destroying a webview widget</h2>
 
 <pre class="sourcecode lua"><span class="identifier">view</span><span class="operator">:</span><span class="identifier">destroy</span><span class="operator">(</span><span class="operator">)</span>
 </pre>
@@ -383,8 +453,9 @@ div.info > div { margin-top: 0.3rem; }
 
         <!-- modes and binds --><h2>Methods</h2>
 
-        <h3 class=function id="view:search">
-            <a href="#view:search">view:search (text, case_sensitive, forwards, wrap)</a>
+        <h3 class=function>
+            <span class=target id="method-search"></span>
+            <a href="#method-search">view:search (text, case_sensitive, forwards, wrap)</a>
         </h3>
             <div class=function>
             
@@ -459,8 +530,9 @@ Whether searching should wrap at the beginning and end of the document.
             
         </div>
     
-        <h3 class=function id="view:search_next">
-            <a href="#view:search_next">view:search_next ()</a>
+        <h3 class=function>
+            <span class=target id="method-search_next"></span>
+            <a href="#method-search_next">view:search_next ()</a>
         </h3>
             <div class=function>
             
@@ -471,8 +543,9 @@ Whether searching should wrap at the beginning and end of the document.
             
         </div>
     
-        <h3 class=function id="view:search_previous">
-            <a href="#view:search_previous">view:search_previous ()</a>
+        <h3 class=function>
+            <span class=target id="method-search_previous"></span>
+            <a href="#method-search_previous">view:search_previous ()</a>
         </h3>
             <div class=function>
             
@@ -483,8 +556,9 @@ Whether searching should wrap at the beginning and end of the document.
             
         </div>
     
-        <h3 class=function id="view:clear_search">
-            <a href="#view:clear_search">view:clear_search ()</a>
+        <h3 class=function>
+            <span class=target id="method-clear_search"></span>
+            <a href="#method-clear_search">view:clear_search ()</a>
         </h3>
             <div class=function>
             
@@ -496,8 +570,9 @@ This will cause all highlighted matches within the webview to be un-highlighted.
             
         </div>
     
-        <h3 class=function id="view:go_back">
-            <a href="#view:go_back">view:go_back ()</a>
+        <h3 class=function>
+            <span class=target id="method-go_back"></span>
+            <a href="#method-go_back">view:go_back ()</a>
         </h3>
             <div class=function>
             
@@ -519,8 +594,9 @@ Whether the history item was loaded.
 </ul>
         </div>
     
-        <h3 class=function id="view:go_forward">
-            <a href="#view:go_forward">view:go_forward ()</a>
+        <h3 class=function>
+            <span class=target id="method-go_forward"></span>
+            <a href="#method-go_forward">view:go_forward ()</a>
         </h3>
             <div class=function>
             
@@ -542,8 +618,9 @@ Whether the history item was loaded.
 </ul>
         </div>
     
-        <h3 class=function id="view:can_go_back">
-            <a href="#view:can_go_back">view:can_go_back ()</a>
+        <h3 class=function>
+            <span class=target id="method-can_go_back"></span>
+            <a href="#method-can_go_back">view:can_go_back ()</a>
         </h3>
             <div class=function>
             
@@ -565,8 +642,9 @@ Whether the webview has a previous history item.
 </ul>
         </div>
     
-        <h3 class=function id="view:can_go_forward">
-            <a href="#view:can_go_forward">view:can_go_forward ()</a>
+        <h3 class=function>
+            <span class=target id="method-can_go_forward"></span>
+            <a href="#method-can_go_forward">view:can_go_forward ()</a>
         </h3>
             <div class=function>
             
@@ -588,8 +666,9 @@ Whether the webview has a subsequent history item.
 </ul>
         </div>
     
-        <h3 class=function id="view:eval_js">
-            <a href="#view:eval_js">view:eval_js (script, options)</a>
+        <h3 class=function>
+            <span class=target id="method-eval_js"></span>
+            <a href="#method-eval_js">view:eval_js (script, options)</a>
         </h3>
             <div class=function>
             
@@ -656,8 +735,9 @@ Additional arguments.
             
         </div>
     
-        <h3 class=function id="view:load_string">
-            <a href="#view:load_string">view:load_string (string, content_uri)</a>
+        <h3 class=function>
+            <span class=target id="method-load_string"></span>
+            <a href="#method-load_string">view:load_string (string, content_uri)</a>
         </h3>
             <div class=function>
             
@@ -707,8 +787,9 @@ The URI to display.
             
         </div>
     
-        <h3 class=function id="view:reload">
-            <a href="#view:reload">view:reload ()</a>
+        <h3 class=function>
+            <span class=target id="method-reload"></span>
+            <a href="#method-reload">view:reload ()</a>
         </h3>
             <div class=function>
             
@@ -719,8 +800,9 @@ The URI to display.
             
         </div>
     
-        <h3 class=function id="view:reload_bypass_cache">
-            <a href="#view:reload_bypass_cache">view:reload_bypass_cache ()</a>
+        <h3 class=function>
+            <span class=target id="method-reload_bypass_cache"></span>
+            <a href="#method-reload_bypass_cache">view:reload_bypass_cache ()</a>
         </h3>
             <div class=function>
             
@@ -731,8 +813,9 @@ The URI to display.
             
         </div>
     
-        <h3 class=function id="view:stop">
-            <a href="#view:stop">view:stop ()</a>
+        <h3 class=function>
+            <span class=target id="method-stop"></span>
+            <a href="#method-stop">view:stop ()</a>
         </h3>
             <div class=function>
             
@@ -745,8 +828,9 @@ will be emitted with <code>"cancelled"</code> as the failure reason.</p>
             
         </div>
     
-        <h3 class=function id="view:ssl_trusted">
-            <a href="#view:ssl_trusted">view:ssl_trusted ()</a>
+        <h3 class=function>
+            <span class=target id="method-ssl_trusted"></span>
+            <a href="#method-ssl_trusted">view:ssl_trusted ()</a>
         </h3>
             <div class=function>
             
@@ -775,8 +859,9 @@ were found, and <code>nil</code> if the contents of the webview were not loaded 
 </ul>
         </div>
     
-        <h3 class=function id="view:show_inspector">
-            <a href="#view:show_inspector">view:show_inspector ()</a>
+        <h3 class=function>
+            <span class=target id="method-show_inspector"></span>
+            <a href="#method-show_inspector">view:show_inspector ()</a>
         </h3>
             <div class=function>
             
@@ -787,8 +872,9 @@ were found, and <code>nil</code> if the contents of the webview were not loaded 
             
         </div>
     
-        <h3 class=function id="view:close_inspector">
-            <a href="#view:close_inspector">view:close_inspector ()</a>
+        <h3 class=function>
+            <span class=target id="method-close_inspector"></span>
+            <a href="#method-close_inspector">view:close_inspector ()</a>
         </h3>
             <div class=function>
             
@@ -799,8 +885,9 @@ were found, and <code>nil</code> if the contents of the webview were not loaded 
             
         </div>
     
-        <h3 class=function id="view:allow_certificate">
-            <a href="#view:allow_certificate">view:allow_certificate ()</a>
+        <h3 class=function>
+            <span class=target id="method-allow_certificate"></span>
+            <a href="#method-allow_certificate">view:allow_certificate ()</a>
         </h3>
             <div class=function>
             
@@ -812,7 +899,8 @@ were found, and <code>nil</code> if the contents of the webview were not loaded 
         </div>
     <h2>Properties</h2>
 
-        <h3 class=property id="property-inspector">
+        <h3 class=property>
+            <span class=target id="property-inspector"></span>
             <a href="#property-inspector">view.inspector</a>
         </h3>
         <div class="two-col property">
@@ -826,7 +914,8 @@ Whether the web inspector is open for the webview.
 </div>
         </div>
     
-        <h3 class=property id="property-uri">
+        <h3 class=property>
+            <span class=target id="property-uri"></span>
             <a href="#property-uri">view.uri</a>
         </h3>
         <div class="two-col property">
@@ -842,7 +931,8 @@ The URI of the current web page.
 </div>
         </div>
     
-        <h3 class=property id="property-hovered_uri">
+        <h3 class=property>
+            <span class=target id="property-hovered_uri"></span>
             <a href="#property-hovered_uri">view.hovered_uri</a>
         </h3>
         <div class="two-col property">
@@ -857,7 +947,8 @@ The URI of the link the mouse cursor is currently hovering over, or
 </div>
         </div>
     
-        <h3 class=property id="property-source">
+        <h3 class=property>
+            <span class=target id="property-source"></span>
             <a href="#property-source">view.source</a>
         </h3>
         <div class="two-col property">
@@ -871,7 +962,8 @@ The source of the current web page.
 </div>
         </div>
     
-        <h3 class=property id="property-session_state">
+        <h3 class=property>
+            <span class=target id="property-session_state"></span>
             <a href="#property-session_state">view.session_state</a>
         </h3>
         <div class="two-col property">
@@ -885,7 +977,8 @@ The session state of the current web page.
 </div>
         </div>
     
-        <h3 class=property id="property-stylesheets">
+        <h3 class=property>
+            <span class=target id="property-stylesheets"></span>
             <a href="#property-stylesheets">view.stylesheets</a>
         </h3>
         <div class="two-col property">
@@ -899,7 +992,8 @@ The stylesheets of the webview.
 </div>
         </div>
     
-        <h3 class=property id="property-history">
+        <h3 class=property>
+            <span class=target id="property-history"></span>
             <a href="#property-history">view.history</a>
         </h3>
         <div class="two-col property">
@@ -913,7 +1007,8 @@ The history of the webview.
 </div>
         </div>
     
-        <h3 class=property id="property-scroll">
+        <h3 class=property>
+            <span class=target id="property-scroll"></span>
             <a href="#property-scroll">view.scroll</a>
         </h3>
         <div class="two-col property">
@@ -927,7 +1022,8 @@ The scroll of the webview.
 </div>
         </div>
     
-        <h3 class=property id="property-favicon">
+        <h3 class=property>
+            <span class=target id="property-favicon"></span>
             <a href="#property-favicon">view.favicon</a>
         </h3>
         <div class="two-col property">
@@ -941,7 +1037,8 @@ The favicon of the webview.
 </div>
         </div>
     
-        <h3 class=property id="property-certificate">
+        <h3 class=property>
+            <span class=target id="property-certificate"></span>
             <a href="#property-certificate">view.certificate</a>
         </h3>
         <div class="two-col property">
@@ -956,7 +1053,8 @@ The certificate of the webview.
         </div>
     <h2>Signals</h2>
 
-        <h3 class=function id="signal-scheme-request::*">
+        <h3 class=function>
+            <span class=target id="signal-scheme-request::*"></span>
             <a href="#signal-scheme-request::*">"scheme-request::*"</a>
         </h3>
             <div class=function>
@@ -1019,7 +1117,8 @@ The MIME type of the content. Default: <code>text/html</code>.
 </ul>
         </div>
     
-        <h3 class=function id="signal-property::*">
+        <h3 class=function>
+            <span class=target id="signal-property::*"></span>
             <a href="#signal-property::*">"property::*"</a>
         </h3>
             <div class=function>
@@ -1028,13 +1127,14 @@ The MIME type of the content. Default: <code>text/html</code>.
 
 <p>Emitted when the value of a webview property may have been updated.
 For example, the <code>"property::uri"</code> signal is emitted on a <code>webview</code>
-widget when its <code>uri</code> property changes.</p>
+widget when its <a href="../classes/widget:webview.html#property-uri"><code>uri</code></code></a> property changes.</p>
 
             
             
         </div>
     
-        <h3 class=function id="signal-link-hover">
+        <h3 class=function>
+            <span class=target id="signal-link-hover"></span>
             <a href="#signal-link-hover">"link-hover"</a>
         </h3>
             <div class=function>
@@ -1065,7 +1165,8 @@ The hovered URI.
             
         </div>
     
-        <h3 class=function id="signal-link-unhover">
+        <h3 class=function>
+            <span class=target id="signal-link-unhover"></span>
             <a href="#signal-link-unhover">"link-unhover"</a>
         </h3>
             <div class=function>
@@ -1096,7 +1197,8 @@ The just-unhovered URI.
             
         </div>
     
-        <h3 class=function id="signal-button-press">
+        <h3 class=function>
+            <span class=target id="signal-button-press"></span>
             <a href="#signal-button-press">"button-press"</a>
         </h3>
             <div class=function>
@@ -1167,7 +1269,8 @@ propagated further.
 </ul>
         </div>
     
-        <h3 class=function id="signal-button-release">
+        <h3 class=function>
+            <span class=target id="signal-button-release"></span>
             <a href="#signal-button-release">"button-release"</a>
         </h3>
             <div class=function>
@@ -1238,7 +1341,8 @@ propagated further.
 </ul>
         </div>
     
-        <h3 class=function id="signal-button-double-click">
+        <h3 class=function>
+            <span class=target id="signal-button-double-click"></span>
             <a href="#signal-button-double-click">"button-double-click"</a>
         </h3>
             <div class=function>
@@ -1309,7 +1413,8 @@ propagated further.
 </ul>
         </div>
     
-        <h3 class=function id="signal-mouse-enter">
+        <h3 class=function>
+            <span class=target id="signal-mouse-enter"></span>
             <a href="#signal-mouse-enter">"mouse-enter"</a>
         </h3>
             <div class=function>
@@ -1349,7 +1454,8 @@ propagated further.
 </ul>
         </div>
     
-        <h3 class=function id="signal-mouse-leave">
+        <h3 class=function>
+            <span class=target id="signal-mouse-leave"></span>
             <a href="#signal-mouse-leave">"mouse-leave"</a>
         </h3>
             <div class=function>
@@ -1389,7 +1495,8 @@ propagated further.
 </ul>
         </div>
     
-        <h3 class=function id="signal-populate-popup">
+        <h3 class=function>
+            <span class=target id="signal-populate-popup"></span>
             <a href="#signal-populate-popup">"populate-popup"</a>
         </h3>
             <div class=function>
@@ -1420,7 +1527,8 @@ A table representing the context menu to be shown.
             
         </div>
     
-        <h3 class=function id="signal-web-extension-loaded">
+        <h3 class=function>
+            <span class=target id="signal-web-extension-loaded"></span>
             <a href="#signal-web-extension-loaded">"web-extension-loaded"</a>
         </h3>
             <div class=function>
@@ -1433,7 +1541,8 @@ initialization.</p>
             
         </div>
     
-        <h3 class=function id="signal-crashed">
+        <h3 class=function>
+            <span class=target id="signal-crashed"></span>
             <a href="#signal-crashed">"crashed"</a>
         </h3>
             <div class=function>
@@ -1447,7 +1556,8 @@ replacement web process has finished initialization.</p>
             
         </div>
     
-        <h3 class=function id="signal-load-status">
+        <h3 class=function>
+            <span class=target id="signal-load-status"></span>
             <a href="#signal-load-status">"load-status"</a>
         </h3>
             <div class=function>
@@ -1506,7 +1616,8 @@ with an error code and a human-readable message; otherwise, it will be <code>nil
             
         </div>
     
-        <h3 class=function id="signal-create-web-view">
+        <h3 class=function>
+            <span class=target id="signal-create-web-view"></span>
             <a href="#signal-create-web-view">"create-web-view"</a>
         </h3>
             <div class=function>
@@ -1530,7 +1641,8 @@ The newly created <code>webview</code> widget.
 </ul>
         </div>
     
-        <h3 class=function id="signal-navigation-request">
+        <h3 class=function>
+            <span class=target id="signal-navigation-request"></span>
             <a href="#signal-navigation-request">"navigation-request"</a>
         </h3>
             <div class=function>
@@ -1587,7 +1699,8 @@ navigation from taking place.
 </ul>
         </div>
     
-        <h3 class=function id="signal-new-window-decision">
+        <h3 class=function>
+            <span class=target id="signal-new-window-decision"></span>
             <a href="#signal-new-window-decision">"new-window-decision"</a>
         </h3>
             <div class=function>
@@ -1646,7 +1759,8 @@ navigation from taking place.
 </ul>
         </div>
     
-        <h3 class=function id="signal-mime-type-decision">
+        <h3 class=function>
+            <span class=target id="signal-mime-type-decision"></span>
             <a href="#signal-mime-type-decision">"mime-type-decision"</a>
         </h3>
             <div class=function>
@@ -1705,7 +1819,8 @@ navigation from taking place.
 </ul>
         </div>
     
-        <h3 class=function id="signal-favicon">
+        <h3 class=function>
+            <span class=target id="signal-favicon"></span>
             <a href="#signal-favicon">"favicon"</a>
         </h3>
             <div class=function>
@@ -1717,7 +1832,8 @@ navigation from taking place.
             
         </div>
     
-        <h3 class=function id="signal-expose">
+        <h3 class=function>
+            <span class=target id="signal-expose"></span>
             <a href="#signal-expose">"expose"</a>
         </h3>
             <div class=function>
@@ -1729,7 +1845,8 @@ navigation from taking place.
             
         </div>
     
-        <h3 class=function id="signal-key-press">
+        <h3 class=function>
+            <span class=target id="signal-key-press"></span>
             <a href="#signal-key-press">"key-press"</a>
         </h3>
             <div class=function>
@@ -1787,12 +1904,6 @@ propagated further.
     
         <h2>Attribution</h2>
         <div class=attr-wrap>
-    <h4>Authors</h4>
-    <ul class=authors>
-        <li>Mason Larobina
-    </ul>
-</div>
-<div class=attr-wrap>
     <h4>Copyright</h4><ul class=copyright>
         <li>2010 Mason Larobina
     </ul>

@@ -5,12 +5,15 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Luakit API Documentation</title>
 	<link rel="icon" type="image/png" href="favicon.png" />
-	<style type="text/css">html {
-	color: #333;
+	<style type="text/css">* {
+    box-sizing: border-box;
 }
+
 body {
     margin: 0;
-    font-family: "Helvetica", "Arial", sans-serif;
+    font-family: "Arial", sans-serif;
+    color: #333;
+    line-height: 1.4;
 }
 
 #hdr {
@@ -21,70 +24,42 @@ body {
 #hdr > h1 {
     color: #555;
     margin: 0 auto;
-    max-width: 910px;
-    padding: 1rem 2rem;
+    padding: 1rem;
     font-size: 1rem;
+    line-height: 1;
+}
+
+#hdr > h1, #wrap {
+    max-width: 55rem;
 }
 
 #wrap {
-    font-size: 14px;
-    line-height: 1.3;
-    padding: 2rem;
+    padding: 1rem;
     margin: 0 auto;
     justify-content: center;
-    max-width: 910px;
-}
-
-h1, h2, strong {
-    line-height: 1.1;
-    margin: 0;
-    color: #111;
 }
 
 .tagline {
+    font-size: 1.5rem;
     color: #555;
     margin: 0 0 1rem;
-    font-size: 1.4rem;
     font-weight: normal;
-}
-
-h1 { margin: 0 0 0.7rem; }
-h2 { margin: 1.5rem 0 1rem; }
-h4 { margin: 1rem 0; }
-
-code, pre
-{
-	background: #f5f7f9;
-	color: #334;
-}
-code {
-	border: 1px solid #dfdfe9;
-	padding: 0px 4px;
-}
-pre > code {
-    border: none;
-    padding: 0;
-}
-pre {
-	padding: 1rem 1.2rem;
-	border-left: 2px solid #69c;
 }
 
 h3.function > a, h3.property > a, h3.table > a, h3.field > a {
     font-family: monospace;
-	color: #2B5782;
+    color: #2B5782;
     text-decoration: none;
-    font-size: 0.9rem;
+    font-size: 1rem;
 }
 
 span.parameter, span.type {
     font-family: monospace;
-	color: #2B5782;
+    color: #2B5782;
     text-decoration: none;
-    font-size: 1.0rem;
 }
 span.parameter {
-	font-weight: bold;
+    font-weight: bold;
 }
 
 li.parameter {
@@ -133,22 +108,28 @@ div.good.alert {
 }
 #content {
     flex: 1;
-    max-width: 48rem;
+    position: relative;
 }
 #sidebar {
-    flex: 0 0 15rem;
-    margin-right: 2rem;
+    flex: 0 0 13rem;
+    margin-right: 1rem;
+    font-family: "Open Sans", "DejaVu Sans", sans-serif;
 }
 
-@media (max-width: 965px) {
+@media (max-width: 55rem) {
     #sidebar { display: none; }
 }
 
 #sidebar > h2 {
     margin: 0 0 1rem;
+    font-size: 1.3rem;
+    font-weight: normal;
 }
 #sidebar > h3 {
     margin: 1rem 0 0.5rem;
+    font-size: 1.1rem;
+    font-weight: normal;
+    color: #444;
 }
 #sidebar > ul {
     list-style-type: none;
@@ -157,19 +138,45 @@ div.good.alert {
 }
 #sidebar > ul > li {
     margin: 0.2rem 0.2rem 0.2rem 0.5rem;
-    font-family: monospace;
+    font-size: 0.9rem;
 }
 #sidebar > ul > li > a, #sidebar > ul > li > span {
-    font-family: monospace;
     text-decoration: none;
-    font-size: 1.1rem;
+    font-size: 0.9rem;
 }
 #sidebar > ul > li > span {
-	font-weight: bold;
+    color: black;
+    font-weight: 500;
+}
+#sidebar > ul.modules > li, #sidebar > ul.classes > li,
+#sidebar > ul.modules > li > a, #sidebar > ul.modules > li > span,
+#sidebar > ul.classes > li > a, #sidebar > ul.classes > li > span {
+    font-family: monospace;
 }
 
 #content li:not(:last-child) {
     margin-bottom: 0.5rem;
+}
+
+/*
+ * Content typography
+ */
+
+#content > h1 {
+    font-size: 1.7rem;
+    color: #000;
+    margin: 0 0 0.7rem;
+}
+
+#content > h2 {
+    font-size: 1.3rem;
+    color: #000;
+    margin: 1.5rem 0 1rem;
+}
+
+#content > h3 {
+    font-size: 1.0rem;
+    color: #000;
 }
 
 /* Links */
@@ -189,13 +196,13 @@ li.dummy {
 }
 .attr-wrap > h4 {
     flex: 0 0 8rem;
-    margin-bottom: 0;
+    margin: 0;
 }
 .attr-wrap > ul {
     flex: 1;
     padding: 2px 0;
     list-style-type: none;
-    margin-bottom: 0;
+    margin: 0;
 }
 .attr-wrap > ul > li:before {
    width: 20px;
@@ -205,6 +212,10 @@ li.dummy {
 }
 ul.authors > li:before { content: "•"; }
 ul.copyright > li:before { content: "©"; }
+
+/*
+ * Code blocks and inline code
+ */
 
 .sourcecode .comment { color: #558817; }
 .sourcecode .constant { color: #a8660d; }
@@ -218,21 +229,72 @@ ul.copyright > li:before { content: "©"; }
 .sourcecode .prompt { color: #558817; }
 .sourcecode a:link, .sourcecode a:visited { color: #272fc2; }
 
+code, pre {
+    background: #f5f7f9;
+    color: #334;
+}
+code {
+    border: 1px solid #dfdfe9;
+    padding: 0px 4px;
+}
+pre > code {
+    border: none;
+    padding: 0;
+}
+pre {
+    padding: 1rem 1.2rem;
+    border-left: 2px solid #69c;
+}
+
+/*
+ * Binding styles
+ */
+
+kbd, .cmd {
+    border-radius: .2rem;
+    display: inline-block;
+    line-height: 1;
+    padding: .3rem .4rem;
+    vertical-align: baseline;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+kbd {
+    background: #444b5b;
+    color: #fff;
+}
+
+.cmd {
+    background: #ffeab5;
+    color: #40495c;
+}
+
 .two-col { display: flex; }
 .two-col > :first-child { flex: 0 0 200px; margin-right: 10px; }
 .two-col > :first-child > div:not(:first-child) { margin-top: 0.3rem; }
 ul.triggers {
-	list-style-type: none;
-	padding: 0;
+    list-style-type: none;
+    padding: 0;
 }
 ul.triggers > li {
-	font-family: monospace, sans-serif;
-	color: #2B5782;
-	font-weight: bold;
+    font-family: monospace, sans-serif;
+    color: #2B5782;
+    font-weight: bold;
+    font-size: 1rem;
 }
 
 div.info > div { margin-top: 0.3rem; }
-</style>
+
+span.target {
+    position: absolute;
+    display: block;
+    margin-top: -100px;
+    height: 100px;
+    visibility: hidden;
+}
+        div#wrap { padding: 0; }
+    </style>
 	<link rel=stylesheet href=/luakit/style.css />
 	<link rel="stylesheet" href="https://code.cdn.mozilla.net/fonts/fira.css">
 	<style type="text/css">
@@ -246,7 +308,7 @@ div.info > div { margin-top: 0.3rem; }
 <body>
 	<nav>
 		<a href="/luakit/">Home</a>
-		<a href="/luakit/#sec-release">Releases</a>
+		<a href="/luakit/news/">Releases</a>
 		<a href="/luakit/#sec-download">Download</a>
 		<a href="/luakit/docs/">Documentation</a>
 		<a href="/luakit/#sec-contributing">Contributing</a>
@@ -257,14 +319,19 @@ div.info > div { margin-top: 0.3rem; }
             <div id=sidebar>
                 <h2>Table of Contents</h2>
                 <h3>Pages</h3>
-<ul>
-    <li><a href="../pages/Authors.html">Authors</a></li>
-    <li><a href="../pages/Tests.html">Tests</a></li>
+<ul class=pages>
+    <li><a href="../pages/01-authors.html">Authors</a></li>
+    <li><a href="../pages/02-faq.html">Frequently Asked Questions</a></li>
+    <li><a href="../pages/03-quick-start-guide.html">Quick-start guide</a></li>
+    <li><a href="../pages/04-migration-guide.html">Migration Guide</a></li>
+    <li><a href="../pages/05-configuration.html">Files and Directories</a></li>
+    <li><a href="../pages/06-tests.html">Tests</a></li>
 </ul>
 <h3>Modules</h3>
-<ul>
+<ul class=modules>
     <li><a href="../modules/adblock.html">adblock</a></li>
     <li><a href="../modules/adblock_chrome.html">adblock_chrome</a></li>
+    <li><a href="../modules/binds.html">binds</a></li>
     <li><a href="../modules/bookmarks.html">bookmarks</a></li>
     <li><a href="../modules/bookmarks_chrome.html">bookmarks_chrome</a></li>
     <li><a href="../modules/chrome.html">chrome</a></li>
@@ -288,6 +355,7 @@ div.info > div { margin-top: 0.3rem; }
     <li><a href="../modules/image_css.html">image_css</a></li>
     <li><a href="../modules/introspector_chrome.html">introspector_chrome</a></li>
     <li><a href="../modules/ipc.html">ipc</a></li>
+    <li><a href="../modules/log_chrome.html">log_chrome</a></li>
     <li><a href="../modules/lousy.bind.html">lousy.bind</a></li>
     <li><a href="../modules/lousy.load.html">lousy.load</a></li>
     <li><a href="../modules/lousy.mode.html">lousy.mode</a></li>
@@ -298,6 +366,7 @@ div.info > div { margin-top: 0.3rem; }
     <li><a href="../modules/lousy.util.html">lousy.util</a></li>
     <li><a href="../modules/lousy.widget.html">lousy.widget</a></li>
     <li><a href="../modules/luakit.html">luakit</a></li>
+    <li><a href="../modules/modes.html">modes</a></li>
     <li><a href="../modules/msg.html">msg</a></li>
     <li><a href="../modules/newtab_chrome.html">newtab_chrome</a></li>
     <li><a href="../modules/noscript.html">noscript</a></li>
@@ -325,7 +394,7 @@ div.info > div { margin-top: 0.3rem; }
     <li><a href="../modules/xdg.html">xdg</a></li>
 </ul>
 <h3>Classes</h3>
-<ul>
+<ul class=classes>
     <li><a href="../classes/dom_document.html">dom_document</a></li>
     <li><span>dom_element</span></li>
     <li><a href="../classes/download.html">download</a></li>
@@ -354,7 +423,8 @@ div.info > div { margin-top: 0.3rem; }
             </div>
             <div id=content>
                         <h1>Class <code>dom_element</code></h1>
-        <h2 class=tagline>Web process Lua interface to the DOM</h2>
+        <!-- status indicator -->
+        <span class=tagline>Web process Lua interface to the DOM</span>
         
 
 
@@ -370,8 +440,9 @@ div.info > div { margin-top: 0.3rem; }
 
         <!-- modes and binds --><h2>Methods</h2>
 
-        <h3 class=function id="element:query">
-            <a href="#element:query">element:query (selector)</a>
+        <h3 class=function>
+            <span class=target id="method-query"></span>
+            <a href="#method-query">element:query (selector)</a>
         </h3>
             <div class=function>
             
@@ -410,8 +481,9 @@ All sub-elements which match the selector.
 </ul>
         </div>
     
-        <h3 class=function id="element:append">
-            <a href="#element:append">element:append (child)</a>
+        <h3 class=function>
+            <span class=target id="method-append"></span>
+            <a href="#method-append">element:append (child)</a>
         </h3>
             <div class=function>
             
@@ -439,8 +511,9 @@ The new child element.
             
         </div>
     
-        <h3 class=function id="element:remove">
-            <a href="#element:remove">element:remove ()</a>
+        <h3 class=function>
+            <span class=target id="method-remove"></span>
+            <a href="#method-remove">element:remove ()</a>
         </h3>
             <div class=function>
             
@@ -451,8 +524,9 @@ The new child element.
             
         </div>
     
-        <h3 class=function id="element:click">
-            <a href="#element:click">element:click ()</a>
+        <h3 class=function>
+            <span class=target id="method-click"></span>
+            <a href="#method-click">element:click ()</a>
         </h3>
             <div class=function>
             
@@ -463,8 +537,9 @@ The new child element.
             
         </div>
     
-        <h3 class=function id="element:focus">
-            <a href="#element:focus">element:focus ()</a>
+        <h3 class=function>
+            <span class=target id="method-focus"></span>
+            <a href="#method-focus">element:focus ()</a>
         </h3>
             <div class=function>
             
@@ -475,8 +550,9 @@ The new child element.
             
         </div>
     
-        <h3 class=function id="element:submit">
-            <a href="#element:submit">element:submit ()</a>
+        <h3 class=function>
+            <span class=target id="method-submit"></span>
+            <a href="#method-submit">element:submit ()</a>
         </h3>
             <div class=function>
             
@@ -487,8 +563,9 @@ The new child element.
             
         </div>
     
-        <h3 class=function id="element:add_event_listener">
-            <a href="#element:add_event_listener">element:add_event_listener (type, capture, callback)</a>
+        <h3 class=function>
+            <span class=target id="method-add_event_listener"></span>
+            <a href="#method-add_event_listener">element:add_event_listener (type, capture, callback)</a>
         </h3>
             <div class=function>
             
@@ -550,7 +627,8 @@ The callback function.
         </div>
     <h2>Properties</h2>
 
-        <h3 class=property id="property-inner_html">
+        <h3 class=property>
+            <span class=target id="property-inner_html"></span>
             <a href="#property-inner_html">element.inner_html</a>
         </h3>
         <div class="two-col property">
@@ -564,7 +642,8 @@ The inner HTML of the element.
 </div>
         </div>
     
-        <h3 class=property id="property-tag_name">
+        <h3 class=property>
+            <span class=target id="property-tag_name"></span>
             <a href="#property-tag_name">element.tag_name</a>
         </h3>
         <div class="two-col property">
@@ -578,7 +657,8 @@ The tag name of the element.
 </div>
         </div>
     
-        <h3 class=property id="property-text_content">
+        <h3 class=property>
+            <span class=target id="property-text_content"></span>
             <a href="#property-text_content">element.text_content</a>
         </h3>
         <div class="two-col property">
@@ -592,7 +672,8 @@ The text content of the element.
 </div>
         </div>
     
-        <h3 class=property id="property-child_count">
+        <h3 class=property>
+            <span class=target id="property-child_count"></span>
             <a href="#property-child_count">element.child_count</a>
         </h3>
         <div class="two-col property">
@@ -606,7 +687,8 @@ The number of child elements this element has.
 </div>
         </div>
     
-        <h3 class=property id="property-src">
+        <h3 class=property>
+            <span class=target id="property-src"></span>
             <a href="#property-src">element.src</a>
         </h3>
         <div class="two-col property">
@@ -620,7 +702,8 @@ The "src" attribute of the element.
 </div>
         </div>
     
-        <h3 class=property id="property-href">
+        <h3 class=property>
+            <span class=target id="property-href"></span>
             <a href="#property-href">element.href</a>
         </h3>
         <div class="two-col property">
@@ -634,7 +717,8 @@ The "href" attribute of the element.
 </div>
         </div>
     
-        <h3 class=property id="property-value">
+        <h3 class=property>
+            <span class=target id="property-value"></span>
             <a href="#property-value">element.value</a>
         </h3>
         <div class="two-col property">
@@ -648,7 +732,8 @@ The "value" attribute of the element.
 </div>
         </div>
     
-        <h3 class=property id="property-checked">
+        <h3 class=property>
+            <span class=target id="property-checked"></span>
             <a href="#property-checked">element.checked</a>
         </h3>
         <div class="two-col property">
@@ -662,7 +747,8 @@ Whether this element is checked.
 </div>
         </div>
     
-        <h3 class=property id="property-type">
+        <h3 class=property>
+            <span class=target id="property-type"></span>
             <a href="#property-type">element.type</a>
         </h3>
         <div class="two-col property">
@@ -676,7 +762,8 @@ The "type" attribute of the element.
 </div>
         </div>
     
-        <h3 class=property id="property-parent">
+        <h3 class=property>
+            <span class=target id="property-parent"></span>
             <a href="#property-parent">element.parent</a>
         </h3>
         <div class="two-col property">
@@ -690,7 +777,8 @@ The parent element of this element.
 </div>
         </div>
     
-        <h3 class=property id="property-first_child">
+        <h3 class=property>
+            <span class=target id="property-first_child"></span>
             <a href="#property-first_child">element.first_child</a>
         </h3>
         <div class="two-col property">
@@ -704,7 +792,8 @@ The first child element of this element.
 </div>
         </div>
     
-        <h3 class=property id="property-last_child">
+        <h3 class=property>
+            <span class=target id="property-last_child"></span>
             <a href="#property-last_child">element.last_child</a>
         </h3>
         <div class="two-col property">
@@ -718,7 +807,8 @@ The last child element of this element.
 </div>
         </div>
     
-        <h3 class=property id="property-prev_sibling">
+        <h3 class=property>
+            <span class=target id="property-prev_sibling"></span>
             <a href="#property-prev_sibling">element.prev_sibling</a>
         </h3>
         <div class="two-col property">
@@ -732,7 +822,8 @@ The previous sibling element of this element.
 </div>
         </div>
     
-        <h3 class=property id="property-next_sibling">
+        <h3 class=property>
+            <span class=target id="property-next_sibling"></span>
             <a href="#property-next_sibling">element.next_sibling</a>
         </h3>
         <div class="two-col property">
@@ -746,7 +837,8 @@ The next sibling element of this element.
 </div>
         </div>
     
-        <h3 class=property id="property-rect">
+        <h3 class=property>
+            <span class=target id="property-rect"></span>
             <a href="#property-rect">element.rect</a>
         </h3>
         <div class="two-col property">
@@ -761,7 +853,8 @@ keys: <code>top</code>, <code>left</code>, <code>width</code>, and <code>height<
 </div>
         </div>
     
-        <h3 class=property id="property-style">
+        <h3 class=property>
+            <span class=target id="property-style"></span>
             <a href="#property-style">element.style</a>
         </h3>
         <div class="two-col property">
@@ -775,7 +868,8 @@ Table of computed styles. Index should be the name of a CSS property value.
 </div>
         </div>
     
-        <h3 class=property id="property-attr">
+        <h3 class=property>
+            <span class=target id="property-attr"></span>
             <a href="#property-attr">element.attr</a>
         </h3>
         <div class="two-col property">
@@ -791,7 +885,8 @@ or <code>pairs()</code> does not work.
 </div>
         </div>
     
-        <h3 class=property id="property-document">
+        <h3 class=property>
+            <span class=target id="property-document"></span>
             <a href="#property-document">element.document</a>
         </h3>
         <div class="two-col property">
@@ -807,7 +902,8 @@ not the top-level document.
 </div>
         </div>
     
-        <h3 class=property id="property-owner_document">
+        <h3 class=property>
+            <span class=target id="property-owner_document"></span>
             <a href="#property-owner_document">element.owner_document</a>
         </h3>
         <div class="two-col property">
@@ -823,7 +919,8 @@ one document and added to another.
         </div>
     <h2>Signals</h2>
 
-        <h3 class=function id="signal-destroy">
+        <h3 class=function>
+            <span class=target id="signal-destroy"></span>
             <a href="#signal-destroy">"destroy"</a>
         </h3>
             <div class=function>
@@ -837,12 +934,6 @@ one document and added to another.
     
         <h2>Attribution</h2>
         <div class=attr-wrap>
-    <h4>Authors</h4>
-    <ul class=authors>
-        <li>Aidan Holm
-    </ul>
-</div>
-<div class=attr-wrap>
     <h4>Copyright</h4><ul class=copyright>
         <li>2017 Aidan Holm
     </ul>

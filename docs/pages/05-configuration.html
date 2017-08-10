@@ -324,12 +324,12 @@ span.target {
     <li><a href="../pages/02-faq.html">Frequently Asked Questions</a></li>
     <li><a href="../pages/03-quick-start-guide.html">Quick-start guide</a></li>
     <li><a href="../pages/04-migration-guide.html">Migration Guide</a></li>
-    <li><a href="../pages/05-configuration.html">Files and Directories</a></li>
+    <li><span>Files and Directories</span></li>
     <li><a href="../pages/06-tests.html">Tests</a></li>
 </ul>
 <h3>Modules</h3>
 <ul class=modules>
-    <li><span>adblock</span></li>
+    <li><a href="../modules/adblock.html">adblock</a></li>
     <li><a href="../modules/adblock_chrome.html">adblock_chrome</a></li>
     <li><a href="../modules/binds.html">binds</a></li>
     <li><a href="../modules/bookmarks.html">bookmarks</a></li>
@@ -422,273 +422,84 @@ span.target {
 
             </div>
             <div id=content>
-                        <h1>Module <code>adblock</code></h1>
-        <!-- status indicator -->
-        <span class=tagline>Simple URI-based content filter</span>
-        
+                
+<h1>Files and Directories</h1>
 
-<p>This is a simple, fast ad blocker module that works by blocking requests to
-domains that only serve advertisements. It does not currently do any form of
-cosmetic ad blocking (i.e. element hiding with CSS).</p>
+<p>There are three main directories that luakit and its modules will search in
+order to load user data and configuration, such as user stylesheets,
+userscripts, and adblock filterlists. These directories are the <em>configuration</em>
+directory, the <em>data</em> directory, and the <em>cache</em> directory respectively.</p>
 
-<p>See also: <a href="../modules/adblock_chrome.html"><code>adblock_chrome</code></code></a>.</p>
+<h2>Configuration directory</h2>
 
-<h2>Capabilities</h2>
+<p>The configuration directory is the first directory examined when searching for
+the <code>rc.lua</code> startup script. It stores Lua configuration files and personal Lua
+modules. Any Lua files within this directory can be loaded with a <code>require()</code>
+call.</p>
 
-<ul>
-    <li>You can allow specific content to be loaded if it is inadvertently
-    blocked: simply add whitelisting rules formed by <code>@@</code> and the pattern to
-    allow.</li>
-    <li>Supports multiple filter list files.</li>
-    <li>Filter files can be enabled, disabled and reloaded from disk
-    without restarting luakit.</li>
-    <li>A configuration chrome page is provided by <a href="../modules/adblock_chrome.html"><code>adblock_chrome</code></code></a>.</li>
-</ul>
+<h3>How do I find the path to the configuration directory?</h3>
 
-<h2>Usage</h2>
+<p>To find the path to the current configuration directory, run the following
+command:</p>
 
-<ul>
-    <li>Add <code>require "adblock"</code> and <code>require "adblock_chrome"</code> to your <code>config.rc</code>.</li>
-    <li>Download AdblockPlus-compatible filter lists to the adblock directory.
-    Multiple lists are supported.
-    EasyList is the most popular Adblock Plus filter list, and can be
-    downloaded from <a href="https://easylist.to/">https://easylist.to/</a>.</li>
-    <li>Filter lists downloaded to the adblock directory must have a
-    filename ending in <code>.txt</code> in order to be loaded.</li>
-    <li>Filter lists need to be updated regularly (~weekly), use cron!</li>
-</ul>
+<pre class="sourcecode lua"><span class="operator">:</span><span class="identifier">lua</span> <span class="identifier">w</span><span class="operator">:</span><span class="operator">not</span><span class="identifier">ify</span><span class="operator">(</span><span class="identifier">luakit.config_dir</span><span class="operator">)</span>
+</pre>
 
-<h2>Troubleshooting</h2>
+<h2>Data directory</h2>
 
-<p>If ad blocking is not working as expected, the easiest way to determine
-what is happening is to set the appropriate log levels to <code>debug</code>:</p>
+<p>The data directory is used for all luakit files that are not Lua files.
+This includes any databases used by luakit and its modules, such as
+the history, bookmarks, and cookies databases. It also includes user
+stylesheets (CSS files), userscripts, and adblock filterlists.</p>
 
-<p>If a filterlist is not being loaded for some reason, start luakit with
-  the following:</p>
+<p>Lua files should generally <em>not</em> go in the data directory; instead, they
+should go in the configuration directory, where they can be loaded via
+<code>require()</code>. A slightly-confusing exception is the <code>forms.lua</code> file,
+which is read by the <a href="../modules/formfiller.html"><code>formfiller</code></code></a> module. It uses a domain-specific
+language instead of Lua, and is not a standalone module; instead, it is
+loaded by the <a href="../modules/formfiller.html"><code>formfiller</code></code></a> module as a data file, and so it belongs
+in luakit's data directory.</p>
 
-<pre class="sourcecode lua"><span class="comment">--log=lua/lib/adblock=debug
-</span></pre>
+<h3>Where should I put {userstyles, filterlists, ...}?</h3>
 
-<p>If a filterlist is not behaving correctly, by blocking too much or too
-  little, start luakit with the following:</p>
+<ol>
+    <li>First, browse to the built-in documentation page for that module. A list of all
+    modules is available at the index page at <a href="luakit://help/doc/index.html">luakit://help/doc/index.html</a>.</li>
+    <li>Next, check under the <strong>Files and Directories</strong> heading for module-specific
+    directions.</li>
+</ol>
 
-<pre class="sourcecode lua"><span class="comment">--log=lua/lib/adblock_wm=debug
-</span></pre>
+<h3>How do I find the path to the data directory?</h3>
 
-<h2>Files and Directories</h2>
+<p>To find the path to the current data directory, run the following
+command:</p>
 
-<ul>
-    <li>All filterlists should be downloaded to the adblock data directory.
-    By default, this is the <code>adblock</code> sub-directory of the luakit data
-    directory. All filterlists must have a filename ending in <code>.txt</code>.</li>
-</ul>
+<pre class="sourcecode lua"><span class="operator">:</span><span class="identifier">lua</span> <span class="identifier">w</span><span class="operator">:</span><span class="operator">not</span><span class="identifier">ify</span><span class="operator">(</span><span class="identifier">luakit.data_dir</span><span class="operator">)</span>
+</pre>
+
+<h2>Cache directory</h2>
+
+<p>Users will rarely have to modify files in luakit's cache directory. This is the
+cache directory used by WebKit and a few other modules that need to store files
+on a temporary basis, such as the <a href="../modules/viewpdf.html"><code>viewpdf</code></code></a> module.</p>
+
+<p>If this directory is taking up too much disk space, it is safe to delete
+some or all of its contents; conversely, Lua modules should never store
+files in this directory if those files need to be kept, as they may be
+deleted without warning.</p>
+
+<h3>How do I find the path to the cache directory?</h3>
+
+<p>To find the path to the current cache directory, run the following
+command:</p>
+
+<pre class="sourcecode lua"><span class="operator">:</span><span class="identifier">lua</span> <span class="identifier">w</span><span class="operator">:</span><span class="operator">not</span><span class="identifier">ify</span><span class="operator">(</span><span class="identifier">luakit.cache_dir</span><span class="operator">)</span>
+</pre>
 
 
 
-
-
-
-
-
-
-        <!-- modes and binds --><h2>Functions</h2>
-
-        <h3 class=function>
-            <span class=target id="function-load"></span>
-            <a href="#function-load">adblock.load (reload, single_list, no_sync)</a>
-        </h3>
-            <div class=function>
-            
-            
-<p>Load filter list files, and refresh any adblock pages that are open.</p>
-
-            <h4>Parameters</h4>
-<ul>
-        <li class=parameter>
-            <div class=two-col>
-                <div>
-                    <span class=parameter>reload</span>
-                    <div>Type: <span class=type>boolean</span></div>
-                    <div></div>
-                    <div></div>
-                </div>
-                <div>
-<code>true</code> if all subscriptions already loaded
-should be fully reloaded.
-</div>
             </div>
-        </li>
-    
-        <li class=parameter>
-            <div class=two-col>
-                <div>
-                    <span class=parameter>single_list</span>
-                    <div>Type: <span class=type>string</span></div>
-                    <div></div>
-                    <div></div>
-                </div>
-                <div>
-Single list file.
-
-</div>
-            </div>
-        </li>
-    
-        <li class=parameter>
-            <div class=two-col>
-                <div>
-                    <span class=parameter>no_sync</span>
-                    <div>Type: <span class=type>boolean</span></div>
-                    <div></div>
-                    <div></div>
-                </div>
-                <div>
-<code>true</code> if subscriptions should not be synchronized to
-the web process.
-</div>
-            </div>
-        </li>
-    
-</ul>
-            
-        </div>
-    
-        <h3 class=function>
-            <span class=target id="function-list_set_enabled"></span>
-            <a href="#function-list_set_enabled">adblock.list_set_enabled (a, enabled)</a>
-        </h3>
-            <div class=function>
-            
-            
-<p>Enable or disable an adblock filter list.</p>
-
-            <h4>Parameters</h4>
-<ul>
-        <li class=parameter>
-            <div class=two-col>
-                <div>
-                    <span class=parameter>a</span>
-                    <div>Type: <span class=type>number</span> or <span class=type>string</span></div>
-                    <div></div>
-                    <div></div>
-                </div>
-                <div>
-The number of the list to enable or disable.
-
-</div>
-            </div>
-        </li>
-    
-        <li class=parameter>
-            <div class=two-col>
-                <div>
-                    <span class=parameter>enabled</span>
-                    <div>Type: <span class=type>boolean</span></div>
-                    <div></div>
-                    <div></div>
-                </div>
-                <div>
-<code>true</code> to enable, <code>false</code> to disable.
-
-</div>
-            </div>
-        </li>
-    
-</ul>
-            
-        </div>
-    
-        <h3 class=function>
-            <span class=target id="function-whitelist_domain_access"></span>
-            <a href="#function-whitelist_domain_access">adblock.whitelist_domain_access (domain)</a>
-        </h3>
-            <div class=function>
-            
-            
-<p>Whitelist accessing a blocked domain for the current session.</p>
-
-            <h4>Parameters</h4>
-<ul>
-        <li class=parameter>
-            <div class=two-col>
-                <div>
-                    <span class=parameter>domain</span>
-                    <div>Type: <span class=type>string</span></div>
-                    <div></div>
-                    <div></div>
-                </div>
-                <div>
-The domain to whitelist.
-
-</div>
-            </div>
-        </li>
-    
-</ul>
-            
-        </div>
-    <h2>Properties</h2>
-
-        <h3 class=property>
-            <span class=target id="property-subscriptions"></span>
-            <a href="#property-subscriptions">adblock.subscriptions</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>table</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
-The set of ad blocking subscriptions that are active.
-</div>
-        </div>
-    
-        <h3 class=property>
-            <span class=target id="property-rules"></span>
-            <a href="#property-rules">adblock.rules</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>table</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
-String patterns to filter URIs with.
-</div>
-        </div>
-    
-        <h3 class=property>
-            <span class=target id="property-enabled"></span>
-            <a href="#property-enabled">adblock.enabled</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>boolean</span></div>
-                <div>Default: 
-true
-</div>
-                <div>Read-write</div>
-            </div>
-            <div>
-Whether ad blocking is enabled. Modifying this value will modify adblock
-state; setting it to <code>true</code> will enable ad blocking, while setting it to
-<code>false</code> will disable ad blocking.
-</div>
-        </div>
-    
-        <h2>Attribution</h2>
-        <div class=attr-wrap>
-    <h4>Copyright</h4><ul class=copyright>
-        <li>2010 Chris van Dijk (quigybo) <quigybo@hotmail.com>
-        <li>2010 Mason Larobina (mason-l) <mason.larobina@gmail.com>
-        <li>2012 Plaque FCC <Reslayer@ya.ru>
-    </ul>
-</div>
-    
-            </div>
-            <div style='display:none'><a rel=prev href='../pages/06-tests.html'><a rel=next href='../modules/adblock_chrome.html'></div>
+            <div style='display:none'><a rel=prev href='../pages/04-migration-guide.html'><a rel=next href='../pages/06-tests.html'></div>
         </div>
 	</div>
 	<footer>

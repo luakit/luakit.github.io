@@ -5,12 +5,15 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Luakit API Documentation</title>
 	<link rel="icon" type="image/png" href="favicon.png" />
-	<style type="text/css">html {
-	color: #333;
+	<style type="text/css">* {
+    box-sizing: border-box;
 }
+
 body {
     margin: 0;
-    font-family: "Helvetica", "Arial", sans-serif;
+    font-family: "Arial", sans-serif;
+    color: #333;
+    line-height: 1.4;
 }
 
 #hdr {
@@ -21,70 +24,42 @@ body {
 #hdr > h1 {
     color: #555;
     margin: 0 auto;
-    max-width: 910px;
-    padding: 1rem 2rem;
+    padding: 1rem;
     font-size: 1rem;
+    line-height: 1;
+}
+
+#hdr > h1, #wrap {
+    max-width: 55rem;
 }
 
 #wrap {
-    font-size: 14px;
-    line-height: 1.3;
-    padding: 2rem;
+    padding: 1rem;
     margin: 0 auto;
     justify-content: center;
-    max-width: 910px;
-}
-
-h1, h2, strong {
-    line-height: 1.1;
-    margin: 0;
-    color: #111;
 }
 
 .tagline {
+    font-size: 1.5rem;
     color: #555;
     margin: 0 0 1rem;
-    font-size: 1.4rem;
     font-weight: normal;
-}
-
-h1 { margin: 0 0 0.7rem; }
-h2 { margin: 1.5rem 0 1rem; }
-h4 { margin: 1rem 0; }
-
-code, pre
-{
-	background: #f5f7f9;
-	color: #334;
-}
-code {
-	border: 1px solid #dfdfe9;
-	padding: 0px 4px;
-}
-pre > code {
-    border: none;
-    padding: 0;
-}
-pre {
-	padding: 1rem 1.2rem;
-	border-left: 2px solid #69c;
 }
 
 h3.function > a, h3.property > a, h3.table > a, h3.field > a {
     font-family: monospace;
-	color: #2B5782;
+    color: #2B5782;
     text-decoration: none;
-    font-size: 0.9rem;
+    font-size: 1rem;
 }
 
 span.parameter, span.type {
     font-family: monospace;
-	color: #2B5782;
+    color: #2B5782;
     text-decoration: none;
-    font-size: 1.0rem;
 }
 span.parameter {
-	font-weight: bold;
+    font-weight: bold;
 }
 
 li.parameter {
@@ -133,22 +108,28 @@ div.good.alert {
 }
 #content {
     flex: 1;
-    max-width: 48rem;
+    position: relative;
 }
 #sidebar {
-    flex: 0 0 15rem;
-    margin-right: 2rem;
+    flex: 0 0 13rem;
+    margin-right: 1rem;
+    font-family: "Open Sans", "DejaVu Sans", sans-serif;
 }
 
-@media (max-width: 965px) {
+@media (max-width: 55rem) {
     #sidebar { display: none; }
 }
 
 #sidebar > h2 {
     margin: 0 0 1rem;
+    font-size: 1.3rem;
+    font-weight: normal;
 }
 #sidebar > h3 {
     margin: 1rem 0 0.5rem;
+    font-size: 1.1rem;
+    font-weight: normal;
+    color: #444;
 }
 #sidebar > ul {
     list-style-type: none;
@@ -157,19 +138,45 @@ div.good.alert {
 }
 #sidebar > ul > li {
     margin: 0.2rem 0.2rem 0.2rem 0.5rem;
-    font-family: monospace;
+    font-size: 0.9rem;
 }
 #sidebar > ul > li > a, #sidebar > ul > li > span {
-    font-family: monospace;
     text-decoration: none;
-    font-size: 1.1rem;
+    font-size: 0.9rem;
 }
 #sidebar > ul > li > span {
-	font-weight: bold;
+    color: black;
+    font-weight: 500;
+}
+#sidebar > ul.modules > li, #sidebar > ul.classes > li,
+#sidebar > ul.modules > li > a, #sidebar > ul.modules > li > span,
+#sidebar > ul.classes > li > a, #sidebar > ul.classes > li > span {
+    font-family: monospace;
 }
 
 #content li:not(:last-child) {
     margin-bottom: 0.5rem;
+}
+
+/*
+ * Content typography
+ */
+
+#content > h1 {
+    font-size: 1.7rem;
+    color: #000;
+    margin: 0 0 0.7rem;
+}
+
+#content > h2 {
+    font-size: 1.3rem;
+    color: #000;
+    margin: 1.5rem 0 1rem;
+}
+
+#content > h3 {
+    font-size: 1.0rem;
+    color: #000;
 }
 
 /* Links */
@@ -189,13 +196,13 @@ li.dummy {
 }
 .attr-wrap > h4 {
     flex: 0 0 8rem;
-    margin-bottom: 0;
+    margin: 0;
 }
 .attr-wrap > ul {
     flex: 1;
     padding: 2px 0;
     list-style-type: none;
-    margin-bottom: 0;
+    margin: 0;
 }
 .attr-wrap > ul > li:before {
    width: 20px;
@@ -205,6 +212,10 @@ li.dummy {
 }
 ul.authors > li:before { content: "•"; }
 ul.copyright > li:before { content: "©"; }
+
+/*
+ * Code blocks and inline code
+ */
 
 .sourcecode .comment { color: #558817; }
 .sourcecode .constant { color: #a8660d; }
@@ -218,21 +229,72 @@ ul.copyright > li:before { content: "©"; }
 .sourcecode .prompt { color: #558817; }
 .sourcecode a:link, .sourcecode a:visited { color: #272fc2; }
 
+code, pre {
+    background: #f5f7f9;
+    color: #334;
+}
+code {
+    border: 1px solid #dfdfe9;
+    padding: 0px 4px;
+}
+pre > code {
+    border: none;
+    padding: 0;
+}
+pre {
+    padding: 1rem 1.2rem;
+    border-left: 2px solid #69c;
+}
+
+/*
+ * Binding styles
+ */
+
+kbd, .cmd {
+    border-radius: .2rem;
+    display: inline-block;
+    line-height: 1;
+    padding: .3rem .4rem;
+    vertical-align: baseline;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+kbd {
+    background: #444b5b;
+    color: #fff;
+}
+
+.cmd {
+    background: #ffeab5;
+    color: #40495c;
+}
+
 .two-col { display: flex; }
 .two-col > :first-child { flex: 0 0 200px; margin-right: 10px; }
 .two-col > :first-child > div:not(:first-child) { margin-top: 0.3rem; }
 ul.triggers {
-	list-style-type: none;
-	padding: 0;
+    list-style-type: none;
+    padding: 0;
 }
 ul.triggers > li {
-	font-family: monospace, sans-serif;
-	color: #2B5782;
-	font-weight: bold;
+    font-family: monospace, sans-serif;
+    color: #2B5782;
+    font-weight: bold;
+    font-size: 1rem;
 }
 
 div.info > div { margin-top: 0.3rem; }
-</style>
+
+span.target {
+    position: absolute;
+    display: block;
+    margin-top: -100px;
+    height: 100px;
+    visibility: hidden;
+}
+        div#wrap { padding: 0; }
+    </style>
 	<link rel=stylesheet href=/luakit/style.css />
 	<link rel="stylesheet" href="https://code.cdn.mozilla.net/fonts/fira.css">
 	<style type="text/css">
@@ -246,7 +308,7 @@ div.info > div { margin-top: 0.3rem; }
 <body>
 	<nav>
 		<a href="/luakit/">Home</a>
-		<a href="/luakit/#sec-release">Releases</a>
+		<a href="/luakit/news/">Releases</a>
 		<a href="/luakit/#sec-download">Download</a>
 		<a href="/luakit/docs/">Documentation</a>
 		<a href="/luakit/#sec-contributing">Contributing</a>
@@ -257,14 +319,19 @@ div.info > div { margin-top: 0.3rem; }
             <div id=sidebar>
                 <h2>Table of Contents</h2>
                 <h3>Pages</h3>
-<ul>
-    <li><a href="../pages/Authors.html">Authors</a></li>
-    <li><a href="../pages/Tests.html">Tests</a></li>
+<ul class=pages>
+    <li><a href="../pages/01-authors.html">Authors</a></li>
+    <li><a href="../pages/02-faq.html">Frequently Asked Questions</a></li>
+    <li><a href="../pages/03-quick-start-guide.html">Quick-start guide</a></li>
+    <li><a href="../pages/04-migration-guide.html">Migration Guide</a></li>
+    <li><a href="../pages/05-configuration.html">Files and Directories</a></li>
+    <li><a href="../pages/06-tests.html">Tests</a></li>
 </ul>
 <h3>Modules</h3>
-<ul>
+<ul class=modules>
     <li><a href="../modules/adblock.html">adblock</a></li>
     <li><a href="../modules/adblock_chrome.html">adblock_chrome</a></li>
+    <li><a href="../modules/binds.html">binds</a></li>
     <li><a href="../modules/bookmarks.html">bookmarks</a></li>
     <li><a href="../modules/bookmarks_chrome.html">bookmarks_chrome</a></li>
     <li><a href="../modules/chrome.html">chrome</a></li>
@@ -288,6 +355,7 @@ div.info > div { margin-top: 0.3rem; }
     <li><a href="../modules/image_css.html">image_css</a></li>
     <li><a href="../modules/introspector_chrome.html">introspector_chrome</a></li>
     <li><a href="../modules/ipc.html">ipc</a></li>
+    <li><a href="../modules/log_chrome.html">log_chrome</a></li>
     <li><a href="../modules/lousy.bind.html">lousy.bind</a></li>
     <li><a href="../modules/lousy.load.html">lousy.load</a></li>
     <li><a href="../modules/lousy.mode.html">lousy.mode</a></li>
@@ -298,6 +366,7 @@ div.info > div { margin-top: 0.3rem; }
     <li><a href="../modules/lousy.util.html">lousy.util</a></li>
     <li><a href="../modules/lousy.widget.html">lousy.widget</a></li>
     <li><a href="../modules/luakit.html">luakit</a></li>
+    <li><a href="../modules/modes.html">modes</a></li>
     <li><a href="../modules/msg.html">msg</a></li>
     <li><a href="../modules/newtab_chrome.html">newtab_chrome</a></li>
     <li><a href="../modules/noscript.html">noscript</a></li>
@@ -325,7 +394,7 @@ div.info > div { margin-top: 0.3rem; }
     <li><a href="../modules/xdg.html">xdg</a></li>
 </ul>
 <h3>Classes</h3>
-<ul>
+<ul class=classes>
     <li><a href="../classes/dom_document.html">dom_document</a></li>
     <li><a href="../classes/dom_element.html">dom_element</a></li>
     <li><a href="../classes/download.html">download</a></li>
@@ -354,10 +423,13 @@ div.info > div { margin-top: 0.3rem; }
             </div>
             <div id=content>
                         <h1>Module <code>formfiller</code></h1>
-        <h2 class=tagline>Provides functionality to auto-fill forms based on a Lua DSL</h2>
+        <!-- status indicator -->
+        <span class=tagline>Provides functionality to auto-fill forms based on a Lua DSL</span>
         
 
-<p>The configuration is stored in <code>$XDG_DATA_DIR/luakit/forms.lua</code></p>
+<p>The formfiller provides support for filling out forms based on the contents
+of a forms file, which uses a domain-specific language to specify the content to
+fill forms with.</p>
 
 <p>The following is an example for a formfiller definition:</p>
 
@@ -421,20 +493,72 @@ div.info > div { margin-top: 0.3rem; }
 
 <p>There is a conversion script in the luakit repository that converts
 from the old formfiller format to the new one. For more information,
-see the converter script under <code>extras/convert_formfiller.rb</code></p>
+see the converter script under <code>extras/convert_formfiller.rb</code>.</p>
+
+<h2>Files and Directories</h2>
+
+<ul>
+    <li>The formfiller configuration is loaded from the <code>forms.lua</code> file stored in
+    the luakit data directory.</li>
+</ul>
 
 
 
 
 
-        <!-- modes and binds -->
+        <!-- modes and binds --><h2>Functions</h2>
+
+        <h3 class=function>
+            <span class=target id="function-extend"></span>
+            <a href="#function-extend">formfiller.extend (extensions)</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Extend the formfiller DSL with additional functions. This takes a table of
+functions. For example, to use the <code>pass</code> storage manager:</p>
+
+<pre class="sourcecode lua"><span class="identifier">formfiller.extend</span><span class="operator">(</span><span class="operator">{</span>
+    <span class="identifier">pass</span> <span class="operator">=</span> <span class="identifier">function</span><span class="operator">(</span><span class="identifier">s</span><span class="operator">)</span> <span class="identifier">return</span> <a href="http://www.lua.org/manual/5.1/manual.html#pdf-io.popen" class="library">io.popen</a><span class="operator">(</span><span class="constant">"pass "</span> <span class="operator">..</span> <span class="identifier">s</span><span class="operator">)</span><span class="operator">:</span><span class="identifier">read</span><span class="operator">(</span><span class="operator">)</span> <span class="identifier">end</span>
+<span class="operator">}</span><span class="operator">)</span>
+</pre>
+
+<p>which will then be usable in the fields of <code>form.lua</code>:</p>
+
+<pre class="sourcecode lua"><span class="identifier">input</span> <span class="operator">{</span>
+    <span class="identifier">name</span> <span class="operator">=</span> <span class="constant">"username"</span><span class="operator">,</span>
+    <span class="identifier">value</span> <span class="operator">=</span> <span class="identifier">pass</span><span class="operator">(</span><span class="constant">"emailpassword"</span><span class="operator">)</span><span class="operator">,</span>
+<span class="operator">}</span>
+</pre>
+
+<p>Functions used to extend the DSL will be called only when needed: when
+matching for attributes used in matching, or once a form is applied, for
+attributes used in form application.</p>
+
+
+            <h4>Parameters</h4>
+<ul>
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>extensions</span>
+                    <div>Type: <span class=type>table</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+The table of functions extending the formfiller DSL.
+
+</div>
+            </div>
+        </li>
+    
+</ul>
+            
+        </div>
+    
         <h2>Attribution</h2>
         <div class=attr-wrap>
-    <h4>Authors</h4>
-    <ul class=authors>
-    </ul>
-</div>
-<div class=attr-wrap>
     <h4>Copyright</h4><ul class=copyright>
         <li>2011 Fabian Streitel (karottenreibe) <luakit@rottenrei.be>
         <li>2011 Mason Larobina  (mason-l) <mason.larobina@gmail.com>

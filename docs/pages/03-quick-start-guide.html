@@ -322,14 +322,14 @@ span.target {
 <ul class=pages>
     <li><a href="../pages/01-authors.html">Authors</a></li>
     <li><a href="../pages/02-faq.html">Frequently Asked Questions</a></li>
-    <li><a href="../pages/03-quick-start-guide.html">Quick-start guide</a></li>
+    <li><span>Quick-start guide</span></li>
     <li><a href="../pages/04-migration-guide.html">Migration Guide</a></li>
     <li><a href="../pages/05-configuration.html">Files and Directories</a></li>
     <li><a href="../pages/06-tests.html">Tests</a></li>
 </ul>
 <h3>Modules</h3>
 <ul class=modules>
-    <li><span>adblock</span></li>
+    <li><a href="../modules/adblock.html">adblock</a></li>
     <li><a href="../modules/adblock_chrome.html">adblock_chrome</a></li>
     <li><a href="../modules/binds.html">binds</a></li>
     <li><a href="../modules/bookmarks.html">bookmarks</a></li>
@@ -422,273 +422,170 @@ span.target {
 
             </div>
             <div id=content>
-                        <h1>Module <code>adblock</code></h1>
-        <!-- status indicator -->
-        <span class=tagline>Simple URI-based content filter</span>
-        
+                
 
-<p>This is a simple, fast ad blocker module that works by blocking requests to
-domains that only serve advertisements. It does not currently do any form of
-cosmetic ad blocking (i.e. element hiding with CSS).</p>
+<h1>Quick-start guide</h1>
 
-<p>See also: <a href="../modules/adblock_chrome.html"><code>adblock_chrome</code></code></a>.</p>
+<h2>Using Luakit</h2>
 
-<h2>Capabilities</h2>
+<p>If you've used browsers like vimperator, or vimium, you'll find yourself
+right at home; most if not all luakit actions are available via keyboard
+commands.</p>
+
+<p>Just run:</p>
+
+<pre class="sourcecode lua"><span class="identifier">luakit</span> <span class="operator">[</span><span class="identifier">URI</span><span class="operator">..</span><span class="operator">]</span>
+</pre>
+
+<p>Or to see the full list of luakit launch options run:</p>
+
+<pre class="sourcecode lua"><span class="identifier">luakit</span> <span class="operator">-</span><span class="identifier">h</span>
+</pre>
+
+<h3>Opening the help page</h3>
+
+<p>To open the internal help page, press <code>&lt;F1&gt;</code>. From there, you can open
+the introspector to view current keybindings or open the included API
+documentation.</p>
+
+<h3>Switching to command mode</h3>
+
+<p>Many common operations in luakit, such as typing and opening a URL, involve the
+use of <em>commands</em>. This is done by switching to command mode, typing the
+command, and pressing <code>&lt;Enter&gt;</code>.</p>
+
+<p>To switch to command mode, press <code>:</code> (i.e. <code>&lt;Shift-;&gt;</code>), and the command
+bar will appear at the bottom of the window. In the remainder of this document,
+commands will be written prefixed by a <code>:</code>; so <code>:open</code> means to first press
+<code>:</code>, and then type <code>open</code>.</p>
+
+<h3>Go to a URL in the current tab</h3>
+
+<p>Type <code>:open</code> followed by a space and the URL to navigate to, and press <code>&lt;Enter&gt;</code>.
+For example, to open the luakit website, type <code>:open www.luakit.org</code> and then
+press press <code>&lt;Enter&gt;</code>.</p>
+
+<p><em>Shortcut</em>: press <code>o</code> to switch to command mode with <code>open</code> already typed.</p>
+
+<h3>Search</h3>
+
+<p>Press <code>/</code>, and type your search query, e.g: <code>/luakit</code>. Press <code>&lt;Enter&gt;</code>
+to finish typing your search query and switch back to normal mode.
+While in normal mode with highlighted search results, press <code>n</code> to
+jump to the next search result, and <code>N</code> to jump to the previous one.</p>
+
+<h3>Opening, closing, and undo-closing tabs</h3>
+
+<p>Try the following steps in order:</p>
+
+<ol>
+    <li>Run <code>:tabopen luakit.org</code>, and wait until the page finishes loading.</li>
+    <li>Press <code>d</code>, and the new tab will close.</li>
+    <li>Press <code>u</code>, and the just-closed tab will reappear.</li>
+</ol>
+
+<h3>Scrolling in a web page</h3>
+
+<p>There are several different keys to scroll a webview:</p>
 
 <ul>
-    <li>You can allow specific content to be loaded if it is inadvertently
-    blocked: simply add whitelisting rules formed by <code>@@</code> and the pattern to
-    allow.</li>
-    <li>Supports multiple filter list files.</li>
-    <li>Filter files can be enabled, disabled and reloaded from disk
-    without restarting luakit.</li>
-    <li>A configuration chrome page is provided by <a href="../modules/adblock_chrome.html"><code>adblock_chrome</code></code></a>.</li>
+    <li>The arrow, page up/down, and home/end keys all work as one would expect.</li>
+    <li>The <code>h</code>, <code>j</code>, <code>k</code>, <code>l</code>, <code>gg</code>, and <code>G</code> key bindings all scroll in a vim-like manner.</li>
+    <li>The <code>&lt;Control-e&gt;</code>, <code>&lt;Control-y&gt;</code>, <code>&lt;Control-d&gt;</code>, <code>&lt;Control-u&gt;</code>,
+    <code>&lt;Control-f&gt;</code>, and <code>&lt;Control-b&gt;</code> keys all scroll vertically by various
+    amounts.</li>
 </ul>
 
-<h2>Usage</h2>
+<h3>Bookmarks</h3>
 
 <ul>
-    <li>Add <code>require "adblock"</code> and <code>require "adblock_chrome"</code> to your <code>config.rc</code>.</li>
-    <li>Download AdblockPlus-compatible filter lists to the adblock directory.
-    Multiple lists are supported.
-    EasyList is the most popular Adblock Plus filter list, and can be
-    downloaded from <a href="https://easylist.to/">https://easylist.to/</a>.</li>
-    <li>Filter lists downloaded to the adblock directory must have a
-    filename ending in <code>.txt</code> in order to be loaded.</li>
-    <li>Filter lists need to be updated regularly (~weekly), use cron!</li>
+    <li>Press <code>B</code> to bookmark the current page.</li>
+    <li>Press <code>gb</code> or <code>gB</code> to open the bookmarks page in the current tab or a
+    new tab, respectively.</li>
 </ul>
 
-<h2>Troubleshooting</h2>
+<h2>Configuration</h2>
 
-<p>If ad blocking is not working as expected, the easiest way to determine
-what is happening is to set the appropriate log levels to <code>debug</code>:</p>
+<h3>Beginning a custom configuration</h3>
 
-<p>If a filterlist is not being loaded for some reason, start luakit with
-  the following:</p>
+<p>Luakit loads only one configuration file: <code>rc.lua</code>; that's the entry
+point for loading all the other configuration files and modules one might need,
+which are all written in Lua.</p>
 
-<pre class="sourcecode lua"><span class="comment">--log=lua/lib/adblock=debug
-</span></pre>
+<p>Any configuration file can load ("require") another Lua configuration file by
+specifying its name. When looking for a <code>.lua</code> file by name, luakit
+checks the following locations, in the order specified here:</p>
 
-<p>If a filterlist is not behaving correctly, by blocking too much or too
-  little, start luakit with the following:</p>
+<ol>
+    <li>The current directory.</li>
+    <li>System directories for Lua files.</li>
+    <li>Luakit's collection of included modules (<code>/usr/share/luakit/lib/</code>).</li>
+    <li>The user's personal luakit configuration directory (<code>/home/$USER/.config/luakit/</code>).</li>
+    <li>The system configuration directories (<code>/etc/xdg/luakit/</code>).</li>
+</ol>
 
-<pre class="sourcecode lua"><span class="comment">--log=lua/lib/adblock_wm=debug
-</span></pre>
+<p>When launching luakit after a fresh install, it will look for the file
+<code>rc.lua</code> in these directories in order. If there is no such file in the
+personal luakit configuration directory, luakit will fall back to the
+global <code>/etc/xdg/luakit/rc.lua</code> file.</p>
 
-<h2>Files and Directories</h2>
+<p>To list the directories luakit will search when loading modules, run the
+following command:</p>
+
+<pre class="sourcecode lua"><span class="operator">:</span><span class="identifier">lua</span> <span class="identifier">w</span><span class="operator">:</span><span class="operator">not</span><span class="identifier">ify</span><span class="operator">(</span><a href="http://www.lua.org/manual/5.1/manual.html#pdf-package.path" class="library">package.path</a><span class="operator">:</span><span class="identifier">gsub</span><span class="operator">(</span><span class="constant">";"</span><span class="operator">,</span><span class="constant">"</span><span class="escape">\n</span><span class="constant">"</span><span class="operator">)</span><span class="operator">)</span>
+</pre>
+
+<p>To customize luakit, we can define our own configuration by creating a
+<code>rc.lua</code> file in the <code>/home/$USER/.config/luakit/</code> directory. The easiest
+way of creating a proper functional configuration is copying the global
+configuration file:</p>
+
+<pre class="sourcecode lua"><span class="identifier">mkdir</span> <span class="operator">-</span><span class="identifier">p</span> <span class="error">~</span><span class="operator">/</span><span class="operator">.</span><span class="identifier">config</span><span class="operator">/</span><span class="identifier">luakit</span><span class="operator">/</span>
+<span class="identifier">cp</span> <span class="operator">/</span><span class="identifier">etc</span><span class="operator">/</span><span class="identifier">xdg</span><span class="operator">/</span><span class="identifier">luakit</span><span class="operator">/</span><span class="identifier">rc.lua</span> <span class="error">~</span><span class="operator">/</span><span class="operator">.</span><span class="identifier">config</span><span class="operator">/</span><span class="identifier">luakit</span><span class="operator">/</span>
+</pre>
+
+<p>Now we can modify the configuration file, and any changes will take effect
+after restarting luakit. The official <code>rc.lua</code> file might be changed in
+future releases, however, and if we modify our copy
+extensively, it may be difficult to merge any changes to the configuration
+file into our setup. One way of minimizing the impact of future upgrades
+is to add only a single line like the following to our personal copy of
+<code>rc.lua</code>:</p>
+
+<pre class="sourcecode lua"><a href="http://www.lua.org/manual/5.1/manual.html#pdf-require" class="library">require</a> <span class="constant">"userconf"</span>
+</pre>
+
+<p>This should be added just before the end of the "User script loading" section.
+Now we can create a new file, <code>/home/$USER/.config/luakit/userconf.lua</code>,
+where we can introduce all the changes we want; these changes will not have to
+be merged with any future changes to the <code>rc.lua</code> file.</p>
+
+<h3>Changing the theme and other settings</h3>
+
+<p>Apart from <code>rc.lua</code>, there are some other configuration files of interest.</p>
 
 <ul>
-    <li>All filterlists should be downloaded to the adblock data directory.
-    By default, this is the <code>adblock</code> sub-directory of the luakit data
-    directory. All filterlists must have a filename ending in <code>.txt</code>.</li>
+    <li><code>theme.lua</code> specifies the fonts and colours used by the interface widgets.</li>
+    <li><code>globals.lua</code> contains global options like the size of the scroll
+    and zoom steps, the default window size, the useragent string, search
+    engines, and more.</li>
 </ul>
 
+<p>Just copy the files you wish to change into your personal luakit configuration
+directory, and luakit will load those files when you next launch it.</p>
+
+<h3>Changing key bindings</h3>
+
+<p>To change key bindings, use <a href="../modules/modes.html#function-add_binds"><code>add_binds</code></code></a> and <a href="../modules/modes.html#function-remove_binds"><code>remove_binds</code></code></a>
+to add and remove key bindings.</p>
+
+
+<!-- vim: et:sw=4:ts=8:sts=4:tw=79 -->
 
 
 
-
-
-
-
-
-        <!-- modes and binds --><h2>Functions</h2>
-
-        <h3 class=function>
-            <span class=target id="function-load"></span>
-            <a href="#function-load">adblock.load (reload, single_list, no_sync)</a>
-        </h3>
-            <div class=function>
-            
-            
-<p>Load filter list files, and refresh any adblock pages that are open.</p>
-
-            <h4>Parameters</h4>
-<ul>
-        <li class=parameter>
-            <div class=two-col>
-                <div>
-                    <span class=parameter>reload</span>
-                    <div>Type: <span class=type>boolean</span></div>
-                    <div></div>
-                    <div></div>
-                </div>
-                <div>
-<code>true</code> if all subscriptions already loaded
-should be fully reloaded.
-</div>
             </div>
-        </li>
-    
-        <li class=parameter>
-            <div class=two-col>
-                <div>
-                    <span class=parameter>single_list</span>
-                    <div>Type: <span class=type>string</span></div>
-                    <div></div>
-                    <div></div>
-                </div>
-                <div>
-Single list file.
-
-</div>
-            </div>
-        </li>
-    
-        <li class=parameter>
-            <div class=two-col>
-                <div>
-                    <span class=parameter>no_sync</span>
-                    <div>Type: <span class=type>boolean</span></div>
-                    <div></div>
-                    <div></div>
-                </div>
-                <div>
-<code>true</code> if subscriptions should not be synchronized to
-the web process.
-</div>
-            </div>
-        </li>
-    
-</ul>
-            
-        </div>
-    
-        <h3 class=function>
-            <span class=target id="function-list_set_enabled"></span>
-            <a href="#function-list_set_enabled">adblock.list_set_enabled (a, enabled)</a>
-        </h3>
-            <div class=function>
-            
-            
-<p>Enable or disable an adblock filter list.</p>
-
-            <h4>Parameters</h4>
-<ul>
-        <li class=parameter>
-            <div class=two-col>
-                <div>
-                    <span class=parameter>a</span>
-                    <div>Type: <span class=type>number</span> or <span class=type>string</span></div>
-                    <div></div>
-                    <div></div>
-                </div>
-                <div>
-The number of the list to enable or disable.
-
-</div>
-            </div>
-        </li>
-    
-        <li class=parameter>
-            <div class=two-col>
-                <div>
-                    <span class=parameter>enabled</span>
-                    <div>Type: <span class=type>boolean</span></div>
-                    <div></div>
-                    <div></div>
-                </div>
-                <div>
-<code>true</code> to enable, <code>false</code> to disable.
-
-</div>
-            </div>
-        </li>
-    
-</ul>
-            
-        </div>
-    
-        <h3 class=function>
-            <span class=target id="function-whitelist_domain_access"></span>
-            <a href="#function-whitelist_domain_access">adblock.whitelist_domain_access (domain)</a>
-        </h3>
-            <div class=function>
-            
-            
-<p>Whitelist accessing a blocked domain for the current session.</p>
-
-            <h4>Parameters</h4>
-<ul>
-        <li class=parameter>
-            <div class=two-col>
-                <div>
-                    <span class=parameter>domain</span>
-                    <div>Type: <span class=type>string</span></div>
-                    <div></div>
-                    <div></div>
-                </div>
-                <div>
-The domain to whitelist.
-
-</div>
-            </div>
-        </li>
-    
-</ul>
-            
-        </div>
-    <h2>Properties</h2>
-
-        <h3 class=property>
-            <span class=target id="property-subscriptions"></span>
-            <a href="#property-subscriptions">adblock.subscriptions</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>table</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
-The set of ad blocking subscriptions that are active.
-</div>
-        </div>
-    
-        <h3 class=property>
-            <span class=target id="property-rules"></span>
-            <a href="#property-rules">adblock.rules</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>table</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
-String patterns to filter URIs with.
-</div>
-        </div>
-    
-        <h3 class=property>
-            <span class=target id="property-enabled"></span>
-            <a href="#property-enabled">adblock.enabled</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>boolean</span></div>
-                <div>Default: 
-true
-</div>
-                <div>Read-write</div>
-            </div>
-            <div>
-Whether ad blocking is enabled. Modifying this value will modify adblock
-state; setting it to <code>true</code> will enable ad blocking, while setting it to
-<code>false</code> will disable ad blocking.
-</div>
-        </div>
-    
-        <h2>Attribution</h2>
-        <div class=attr-wrap>
-    <h4>Copyright</h4><ul class=copyright>
-        <li>2010 Chris van Dijk (quigybo) <quigybo@hotmail.com>
-        <li>2010 Mason Larobina (mason-l) <mason.larobina@gmail.com>
-        <li>2012 Plaque FCC <Reslayer@ya.ru>
-    </ul>
-</div>
-    
-            </div>
-            <div style='display:none'><a rel=prev href='../pages/06-tests.html'><a rel=next href='../modules/adblock_chrome.html'></div>
+            <div style='display:none'><a rel=prev href='../pages/02-faq.html'><a rel=next href='../pages/04-migration-guide.html'></div>
         </div>
 	</div>
 	<footer>

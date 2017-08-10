@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset='UTF-8'>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Luakit API Documentation</title>
+	<link rel="icon" type="image/png" href="favicon.png" />
+	<style type="text/css">* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Arial", sans-serif;
+    color: #333;
+    line-height: 1.4;
+}
+
+#hdr {
+    border-bottom: 1px solid #e0e5e6;
+    background-color: #f6f8f8;
+}
+
+#hdr > h1 {
+    color: #555;
+    margin: 0 auto;
+    padding: 1rem;
+    font-size: 1rem;
+    line-height: 1;
+}
+
+#hdr > h1, #wrap {
+    max-width: 55rem;
+}
+
+#wrap {
+    padding: 1rem;
+    margin: 0 auto;
+    justify-content: center;
+}
+
+.tagline {
+    font-size: 1.5rem;
+    color: #555;
+    margin: 0 0 1rem;
+    font-weight: normal;
+}
+
+h3.function > a, h3.property > a, h3.table > a, h3.field > a {
+    font-family: monospace;
+    color: #2B5782;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+span.parameter, span.type {
+    font-family: monospace;
+    color: #2B5782;
+    text-decoration: none;
+}
+span.parameter {
+    font-weight: bold;
+}
+
+li.parameter {
+    margin-bottom: 1rem;
+}
+
+span.optional, span.any_type {
+    font-style: italic;
+    color: #777;
+}
+
+div.function, div.property, div.table, div.field {
+    margin-left: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+span.info {
+    margin-right: 0.5rem;
+}
+
+div.alert {
+    padding: 8px 35px 8px 14px;
+    margin-bottom: 20px;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+    position: relative;
+    font-style: italic;
+}
+
+div.warn.alert {
+    color: #635b31;
+    background-color: #fcf8e3;
+    border-color: #bdceaf;
+    border-left: 2px solid #7c723e;
+}
+
+div.good.alert {
+    color: #376d38;
+    background-color: #dff0d8;
+    border-color: #bdceaf;
+    border-left: 2px solid #376d38;
+}
+
+#wrap {
+    display: flex;
+    flex: 1;
+}
+#content {
+    flex: 1;
+    position: relative;
+}
+#sidebar {
+    flex: 0 0 13rem;
+    margin-right: 1rem;
+    font-family: "Open Sans", "DejaVu Sans", sans-serif;
+}
+
+@media (max-width: 55rem) {
+    #sidebar { display: none; }
+}
+
+#sidebar > h2 {
+    margin: 0 0 1rem;
+    font-size: 1.3rem;
+    font-weight: normal;
+}
+#sidebar > h3 {
+    margin: 1rem 0 0.5rem;
+    font-size: 1.1rem;
+    font-weight: normal;
+    color: #444;
+}
+#sidebar > ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0 0 0.5rem;
+}
+#sidebar > ul > li {
+    margin: 0.2rem 0.2rem 0.2rem 0.5rem;
+    font-size: 0.9rem;
+}
+#sidebar > ul > li > a, #sidebar > ul > li > span {
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+#sidebar > ul > li > span {
+    color: black;
+    font-weight: 500;
+}
+#sidebar > ul.modules > li, #sidebar > ul.classes > li,
+#sidebar > ul.modules > li > a, #sidebar > ul.modules > li > span,
+#sidebar > ul.classes > li > a, #sidebar > ul.classes > li > span {
+    font-family: monospace;
+}
+
+#content li:not(:last-child) {
+    margin-bottom: 0.5rem;
+}
+
+/*
+ * Content typography
+ */
+
+#content > h1 {
+    font-size: 1.7rem;
+    color: #000;
+    margin: 0 0 0.7rem;
+}
+
+#content > h2 {
+    font-size: 1.3rem;
+    color: #000;
+    margin: 1.5rem 0 1rem;
+}
+
+#content > h3 {
+    font-size: 1.0rem;
+    color: #000;
+}
+
+/* Links */
+a { color: #204a87; text-decoration: none; }
+a:visited { color: #2B2087; }
+a:hover { text-decoration: underline; }
+a:active { color: #0c1d36; }
+li.dummy {
+    list-style-type: none;
+    -webkit-user-select: none;
+}
+
+/* Attribution styling */
+.attr-wrap {
+    display: flex;
+    flex: 1;
+}
+.attr-wrap > h4 {
+    flex: 0 0 8rem;
+    margin: 0;
+}
+.attr-wrap > ul {
+    flex: 1;
+    padding: 2px 0;
+    list-style-type: none;
+    margin: 0;
+}
+.attr-wrap > ul > li:before {
+   width: 20px;
+   margin-right: 5px;
+   display: inline-block;
+   text-align: center;
+}
+ul.authors > li:before { content: "•"; }
+ul.copyright > li:before { content: "©"; }
+
+/*
+ * Code blocks and inline code
+ */
+
+.sourcecode .comment { color: #558817; }
+.sourcecode .constant { color: #a8660d; }
+.sourcecode .escape { color: #844631; }
+.sourcecode .keyword { color: #2239a8; font-weight: bold; }
+.sourcecode .library { color: #0e7c6b !important; text-decoration: none !important; }
+.sourcecode .marker { color: #512b1e; background: #fedc56; font-weight: bold; }
+.sourcecode .number { color: #a8660d; }
+.sourcecode .operator { color: #2239a8; font-weight: bold; }
+.sourcecode .preprocessor { color: #a33243; }
+.sourcecode .prompt { color: #558817; }
+.sourcecode a:link, .sourcecode a:visited { color: #272fc2; }
+
+code, pre {
+    background: #f5f7f9;
+    color: #334;
+}
+code {
+    border: 1px solid #dfdfe9;
+    padding: 0px 4px;
+}
+pre > code {
+    border: none;
+    padding: 0;
+}
+pre {
+    padding: 1rem 1.2rem;
+    border-left: 2px solid #69c;
+}
+
+/*
+ * Binding styles
+ */
+
+kbd, .cmd {
+    border-radius: .2rem;
+    display: inline-block;
+    line-height: 1;
+    padding: .3rem .4rem;
+    vertical-align: baseline;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+kbd {
+    background: #444b5b;
+    color: #fff;
+}
+
+.cmd {
+    background: #ffeab5;
+    color: #40495c;
+}
+
+.two-col { display: flex; }
+.two-col > :first-child { flex: 0 0 200px; margin-right: 10px; }
+.two-col > :first-child > div:not(:first-child) { margin-top: 0.3rem; }
+ul.triggers {
+    list-style-type: none;
+    padding: 0;
+}
+ul.triggers > li {
+    font-family: monospace, sans-serif;
+    color: #2B5782;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+div.info > div { margin-top: 0.3rem; }
+
+span.target {
+    position: absolute;
+    display: block;
+    margin-top: -100px;
+    height: 100px;
+    visibility: hidden;
+}
+        div#wrap { padding: 0; }
+    </style>
+	<link rel=stylesheet href=/luakit/style.css />
+	<link rel="stylesheet" href="https://code.cdn.mozilla.net/fonts/fira.css">
+	<style type="text/css">
+		#wrap { padding: 2em 0; }
+		#content > h1 { font-size: 28px; }
+		body { background-color: #fcfcfc; }
+		body > .container { max-width: unset; }
+		nav { font-size: 16px; background:#F3EFE7;}
+	</style>
+</head>
+<body>
+	<nav>
+		<a href="/luakit/">Home</a>
+		<a href="/luakit/news/">Releases</a>
+		<a href="/luakit/#sec-download">Download</a>
+		<a href="/luakit/docs/">Documentation</a>
+		<a href="/luakit/#sec-contributing">Contributing</a>
+		<a href="https://github.com/luakit/luakit" target="_blank">GitHub</a>
+	</nav>
+	<div class="container">
+		<div id=wrap>
+            <div id=sidebar>
+                <h2>Table of Contents</h2>
+                <h3>Pages</h3>
+<ul class=pages>
+    <li><a href="../pages/01-authors.html">Authors</a></li>
+    <li><span>Frequently Asked Questions</span></li>
+    <li><a href="../pages/03-quick-start-guide.html">Quick-start guide</a></li>
+    <li><a href="../pages/04-migration-guide.html">Migration Guide</a></li>
+    <li><a href="../pages/05-configuration.html">Files and Directories</a></li>
+    <li><a href="../pages/06-tests.html">Tests</a></li>
+</ul>
+<h3>Modules</h3>
+<ul class=modules>
+    <li><a href="../modules/adblock.html">adblock</a></li>
+    <li><a href="../modules/adblock_chrome.html">adblock_chrome</a></li>
+    <li><a href="../modules/binds.html">binds</a></li>
+    <li><a href="../modules/bookmarks.html">bookmarks</a></li>
+    <li><a href="../modules/bookmarks_chrome.html">bookmarks_chrome</a></li>
+    <li><a href="../modules/chrome.html">chrome</a></li>
+    <li><a href="../modules/cmdhist.html">cmdhist</a></li>
+    <li><a href="../modules/completion.html">completion</a></li>
+    <li><a href="../modules/domain_props.html">domain_props</a></li>
+    <li><a href="../modules/downloads.html">downloads</a></li>
+    <li><a href="../modules/downloads_chrome.html">downloads_chrome</a></li>
+    <li><a href="../modules/editor.html">editor</a></li>
+    <li><a href="../modules/error_page.html">error_page</a></li>
+    <li><a href="../modules/follow.html">follow</a></li>
+    <li><a href="../modules/follow_selected.html">follow_selected</a></li>
+    <li><a href="../modules/formfiller.html">formfiller</a></li>
+    <li><a href="../modules/go_input.html">go_input</a></li>
+    <li><a href="../modules/go_next_prev.html">go_next_prev</a></li>
+    <li><a href="../modules/go_up.html">go_up</a></li>
+    <li><a href="../modules/help_chrome.html">help_chrome</a></li>
+    <li><a href="../modules/hide_scrollbars.html">hide_scrollbars</a></li>
+    <li><a href="../modules/history.html">history</a></li>
+    <li><a href="../modules/history_chrome.html">history_chrome</a></li>
+    <li><a href="../modules/image_css.html">image_css</a></li>
+    <li><a href="../modules/introspector_chrome.html">introspector_chrome</a></li>
+    <li><a href="../modules/ipc.html">ipc</a></li>
+    <li><a href="../modules/log_chrome.html">log_chrome</a></li>
+    <li><a href="../modules/lousy.bind.html">lousy.bind</a></li>
+    <li><a href="../modules/lousy.load.html">lousy.load</a></li>
+    <li><a href="../modules/lousy.mode.html">lousy.mode</a></li>
+    <li><a href="../modules/lousy.pickle.html">lousy.pickle</a></li>
+    <li><a href="../modules/lousy.signal.html">lousy.signal</a></li>
+    <li><a href="../modules/lousy.theme.html">lousy.theme</a></li>
+    <li><a href="../modules/lousy.uri.html">lousy.uri</a></li>
+    <li><a href="../modules/lousy.util.html">lousy.util</a></li>
+    <li><a href="../modules/lousy.widget.html">lousy.widget</a></li>
+    <li><a href="../modules/luakit.html">luakit</a></li>
+    <li><a href="../modules/modes.html">modes</a></li>
+    <li><a href="../modules/msg.html">msg</a></li>
+    <li><a href="../modules/newtab_chrome.html">newtab_chrome</a></li>
+    <li><a href="../modules/noscript.html">noscript</a></li>
+    <li><a href="../modules/open_editor.html">open_editor</a></li>
+    <li><a href="../modules/proxy.html">proxy</a></li>
+    <li><a href="../modules/quickmarks.html">quickmarks</a></li>
+    <li><a href="../modules/referer_control_wm.html">referer_control_wm</a></li>
+    <li><a href="../modules/search.html">search</a></li>
+    <li><a href="../modules/select.html">select</a></li>
+    <li><a href="../modules/select_wm.html">select_wm</a></li>
+    <li><a href="../modules/session.html">session</a></li>
+    <li><a href="../modules/soup.html">soup</a></li>
+    <li><a href="../modules/styles.html">styles</a></li>
+    <li><a href="../modules/tab_favicons.html">tab_favicons</a></li>
+    <li><a href="../modules/tabhistory.html">tabhistory</a></li>
+    <li><a href="../modules/taborder.html">taborder</a></li>
+    <li><a href="../modules/tests.lib.html">tests.lib</a></li>
+    <li><a href="../modules/undoclose.html">undoclose</a></li>
+    <li><a href="../modules/unique.html">unique</a></li>
+    <li><a href="../modules/userscripts.html">userscripts</a></li>
+    <li><a href="../modules/vertical_tabs.html">vertical_tabs</a></li>
+    <li><a href="../modules/view_source.html">view_source</a></li>
+    <li><a href="../modules/viewpdf.html">viewpdf</a></li>
+    <li><a href="../modules/webinspector.html">webinspector</a></li>
+    <li><a href="../modules/xdg.html">xdg</a></li>
+</ul>
+<h3>Classes</h3>
+<ul class=classes>
+    <li><a href="../classes/dom_document.html">dom_document</a></li>
+    <li><a href="../classes/dom_element.html">dom_element</a></li>
+    <li><a href="../classes/download.html">download</a></li>
+    <li><a href="../classes/page.html">page</a></li>
+    <li><a href="../classes/regex.html">regex</a></li>
+    <li><a href="../classes/sqlite3.html">sqlite3</a></li>
+    <li><a href="../classes/stylesheet.html">stylesheet</a></li>
+    <li><a href="../classes/timer.html">timer</a></li>
+    <li><a href="../classes/widget.html">widget</a></li>
+    <li><a href="../classes/widget:box.html">widget:box</a></li>
+    <li><a href="../classes/widget:drawing_area.html">widget:drawing_area</a></li>
+    <li><a href="../classes/widget:entry.html">widget:entry</a></li>
+    <li><a href="../classes/widget:event_box.html">widget:event_box</a></li>
+    <li><a href="../classes/widget:image.html">widget:image</a></li>
+    <li><a href="../classes/widget:label.html">widget:label</a></li>
+    <li><a href="../classes/widget:notebook.html">widget:notebook</a></li>
+    <li><a href="../classes/widget:overlay.html">widget:overlay</a></li>
+    <li><a href="../classes/widget:paned.html">widget:paned</a></li>
+    <li><a href="../classes/widget:scrolled.html">widget:scrolled</a></li>
+    <li><a href="../classes/widget:socket.html">widget:socket</a></li>
+    <li><a href="../classes/widget:spinner.html">widget:spinner</a></li>
+    <li><a href="../classes/widget:webview.html">widget:webview</a></li>
+    <li><a href="../classes/widget:window.html">widget:window</a></li>
+</ul>
+
+            </div>
+            <div id=content>
+                
+<h1>Frequently Asked Questions</h1>
+
+<h2>Downloads</h2>
+
+<h3>How do I change the default download location?</h3>
+
+<p>In your <code>rc.lua</code> after <code>require "downloads"</code> add (or modify) the following:</p>
+
+<pre class="sourcecode lua"><span class="identifier">downloads.default_dir</span> <span class="operator">=</span> <a href="http://www.lua.org/manual/5.1/manual.html#pdf-os.getenv" class="library">os.getenv</a><span class="operator">(</span><span class="constant">"HOME"</span><span class="operator">)</span> <span class="operator">..</span> <span class="constant">"/downloads"</span>
+</pre>
+
+<h3>How do I make all downloads save to my default download location without asking?</h3>
+
+<p>In your <code>rc.lua</code> after <code>require "downloads"</code> add (or modify) the following:</p>
+
+<pre class="sourcecode lua"><span class="identifier">downloads.add_signal</span><span class="operator">(</span><span class="constant">"download-location"</span><span class="operator">,</span> <span class="identifier">function</span> <span class="operator">(</span><span class="identifier">uri</span><span class="operator">,</span> <span class="identifier">file</span><span class="operator">)</span>
+    <span class="identifier">if</span> <span class="operator">not</span> <span class="identifier">file</span> <span class="operator">or</span> <span class="identifier">file</span> <span class="operator">==</span> <span class="constant">""</span> <span class="identifier">then</span>
+        <span class="identifier">file</span> <span class="operator">=</span> <span class="operator">(</span><a href="http://www.lua.org/manual/5.1/manual.html#pdf-string.match" class="library">string.match</a><span class="operator">(</span><span class="identifier">uri</span><span class="operator">,</span> <span class="constant">"/([^/]+)$"</span><span class="operator">)</span>
+            <span class="operator">or</span> <a href="http://www.lua.org/manual/5.1/manual.html#pdf-string.match" class="library">string.match</a><span class="operator">(</span><span class="identifier">uri</span><span class="operator">,</span> <span class="constant">"^</span><span class="escape">%w</span><span class="constant">+://(.+)"</span><span class="operator">)</span>
+            <span class="operator">or</span> <a href="http://www.lua.org/manual/5.1/manual.html#pdf-string.gsub" class="library">string.gsub</a><span class="operator">(</span><span class="identifier">uri</span><span class="operator">,</span> <span class="constant">"/"</span><span class="operator">,</span> <span class="constant">"_"</span><span class="operator">)</span>
+            <span class="operator">or</span> <span class="constant">"untitled"</span><span class="operator">)</span>
+    <span class="identifier">end</span>
+    <span class="identifier">return</span> <span class="identifier">downloads.default_dir</span> <span class="operator">..</span> <span class="constant">"/"</span> <span class="operator">..</span> <span class="identifier">file</span>
+<span class="identifier">end</span><span class="operator">)</span>
+</pre>
+
+<h2>Behaviour</h2>
+
+<h3>How do I stop some links opening in new windows?</h3>
+
+<p>Add your own <a href="../classes/widget:webview.html#signal-new-window-decision"><code>new-window-decision</code></code></a> webview signal handler which always opens
+links in new tabs.</p>
+
+<p>In your <code>rc.lua</code> after <code>require "webview"</code> add (or modify) the following:</p>
+
+<pre class="sourcecode lua"><span class="identifier">webview.add_signal</span><span class="operator">(</span><span class="constant">"init"</span><span class="operator">,</span> <span class="identifier">function</span> <span class="operator">(</span><span class="identifier">view</span><span class="operator">)</span>
+    <span class="identifier">view</span><span class="operator">:</span><span class="identifier">add_signal</span><span class="operator">(</span><span class="constant">"new-window-decision"</span><span class="operator">,</span> <span class="identifier">function</span> <span class="operator">(</span><span class="identifier">v</span><span class="operator">,</span> <span class="identifier">uri</span><span class="operator">,</span> <span class="identifier">reason</span><span class="operator">)</span>
+        <span class="identifier">local</span> <span class="identifier">w</span> <span class="operator">=</span> <span class="identifier">window.ancestor</span><span class="operator">(</span><span class="identifier">v</span><span class="operator">)</span>
+        <span class="identifier">w</span><span class="operator">:</span><span class="identifier">new_tab</span><span class="operator">(</span><span class="identifier">uri</span><span class="operator">)</span>
+        <span class="identifier">return</span> <span class="constant">true</span>
+    <span class="identifier">end</span><span class="operator">)</span>
+<span class="identifier">end</span><span class="operator">)</span>
+</pre>
+
+<h3>How do I copy text with Control-C?</h3>
+
+<p>Add this snippet of code to your <code>rc.lua</code>.
+Note that <code>Ctrl-C</code> is already bound to "Stop loading the current tab";
+adding this snippet will automatically remove that binding.</p>
+
+<pre class="sourcecode lua"><span class="identifier">modes.add_binds</span><span class="operator">(</span><span class="constant">"normal"</span><span class="operator">,</span> <span class="operator">{</span>
+    <span class="operator">{</span> <span class="constant">"&lt;Control-c&gt;"</span><span class="operator">,</span> <span class="constant">"Copy selected text."</span><span class="operator">,</span> <span class="identifier">function</span> <span class="operator">(</span><span class="operator">)</span>
+        <span class="identifier">luakit.selection.clipboard</span> <span class="operator">=</span> <span class="identifier">luakit.selection.primary</span>
+    <span class="identifier">end</span><span class="operator">}</span><span class="operator">,</span>
+<span class="operator">}</span><span class="operator">)</span>
+</pre>
+
+<h3>How do I open certain schemes in other applications?</h3>
+
+<p>To open particular schemes in other applications, use the
+<code>navigation-request</code> webview signal. The generic boilerplate for
+attaching to this signal is shown here:</p>
+
+<pre class="sourcecode lua"><span class="identifier">webview.add_signal</span><span class="operator">(</span><span class="constant">"init"</span><span class="operator">,</span> <span class="identifier">function</span> <span class="operator">(</span><span class="identifier">view</span><span class="operator">)</span>
+    <span class="identifier">view</span><span class="operator">:</span><span class="identifier">add_signal</span><span class="operator">(</span><span class="constant">"navigation-request"</span><span class="operator">,</span> <span class="identifier">function</span> <span class="operator">(</span><span class="identifier">v</span><span class="operator">,</span> <span class="identifier">uri</span><span class="operator">)</span>
+        <span class="comment">--- Check URI and open program here
+</span>    <span class="identifier">end</span><span class="operator">)</span>
+<span class="identifier">end</span><span class="operator">)</span>
+</pre>
+
+<p>Replace the inner comment with code that checks the URI and, if it
+matches the right scheme, opens your external program. If it matches, it
+is important to return <code>false</code> from the signal handler: this prevents
+luakit from navigating to the link while your program opens.</p>
+
+<p>Here are some examples:</p>
+
+<h4>Opening <code>mailto:</code> links using GMail</h4>
+
+<pre class="sourcecode lua"><span class="keyword">if</span> <a href="http://www.lua.org/manual/5.1/manual.html#pdf-string.match" class="library">string.match</a><span class="operator">(</span><a href="http://www.lua.org/manual/5.1/manual.html#pdf-string.lower" class="library">string.lower</a><span class="operator">(</span><span class="identifier">uri</span><span class="operator">)</span><span class="operator">,</span> <span class="constant">"^</span><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;" class="url">mailto:</a><span class="constant">"</span><span class="operator">)</span> <span class="identifier">then</span>
+    <span class="identifier">local</span> <span class="identifier">mailto</span> <span class="operator">=</span> <span class="constant">"</span><a href="https://mail.google.com/mail/?extsrc=mailto&url=%s" class="url">https://mail.google.com/mail/?extsrc=mailto&amp;url=%s</a><span class="constant">"</span>
+    <span class="identifier">local</span> <span class="identifier">w</span> <span class="operator">=</span> <span class="identifier">window.ancestor</span><span class="operator">(</span><span class="identifier">v</span><span class="operator">)</span>
+    <span class="identifier">w</span><span class="operator">:</span><span class="identifier">new_tab</span><span class="operator">(</span><a href="http://www.lua.org/manual/5.1/manual.html#pdf-string.format" class="library">string.format</a><span class="operator">(</span><span class="identifier">mailto</span><span class="operator">,</span> <span class="identifier">uri</span><span class="operator">)</span><span class="operator">)</span>
+    <span class="identifier">return</span> <span class="constant">false</span>
+<span class="identifier">end</span>
+</pre>
+
+<h4>Opening <code>mailto:</code> links using Mutt in <code>urxvt</code></h4>
+
+<pre class="sourcecode lua"><span class="keyword">if</span> <a href="http://www.lua.org/manual/5.1/manual.html#pdf-string.match" class="library">string.match</a><span class="operator">(</span><a href="http://www.lua.org/manual/5.1/manual.html#pdf-string.lower" class="library">string.lower</a><span class="operator">(</span><span class="identifier">uri</span><span class="operator">)</span><span class="operator">,</span> <span class="constant">"^</span><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;" class="url">mailto:</a><span class="constant">"</span><span class="operator">)</span> <span class="identifier">then</span>
+    <span class="identifier">luakit.spawn</span><span class="operator">(</span><a href="http://www.lua.org/manual/5.1/manual.html#pdf-string.format" class="library">string.format</a><span class="operator">(</span><span class="constant">"</span><span class="escape">%s</span><span class="constant"> </span><span class="escape">%q</span><span class="constant">"</span><span class="operator">,</span> <span class="constant">"urxvt -title mutt -e mutt"</span><span class="operator">,</span> <span class="identifier">uri</span><span class="operator">)</span><span class="operator">)</span>
+    <span class="identifier">return</span> <span class="constant">false</span>
+<span class="identifier">end</span>
+</pre>
+
+<h4>Opening <code>magnet:</code> links with Deluge</h4>
+
+<pre class="sourcecode lua"><span class="keyword">if</span> <a href="http://www.lua.org/manual/5.1/manual.html#pdf-string.match" class="library">string.match</a><span class="operator">(</span><a href="http://www.lua.org/manual/5.1/manual.html#pdf-string.lower" class="library">string.lower</a><span class="operator">(</span><span class="identifier">uri</span><span class="operator">)</span><span class="operator">,</span> <span class="constant">"^magnet:"</span><span class="operator">)</span> <span class="identifier">then</span>
+    <span class="identifier">luakit.spawn</span><span class="operator">(</span><a href="http://www.lua.org/manual/5.1/manual.html#pdf-string.format" class="library">string.format</a><span class="operator">(</span><span class="constant">"</span><span class="escape">%s</span><span class="constant"> </span><span class="escape">%q</span><span class="constant">"</span><span class="operator">,</span> <span class="constant">"deluge-gtk"</span><span class="operator">,</span> <span class="identifier">uri</span><span class="operator">)</span><span class="operator">)</span>
+    <span class="identifier">return</span> <span class="constant">false</span>
+<span class="identifier">end</span>
+</pre>
+
+<h4>Opening <code>magnet:</code> links with rTorrent</h4>
+
+<pre class="sourcecode lua"><span class="keyword">if</span> <a href="http://www.lua.org/manual/5.1/manual.html#pdf-string.match" class="library">string.match</a><span class="operator">(</span><a href="http://www.lua.org/manual/5.1/manual.html#pdf-string.lower" class="library">string.lower</a><span class="operator">(</span><span class="identifier">uri</span><span class="operator">)</span><span class="operator">,</span> <span class="constant">"^magnet:"</span><span class="operator">)</span> <span class="identifier">then</span>
+    <span class="identifier">luakit.spawn</span><span class="operator">(</span><a href="http://www.lua.org/manual/5.1/manual.html#pdf-string.format" class="library">string.format</a><span class="operator">(</span><span class="constant">"</span><span class="escape">%s</span><span class="constant"> </span><span class="escape">%q</span><span class="constant">"</span><span class="operator">,</span> <span class="constant">"mktor"</span><span class="operator">,</span> <span class="identifier">uri</span><span class="operator">)</span><span class="operator">)</span>
+    <span class="identifier">return</span> <span class="constant">false</span>
+<span class="identifier">end</span>
+</pre>
+
+<h2>Styling</h2>
+
+<p>A number of page styling tweaks can be made by adding additional page initialization functions. These are placed in the <code>rc.lua</code> file. They must be after <code>require "webview"</code>, but before the block where the window or tab creation call is made. This happens near the end of the file, right after the comment <code>End user script loading</code>. This means that you <em>cannot</em> just add these functions to the end of the file, if you do so they will not be executed.</p>
+
+<h3>I'm using a dark theme; how do I stop the white flash during the loading of a page?</h3>
+
+<p>This is not currently possible, as with WebKit 2 there is no way to give a webview widget a transparent background.</p>
+
+<h3>How do I change the default zoom level?</h3>
+
+<p>The best way to change the default zoom level is to add a rule to <code>domain_props</code>:</p>
+
+<pre class="sourcecode lua"><span class="identifier">globals.domain_props.all</span> <span class="operator">=</span> <span class="operator">{</span>
+    <span class="operator">...</span>
+    <span class="identifier">zoom_level</span> <span class="operator">=</span> <span class="number">1.5</span><span class="operator">,</span> <span class="comment">-- a 50% zoom
+</span>    <span class="operator">...</span>
+<span class="operator">}</span>
+</pre>
+
+<h3>How do I set a custom <code>about:blank</code> page?</h3>
+
+<p>The easiest way to do this is to customize the <a href="../modules/newtab_chrome.html"><code>newtab_chrome</code></code></a> module's options.</p>
+
+<p>You can also do this by watching the <code>"navigation-request"</code> webview signal
+for navigation to specific addresses (in this case <code>"about:blank"</code>):</p>
+
+<pre class="sourcecode lua"><span class="identifier">webview.add_signal</span><span class="operator">(</span><span class="constant">"init"</span><span class="operator">,</span> <span class="identifier">function</span> <span class="operator">(</span><span class="identifier">view</span><span class="operator">)</span>
+    <span class="identifier">view</span><span class="operator">:</span><span class="identifier">add_signal</span><span class="operator">(</span><span class="constant">"navigation-request"</span><span class="operator">,</span> <span class="identifier">function</span> <span class="operator">(</span><span class="identifier">_</span><span class="operator">,</span> <span class="identifier">uri</span><span class="operator">)</span>
+        <span class="identifier">if</span> <span class="identifier">uri</span> <span class="operator">==</span> <span class="constant">"about:blank"</span> <span class="identifier">then</span>
+            <span class="identifier">local</span> <span class="identifier">html</span> <span class="operator">=</span> <span class="constant">"&lt;html&gt;&lt;body bgcolor='#000000'&gt;&lt;/body&gt;&lt;/html&gt;"</span>
+            <span class="identifier">view</span><span class="operator">:</span><span class="identifier">load_string</span><span class="operator">(</span><span class="identifier">html</span><span class="operator">,</span> <span class="constant">"about:blank"</span><span class="operator">)</span>
+            <span class="identifier">return</span> <span class="constant">true</span>
+        <span class="identifier">end</span>
+    <span class="identifier">end</span><span class="operator">)</span>
+<span class="identifier">end</span><span class="operator">)</span>
+</pre>
+
+
+<!-- vim: et:sw=4:ts=8:sts=4:tw=79 -->
+
+
+
+            </div>
+            <div style='display:none'><a rel=prev href='../pages/01-authors.html'><a rel=next href='../pages/03-quick-start-guide.html'></div>
+        </div>
+	</div>
+	<footer>
+		<div class="container">
+			<small>Copyright 2017 Aidan Holm</small>
+			<br>
+			<small>All written documentation and luakit code are copyright to their respective authors.</small>
+		</div>
+	</footer>
+</body>
+</html>

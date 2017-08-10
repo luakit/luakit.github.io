@@ -329,7 +329,7 @@ span.target {
 </ul>
 <h3>Modules</h3>
 <ul class=modules>
-    <li><span>adblock</span></li>
+    <li><a href="../modules/adblock.html">adblock</a></li>
     <li><a href="../modules/adblock_chrome.html">adblock_chrome</a></li>
     <li><a href="../modules/binds.html">binds</a></li>
     <li><a href="../modules/bookmarks.html">bookmarks</a></li>
@@ -366,7 +366,7 @@ span.target {
     <li><a href="../modules/lousy.util.html">lousy.util</a></li>
     <li><a href="../modules/lousy.widget.html">lousy.widget</a></li>
     <li><a href="../modules/luakit.html">luakit</a></li>
-    <li><a href="../modules/modes.html">modes</a></li>
+    <li><span>modes</span></li>
     <li><a href="../modules/msg.html">msg</a></li>
     <li><a href="../modules/newtab_chrome.html">newtab_chrome</a></li>
     <li><a href="../modules/noscript.html">noscript</a></li>
@@ -422,68 +422,13 @@ span.target {
 
             </div>
             <div id=content>
-                        <h1>Module <code>adblock</code></h1>
+                        <h1>Module <code>modes</code></h1>
         <!-- status indicator -->
-        <span class=tagline>Simple URI-based content filter</span>
+        <span class=tagline>Default mode configuration for luakit</span>
         
 
-<p>This is a simple, fast ad blocker module that works by blocking requests to
-domains that only serve advertisements. It does not currently do any form of
-cosmetic ad blocking (i.e. element hiding with CSS).</p>
-
-<p>See also: <a href="../modules/adblock_chrome.html"><code>adblock_chrome</code></code></a>.</p>
-
-<h2>Capabilities</h2>
-
-<ul>
-    <li>You can allow specific content to be loaded if it is inadvertently
-    blocked: simply add whitelisting rules formed by <code>@@</code> and the pattern to
-    allow.</li>
-    <li>Supports multiple filter list files.</li>
-    <li>Filter files can be enabled, disabled and reloaded from disk
-    without restarting luakit.</li>
-    <li>A configuration chrome page is provided by <a href="../modules/adblock_chrome.html"><code>adblock_chrome</code></code></a>.</li>
-</ul>
-
-<h2>Usage</h2>
-
-<ul>
-    <li>Add <code>require "adblock"</code> and <code>require "adblock_chrome"</code> to your <code>config.rc</code>.</li>
-    <li>Download AdblockPlus-compatible filter lists to the adblock directory.
-    Multiple lists are supported.
-    EasyList is the most popular Adblock Plus filter list, and can be
-    downloaded from <a href="https://easylist.to/">https://easylist.to/</a>.</li>
-    <li>Filter lists downloaded to the adblock directory must have a
-    filename ending in <code>.txt</code> in order to be loaded.</li>
-    <li>Filter lists need to be updated regularly (~weekly), use cron!</li>
-</ul>
-
-<h2>Troubleshooting</h2>
-
-<p>If ad blocking is not working as expected, the easiest way to determine
-what is happening is to set the appropriate log levels to <code>debug</code>:</p>
-
-<p>If a filterlist is not being loaded for some reason, start luakit with
-  the following:</p>
-
-<pre class="sourcecode lua"><span class="comment">--log=lua/lib/adblock=debug
-</span></pre>
-
-<p>If a filterlist is not behaving correctly, by blocking too much or too
-  little, start luakit with the following:</p>
-
-<pre class="sourcecode lua"><span class="comment">--log=lua/lib/adblock_wm=debug
-</span></pre>
-
-<h2>Files and Directories</h2>
-
-<ul>
-    <li>All filterlists should be downloaded to the adblock data directory.
-    By default, this is the <code>adblock</code> sub-directory of the luakit data
-    directory. All filterlists must have a filename ending in <code>.txt</code>.</li>
-</ul>
-
-
+<p>This module defines a core set of modes each luakit window can be in.
+Different modes recognize different keybindings.</p>
 
 
 
@@ -494,41 +439,26 @@ what is happening is to set the appropriate log levels to <code>debug</code>:</p
         <!-- modes and binds --><h2>Functions</h2>
 
         <h3 class=function>
-            <span class=target id="function-load"></span>
-            <a href="#function-load">adblock.load (reload, single_list, no_sync)</a>
+            <span class=target id="function-new_mode"></span>
+            <a href="#function-new_mode">modes.new_mode (name, desc, mode, replace)</a>
         </h3>
             <div class=function>
             
             
-<p>Load filter list files, and refresh any adblock pages that are open.</p>
+<p>Add a new mode table (optionally merges with original mode)</p>
 
             <h4>Parameters</h4>
 <ul>
         <li class=parameter>
             <div class=two-col>
                 <div>
-                    <span class=parameter>reload</span>
-                    <div>Type: <span class=type>boolean</span></div>
-                    <div></div>
-                    <div></div>
-                </div>
-                <div>
-<code>true</code> if all subscriptions already loaded
-should be fully reloaded.
-</div>
-            </div>
-        </li>
-    
-        <li class=parameter>
-            <div class=two-col>
-                <div>
-                    <span class=parameter>single_list</span>
+                    <span class=parameter>name</span>
                     <div>Type: <span class=type>string</span></div>
                     <div></div>
                     <div></div>
                 </div>
                 <div>
-Single list file.
+The name of the mode.
 
 </div>
             </div>
@@ -537,14 +467,46 @@ Single list file.
         <li class=parameter>
             <div class=two-col>
                 <div>
-                    <span class=parameter>no_sync</span>
-                    <div>Type: <span class=type>boolean</span></div>
+                    <span class=parameter>desc</span>
+                    <div>Type: <span class=type>string</span></div>
+                    <div>Optional</div>
+                    <div></div>
+                </div>
+                <div>
+The description of the mode.
+
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>mode</span>
+                    <div>Type: <span class=type>table</span></div>
                     <div></div>
                     <div></div>
                 </div>
                 <div>
-<code>true</code> if subscriptions should not be synchronized to
-the web process.
+A table that defines the mode.
+
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>replace</span>
+                    <div>Type: <span class=type>boolean</span></div>
+                    <div>Optional</div>
+                    <div>Default: 
+<code>false</code>
+</div>
+                </div>
+                <div>
+<code>true</code> if any existing mode with the same name should
+be replaced, and <code>false</code> if the pre-existing mode should be extended.
 </div>
             </div>
         </li>
@@ -554,26 +516,123 @@ the web process.
         </div>
     
         <h3 class=function>
-            <span class=target id="function-list_set_enabled"></span>
-            <a href="#function-list_set_enabled">adblock.list_set_enabled (a, enabled)</a>
+            <span class=target id="function-get_mode"></span>
+            <a href="#function-get_mode">modes.get_mode (name)</a>
         </h3>
             <div class=function>
             
             
-<p>Enable or disable an adblock filter list.</p>
+<p>Get a mode by name.</p>
 
             <h4>Parameters</h4>
 <ul>
         <li class=parameter>
             <div class=two-col>
                 <div>
-                    <span class=parameter>a</span>
-                    <div>Type: <span class=type>number</span> or <span class=type>string</span></div>
+                    <span class=parameter>name</span>
+                    <div>Type: <span class=type>string</span></div>
                     <div></div>
                     <div></div>
                 </div>
                 <div>
-The number of the list to enable or disable.
+The name of the mode to retrieve.
+
+</div>
+            </div>
+        </li>
+    
+</ul>
+            <h4>Return Values</h4>
+<ul>
+        <li>
+            <div class=two-col>
+                <div><span class=type>table</span></div><div>
+The mode table for the named mode.
+
+</div>
+            </div>
+        </li>
+    
+</ul>
+        </div>
+    
+        <h3 class=function>
+            <span class=target id="function-get_modes"></span>
+            <a href="#function-get_modes">modes.get_modes ()</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Get all modes.</p>
+
+            
+            <h4>Return Values</h4>
+<ul>
+        <li>
+            <div class=two-col>
+                <div><span class=type>table</span></div><div>
+A clone of the full table of modes.
+
+</div>
+            </div>
+        </li>
+    
+</ul>
+        </div>
+    
+        <h3 class=function>
+            <span class=target id="function-add_binds"></span>
+            <a href="#function-add_binds">modes.add_binds (mode, binds)</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Add a set of binds to one or more modes. Any pre-existing binds with the
+same trigger will be removed automatically.</p>
+
+<h4>Example</h4>
+
+<p>The following code snippet will rebind <code>Control-c</code> to copy text selected with
+the mouse, and the default binding for <code>Control-c</code> will be removed.</p>
+
+<pre class="sourcecode lua"><span class="identifier">modes.add_binds</span><span class="operator">(</span><span class="constant">"normal"</span><span class="operator">,</span> <span class="operator">{</span>
+    <span class="operator">{</span> <span class="constant">"&lt;Control-c&gt;"</span><span class="operator">,</span> <span class="constant">"Copy selected text."</span><span class="operator">,</span> <span class="identifier">function</span> <span class="operator">(</span><span class="operator">)</span>
+        <span class="identifier">luakit.selection.clipboard</span> <span class="operator">=</span> <span class="identifier">luakit.selection.primary</span>
+    <span class="identifier">end</span><span class="operator">}</span><span class="operator">,</span>
+<span class="operator">}</span><span class="operator">)</span>
+</pre>
+
+<h5>Bind format</h5>
+
+<p>Every item in the <code>binds</code> array must be a table that defines a single binding
+between a trigger and an action. Each entry must have the following form:</p>
+
+<pre class="sourcecode lua"><span class="operator">{</span> <span class="identifier">trigger</span><span class="operator">,</span> <span class="identifier">description</span><span class="operator">,</span> <span class="identifier">action</span><span class="operator">,</span> <span class="identifier">options</span> <span class="operator">}</span>
+</pre>
+
+<ul>
+    <li><code>trigger</code> is a string describing the combination of keys/modifiers/buttons
+    that will trigger the associated action.</li>
+    <li><code>description</code> is an optional string. Any description will show up in the
+    introspector.</li>
+    <li><code>action</code> is a function that will be called when the binding is
+    activated, of type <a href="../modules/modes.html#callback-bind_action_cb"><code>bind_action_cb</code></code></a>.</li>
+    <li><code>options</code> is a table of bind-time options passed to the <code>action</code> callback.</li>
+</ul>
+
+
+            <h4>Parameters</h4>
+<ul>
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>mode</span>
+                    <div>Type: <span class=type>table</span> or <span class=type>string</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+The name of the mode, or an array of mode names.
 
 </div>
             </div>
@@ -582,13 +641,13 @@ The number of the list to enable or disable.
         <li class=parameter>
             <div class=two-col>
                 <div>
-                    <span class=parameter>enabled</span>
-                    <div>Type: <span class=type>boolean</span></div>
+                    <span class=parameter>binds</span>
+                    <div>Type: <span class=type>table</span></div>
                     <div></div>
                     <div></div>
                 </div>
                 <div>
-<code>true</code> to enable, <code>false</code> to disable.
+An array of binds to add to each of the named modes.
 
 </div>
             </div>
@@ -599,26 +658,51 @@ The number of the list to enable or disable.
         </div>
     
         <h3 class=function>
-            <span class=target id="function-whitelist_domain_access"></span>
-            <a href="#function-whitelist_domain_access">adblock.whitelist_domain_access (domain)</a>
+            <span class=target id="function-remove_binds"></span>
+            <a href="#function-remove_binds">modes.remove_binds (mode, binds)</a>
         </h3>
             <div class=function>
             
             
-<p>Whitelist accessing a blocked domain for the current session.</p>
+<p>Remove a set of binds from one or more modes.</p>
+
+<h4>Example</h4>
+
+<pre class="sourcecode lua"><span class="comment">-- Disable extra zooming commands
+</span><span class="identifier">modes.remove_binds</span><span class="operator">(</span><span class="constant">"normal"</span><span class="operator">,</span> <span class="operator">{</span> <span class="constant">"zi"</span><span class="operator">,</span> <span class="constant">"zo"</span><span class="operator">,</span> <span class="constant">"zz"</span> <span class="operator">}</span><span class="operator">)</span>
+
+<span class="comment">-- Disable passthrough mode
+</span><span class="identifier">modes.remove_binds</span><span class="operator">(</span><span class="operator">{</span><span class="constant">"normal"</span><span class="operator">,</span> <span class="constant">"insert"</span><span class="operator">}</span><span class="operator">,</span> <span class="operator">{</span> <span class="constant">"&lt;Control-z&gt;"</span> <span class="operator">}</span><span class="operator">)</span>
+</pre>
+
 
             <h4>Parameters</h4>
 <ul>
         <li class=parameter>
             <div class=two-col>
                 <div>
-                    <span class=parameter>domain</span>
-                    <div>Type: <span class=type>string</span></div>
+                    <span class=parameter>mode</span>
+                    <div>Type: <span class=type>table</span> or <span class=type>string</span></div>
                     <div></div>
                     <div></div>
                 </div>
                 <div>
-The domain to whitelist.
+The name of the mode, or an array of mode names.
+
+</div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>binds</span>
+                    <div>Type: <span class=type>table</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+An array of binds to remove from each of the named modes.
 
 </div>
             </div>
@@ -627,68 +711,135 @@ The domain to whitelist.
 </ul>
             
         </div>
-    <h2>Properties</h2>
+    
+        <h3 class=function>
+            <span class=target id="function-add_cmds"></span>
+            <a href="#function-add_cmds">modes.add_cmds (mode, binds)</a>
+        </h3>
+            <div class=function>
+            
+            
+<p>Add a set of commands to the built-in <code>command</code> mode.</p>
 
-        <h3 class=property>
-            <span class=target id="property-subscriptions"></span>
-            <a href="#property-subscriptions">adblock.subscriptions</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>table</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
-The set of ad blocking subscriptions that are active.
+            <h4>Parameters</h4>
+<ul>
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>mode</span>
+                    <div>Type: <span class=type>table</span> or <span class=type>string</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+The name of the mode, or an array of mode names.
+
 </div>
-        </div>
+            </div>
+        </li>
     
-        <h3 class=property>
-            <span class=target id="property-rules"></span>
-            <a href="#property-rules">adblock.rules</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>table</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
-String patterns to filter URIs with.
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>binds</span>
+                    <div>Type: <span class=type>table</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+An raray of binds to add to each of the named modes.
+
 </div>
-        </div>
+            </div>
+        </li>
     
-        <h3 class=property>
-            <span class=target id="property-enabled"></span>
-            <a href="#property-enabled">adblock.enabled</a>
+</ul>
+            
+        </div>
+    <h2>Callback Types</h2>
+
+        <h3 class=function>
+            <span class=target id="callback-bind_action_cb"></span>
+            <a href="#callback-bind_action_cb">bind_action_cb (w, opts, bind_opts)</a>
         </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>boolean</span></div>
-                <div>Default: 
-true
+            <div class=function>
+            
+            
+<p>Callback type for a bind action.</p>
+
+            <h4>Parameters</h4>
+<ul>
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>w</span>
+                    <div>Type: <span class=type>table</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+The window table for the window on which the binding was
+activated.
 </div>
-                <div>Read-write</div>
             </div>
-            <div>
-Whether ad blocking is enabled. Modifying this value will modify adblock
-state; setting it to <code>true</code> will enable ad blocking, while setting it to
-<code>false</code> will disable ad blocking.
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>opts</span>
+                    <div>Type: <span class=type>table</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+Combined table of bind-time and invocation-time options.
+
 </div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>bind_opts</span>
+                    <div>Type: <span class=type>table</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+Table of invocation-time options.
+
+</div>
+            </div>
+        </li>
+    
+</ul>
+            <h4>Return Values</h4>
+<ul>
+        <li>
+            <div class=two-col>
+                <div><span class=type>boolean</span></div><div>
+<code>false</code> if bind matching should be continued, as if this
+action were not bound. Any other value stops bind matching, which is usually
+what you want.
+</div>
+            </div>
+        </li>
+    
+</ul>
         </div>
     
         <h2>Attribution</h2>
         <div class=attr-wrap>
     <h4>Copyright</h4><ul class=copyright>
-        <li>2010 Chris van Dijk (quigybo) <quigybo@hotmail.com>
+        <li>2017 Aidan Holm <aidanholm@gmail.com>
         <li>2010 Mason Larobina (mason-l) <mason.larobina@gmail.com>
-        <li>2012 Plaque FCC <Reslayer@ya.ru>
     </ul>
 </div>
     
             </div>
-            <div style='display:none'><a rel=prev href='../pages/06-tests.html'><a rel=next href='../modules/adblock_chrome.html'></div>
+            <div style='display:none'><a rel=prev href='../modules/luakit.html'><a rel=next href='../modules/msg.html'></div>
         </div>
 	</div>
 	<footer>

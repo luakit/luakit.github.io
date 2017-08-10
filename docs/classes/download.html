@@ -5,12 +5,15 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Luakit API Documentation</title>
 	<link rel="icon" type="image/png" href="favicon.png" />
-	<style type="text/css">html {
-	color: #333;
+	<style type="text/css">* {
+    box-sizing: border-box;
 }
+
 body {
     margin: 0;
-    font-family: "Helvetica", "Arial", sans-serif;
+    font-family: "Arial", sans-serif;
+    color: #333;
+    line-height: 1.4;
 }
 
 #hdr {
@@ -21,70 +24,42 @@ body {
 #hdr > h1 {
     color: #555;
     margin: 0 auto;
-    max-width: 910px;
-    padding: 1rem 2rem;
+    padding: 1rem;
     font-size: 1rem;
+    line-height: 1;
+}
+
+#hdr > h1, #wrap {
+    max-width: 55rem;
 }
 
 #wrap {
-    font-size: 14px;
-    line-height: 1.3;
-    padding: 2rem;
+    padding: 1rem;
     margin: 0 auto;
     justify-content: center;
-    max-width: 910px;
-}
-
-h1, h2, strong {
-    line-height: 1.1;
-    margin: 0;
-    color: #111;
 }
 
 .tagline {
+    font-size: 1.5rem;
     color: #555;
     margin: 0 0 1rem;
-    font-size: 1.4rem;
     font-weight: normal;
-}
-
-h1 { margin: 0 0 0.7rem; }
-h2 { margin: 1.5rem 0 1rem; }
-h4 { margin: 1rem 0; }
-
-code, pre
-{
-	background: #f5f7f9;
-	color: #334;
-}
-code {
-	border: 1px solid #dfdfe9;
-	padding: 0px 4px;
-}
-pre > code {
-    border: none;
-    padding: 0;
-}
-pre {
-	padding: 1rem 1.2rem;
-	border-left: 2px solid #69c;
 }
 
 h3.function > a, h3.property > a, h3.table > a, h3.field > a {
     font-family: monospace;
-	color: #2B5782;
+    color: #2B5782;
     text-decoration: none;
-    font-size: 0.9rem;
+    font-size: 1rem;
 }
 
 span.parameter, span.type {
     font-family: monospace;
-	color: #2B5782;
+    color: #2B5782;
     text-decoration: none;
-    font-size: 1.0rem;
 }
 span.parameter {
-	font-weight: bold;
+    font-weight: bold;
 }
 
 li.parameter {
@@ -133,22 +108,28 @@ div.good.alert {
 }
 #content {
     flex: 1;
-    max-width: 48rem;
+    position: relative;
 }
 #sidebar {
-    flex: 0 0 15rem;
-    margin-right: 2rem;
+    flex: 0 0 13rem;
+    margin-right: 1rem;
+    font-family: "Open Sans", "DejaVu Sans", sans-serif;
 }
 
-@media (max-width: 965px) {
+@media (max-width: 55rem) {
     #sidebar { display: none; }
 }
 
 #sidebar > h2 {
     margin: 0 0 1rem;
+    font-size: 1.3rem;
+    font-weight: normal;
 }
 #sidebar > h3 {
     margin: 1rem 0 0.5rem;
+    font-size: 1.1rem;
+    font-weight: normal;
+    color: #444;
 }
 #sidebar > ul {
     list-style-type: none;
@@ -157,19 +138,45 @@ div.good.alert {
 }
 #sidebar > ul > li {
     margin: 0.2rem 0.2rem 0.2rem 0.5rem;
-    font-family: monospace;
+    font-size: 0.9rem;
 }
 #sidebar > ul > li > a, #sidebar > ul > li > span {
-    font-family: monospace;
     text-decoration: none;
-    font-size: 1.1rem;
+    font-size: 0.9rem;
 }
 #sidebar > ul > li > span {
-	font-weight: bold;
+    color: black;
+    font-weight: 500;
+}
+#sidebar > ul.modules > li, #sidebar > ul.classes > li,
+#sidebar > ul.modules > li > a, #sidebar > ul.modules > li > span,
+#sidebar > ul.classes > li > a, #sidebar > ul.classes > li > span {
+    font-family: monospace;
 }
 
 #content li:not(:last-child) {
     margin-bottom: 0.5rem;
+}
+
+/*
+ * Content typography
+ */
+
+#content > h1 {
+    font-size: 1.7rem;
+    color: #000;
+    margin: 0 0 0.7rem;
+}
+
+#content > h2 {
+    font-size: 1.3rem;
+    color: #000;
+    margin: 1.5rem 0 1rem;
+}
+
+#content > h3 {
+    font-size: 1.0rem;
+    color: #000;
 }
 
 /* Links */
@@ -189,13 +196,13 @@ li.dummy {
 }
 .attr-wrap > h4 {
     flex: 0 0 8rem;
-    margin-bottom: 0;
+    margin: 0;
 }
 .attr-wrap > ul {
     flex: 1;
     padding: 2px 0;
     list-style-type: none;
-    margin-bottom: 0;
+    margin: 0;
 }
 .attr-wrap > ul > li:before {
    width: 20px;
@@ -205,6 +212,10 @@ li.dummy {
 }
 ul.authors > li:before { content: "•"; }
 ul.copyright > li:before { content: "©"; }
+
+/*
+ * Code blocks and inline code
+ */
 
 .sourcecode .comment { color: #558817; }
 .sourcecode .constant { color: #a8660d; }
@@ -218,21 +229,72 @@ ul.copyright > li:before { content: "©"; }
 .sourcecode .prompt { color: #558817; }
 .sourcecode a:link, .sourcecode a:visited { color: #272fc2; }
 
+code, pre {
+    background: #f5f7f9;
+    color: #334;
+}
+code {
+    border: 1px solid #dfdfe9;
+    padding: 0px 4px;
+}
+pre > code {
+    border: none;
+    padding: 0;
+}
+pre {
+    padding: 1rem 1.2rem;
+    border-left: 2px solid #69c;
+}
+
+/*
+ * Binding styles
+ */
+
+kbd, .cmd {
+    border-radius: .2rem;
+    display: inline-block;
+    line-height: 1;
+    padding: .3rem .4rem;
+    vertical-align: baseline;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+kbd {
+    background: #444b5b;
+    color: #fff;
+}
+
+.cmd {
+    background: #ffeab5;
+    color: #40495c;
+}
+
 .two-col { display: flex; }
 .two-col > :first-child { flex: 0 0 200px; margin-right: 10px; }
 .two-col > :first-child > div:not(:first-child) { margin-top: 0.3rem; }
 ul.triggers {
-	list-style-type: none;
-	padding: 0;
+    list-style-type: none;
+    padding: 0;
 }
 ul.triggers > li {
-	font-family: monospace, sans-serif;
-	color: #2B5782;
-	font-weight: bold;
+    font-family: monospace, sans-serif;
+    color: #2B5782;
+    font-weight: bold;
+    font-size: 1rem;
 }
 
 div.info > div { margin-top: 0.3rem; }
-</style>
+
+span.target {
+    position: absolute;
+    display: block;
+    margin-top: -100px;
+    height: 100px;
+    visibility: hidden;
+}
+        div#wrap { padding: 0; }
+    </style>
 	<link rel=stylesheet href=/luakit/style.css />
 	<link rel="stylesheet" href="https://code.cdn.mozilla.net/fonts/fira.css">
 	<style type="text/css">
@@ -246,7 +308,7 @@ div.info > div { margin-top: 0.3rem; }
 <body>
 	<nav>
 		<a href="/luakit/">Home</a>
-		<a href="/luakit/#sec-release">Releases</a>
+		<a href="/luakit/news/">Releases</a>
 		<a href="/luakit/#sec-download">Download</a>
 		<a href="/luakit/docs/">Documentation</a>
 		<a href="/luakit/#sec-contributing">Contributing</a>
@@ -257,14 +319,19 @@ div.info > div { margin-top: 0.3rem; }
             <div id=sidebar>
                 <h2>Table of Contents</h2>
                 <h3>Pages</h3>
-<ul>
-    <li><a href="../pages/Authors.html">Authors</a></li>
-    <li><a href="../pages/Tests.html">Tests</a></li>
+<ul class=pages>
+    <li><a href="../pages/01-authors.html">Authors</a></li>
+    <li><a href="../pages/02-faq.html">Frequently Asked Questions</a></li>
+    <li><a href="../pages/03-quick-start-guide.html">Quick-start guide</a></li>
+    <li><a href="../pages/04-migration-guide.html">Migration Guide</a></li>
+    <li><a href="../pages/05-configuration.html">Files and Directories</a></li>
+    <li><a href="../pages/06-tests.html">Tests</a></li>
 </ul>
 <h3>Modules</h3>
-<ul>
+<ul class=modules>
     <li><a href="../modules/adblock.html">adblock</a></li>
     <li><a href="../modules/adblock_chrome.html">adblock_chrome</a></li>
+    <li><a href="../modules/binds.html">binds</a></li>
     <li><a href="../modules/bookmarks.html">bookmarks</a></li>
     <li><a href="../modules/bookmarks_chrome.html">bookmarks_chrome</a></li>
     <li><a href="../modules/chrome.html">chrome</a></li>
@@ -288,6 +355,7 @@ div.info > div { margin-top: 0.3rem; }
     <li><a href="../modules/image_css.html">image_css</a></li>
     <li><a href="../modules/introspector_chrome.html">introspector_chrome</a></li>
     <li><a href="../modules/ipc.html">ipc</a></li>
+    <li><a href="../modules/log_chrome.html">log_chrome</a></li>
     <li><a href="../modules/lousy.bind.html">lousy.bind</a></li>
     <li><a href="../modules/lousy.load.html">lousy.load</a></li>
     <li><a href="../modules/lousy.mode.html">lousy.mode</a></li>
@@ -298,6 +366,7 @@ div.info > div { margin-top: 0.3rem; }
     <li><a href="../modules/lousy.util.html">lousy.util</a></li>
     <li><a href="../modules/lousy.widget.html">lousy.widget</a></li>
     <li><a href="../modules/luakit.html">luakit</a></li>
+    <li><a href="../modules/modes.html">modes</a></li>
     <li><a href="../modules/msg.html">msg</a></li>
     <li><a href="../modules/newtab_chrome.html">newtab_chrome</a></li>
     <li><a href="../modules/noscript.html">noscript</a></li>
@@ -325,7 +394,7 @@ div.info > div { margin-top: 0.3rem; }
     <li><a href="../modules/xdg.html">xdg</a></li>
 </ul>
 <h3>Classes</h3>
-<ul>
+<ul class=classes>
     <li><a href="../classes/dom_document.html">dom_document</a></li>
     <li><a href="../classes/dom_element.html">dom_element</a></li>
     <li><span>download</span></li>
@@ -354,7 +423,8 @@ div.info > div { margin-top: 0.3rem; }
             </div>
             <div id=content>
                         <h1>Class <code>download</code></h1>
-        <h2 class=tagline>Luakit download interface</h2>
+        <!-- status indicator -->
+        <span class=tagline>Luakit download interface</span>
         
 
 <p>This class provides an interface to managing ongoing downloads.</p>
@@ -367,7 +437,8 @@ div.info > div { margin-top: 0.3rem; }
 
         <!-- modes and binds --><h2>Properties</h2>
 
-        <h3 class=property id="property-allow_overwrite">
+        <h3 class=property>
+            <span class=target id="property-allow_overwrite"></span>
             <a href="#property-allow_overwrite">download.allow_overwrite</a>
         </h3>
         <div class="two-col property">
@@ -384,7 +455,8 @@ existing at the destination.
 </div>
         </div>
     
-        <h3 class=property id="property-destination">
+        <h3 class=property>
+            <span class=target id="property-destination"></span>
             <a href="#property-destination">download.destination</a>
         </h3>
         <div class="two-col property">
@@ -400,7 +472,8 @@ The path at which the downloaded file should be saved.
 </div>
         </div>
     
-        <h3 class=property id="property-progress">
+        <h3 class=property>
+            <span class=target id="property-progress"></span>
             <a href="#property-progress">download.progress</a>
         </h3>
         <div class="two-col property">
@@ -411,12 +484,13 @@ The path at which the downloaded file should be saved.
             </div>
             <div>
 The download progress, ranging from 0.0 (no data yet received) to 1.0 (all
-data received). This is only an estimate; see the <code>current_size</code> property for
+data received). This is only an estimate; see the <a href="../classes/download.html#property-current_size"><code>current_size</code></code></a> property for
 a more exact value.
 </div>
         </div>
     
-        <h3 class=property id="property-status">
+        <h3 class=property>
+            <span class=target id="property-status"></span>
             <a href="#property-status">download.status</a>
         </h3>
         <div class="two-col property">
@@ -431,7 +505,8 @@ The download status. Will be one of <code>"created"</code>, <code>"started"</cod
 </div>
         </div>
     
-        <h3 class=property id="property-error">
+        <h3 class=property>
+            <span class=target id="property-error"></span>
             <a href="#property-error">download.error</a>
         </h3>
         <div class="two-col property">
@@ -445,7 +520,8 @@ The error message for the download, or <code>nil</code>.
 </div>
         </div>
     
-        <h3 class=property id="property-total_size">
+        <h3 class=property>
+            <span class=target id="property-total_size"></span>
             <a href="#property-total_size">download.total_size</a>
         </h3>
         <div class="two-col property">
@@ -460,7 +536,8 @@ downloaded.
 </div>
         </div>
     
-        <h3 class=property id="property-current_size">
+        <h3 class=property>
+            <span class=target id="property-current_size"></span>
             <a href="#property-current_size">download.current_size</a>
         </h3>
         <div class="two-col property">
@@ -475,7 +552,8 @@ destination.
 </div>
         </div>
     
-        <h3 class=property id="property-elapsed_time">
+        <h3 class=property>
+            <span class=target id="property-elapsed_time"></span>
             <a href="#property-elapsed_time">download.elapsed_time</a>
         </h3>
         <div class="two-col property">
@@ -490,7 +568,8 @@ includes any fractional part.
 </div>
         </div>
     
-        <h3 class=property id="property-mime_type">
+        <h3 class=property>
+            <span class=target id="property-mime_type"></span>
             <a href="#property-mime_type">download.mime_type</a>
         </h3>
         <div class="two-col property">
@@ -504,7 +583,8 @@ The MIME type of the download, if known.
 </div>
         </div>
     
-        <h3 class=property id="property-suggested_filename">
+        <h3 class=property>
+            <span class=target id="property-suggested_filename"></span>
             <a href="#property-suggested_filename">download.suggested_filename</a>
         </h3>
         <div class="two-col property">
@@ -519,38 +599,41 @@ The suggested filename to use, for use in dialog boxes.
         </div>
     <h2>Signals</h2>
 
-        <h3 class=function id="signal-property::allow-overwrite">
+        <h3 class=function>
+            <span class=target id="signal-property::allow-overwrite"></span>
             <a href="#signal-property::allow-overwrite">"property::allow-overwrite"</a>
         </h3>
             <div class=function>
             
             
-<p>Emitted when the <code>allow_overwrite</code> property has changed.</p>
+<p>Emitted when the <a href="../classes/download.html#property-allow_overwrite"><code>allow_overwrite</code></code></a> property has changed.</p>
 
             
             
         </div>
     
-        <h3 class=function id="signal-property::destination">
+        <h3 class=function>
+            <span class=target id="signal-property::destination"></span>
             <a href="#signal-property::destination">"property::destination"</a>
         </h3>
             <div class=function>
             
             
-<p>Emitted when the <code>destination</code> property has changed.</p>
+<p>Emitted when the <a href="../classes/download.html#property-destination"><code>destination</code></code></a> property has changed.</p>
 
             
             
         </div>
     
-        <h3 class=function id="signal-decide-destination">
+        <h3 class=function>
+            <span class=target id="signal-decide-destination"></span>
             <a href="#signal-decide-destination">"decide-destination"</a>
         </h3>
             <div class=function>
             
             
 <p>Emitted when a destination for the download must be decided. Handlers should
-set the download's <code>destination</code> property.</p>
+set the download's <a href="../classes/download.html#property-destination"><code>destination</code></code></a> property.</p>
 
             <h4>Parameters</h4>
 <ul>
@@ -584,7 +667,8 @@ The suggested filename for the download.
 </ul>
         </div>
     
-        <h3 class=function id="signal-created-destination">
+        <h3 class=function>
+            <span class=target id="signal-created-destination"></span>
             <a href="#signal-created-destination">"created-destination"</a>
         </h3>
             <div class=function>
@@ -613,7 +697,8 @@ The final destination for the download.
             
         </div>
     
-        <h3 class=function id="signal-error">
+        <h3 class=function>
+            <span class=target id="signal-error"></span>
             <a href="#signal-error">"error"</a>
         </h3>
             <div class=function>
@@ -642,7 +727,8 @@ The error message.
             
         </div>
     
-        <h3 class=function id="signal-finished">
+        <h3 class=function>
+            <span class=target id="signal-finished"></span>
             <a href="#signal-finished">"finished"</a>
         </h3>
             <div class=function>
@@ -656,13 +742,6 @@ The error message.
     
         <h2>Attribution</h2>
         <div class=attr-wrap>
-    <h4>Authors</h4>
-    <ul class=authors>
-        <li>Fabian Streitel
-        <li>Mason Larobina
-    </ul>
-</div>
-<div class=attr-wrap>
     <h4>Copyright</h4><ul class=copyright>
         <li>2011 Fabian Streitel
         <li>2011 Mason Larobina
