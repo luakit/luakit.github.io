@@ -22,10 +22,10 @@ local split_string = function (s, pattern)
 end
 
 local html_template
-local make_news_html = function (md, is_latest)
-    local ver = assert(md:match("^## %[([0-9-]+)%]\n"), "Bad version!")
+local make_news_html = function (release, is_latest)
+    local md, ver = release.markdown, release.version
     local lrt = is_latest and " - latest release" or ""
-    md = md:gsub("^## %[([0-9-]+)%]\n", "## Luakit " .. ver .. lrt .. "\n")
+    md = "## Luakit " .. ver .. lrt .. "\n" .. md
     html_template = html_template or util.read_file(opts.template)
     local html = html_template:gsub("{(%w+)}", {
         changelog = markdown(md),
@@ -46,10 +46,42 @@ local split_changelog = function ()
     local parts = split_string(changelog, "\n## ")
     table.remove(parts, 1)
     for i, part in ipairs(parts) do
-        make_news_html("## " .. part, i == 1)
+        parts[i] = {
+            version = assert(part:match("^%[([0-9-]+)%]\n"), "Bad version!"),
+            markdown = part:gsub("^%[([0-9-]+)%]\n", ""),
+        }
     end
+    return parts
 end
 
 assert(pcall(util.read_file, ".git/HEAD"), "Not at git root!")
 util.mkdir(opts.target_dir)
-split_changelog()
+local parts = split_changelog()
+
+for i, part in ipairs(parts) do
+    make_news_html(part, i == 1)
+end
+
+local make_news_index = function (releases)
+    local contents = "<h2>Luakit releases</h2>"
+    for i, release in ipairs(releases) do
+        local lrt = i==1 and " - latest release" or ""
+        local ver = release.version
+        local hdr = "Luakit " .. ver .. lrt .. "\n"
+        contents = contents .. '<li><h3><a href="/luakit/news/luakit-'.. ver:gsub("%-", ".") .. '.html">' .. hdr .. "</a></h3></li>"
+    end
+    contents  = contents .. "</ul>"
+
+    local html = assert(html_template):gsub("{(%w+)}", {
+        changelog = contents,
+        version = "releases",
+    })
+
+    local dest = opts.target_dir .. "/index.html"
+    local f = io.open(dest, "w")
+    f:write(html)
+    f:close()
+    print("Wrote to " .. dest)
+end
+
+make_news_index(parts)

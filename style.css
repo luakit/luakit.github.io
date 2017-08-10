@@ -184,6 +184,12 @@ header > .container {
 #sec-release b, #sec-release a {
 	display: inline-block;
 }
+#sec-release h3 {
+	color: #222;
+	font-size: 1.5rem;
+	text-align: center;
+	margin: 0.5em 0 0;
+}
 
 #sec-screenshots {
 	font-size: 1.2em;
