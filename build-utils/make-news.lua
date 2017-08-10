@@ -63,7 +63,7 @@ for i, part in ipairs(parts) do
 end
 
 local make_news_index = function (releases)
-    local contents = "<h2>Luakit releases</h2>"
+    local contents = "<h2>Luakit releases</h2><ul>"
     for i, release in ipairs(releases) do
         local lrt = i==1 and " - latest release" or ""
         local ver = release.version
