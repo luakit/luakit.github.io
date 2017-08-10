@@ -107,7 +107,7 @@
 			<ol>
 				<li><p>First, install the <a href="https://msdn.microsoft.com/en-us/commandline/wsl/install_guide" target=_blank>Windows Subsystem for Linux</a> if you have not already done so, as WebKitGTK+ does not natively support Windows.
 				<li><p>The default Linux system is based on Ubuntu &ldquo;Trusty&rdquo;; upgrade your system to Ubuntu &ldquo;Xenial&rdquo; by running the following command at the Linux terminal:
-				<pre>do-release-upgrade</pre>
+				<pre class=bash>do-release-upgrade</pre>
 				This is required due to a missing dependency (Lua File System) in the earlier version of Ubuntu.
 				<li><p>Download, build, and install luakit from source, following the instructions below.
 			</ol>
@@ -148,7 +148,7 @@
 				<a href="https://github.com/luakit/luakit/zipball/develop">zip</a>,
 				<a href="https://github.com/luakit/luakit/tarball/develop">tar</a>.
 				Alternatively, clone the project with <a href="http://git-scm.com" target="_blank">Git</a>
-				by running:</p><pre>git clone git://github.com/luakit/luakit</pre>
+				by running:</p><pre class=bash>git clone git://github.com/luakit/luakit</pre>
 				<li><p>Change into the target directory and run <code>make install</code>. You will probably also want to customize the prefix, which is <code>/usr/local</code> by default.
 				Full instructions on building Luakit are available in the <code>README.md</code> file.</p>
 				<li><p>After successfully building and installing luakit, run <code>luakit</code> from the command line or launch luakit from your application launcher.</p>

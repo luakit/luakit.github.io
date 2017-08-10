@@ -97,7 +97,7 @@ pre {
 	border-left: 2px solid #69c;
 }
 
-pre:before { content: '$ '; }
+pre.bash:before { content: '$ '; }
 
 /* Main content */
 .container {
