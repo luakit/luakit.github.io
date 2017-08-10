@@ -442,7 +442,7 @@ followed image in a new tab.</p>
 
 <p>If you prefer to use letters instead of numbers for hint labels (useful if
 you use a non-qwerty keyboard layout), this can be done by replacing the
-<a href="../modules/select.html#property-label_maker"><code>label_maker</code></code></a> function:</p>
+<a href="../modules/select.html#property-label_maker"><code>label_maker</code></a> function:</p>
 
 <pre class="sourcecode lua"><span class="comment">-- Use "asdfqwerzxcv" for generating labels
 </span><span class="identifier">local</span> <a href="http://www.lua.org/manual/5.1/manual.html#pdf-select" class="library">select</a> <span class="operator">=</span> <a href="http://www.lua.org/manual/5.1/manual.html#pdf-require" class="library">require</a> <span class="constant">"select"</span>
@@ -451,7 +451,7 @@ you use a non-qwerty keyboard layout), this can be done by replacing the
 <span class="identifier">end</span>
 </pre>
 
-<p>Note: this requires modifying the <a href="../modules/select.html"><code>select</code></code></a> module because the actual
+<p>Note: this requires modifying the <a href="../modules/select.html"><code>select</code></a> module because the actual
 link hinting interface is implemented in the <code>select</code> module; the
 <code>follow</code> module provides the <code>follow</code> and <code>ex-follow</code> user interface on top
 of that.</p>
@@ -459,7 +459,7 @@ of that.</p>
 <h2>Matching only hint labels, not element text</h2>
 
 <p>If you prefer not to match element text, and wish to select hints only by
-their label, this can be done by specifying the <a href="../modules/follow.html#property-pattern_maker"><code>pattern_maker</code></code></a>:</p>
+their label, this can be done by specifying the <a href="../modules/follow.html#property-pattern_maker"><code>pattern_maker</code></a>:</p>
 
 <pre class="sourcecode lua"><span class="comment">-- Match only hint label text
 </span><span class="identifier">follow.pattern_maker</span> <span class="operator">=</span> <span class="identifier">follow.pattern_styles.match_label</span>
@@ -583,9 +583,9 @@ Element selectors used to filter elements to follow.
                 <div>Read-write</div>
             </div>
             <div>
-Site specific element selectors used to extend <a href="../modules/follow.html#property-selectors"><code>selectors</code></code></a>.
+Site specific element selectors used to extend <a href="../modules/follow.html#property-selectors"><code>selectors</code></a>.
 Table keys should be website domains. Values are tables with the same
-structure as <a href="../modules/follow.html#property-selectors"><code>selectors</code></code></a>.
+structure as <a href="../modules/follow.html#property-selectors"><code>selectors</code></a>.
 </div>
         </div>
     

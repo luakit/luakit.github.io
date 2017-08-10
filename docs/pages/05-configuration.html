@@ -455,9 +455,9 @@ stylesheets (CSS files), userscripts, and adblock filterlists.</p>
 <p>Lua files should generally <em>not</em> go in the data directory; instead, they
 should go in the configuration directory, where they can be loaded via
 <code>require()</code>. A slightly-confusing exception is the <code>forms.lua</code> file,
-which is read by the <a href="../modules/formfiller.html"><code>formfiller</code></code></a> module. It uses a domain-specific
+which is read by the <a href="../modules/formfiller.html"><code>formfiller</code></a> module. It uses a domain-specific
 language instead of Lua, and is not a standalone module; instead, it is
-loaded by the <a href="../modules/formfiller.html"><code>formfiller</code></code></a> module as a data file, and so it belongs
+loaded by the <a href="../modules/formfiller.html"><code>formfiller</code></a> module as a data file, and so it belongs
 in luakit's data directory.</p>
 
 <h3>Where should I put {userstyles, filterlists, ...}?</h3>
@@ -481,7 +481,7 @@ command:</p>
 
 <p>Users will rarely have to modify files in luakit's cache directory. This is the
 cache directory used by WebKit and a few other modules that need to store files
-on a temporary basis, such as the <a href="../modules/viewpdf.html"><code>viewpdf</code></code></a> module.</p>
+on a temporary basis, such as the <a href="../modules/viewpdf.html"><code>viewpdf</code></a> module.</p>
 
 <p>If this directory is taking up too much disk space, it is safe to delete
 some or all of its contents; conversely, Lua modules should never store

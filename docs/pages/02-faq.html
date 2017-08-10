@@ -453,7 +453,7 @@ span.target {
 
 <h3>How do I stop some links opening in new windows?</h3>
 
-<p>Add your own <a href="../classes/widget:webview.html#signal-new-window-decision"><code>new-window-decision</code></code></a> webview signal handler which always opens
+<p>Add your own <a href="../classes/widget:webview.html#signal-new-window-decision"><code>new-window-decision</code></a> webview signal handler which always opens
 links in new tabs.</p>
 
 <p>In your <code>rc.lua</code> after <code>require "webview"</code> add (or modify) the following:</p>
@@ -555,7 +555,7 @@ luakit from navigating to the link while your program opens.</p>
 
 <h3>How do I set a custom <code>about:blank</code> page?</h3>
 
-<p>The easiest way to do this is to customize the <a href="../modules/newtab_chrome.html"><code>newtab_chrome</code></code></a> module's options.</p>
+<p>The easiest way to do this is to customize the <a href="../modules/newtab_chrome.html"><code>newtab_chrome</code></a> module's options.</p>
 
 <p>You can also do this by watching the <code>"navigation-request"</code> webview signal
 for navigation to specific addresses (in this case <code>"about:blank"</code>):</p>

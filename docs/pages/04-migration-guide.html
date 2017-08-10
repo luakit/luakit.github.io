@@ -451,7 +451,7 @@ personal configuration).</p>
 <p>The <code>binds.lua</code> and <code>modes.lua</code> configuration files have been removed.
 It is no longer necessary to copy the entire set of key bindings to
 your configuration to change or add just a few key bindings. Instead,
-use <a href="../modules/modes.html#function-add_binds"><code>add_binds</code></code></a> and <a href="../modules/modes.html#function-remove_binds"><code>remove_binds</code></code></a> to add and remove key
+use <a href="../modules/modes.html#function-add_binds"><code>add_binds</code></a> and <a href="../modules/modes.html#function-remove_binds"><code>remove_binds</code></a> to add and remove key
 bindings.</p>
 
 <h3>Remove use of <code>module()</code> in scripts</h3>
@@ -499,21 +499,21 @@ confusion about luakit's and Lua's namespacing rules, for no actual advantage.</
 <p>As such, it is advised to remove any such wrapper tables, and reference the
 globally-accessible builtin luakit libraries directly.</p>
 
-<h3>Use <a href="../modules/styles.html"><code>styles</code></code></a> module instead of <code>user_stylesheet_uri</code></h3>
+<h3>Use <a href="../modules/styles.html"><code>styles</code></a> module instead of <code>user_stylesheet_uri</code></h3>
 
-<p>The <a href="../modules/styles.html"><code>styles</code></code></a> module offers a replacement for the old <code>user_stylesheet_uri</code>
+<p>The <a href="../modules/styles.html"><code>styles</code></a> module offers a replacement for the old <code>user_stylesheet_uri</code>
 property, which was used to set a stylesheet to customize web behavior. This
 module has a number of advantages over the old method, including the ability to
 enable/disable stylesheets at runtime, the ability to have multiple stylesheets,
 and the ability to use <code>@-moz-document</code> rules in your stylesheets.</p>
 
 <ol>
-    <li>Ensure the <a href="../modules/styles.html"><code>styles</code></code></a> module is enabled in your <code>rc.lua</code>.</li>
-    <li>Locate the <a href="../modules/styles.html"><code>styles</code></code></a> sub-directory within luakit's data storage directory.
+    <li>Ensure the <a href="../modules/styles.html"><code>styles</code></a> module is enabled in your <code>rc.lua</code>.</li>
+    <li>Locate the <a href="../modules/styles.html"><code>styles</code></a> sub-directory within luakit's data storage directory.
     Normally, this is located at <code>~/.local/share/luakit/styles/</code>. Create the
     directory if it does not already exist.</li>
     <li>Move any CSS rules to a new file within that directory. In order for the
-    <a href="../modules/styles.html"><code>styles</code></code></a> module to load the stylesheet, the filename must end in <code>.css</code>.</li>
+    <a href="../modules/styles.html"><code>styles</code></a> module to load the stylesheet, the filename must end in <code>.css</code>.</li>
     <li>Make sure you specify which sites your stylesheet should apply to. The way to
     do this is to use <code>@-moz-document</code> rules. The Stylish wiki page <a href="https://github.com/stylish-userstyles/stylish/wiki/Applying-styles-to-specific-sites">Applying styles to specific sites</a> may be helpful.</li>
     <li>Run <code>:styles-reload</code> to detect new stylesheet files and reload any changes to
