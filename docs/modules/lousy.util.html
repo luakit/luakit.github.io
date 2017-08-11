@@ -434,6 +434,7 @@ span.target {
 
 
 
+
         <!-- modes and binds --><h2>Functions</h2>
 
         <h3 class=function>
@@ -643,8 +644,8 @@ and a string with the error otherwise.
         </div>
     
         <h3 class=function>
-            <span class=target id="function-table"></span>
-            <a href="#function-table">lousy.util.table (t, other)</a>
+            <span class=target id="function-table.difference"></span>
+            <a href="#function-table.difference">lousy.util.table.difference (t, other)</a>
         </h3>
             <div class=function>
             
@@ -699,8 +700,8 @@ All elements in the first table that are not in the other table.
         </div>
     
         <h3 class=function>
-            <span class=target id="function-table"></span>
-            <a href="#function-table">lousy.util.table (args)</a>
+            <span class=target id="function-table.join"></span>
+            <a href="#function-table.join">lousy.util.table.join (args)</a>
         </h3>
             <div class=function>
             
@@ -741,8 +742,8 @@ A new table containing all keys from the arguments.
         </div>
     
         <h3 class=function>
-            <span class=target id="function-table"></span>
-            <a href="#function-table">lousy.util.table (t, item)</a>
+            <span class=target id="function-table.hasitem"></span>
+            <a href="#function-table.hasitem">lousy.util.table.hasitem (t, item)</a>
         </h3>
             <div class=function>
             
@@ -797,8 +798,8 @@ The key where the item is found, or <code>nil</code> if not found.
         </div>
     
         <h3 class=function>
-            <span class=target id="function-table"></span>
-            <a href="#function-table">lousy.util.table (t)</a>
+            <span class=target id="function-table.keys"></span>
+            <a href="#function-table.keys">lousy.util.table.keys (t)</a>
         </h3>
             <div class=function>
             
@@ -838,8 +839,8 @@ A table with keys.
         </div>
     
         <h3 class=function>
-            <span class=target id="function-table"></span>
-            <a href="#function-table">lousy.util.table (t)</a>
+            <span class=target id="function-table.reverse"></span>
+            <a href="#function-table.reverse">lousy.util.table.reverse (t)</a>
         </h3>
             <div class=function>
             
@@ -879,8 +880,8 @@ The reversed table.
         </div>
     
         <h3 class=function>
-            <span class=target id="function-table"></span>
-            <a href="#function-table">lousy.util.table (t)</a>
+            <span class=target id="function-table.clone"></span>
+            <a href="#function-table.clone">lousy.util.table.clone (t)</a>
         </h3>
             <div class=function>
             
@@ -920,8 +921,8 @@ A clone of <code>t</code>.
         </div>
     
         <h3 class=function>
-            <span class=target id="function-table"></span>
-            <a href="#function-table">lousy.util.table (t)</a>
+            <span class=target id="function-table.copy"></span>
+            <a href="#function-table.copy">lousy.util.table.copy (t)</a>
         </h3>
             <div class=function>
             
@@ -961,8 +962,8 @@ A clone of <code>t</code> with <code>t</code>'s metatable.
         </div>
     
         <h3 class=function>
-            <span class=target id="function-table"></span>
-            <a href="#function-table">lousy.util.table (a, b)</a>
+            <span class=target id="function-table.isclone"></span>
+            <a href="#function-table.isclone">lousy.util.table.isclone (a, b)</a>
         </h3>
             <div class=function>
             
@@ -1017,8 +1018,8 @@ The second table.
         </div>
     
         <h3 class=function>
-            <span class=target id="function-table"></span>
-            <a href="#function-table">lousy.util.table (t)</a>
+            <span class=target id="function-table.values"></span>
+            <a href="#function-table.values">lousy.util.table.values (t)</a>
         </h3>
             <div class=function>
             
@@ -1058,8 +1059,8 @@ All values in <code>t</code>.
         </div>
     
         <h3 class=function>
-            <span class=target id="function-table"></span>
-            <a href="#function-table">lousy.util.table (t)</a>
+            <span class=target id="function-table.toarray"></span>
+            <a href="#function-table.toarray">lousy.util.table.toarray (t)</a>
         </h3>
             <div class=function>
             
@@ -1099,8 +1100,8 @@ A new table with all non-number keys removed.
         </div>
     
         <h3 class=function>
-            <span class=target id="function-table"></span>
-            <a href="#function-table">lousy.util.table (t, pred)</a>
+            <span class=target id="function-table.filter_array"></span>
+            <a href="#function-table.filter_array">lousy.util.table.filter_array (t, pred)</a>
         </h3>
             <div class=function>
             
@@ -1156,8 +1157,8 @@ The filtered array.
         </div>
     
         <h3 class=function>
-            <span class=target id="function-os"></span>
-            <a href="#function-os">lousy.util.os (f)</a>
+            <span class=target id="function-os.exists"></span>
+            <a href="#function-os.exists">lousy.util.os.exists (f)</a>
         </h3>
             <div class=function>
             
@@ -1197,8 +1198,8 @@ The file path.
         </div>
     
         <h3 class=function>
-            <span class=target id="function-string"></span>
-            <a href="#function-string">lousy.util.string (s, pattern, ret)</a>
+            <span class=target id="function-string.split"></span>
+            <a href="#function-string.split">lousy.util.string.split (s, pattern, ret)</a>
         </h3>
             <div class=function>
             
@@ -1612,9 +1613,10 @@ Table of all hostnames in <code>/etc/hosts</code>.
         </div>
     
         <h2>Attribution</h2>
-        <div class=attr-wrap>
+<div class=attr-wrap>
     <h4>Copyright</h4><ul class=copyright>
-        <li>2010 Mason Larobina, 2008 Julien Danjou
+        <li>2010 Mason Larobina
+        <li>2008 Julien Danjou
     </ul>
 </div>
     
