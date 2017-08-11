@@ -47,13 +47,19 @@ body {
 }
 
 div.function > h3, div.property > h3 {
-	margin-top: 0;
+    margin-top: 0;
 }
 div.function > h3 > a, div.property > h3 > a {
     font-family: monospace;
     color: #2B5782;
     text-decoration: none;
     font-size: 1rem;
+}
+div.function > div > h4, div.property > div > h4 {
+    margin: 0.9em 0 0.5em;
+}
+div.function > div > ul, div.property > div > ul, .property-body {
+    margin: 0.5em 0;
 }
 
 span.parameter, span.type {
@@ -75,8 +81,9 @@ span.optional, span.any_type {
 }
 
 div.function, div.property {
-	margin: -10px;
-	padding: 10px;
+    margin: 0 -0.5rem 1rem;
+    padding: 0 0.5rem;
+    overflow: auto;
 }
 
 div.function > div, div.property > div {
@@ -84,8 +91,8 @@ div.function > div, div.property > div {
 }
 
 div.function:target, div.property:target {
-	background: #ffffb2;
-	border-radius: 0.3em;
+    background: #ffffb2;
+    border-radius: 0.3em;
 }
 
 span.info {
@@ -121,6 +128,7 @@ div.good.alert {
 #content {
     flex: 1;
     position: relative;
+    max-width: 41rem;
 }
 #sidebar {
     flex: 0 0 13rem;
@@ -130,6 +138,7 @@ div.good.alert {
 
 @media (max-width: 55rem) {
     #sidebar { display: none; }
+    #content { max-width: 100vw; }
 }
 
 #sidebar > h2 {
@@ -256,6 +265,7 @@ pre > code {
 pre {
     padding: 1rem 1.2rem;
     border-left: 2px solid #69c;
+    overflow-x: scroll;
 }
 
 /*
