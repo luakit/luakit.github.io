@@ -46,7 +46,10 @@ body {
     font-weight: normal;
 }
 
-h3.function > a, h3.property > a, h3.table > a, h3.field > a {
+div.function > h3, div.property > h3 {
+	margin-top: 0;
+}
+div.function > h3 > a, div.property > h3 > a {
     font-family: monospace;
     color: #2B5782;
     text-decoration: none;
@@ -71,9 +74,18 @@ span.optional, span.any_type {
     color: #777;
 }
 
-div.function, div.property, div.table, div.field {
+div.function, div.property {
+	margin: -10px;
+	padding: 10px;
+}
+
+div.function > div, div.property > div {
     margin-left: 2rem;
-    margin-bottom: 1.5rem;
+}
+
+div.function:target, div.property:target {
+	background: #ffffb2;
+	border-radius: 0.3em;
 }
 
 span.info {
@@ -285,14 +297,6 @@ ul.triggers > li {
 }
 
 div.info > div { margin-top: 0.3rem; }
-
-span.target {
-    position: absolute;
-    display: block;
-    margin-top: -100px;
-    height: 100px;
-    visibility: hidden;
-}
         div#wrap { padding: 0; }
     </style>
 	<link rel=stylesheet href=/luakit/style.css />
@@ -449,124 +453,132 @@ rules in effect.</p>
 
         <!-- modes and binds --><h2>Properties</h2>
 
-        <h3 class=property>
-            <span class=target id="property-list_template_enabled"></span>
-            <a href="#property-list_template_enabled">adblock_chrome.list_template_enabled</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div></div>
-                <div>Read-write</div>
-            </div>
-            <div>
+        <div class=property id="property-list_template_enabled">
+            <h3>
+                <a href="#property-list_template_enabled">adblock_chrome.list_template_enabled</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 HTML template for enabled adblock list.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-list_template_disabled"></span>
-            <a href="#property-list_template_disabled">adblock_chrome.list_template_disabled</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div></div>
-                <div>Read-write</div>
-            </div>
-            <div>
+        <div class=property id="property-list_template_disabled">
+            <h3>
+                <a href="#property-list_template_disabled">adblock_chrome.list_template_disabled</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 HTML template for disabled adblock list.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-toggle_button_template"></span>
-            <a href="#property-toggle_button_template">adblock_chrome.toggle_button_template</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div></div>
-                <div>Read-write</div>
-            </div>
-            <div>
+        <div class=property id="property-toggle_button_template">
+            <h3>
+                <a href="#property-toggle_button_template">adblock_chrome.toggle_button_template</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 HTML template for adblock state toggle button.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-html_template"></span>
-            <a href="#property-html_template">adblock_chrome.html_template</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div></div>
-                <div>Read-write</div>
-            </div>
-            <div>
+        <div class=property id="property-html_template">
+            <h3>
+                <a href="#property-html_template">adblock_chrome.html_template</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 HTML template for adblock chrome page content.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-html_page_title"></span>
-            <a href="#property-html_page_title">adblock_chrome.html_page_title</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div></div>
-                <div>Read-write</div>
-            </div>
-            <div>
+        <div class=property id="property-html_page_title">
+            <h3>
+                <a href="#property-html_page_title">adblock_chrome.html_page_title</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 Title for the adblock chrome page.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-html_style"></span>
-            <a href="#property-html_style">adblock_chrome.html_style</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div></div>
-                <div>Read-write</div>
-            </div>
-            <div>
+        <div class=property id="property-html_style">
+            <h3>
+                <a href="#property-html_style">adblock_chrome.html_style</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 CSS applied to the adblock chrome page.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-chrome_page"></span>
-            <a href="#property-chrome_page">adblock_chrome.chrome_page</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div></div>
-                <div>Read-write</div>
-            </div>
-            <div>
+        <div class=property id="property-chrome_page">
+            <h3>
+                <a href="#property-chrome_page">adblock_chrome.chrome_page</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 URI of the adblock chrome page.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-navigation_blocked_css_tmpl"></span>
-            <a href="#property-navigation_blocked_css_tmpl">adblock_chrome.navigation_blocked_css_tmpl</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div></div>
-                <div>Read-write</div>
-            </div>
-            <div>
+        <div class=property id="property-navigation_blocked_css_tmpl">
+            <h3>
+                <a href="#property-navigation_blocked_css_tmpl">adblock_chrome.navigation_blocked_css_tmpl</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 CSS for error page shown when page navigation is blocked.
 </div>
+            </div>
         </div>
     
         <h2>Attribution</h2>

@@ -46,7 +46,10 @@ body {
     font-weight: normal;
 }
 
-h3.function > a, h3.property > a, h3.table > a, h3.field > a {
+div.function > h3, div.property > h3 {
+	margin-top: 0;
+}
+div.function > h3 > a, div.property > h3 > a {
     font-family: monospace;
     color: #2B5782;
     text-decoration: none;
@@ -71,9 +74,18 @@ span.optional, span.any_type {
     color: #777;
 }
 
-div.function, div.property, div.table, div.field {
+div.function, div.property {
+	margin: -10px;
+	padding: 10px;
+}
+
+div.function > div, div.property > div {
     margin-left: 2rem;
-    margin-bottom: 1.5rem;
+}
+
+div.function:target, div.property:target {
+	background: #ffffb2;
+	border-radius: 0.3em;
 }
 
 span.info {
@@ -285,14 +297,6 @@ ul.triggers > li {
 }
 
 div.info > div { margin-top: 0.3rem; }
-
-span.target {
-    position: absolute;
-    display: block;
-    margin-top: -100px;
-    height: 100px;
-    visibility: hidden;
-}
         div#wrap { padding: 0; }
     </style>
 	<link rel=stylesheet href=/luakit/style.css />
@@ -449,11 +453,11 @@ user bookmarks, cookies, and browsing history.</p>
 
         <!-- modes and binds --><h2>Methods</h2>
 
-        <h3 class=function>
-            <span class=target id="method-exec"></span>
-            <a href="#method-exec">sqlite3:exec (query, bindings)</a>
-        </h3>
-            <div class=function>
+        <div class=function id="method-exec">
+            <h3>
+                <a href="#method-exec">sqlite3:exec (query, bindings)</a>
+            </h3>
+                    <div>
             
             
 
@@ -510,11 +514,13 @@ A table representing the query result.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="method-close"></span>
-            <a href="#method-close">sqlite3:close ()</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="method-close">
+            <h3>
+                <a href="#method-close">sqlite3:close ()</a>
+            </h3>
+                    <div>
             
             
 <p>Close a database and release related resources.</p>
@@ -523,11 +529,13 @@ A table representing the query result.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="method-compile"></span>
-            <a href="#method-compile">sqlite3:compile (statement)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="method-compile">
+            <h3>
+                <a href="#method-compile">sqlite3:compile (statement)</a>
+            </h3>
+                    <div>
             
             
 <p>Compile a SQL statement into a newly-created <code>sqlite3::statement</code> instance.</p>
@@ -564,11 +572,13 @@ A newly-created instance representing a compiled statement.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="method-changes"></span>
-            <a href="#method-changes">sqlite3:changes ()</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="method-changes">
+            <h3>
+                <a href="#method-changes">sqlite3:changes ()</a>
+            </h3>
+                    <div>
             
             
 <p>Get the number of rows that were added, removed, or changed by the
@@ -588,23 +598,26 @@ The number of modified rows.
     
 </ul>
         </div>
+    
+        </div>
     <h2>Properties</h2>
 
-        <h3 class=property>
-            <span class=target id="property-filename"></span>
-            <a href="#property-filename">sqlite3.filename</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-filename">
+            <h3>
+                <a href="#property-filename">sqlite3.filename</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 
 The path to the database that the <code>sqlite3</code> instance is connected to.
 
 </div>
+            </div>
         </div>
     
         <h2>Attribution</h2>

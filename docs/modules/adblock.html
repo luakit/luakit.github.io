@@ -46,7 +46,10 @@ body {
     font-weight: normal;
 }
 
-h3.function > a, h3.property > a, h3.table > a, h3.field > a {
+div.function > h3, div.property > h3 {
+	margin-top: 0;
+}
+div.function > h3 > a, div.property > h3 > a {
     font-family: monospace;
     color: #2B5782;
     text-decoration: none;
@@ -71,9 +74,18 @@ span.optional, span.any_type {
     color: #777;
 }
 
-div.function, div.property, div.table, div.field {
+div.function, div.property {
+	margin: -10px;
+	padding: 10px;
+}
+
+div.function > div, div.property > div {
     margin-left: 2rem;
-    margin-bottom: 1.5rem;
+}
+
+div.function:target, div.property:target {
+	background: #ffffb2;
+	border-radius: 0.3em;
 }
 
 span.info {
@@ -285,14 +297,6 @@ ul.triggers > li {
 }
 
 div.info > div { margin-top: 0.3rem; }
-
-span.target {
-    position: absolute;
-    display: block;
-    margin-top: -100px;
-    height: 100px;
-    visibility: hidden;
-}
         div#wrap { padding: 0; }
     </style>
 	<link rel=stylesheet href=/luakit/style.css />
@@ -493,11 +497,11 @@ what is happening is to set the appropriate log levels to <code>debug</code>:</p
 
         <!-- modes and binds --><h2>Functions</h2>
 
-        <h3 class=function>
-            <span class=target id="function-load"></span>
-            <a href="#function-load">adblock.load (reload, single_list, no_sync)</a>
-        </h3>
-            <div class=function>
+        <div class=function id="function-load">
+            <h3>
+                <a href="#function-load">adblock.load (reload, single_list, no_sync)</a>
+            </h3>
+                    <div>
             
             
 <p>Load filter list files, and refresh any adblock pages that are open.</p>
@@ -553,11 +557,13 @@ the web process.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-list_set_enabled"></span>
-            <a href="#function-list_set_enabled">adblock.list_set_enabled (a, enabled)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-list_set_enabled">
+            <h3>
+                <a href="#function-list_set_enabled">adblock.list_set_enabled (a, enabled)</a>
+            </h3>
+                    <div>
             
             
 <p>Enable or disable an adblock filter list.</p>
@@ -598,11 +604,13 @@ The number of the list to enable or disable.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-whitelist_domain_access"></span>
-            <a href="#function-whitelist_domain_access">adblock.whitelist_domain_access (domain)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-whitelist_domain_access">
+            <h3>
+                <a href="#function-whitelist_domain_access">adblock.whitelist_domain_access (domain)</a>
+            </h3>
+                    <div>
             
             
 <p>Whitelist accessing a blocked domain for the current session.</p>
@@ -627,55 +635,60 @@ The domain to whitelist.
 </ul>
             
         </div>
+    
+        </div>
     <h2>Properties</h2>
 
-        <h3 class=property>
-            <span class=target id="property-subscriptions"></span>
-            <a href="#property-subscriptions">adblock.subscriptions</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>table</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-subscriptions">
+            <h3>
+                <a href="#property-subscriptions">adblock.subscriptions</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>table</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 The set of ad blocking subscriptions that are active.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-rules"></span>
-            <a href="#property-rules">adblock.rules</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>table</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-rules">
+            <h3>
+                <a href="#property-rules">adblock.rules</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>table</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 String patterns to filter URIs with.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-enabled"></span>
-            <a href="#property-enabled">adblock.enabled</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>boolean</span></div>
-                <div>Default: 
+        <div class=property id="property-enabled">
+            <h3>
+                <a href="#property-enabled">adblock.enabled</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>boolean</span></div>
+                    <div>Default: 
 true
 </div>
-                <div>Read-write</div>
-            </div>
-            <div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 Whether ad blocking is enabled. Modifying this value will modify adblock
 state; setting it to <code>true</code> will enable ad blocking, while setting it to
 <code>false</code> will disable ad blocking.
 </div>
+            </div>
         </div>
     
         <h2>Attribution</h2>

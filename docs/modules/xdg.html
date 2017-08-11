@@ -46,7 +46,10 @@ body {
     font-weight: normal;
 }
 
-h3.function > a, h3.property > a, h3.table > a, h3.field > a {
+div.function > h3, div.property > h3 {
+	margin-top: 0;
+}
+div.function > h3 > a, div.property > h3 > a {
     font-family: monospace;
     color: #2B5782;
     text-decoration: none;
@@ -71,9 +74,18 @@ span.optional, span.any_type {
     color: #777;
 }
 
-div.function, div.property, div.table, div.field {
+div.function, div.property {
+	margin: -10px;
+	padding: 10px;
+}
+
+div.function > div, div.property > div {
     margin-left: 2rem;
-    margin-bottom: 1.5rem;
+}
+
+div.function:target, div.property:target {
+	background: #ffffb2;
+	border-radius: 0.3em;
 }
 
 span.info {
@@ -285,14 +297,6 @@ ul.triggers > li {
 }
 
 div.info > div { margin-top: 0.3rem; }
-
-span.target {
-    position: absolute;
-    display: block;
-    margin-top: -100px;
-    height: 100px;
-    visibility: hidden;
-}
         div#wrap { padding: 0; }
     </style>
 	<link rel=stylesheet href=/luakit/style.css />
@@ -452,17 +456,17 @@ determine the best place to store and look for various types of data.</p>
 
         <!-- modes and binds --><h2>Properties</h2>
 
-        <h3 class=property>
-            <span class=target id="property-cache_dir"></span>
-            <a href="#property-cache_dir">xdg.cache_dir</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-cache_dir">
+            <h3>
+                <a href="#property-cache_dir">xdg.cache_dir</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 Get the base directory in which Luakit stores non-essential cached
 data. Data stored in this location may be removed in order to free up
 disk space. The returned directory is the XDG cache directory, not the
@@ -471,19 +475,20 @@ disk space. The returned directory is the XDG cache directory, not the
 <p>Example value: <code>/home/user/.cache</code></p>
 
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-config_dir"></span>
-            <a href="#property-config_dir">xdg.config_dir</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-config_dir">
+            <h3>
+                <a href="#property-config_dir">xdg.config_dir</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 Get the base directory in which Luakit's configuration is stored.
 The returned directory is the XDG config directory, not the
 <code>luakit</code> sub-directory within it that Luakit uses.
@@ -491,191 +496,203 @@ The returned directory is the XDG config directory, not the
 <p>Example value: <code>/home/user/.config</code></p>
 
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-data_dir"></span>
-            <a href="#property-data_dir">xdg.data_dir</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-data_dir">
+            <h3>
+                <a href="#property-data_dir">xdg.data_dir</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 Get the base directory in which application/module data is stored.
 The returned directory is the XDG user data directory, not the
 <code>luakit</code> sub-directory within it that Luakit uses.
 
 <p>Example value: <code>/home/user/.local/share</code></p>
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-desktop_dir"></span>
-            <a href="#property-desktop_dir">xdg.desktop_dir</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-desktop_dir">
+            <h3>
+                <a href="#property-desktop_dir">xdg.desktop_dir</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 Get the full path to the user's desktop directory.
 
 <p>Example value: <code>/home/user/Desktop</code></p>
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-documents_dir"></span>
-            <a href="#property-documents_dir">xdg.documents_dir</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-documents_dir">
+            <h3>
+                <a href="#property-documents_dir">xdg.documents_dir</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 Get the full path to the user's documents directory.
 
 <p>Example value: <code>/home/user/Documents</code></p>
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-download_dir"></span>
-            <a href="#property-download_dir">xdg.download_dir</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-download_dir">
+            <h3>
+                <a href="#property-download_dir">xdg.download_dir</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 Get the full path to the user's download directory.
 
 <p>Example value: <code>/home/user/Downloads</code></p>
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-music_dir"></span>
-            <a href="#property-music_dir">xdg.music_dir</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-music_dir">
+            <h3>
+                <a href="#property-music_dir">xdg.music_dir</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 Get the full path to the user's music directory.
 
 <p>Example value: <code>/home/user/Music</code></p>
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-pictures_dir"></span>
-            <a href="#property-pictures_dir">xdg.pictures_dir</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-pictures_dir">
+            <h3>
+                <a href="#property-pictures_dir">xdg.pictures_dir</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 Get the full path to the user's pictures directory.
 
 <p>Example value: <code>/home/user/Pictures</code></p>
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-public_share_dir"></span>
-            <a href="#property-public_share_dir">xdg.public_share_dir</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-public_share_dir">
+            <h3>
+                <a href="#property-public_share_dir">xdg.public_share_dir</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 Get the full path to the user's shared directory.
 
 <p>Example value: <code>/home/user/Public</code></p>
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-templates_dir"></span>
-            <a href="#property-templates_dir">xdg.templates_dir</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-templates_dir">
+            <h3>
+                <a href="#property-templates_dir">xdg.templates_dir</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 Get the full path to the user's templates directory.
 
 <p>Example value: <code>/home/user/.templates</code></p>
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-videos_dir"></span>
-            <a href="#property-videos_dir">xdg.videos_dir</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-videos_dir">
+            <h3>
+                <a href="#property-videos_dir">xdg.videos_dir</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 Get the full path to the user's videos directory.
 
 <p>Example value: <code>/home/user/Videos</code></p>
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-system_data_dirs"></span>
-            <a href="#property-system_data_dirs">xdg.system_data_dirs</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>{string}</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-system_data_dirs">
+            <h3>
+                <a href="#property-system_data_dirs">xdg.system_data_dirs</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>{string}</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 Get an array of paths where system data should be loaded from.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-system_config_dirs"></span>
-            <a href="#property-system_config_dirs">xdg.system_config_dirs</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>{string}</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-system_config_dirs">
+            <h3>
+                <a href="#property-system_config_dirs">xdg.system_config_dirs</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>{string}</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 Get an array of paths where system configuration should be loaded from.
 </div>
+            </div>
         </div>
     
         <h2>Attribution</h2>

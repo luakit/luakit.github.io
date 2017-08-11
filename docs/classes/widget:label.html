@@ -46,7 +46,10 @@ body {
     font-weight: normal;
 }
 
-h3.function > a, h3.property > a, h3.table > a, h3.field > a {
+div.function > h3, div.property > h3 {
+	margin-top: 0;
+}
+div.function > h3 > a, div.property > h3 > a {
     font-family: monospace;
     color: #2B5782;
     text-decoration: none;
@@ -71,9 +74,18 @@ span.optional, span.any_type {
     color: #777;
 }
 
-div.function, div.property, div.table, div.field {
+div.function, div.property {
+	margin: -10px;
+	padding: 10px;
+}
+
+div.function > div, div.property > div {
     margin-left: 2rem;
-    margin-bottom: 1.5rem;
+}
+
+div.function:target, div.property:target {
+	background: #ffffb2;
+	border-radius: 0.3em;
 }
 
 span.info {
@@ -285,14 +297,6 @@ ul.triggers > li {
 }
 
 div.info > div { margin-top: 0.3rem; }
-
-span.target {
-    position: absolute;
-    display: block;
-    margin-top: -100px;
-    height: 100px;
-    visibility: hidden;
-}
         div#wrap { padding: 0; }
     </style>
 	<link rel=stylesheet href=/luakit/style.css />
@@ -441,141 +445,149 @@ user.</p>
 
         <!-- modes and binds --><h2>Properties</h2>
 
-        <h3 class=property>
-            <span class=target id="property-padding"></span>
-            <a href="#property-padding">label.padding</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>table</span></div>
-                <div></div>
-                <div>Read-write</div>
-            </div>
-            <div>
+        <div class=property id="property-padding">
+            <h3>
+                <a href="#property-padding">label.padding</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>table</span></div>
+                    <div></div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 The widget padding. Table has two fields, <code>x</code> and <code>y</code>, representing the
 vertical and horizontal padding respectively, in pixels.
 
 <p>Available only for older versions of GTK (&lt; 2.14).</p>
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-align"></span>
-            <a href="#property-align">label.align</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>table</span></div>
-                <div></div>
-                <div>Read-write</div>
-            </div>
-            <div>
+        <div class=property id="property-align">
+            <h3>
+                <a href="#property-align">label.align</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>table</span></div>
+                    <div></div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 The text alignment. Table has two fields, <code>x</code> and <code>y</code>, representing the
 vertical and horizontal alignment respectively. Values should be between
 0--1, where 0 means aligned to the left/top, and 1 means aligned to the
 right/bottom.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-text"></span>
-            <a href="#property-text">label.text</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div></div>
-                <div>Read-write</div>
-            </div>
-            <div>
+        <div class=property id="property-text">
+            <h3>
+                <a href="#property-text">label.text</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 Text to display in the widget. This property uses Pango markup.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-fg"></span>
-            <a href="#property-fg">label.fg</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div></div>
-                <div>Read-write</div>
-            </div>
-            <div>
+        <div class=property id="property-fg">
+            <h3>
+                <a href="#property-fg">label.fg</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 The color of the text displayed by the widget. This can be changed with
 markup set by the <a href="../classes/widget:label.html#property-text"><code>text</code></a> property.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-bg"></span>
-            <a href="#property-bg">label.bg</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div></div>
-                <div>Read-write</div>
-            </div>
-            <div>
+        <div class=property id="property-bg">
+            <h3>
+                <a href="#property-bg">label.bg</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 The background color of the label widget.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-font"></span>
-            <a href="#property-font">label.font</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div></div>
-                <div>Read-write</div>
-            </div>
-            <div>
+        <div class=property id="property-font">
+            <h3>
+                <a href="#property-font">label.font</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 The font to use to display the label text.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-selectable"></span>
-            <a href="#property-selectable">label.selectable</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>boolean</span></div>
-                <div>Default: 
+        <div class=property id="property-selectable">
+            <h3>
+                <a href="#property-selectable">label.selectable</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>boolean</span></div>
+                    <div>Default: 
 <code>false</code>
 </div>
-                <div>Read-write</div>
-            </div>
-            <div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 Whether the text can be selected by dragging with the mouse cursor.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-textwidth"></span>
-            <a href="#property-textwidth">label.textwidth</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>integer</span></div>
-                <div></div>
-                <div>Read-write</div>
-            </div>
-            <div>
+        <div class=property id="property-textwidth">
+            <h3>
+                <a href="#property-textwidth">label.textwidth</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>integer</span></div>
+                    <div></div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 The desired width of the label, in characters.
 </div>
+            </div>
         </div>
     <h2>Signals</h2>
 
-        <h3 class=function>
-            <span class=target id="signal-key-press"></span>
-            <a href="#signal-key-press">"key-press"</a>
-        </h3>
-            <div class=function>
+        <div class=function id="signal-key-press">
+            <h3>
+                <a href="#signal-key-press">"key-press"</a>
+            </h3>
+                    <div>
             
             
 <p>Emitted when a key is pressed while the label widget has the input focus.</p>
@@ -625,6 +637,8 @@ propagated further.
         </li>
     
 </ul>
+        </div>
+    
         </div>
     
         <h2>Attribution</h2>

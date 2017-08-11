@@ -46,7 +46,10 @@ body {
     font-weight: normal;
 }
 
-h3.function > a, h3.property > a, h3.table > a, h3.field > a {
+div.function > h3, div.property > h3 {
+	margin-top: 0;
+}
+div.function > h3 > a, div.property > h3 > a {
     font-family: monospace;
     color: #2B5782;
     text-decoration: none;
@@ -71,9 +74,18 @@ span.optional, span.any_type {
     color: #777;
 }
 
-div.function, div.property, div.table, div.field {
+div.function, div.property {
+	margin: -10px;
+	padding: 10px;
+}
+
+div.function > div, div.property > div {
     margin-left: 2rem;
-    margin-bottom: 1.5rem;
+}
+
+div.function:target, div.property:target {
+	background: #ffffb2;
+	border-radius: 0.3em;
 }
 
 span.info {
@@ -285,14 +297,6 @@ ul.triggers > li {
 }
 
 div.info > div { margin-top: 0.3rem; }
-
-span.target {
-    position: absolute;
-    display: block;
-    margin-top: -100px;
-    height: 100px;
-    visibility: hidden;
-}
         div#wrap { padding: 0; }
     </style>
 	<link rel=stylesheet href=/luakit/style.css />
@@ -457,21 +461,22 @@ supported.</p>
 
         <!-- modes and binds --><h2>Properties</h2>
 
-        <h3 class=property>
-            <span class=target id="property-source"></span>
-            <a href="#property-source">stylesheet.source</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div>Default: 
+        <div class=property id="property-source">
+            <h3>
+                <a href="#property-source">stylesheet.source</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div>Default: 
 <code>""</code>
 </div>
-                <div>Read-write</div>
-            </div>
-            <div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 The CSS source of the stylesheet. Modification will cause reapplication to any attached <code>webview</code> widgets.
 </div>
+            </div>
         </div>
     
         <h2>Attribution</h2>

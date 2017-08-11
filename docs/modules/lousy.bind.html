@@ -46,7 +46,10 @@ body {
     font-weight: normal;
 }
 
-h3.function > a, h3.property > a, h3.table > a, h3.field > a {
+div.function > h3, div.property > h3 {
+	margin-top: 0;
+}
+div.function > h3 > a, div.property > h3 > a {
     font-family: monospace;
     color: #2B5782;
     text-decoration: none;
@@ -71,9 +74,18 @@ span.optional, span.any_type {
     color: #777;
 }
 
-div.function, div.property, div.table, div.field {
+div.function, div.property {
+	margin: -10px;
+	padding: 10px;
+}
+
+div.function > div, div.property > div {
     margin-left: 2rem;
-    margin-bottom: 1.5rem;
+}
+
+div.function:target, div.property:target {
+	background: #ffffb2;
+	border-radius: 0.3em;
 }
 
 span.info {
@@ -285,14 +297,6 @@ ul.triggers > li {
 }
 
 div.info > div { margin-top: 0.3rem; }
-
-span.target {
-    position: absolute;
-    display: block;
-    margin-top: -100px;
-    height: 100px;
-    visibility: hidden;
-}
         div#wrap { padding: 0; }
     </style>
 	<link rel=stylesheet href=/luakit/style.css />
@@ -435,11 +439,11 @@ span.target {
 
         <!-- modes and binds --><h2>Functions</h2>
 
-        <h3 class=function>
-            <span class=target id="function-parse_mods"></span>
-            <a href="#function-parse_mods">lousy.bind.parse_mods (mods, remove_shift)</a>
-        </h3>
-            <div class=function>
+        <div class=function id="function-parse_mods">
+            <h3>
+                <a href="#function-parse_mods">lousy.bind.parse_mods (mods, remove_shift)</a>
+            </h3>
+                    <div>
             
             
 <p>Parse a table of modifier keys into a string.</p>
@@ -493,11 +497,13 @@ A string of key names, separated by hyphens (-).
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-match_any"></span>
-            <a href="#function-match_any">lousy.bind.match_any (object, binds, args)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-match_any">
+            <h3>
+                <a href="#function-match_any">lousy.bind.match_any (object, binds, args)</a>
+            </h3>
+                    <div>
             
             
 <p>Match any 'any' bindings in a given table of bindings.</p>
@@ -571,11 +577,13 @@ called.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-match_key"></span>
-            <a href="#function-match_key">lousy.bind.match_key (object, binds, mods, key, args)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-match_key">
+            <h3>
+                <a href="#function-match_key">lousy.bind.match_key (object, binds, mods, key, args)</a>
+            </h3>
+                    <div>
             
             
 <p>Match any key binding in a given table of bindings.</p>
@@ -679,11 +687,13 @@ called.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-match_but"></span>
-            <a href="#function-match_but">lousy.bind.match_but (object, binds, mods, button, args)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-match_but">
+            <h3>
+                <a href="#function-match_but">lousy.bind.match_but (object, binds, mods, button, args)</a>
+            </h3>
+                    <div>
             
             
 <p>Match any button binding in a given table of bindings.</p>
@@ -787,11 +797,13 @@ called.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-match_buf"></span>
-            <a href="#function-match_buf">lousy.bind.match_buf (object, binds, buffer, args)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-match_buf">
+            <h3>
+                <a href="#function-match_buf">lousy.bind.match_buf (object, binds, buffer, args)</a>
+            </h3>
+                    <div>
             
             
 <p>Try and match a buffer binding in a given table of bindings and call that
@@ -883,11 +895,13 @@ opts table given when the bind was created.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-match_cmd"></span>
-            <a href="#function-match_cmd">lousy.bind.match_cmd (object, binds, buffer, args)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-match_cmd">
+            <h3>
+                <a href="#function-match_cmd">lousy.bind.match_cmd (object, binds, buffer, args)</a>
+            </h3>
+                    <div>
             
             
 <p>Try and match a command or buffer binding in a given table of bindings
@@ -970,11 +984,13 @@ opts table given when the bind was created.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-hit"></span>
-            <a href="#function-hit">lousy.bind.hit (object, binds, mods, key, args)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-hit">
+            <h3>
+                <a href="#function-hit">lousy.bind.hit (object, binds, mods, key, args)</a>
+            </h3>
+                    <div>
             
             
 <p>Attempt to match either a key or buffer binding and execute it. This
@@ -1087,11 +1103,13 @@ could be matched, the returned buffer will be the empty string.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-bind_to_string"></span>
-            <a href="#function-bind_to_string">lousy.bind.bind_to_string (b)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-bind_to_string">
+            <h3>
+                <a href="#function-bind_to_string">lousy.bind.bind_to_string (b)</a>
+            </h3>
+                    <div>
             
             
 <p>Produce a string describing the action that triggers a given binding.
@@ -1130,11 +1148,13 @@ The binding description string.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-add_bind"></span>
-            <a href="#function-add_bind">lousy.bind.add_bind (binds, bind, action, opts)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-add_bind">
+            <h3>
+                <a href="#function-add_bind">lousy.bind.add_bind (binds, bind, action, opts)</a>
+            </h3>
+                    <div>
             
             
 <p>Bind a trigger to an action, adding the resulting binding to an array of
@@ -1206,11 +1226,13 @@ action when it is activated.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-remove_bind"></span>
-            <a href="#function-remove_bind">lousy.bind.remove_bind (binds, bind)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-remove_bind">
+            <h3>
+                <a href="#function-remove_bind">lousy.bind.remove_bind (binds, bind)</a>
+            </h3>
+                    <div>
             
             
 <p>Remove any binding with a specific trigger from the given array of bindings.</p>
@@ -1250,51 +1272,56 @@ The trigger to unbind.
 </ul>
             
         </div>
+    
+        </div>
     <h2>Properties</h2>
 
-        <h3 class=property>
-            <span class=target id="property-ignore_mask"></span>
-            <a href="#property-ignore_mask">lousy.bind.ignore_mask</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=any_type>any type</span></div>
-                <div></div>
-                <div>Read-write</div>
-            </div>
-            <div>
+        <div class=property id="property-ignore_mask">
+            <h3>
+                <a href="#property-ignore_mask">lousy.bind.ignore_mask</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=any_type>any type</span></div>
+                    <div></div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 Set of modifiers to ignore.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-map"></span>
-            <a href="#property-map">lousy.bind.map</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=any_type>any type</span></div>
-                <div></div>
-                <div>Read-write</div>
-            </div>
-            <div>
+        <div class=property id="property-map">
+            <h3>
+                <a href="#property-map">lousy.bind.map</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=any_type>any type</span></div>
+                    <div></div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 A table that contains mappings for key names.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-mod_map"></span>
-            <a href="#property-mod_map">lousy.bind.mod_map</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=any_type>any type</span></div>
-                <div></div>
-                <div>Read-write</div>
-            </div>
-            <div>
+        <div class=property id="property-mod_map">
+            <h3>
+                <a href="#property-mod_map">lousy.bind.mod_map</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=any_type>any type</span></div>
+                    <div></div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 A table that contains mappings for modifier names.
 </div>
+            </div>
         </div>
     
         <h2>Attribution</h2>

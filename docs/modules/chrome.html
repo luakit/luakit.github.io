@@ -46,7 +46,10 @@ body {
     font-weight: normal;
 }
 
-h3.function > a, h3.property > a, h3.table > a, h3.field > a {
+div.function > h3, div.property > h3 {
+	margin-top: 0;
+}
+div.function > h3 > a, div.property > h3 > a {
     font-family: monospace;
     color: #2B5782;
     text-decoration: none;
@@ -71,9 +74,18 @@ span.optional, span.any_type {
     color: #777;
 }
 
-div.function, div.property, div.table, div.field {
+div.function, div.property {
+	margin: -10px;
+	padding: 10px;
+}
+
+div.function > div, div.property > div {
     margin-left: 2rem;
-    margin-bottom: 1.5rem;
+}
+
+div.function:target, div.property:target {
+	background: #ffffb2;
+	border-radius: 0.3em;
 }
 
 span.info {
@@ -285,14 +297,6 @@ ul.triggers > li {
 }
 
 div.info > div { margin-top: 0.3rem; }
-
-span.target {
-    position: absolute;
-    display: block;
-    margin-top: -100px;
-    height: 100px;
-    visibility: hidden;
-}
         div#wrap { padding: 0; }
     </style>
 	<link rel=stylesheet href=/luakit/style.css />
@@ -437,11 +441,11 @@ and Lua to JavaScript function bridge management.</p>
 
         <!-- modes and binds --><h2>Functions</h2>
 
-        <h3 class=function>
-            <span class=target id="function-add"></span>
-            <a href="#function-add">chrome.add (page, func, on_first_visual_func, export_funcs)</a>
-        </h3>
-            <div class=function>
+        <div class=function id="function-add">
+            <h3>
+                <a href="#function-add">chrome.add (page, func, on_first_visual_func, export_funcs)</a>
+            </h3>
+                    <div>
             
             
 <p>Register a chrome page URI with an associated handler function.</p>
@@ -512,11 +516,13 @@ export to JavaScript.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-remove"></span>
-            <a href="#function-remove">chrome.remove (page)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-remove">
+            <h3>
+                <a href="#function-remove">chrome.remove (page)</a>
+            </h3>
+                    <div>
             
             
 <p>Remove a regeistered chrome page.</p>
@@ -541,22 +547,25 @@ The name of the chrome page to remove.
 </ul>
             
         </div>
+    
+        </div>
     <h2>Properties</h2>
 
-        <h3 class=property>
-            <span class=target id="property-stylesheet"></span>
-            <a href="#property-stylesheet">chrome.stylesheet</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div></div>
-                <div>Read-write</div>
-            </div>
-            <div>
+        <div class=property id="property-stylesheet">
+            <h3>
+                <a href="#property-stylesheet">chrome.stylesheet</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 Common stylesheet that can be sourced from several chrome modules
 for a consitent looking theme.
 </div>
+            </div>
         </div>
     
         <h2>Attribution</h2>

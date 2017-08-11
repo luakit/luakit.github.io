@@ -46,7 +46,10 @@ body {
     font-weight: normal;
 }
 
-h3.function > a, h3.property > a, h3.table > a, h3.field > a {
+div.function > h3, div.property > h3 {
+	margin-top: 0;
+}
+div.function > h3 > a, div.property > h3 > a {
     font-family: monospace;
     color: #2B5782;
     text-decoration: none;
@@ -71,9 +74,18 @@ span.optional, span.any_type {
     color: #777;
 }
 
-div.function, div.property, div.table, div.field {
+div.function, div.property {
+	margin: -10px;
+	padding: 10px;
+}
+
+div.function > div, div.property > div {
     margin-left: 2rem;
-    margin-bottom: 1.5rem;
+}
+
+div.function:target, div.property:target {
+	background: #ffffb2;
+	border-radius: 0.3em;
 }
 
 span.info {
@@ -285,14 +297,6 @@ ul.triggers > li {
 }
 
 div.info > div { margin-top: 0.3rem; }
-
-span.target {
-    position: absolute;
-    display: block;
-    margin-top: -100px;
-    height: 100px;
-    visibility: hidden;
-}
         div#wrap { padding: 0; }
     </style>
 	<link rel=stylesheet href=/luakit/style.css />
@@ -444,11 +448,11 @@ span.target {
 
         <!-- modes and binds --><h2>Functions</h2>
 
-        <h3 class=function>
-            <span class=target id="function-"></span>
-            <a href="#function-">timer (properties)</a>
-        </h3>
-            <div class=function>
+        <div class=function id="function-">
+            <h3>
+                <a href="#function-">timer (properties)</a>
+            </h3>
+                    <div>
             
             
 <p>Create a new timer instance.</p>
@@ -475,13 +479,15 @@ Any initial timer properties to set.
 </ul>
             
         </div>
+    
+        </div>
     <h2>Methods</h2>
 
-        <h3 class=function>
-            <span class=target id="method-start"></span>
-            <a href="#method-start">timer:start ()</a>
-        </h3>
-            <div class=function>
+        <div class=function id="method-start">
+            <h3>
+                <a href="#method-start">timer:start ()</a>
+            </h3>
+                    <div>
             
             
 <p>Start a timer.</p>
@@ -493,11 +499,13 @@ The timer should not already be running.</p>
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="method-stop"></span>
-            <a href="#method-stop">timer:stop ()</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="method-stop">
+            <h3>
+                <a href="#method-stop">timer:stop ()</a>
+            </h3>
+                    <div>
             
             
 <p>Stop a timer.</p>
@@ -507,46 +515,50 @@ The timer should not already be running.</p>
             
             
         </div>
+    
+        </div>
     <h2>Properties</h2>
 
-        <h3 class=property>
-            <span class=target id="property-interval"></span>
-            <a href="#property-interval">timer.interval</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>integer</span></div>
-                <div></div>
-                <div>Read-write</div>
-            </div>
-            <div>
+        <div class=property id="property-interval">
+            <h3>
+                <a href="#property-interval">timer.interval</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>integer</span></div>
+                    <div></div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 The interval of the timer, in milliseconds.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-started"></span>
-            <a href="#property-started">timer.started</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>boolean</span></div>
-                <div>Default: 
+        <div class=property id="property-started">
+            <h3>
+                <a href="#property-started">timer.started</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>boolean</span></div>
+                    <div>Default: 
 <code>false</code>
 </div>
-                <div>Read-only</div>
-            </div>
-            <div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 Whether the timer is running.
 </div>
+            </div>
         </div>
     <h2>Signals</h2>
 
-        <h3 class=function>
-            <span class=target id="signal-timeout"></span>
-            <a href="#signal-timeout">"timeout"</a>
-        </h3>
-            <div class=function>
+        <div class=function id="signal-timeout">
+            <h3>
+                <a href="#signal-timeout">"timeout"</a>
+            </h3>
+                    <div>
             
             
 <p>This signal is emitted when the time on the timer has expired.</p>
@@ -570,6 +582,8 @@ The timer that has expired.
     
 </ul>
             
+        </div>
+    
         </div>
     
         <h2>Attribution</h2>

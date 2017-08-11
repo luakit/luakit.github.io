@@ -46,7 +46,10 @@ body {
     font-weight: normal;
 }
 
-h3.function > a, h3.property > a, h3.table > a, h3.field > a {
+div.function > h3, div.property > h3 {
+	margin-top: 0;
+}
+div.function > h3 > a, div.property > h3 > a {
     font-family: monospace;
     color: #2B5782;
     text-decoration: none;
@@ -71,9 +74,18 @@ span.optional, span.any_type {
     color: #777;
 }
 
-div.function, div.property, div.table, div.field {
+div.function, div.property {
+	margin: -10px;
+	padding: 10px;
+}
+
+div.function > div, div.property > div {
     margin-left: 2rem;
-    margin-bottom: 1.5rem;
+}
+
+div.function:target, div.property:target {
+	background: #ffffb2;
+	border-radius: 0.3em;
 }
 
 span.info {
@@ -285,14 +297,6 @@ ul.triggers > li {
 }
 
 div.info > div { margin-top: 0.3rem; }
-
-span.target {
-    position: absolute;
-    display: block;
-    margin-top: -100px;
-    height: 100px;
-    visibility: hidden;
-}
         div#wrap { padding: 0; }
     </style>
 	<link rel=stylesheet href=/luakit/style.css />
@@ -438,11 +442,11 @@ Different modes recognize different keybindings.</p>
 
         <!-- modes and binds --><h2>Functions</h2>
 
-        <h3 class=function>
-            <span class=target id="function-new_mode"></span>
-            <a href="#function-new_mode">modes.new_mode (name, desc, mode, replace)</a>
-        </h3>
-            <div class=function>
+        <div class=function id="function-new_mode">
+            <h3>
+                <a href="#function-new_mode">modes.new_mode (name, desc, mode, replace)</a>
+            </h3>
+                    <div>
             
             
 <p>Add a new mode table (optionally merges with original mode)</p>
@@ -515,11 +519,13 @@ be replaced, and <code>false</code> if the pre-existing mode should be extended.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-get_mode"></span>
-            <a href="#function-get_mode">modes.get_mode (name)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-get_mode">
+            <h3>
+                <a href="#function-get_mode">modes.get_mode (name)</a>
+            </h3>
+                    <div>
             
             
 <p>Get a mode by name.</p>
@@ -556,11 +562,13 @@ The mode table for the named mode.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-get_modes"></span>
-            <a href="#function-get_modes">modes.get_modes ()</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-get_modes">
+            <h3>
+                <a href="#function-get_modes">modes.get_modes ()</a>
+            </h3>
+                    <div>
             
             
 <p>Get all modes.</p>
@@ -580,11 +588,13 @@ A clone of the full table of modes.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-add_binds"></span>
-            <a href="#function-add_binds">modes.add_binds (mode, binds)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-add_binds">
+            <h3>
+                <a href="#function-add_binds">modes.add_binds (mode, binds)</a>
+            </h3>
+                    <div>
             
             
 <p>Add a set of binds to one or more modes. Any pre-existing binds with the
@@ -657,11 +667,13 @@ An array of binds to add to each of the named modes.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-remove_binds"></span>
-            <a href="#function-remove_binds">modes.remove_binds (mode, binds)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-remove_binds">
+            <h3>
+                <a href="#function-remove_binds">modes.remove_binds (mode, binds)</a>
+            </h3>
+                    <div>
             
             
 <p>Remove a set of binds from one or more modes.</p>
@@ -712,11 +724,13 @@ An array of binds to remove from each of the named modes.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-add_cmds"></span>
-            <a href="#function-add_cmds">modes.add_cmds (mode, binds)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-add_cmds">
+            <h3>
+                <a href="#function-add_cmds">modes.add_cmds (mode, binds)</a>
+            </h3>
+                    <div>
             
             
 <p>Add a set of commands to the built-in <code>command</code> mode.</p>
@@ -756,13 +770,15 @@ An raray of binds to add to each of the named modes.
 </ul>
             
         </div>
+    
+        </div>
     <h2>Callback Types</h2>
 
-        <h3 class=function>
-            <span class=target id="callback-bind_action_cb"></span>
-            <a href="#callback-bind_action_cb">bind_action_cb (w, opts, bind_opts)</a>
-        </h3>
-            <div class=function>
+        <div class=function id="callback-bind_action_cb">
+            <h3>
+                <a href="#callback-bind_action_cb">bind_action_cb (w, opts, bind_opts)</a>
+            </h3>
+                    <div>
             
             
 <p>Callback type for a bind action.</p>
@@ -828,6 +844,8 @@ what you want.
         </li>
     
 </ul>
+        </div>
+    
         </div>
     
         <h2>Attribution</h2>

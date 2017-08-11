@@ -46,7 +46,10 @@ body {
     font-weight: normal;
 }
 
-h3.function > a, h3.property > a, h3.table > a, h3.field > a {
+div.function > h3, div.property > h3 {
+	margin-top: 0;
+}
+div.function > h3 > a, div.property > h3 > a {
     font-family: monospace;
     color: #2B5782;
     text-decoration: none;
@@ -71,9 +74,18 @@ span.optional, span.any_type {
     color: #777;
 }
 
-div.function, div.property, div.table, div.field {
+div.function, div.property {
+	margin: -10px;
+	padding: 10px;
+}
+
+div.function > div, div.property > div {
     margin-left: 2rem;
-    margin-bottom: 1.5rem;
+}
+
+div.function:target, div.property:target {
+	background: #ffffb2;
+	border-radius: 0.3em;
 }
 
 span.info {
@@ -285,14 +297,6 @@ ul.triggers > li {
 }
 
 div.info > div { margin-top: 0.3rem; }
-
-span.target {
-    position: absolute;
-    display: block;
-    margin-top: -100px;
-    height: 100px;
-    visibility: hidden;
-}
         div#wrap { padding: 0; }
     </style>
 	<link rel=stylesheet href=/luakit/style.css />
@@ -439,11 +443,11 @@ span.target {
 
         <!-- modes and binds --><h2>Functions</h2>
 
-        <h3 class=function>
-            <span class=target id="function-init"></span>
-            <a href="#function-init">lousy.theme.init (path)</a>
-        </h3>
-            <div class=function>
+        <div class=function id="function-init">
+            <h3>
+                <a href="#function-init">lousy.theme.init (path)</a>
+            </h3>
+                    <div>
             
             
 <p>Load the theme table from file.</p>
@@ -469,11 +473,13 @@ The filepath of the theme.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-get"></span>
-            <a href="#function-get">lousy.theme.get ()</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-get">
+            <h3>
+                <a href="#function-get">lousy.theme.get ()</a>
+            </h3>
+                    <div>
             
             
 <p>Get the current theme.</p>
@@ -491,6 +497,8 @@ The current theme table.
         </li>
     
 </ul>
+        </div>
+    
         </div>
     
         <h2>Attribution</h2>

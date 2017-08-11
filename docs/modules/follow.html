@@ -46,7 +46,10 @@ body {
     font-weight: normal;
 }
 
-h3.function > a, h3.property > a, h3.table > a, h3.field > a {
+div.function > h3, div.property > h3 {
+	margin-top: 0;
+}
+div.function > h3 > a, div.property > h3 > a {
     font-family: monospace;
     color: #2B5782;
     text-decoration: none;
@@ -71,9 +74,18 @@ span.optional, span.any_type {
     color: #777;
 }
 
-div.function, div.property, div.table, div.field {
+div.function, div.property {
+	margin: -10px;
+	padding: 10px;
+}
+
+div.function > div, div.property > div {
     margin-left: 2rem;
-    margin-bottom: 1.5rem;
+}
+
+div.function:target, div.property:target {
+	background: #ffffb2;
+	border-radius: 0.3em;
 }
 
 span.info {
@@ -285,14 +297,6 @@ ul.triggers > li {
 }
 
 div.info > div { margin-top: 0.3rem; }
-
-span.target {
-    position: absolute;
-    display: block;
-    margin-top: -100px;
-    height: 100px;
-    visibility: hidden;
-}
         div#wrap { padding: 0; }
     </style>
 	<link rel=stylesheet href=/luakit/style.css />
@@ -479,114 +483,121 @@ their label, this can be done by specifying the <a href="../modules/follow.html#
 
         <!-- modes and binds --><h2>Properties</h2>
 
-        <h3 class=property>
-            <span class=target id="property-ignore_delay"></span>
-            <a href="#property-ignore_delay">follow.ignore_delay</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>number</span></div>
-                <div></div>
-                <div>Read-write</div>
-            </div>
-            <div>
+        <div class=property id="property-ignore_delay">
+            <h3>
+                <a href="#property-ignore_delay">follow.ignore_delay</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>number</span></div>
+                    <div></div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 Duration to ignore keypresses after following a hint. 200ms by default.
 
 <p>After each follow ignore all keys pressed by the user to prevent the
 accidental activation of other key bindings.</p>
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-stylesheet"></span>
-            <a href="#property-stylesheet">follow.stylesheet</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div></div>
-                <div>Read-write</div>
-            </div>
-            <div>
+        <div class=property id="property-stylesheet">
+            <h3>
+                <a href="#property-stylesheet">follow.stylesheet</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 CSS applied to the follow mode overlay.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-pattern_styles"></span>
-            <a href="#property-pattern_styles">follow.pattern_styles</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>{[string]=function}</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-pattern_styles">
+            <h3>
+                <a href="#property-pattern_styles">follow.pattern_styles</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>{[string]=function}</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 Table of functions used to select a hint matching style.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-pattern_maker"></span>
-            <a href="#property-pattern_maker">follow.pattern_maker</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>function</span></div>
-                <div></div>
-                <div>Read-write</div>
-            </div>
-            <div>
+        <div class=property id="property-pattern_maker">
+            <h3>
+                <a href="#property-pattern_maker">follow.pattern_maker</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>function</span></div>
+                    <div></div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 Hint matching style functions.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-ignore_case"></span>
-            <a href="#property-ignore_case">follow.ignore_case</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>boolean</span></div>
-                <div></div>
-                <div>Read-write</div>
-            </div>
-            <div>
+        <div class=property id="property-ignore_case">
+            <h3>
+                <a href="#property-ignore_case">follow.ignore_case</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>boolean</span></div>
+                    <div></div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 Whether text case should be ignored in follow mode. True by default.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-selectors"></span>
-            <a href="#property-selectors">follow.selectors</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>{[string]=string}</span></div>
-                <div></div>
-                <div>Read-write</div>
-            </div>
-            <div>
+        <div class=property id="property-selectors">
+            <h3>
+                <a href="#property-selectors">follow.selectors</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>{[string]=string}</span></div>
+                    <div></div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 Element selectors used to filter elements to follow.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-site_specific_selectors"></span>
-            <a href="#property-site_specific_selectors">follow.site_specific_selectors</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>{[string]=table}</span></div>
-                <div></div>
-                <div>Read-write</div>
-            </div>
-            <div>
+        <div class=property id="property-site_specific_selectors">
+            <h3>
+                <a href="#property-site_specific_selectors">follow.site_specific_selectors</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>{[string]=table}</span></div>
+                    <div></div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 Site specific element selectors used to extend <a href="../modules/follow.html#property-selectors"><code>selectors</code></a>.
 Table keys should be website domains. Values are tables with the same
 structure as <a href="../modules/follow.html#property-selectors"><code>selectors</code></a>.
 </div>
+            </div>
         </div>
     
         <h2>Attribution</h2>

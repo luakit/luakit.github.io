@@ -46,7 +46,10 @@ body {
     font-weight: normal;
 }
 
-h3.function > a, h3.property > a, h3.table > a, h3.field > a {
+div.function > h3, div.property > h3 {
+	margin-top: 0;
+}
+div.function > h3 > a, div.property > h3 > a {
     font-family: monospace;
     color: #2B5782;
     text-decoration: none;
@@ -71,9 +74,18 @@ span.optional, span.any_type {
     color: #777;
 }
 
-div.function, div.property, div.table, div.field {
+div.function, div.property {
+	margin: -10px;
+	padding: 10px;
+}
+
+div.function > div, div.property > div {
     margin-left: 2rem;
-    margin-bottom: 1.5rem;
+}
+
+div.function:target, div.property:target {
+	background: #ffffb2;
+	border-radius: 0.3em;
 }
 
 span.info {
@@ -285,14 +297,6 @@ ul.triggers > li {
 }
 
 div.info > div { margin-top: 0.3rem; }
-
-span.target {
-    position: absolute;
-    display: block;
-    margin-top: -100px;
-    height: 100px;
-    visibility: hidden;
-}
         div#wrap { padding: 0; }
     </style>
 	<link rel=stylesheet href=/luakit/style.css />
@@ -439,11 +443,11 @@ probably wish to also enable the <code>downloads_chrome</code> module.</p>
 
         <!-- modes and binds --><h2>Functions</h2>
 
-        <h3 class=function>
-            <span class=target id="function-get_all"></span>
-            <a href="#function-get_all">downloads.get_all ()</a>
-        </h3>
-            <div class=function>
+        <div class=function id="function-get_all">
+            <h3>
+                <a href="#function-get_all">downloads.get_all ()</a>
+            </h3>
+                    <div>
             
             
 <p>Get all download objects.</p>
@@ -463,11 +467,13 @@ The table of all download objects.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-to_download"></span>
-            <a href="#function-to_download">downloads.to_download (id)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-to_download">
+            <h3>
+                <a href="#function-to_download">downloads.to_download (id)</a>
+            </h3>
+                    <div>
             
             
 <p>Get download object from ID (passthrough if already given download object).</p>
@@ -513,11 +519,13 @@ The download object's private data.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-get"></span>
-            <a href="#function-get">downloads.get (id)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-get">
+            <h3>
+                <a href="#function-get">downloads.get (id)</a>
+            </h3>
+                    <div>
             
             
 <p>Get private data for a download object.</p>
@@ -543,11 +551,13 @@ The download object or the ID of a download object.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-do_open"></span>
-            <a href="#function-do_open">downloads.do_open (d, w)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-do_open">
+            <h3>
+                <a href="#function-do_open">downloads.do_open (d, w)</a>
+            </h3>
+                    <div>
             
             
 <p>Attempt to open a downloaded file.</p>
@@ -588,11 +598,13 @@ The current window table.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-add"></span>
-            <a href="#function-add">downloads.add (uri, opts)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-add">
+            <h3>
+                <a href="#function-add">downloads.add (uri, opts)</a>
+            </h3>
+                    <div>
             
             
 <p>Add a new download.</p>
@@ -633,11 +645,13 @@ A table of options.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-cancel"></span>
-            <a href="#function-cancel">downloads.cancel (id)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-cancel">
+            <h3>
+                <a href="#function-cancel">downloads.cancel (id)</a>
+            </h3>
+                    <div>
             
             
 <p>Cancel a download.</p>
@@ -663,11 +677,13 @@ The download object or the ID of a download object.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-remove"></span>
-            <a href="#function-remove">downloads.remove (id)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-remove">
+            <h3>
+                <a href="#function-remove">downloads.remove (id)</a>
+            </h3>
+                    <div>
             
             
 <p>Remove a download.
@@ -694,11 +710,13 @@ The download object or the ID of a download object.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-restart"></span>
-            <a href="#function-restart">downloads.restart (id)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-restart">
+            <h3>
+                <a href="#function-restart">downloads.restart (id)</a>
+            </h3>
+                    <div>
             
             
 <p>Restart a download.
@@ -737,11 +755,13 @@ The download object.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-open"></span>
-            <a href="#function-open">downloads.open (id, w)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-open">
+            <h3>
+                <a href="#function-open">downloads.open (id, w)</a>
+            </h3>
+                    <div>
             
             
 <p>Attempt to open a downloaded file, as soon as the download completes.
@@ -783,11 +803,13 @@ The current window table.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-clear"></span>
-            <a href="#function-clear">downloads.clear ()</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-clear">
+            <h3>
+                <a href="#function-clear">downloads.clear ()</a>
+            </h3>
+                    <div>
             
             
 <p>Clear all finished, cancelled or aborted downloads.</p>
@@ -795,21 +817,24 @@ The current window table.
             
             
         </div>
+    
+        </div>
     <h2>Properties</h2>
 
-        <h3 class=property>
-            <span class=target id="property-default_dir"></span>
-            <a href="#property-default_dir">downloads.default_dir</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div></div>
-                <div>Read-write</div>
-            </div>
-            <div>
+        <div class=property id="property-default_dir">
+            <h3>
+                <a href="#property-default_dir">downloads.default_dir</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 Default download directory.
 </div>
+            </div>
         </div>
     
         <h2>Attribution</h2>

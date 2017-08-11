@@ -46,7 +46,10 @@ body {
     font-weight: normal;
 }
 
-h3.function > a, h3.property > a, h3.table > a, h3.field > a {
+div.function > h3, div.property > h3 {
+	margin-top: 0;
+}
+div.function > h3 > a, div.property > h3 > a {
     font-family: monospace;
     color: #2B5782;
     text-decoration: none;
@@ -71,9 +74,18 @@ span.optional, span.any_type {
     color: #777;
 }
 
-div.function, div.property, div.table, div.field {
+div.function, div.property {
+	margin: -10px;
+	padding: 10px;
+}
+
+div.function > div, div.property > div {
     margin-left: 2rem;
-    margin-bottom: 1.5rem;
+}
+
+div.function:target, div.property:target {
+	background: #ffffb2;
+	border-radius: 0.3em;
 }
 
 span.info {
@@ -285,14 +297,6 @@ ul.triggers > li {
 }
 
 div.info > div { margin-top: 0.3rem; }
-
-span.target {
-    position: absolute;
-    display: block;
-    margin-top: -100px;
-    height: 100px;
-    visibility: hidden;
-}
         div#wrap { padding: 0; }
     </style>
 	<link rel=stylesheet href=/luakit/style.css />
@@ -441,11 +445,11 @@ two separate and independent instances.</p>
 
         <!-- modes and binds --><h2>Functions</h2>
 
-        <h3 class=function>
-            <span class=target id="function-new"></span>
-            <a href="#function-new">unique.new (id)</a>
-        </h3>
-            <div class=function>
+        <div class=function id="function-new">
+            <h3>
+                <a href="#function-new">unique.new (id)</a>
+            </h3>
+                    <div>
             
             
 <p>Set up an application with a shared identifier used to locate
@@ -473,11 +477,13 @@ The application identifier string to use.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-is_running"></span>
-            <a href="#function-is_running">unique.is_running ()</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-is_running">
+            <h3>
+                <a href="#function-is_running">unique.is_running ()</a>
+            </h3>
+                    <div>
             
             
 <p>Check whether an application using the identifier previously given to
@@ -498,11 +504,13 @@ The application identifier string to use.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-send_message"></span>
-            <a href="#function-send_message">unique.send_message (message)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-send_message">
+            <h3>
+                <a href="#function-send_message">unique.send_message (message)</a>
+            </h3>
+                    <div>
             
             
 <p>Send a message (which must be a string) to the primary instance of
@@ -528,13 +536,15 @@ The message to send to the primary instance.
 </ul>
             
         </div>
+    
+        </div>
     <h2>Signals</h2>
 
-        <h3 class=function>
-            <span class=target id="signal-message"></span>
-            <a href="#signal-message">"message"</a>
-        </h3>
-            <div class=function>
+        <div class=function id="signal-message">
+            <h3>
+                <a href="#signal-message">"message"</a>
+            </h3>
+                    <div>
             
             
 <p>Emitted only on the primary instance when a message is received from
@@ -574,6 +584,8 @@ the currently focused window of the main instance.
     
 </ul>
             
+        </div>
+    
         </div>
     
         <h2>Attribution</h2>

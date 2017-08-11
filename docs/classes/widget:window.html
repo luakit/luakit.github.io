@@ -46,7 +46,10 @@ body {
     font-weight: normal;
 }
 
-h3.function > a, h3.property > a, h3.table > a, h3.field > a {
+div.function > h3, div.property > h3 {
+	margin-top: 0;
+}
+div.function > h3 > a, div.property > h3 > a {
     font-family: monospace;
     color: #2B5782;
     text-decoration: none;
@@ -71,9 +74,18 @@ span.optional, span.any_type {
     color: #777;
 }
 
-div.function, div.property, div.table, div.field {
+div.function, div.property {
+	margin: -10px;
+	padding: 10px;
+}
+
+div.function > div, div.property > div {
     margin-left: 2rem;
-    margin-bottom: 1.5rem;
+}
+
+div.function:target, div.property:target {
+	background: #ffffb2;
+	border-radius: 0.3em;
 }
 
 span.info {
@@ -285,14 +297,6 @@ ul.triggers > li {
 }
 
 div.info > div { margin-top: 0.3rem; }
-
-span.target {
-    position: absolute;
-    display: block;
-    margin-top: -100px;
-    height: 100px;
-    visibility: hidden;
-}
         div#wrap { padding: 0; }
     </style>
 	<link rel=stylesheet href=/luakit/style.css />
@@ -440,11 +444,11 @@ span.target {
 
         <!-- modes and binds --><h2>Methods</h2>
 
-        <h3 class=function>
-            <span class=target id="method-set_default_size"></span>
-            <a href="#method-set_default_size">window:set_default_size (width, height)</a>
-        </h3>
-            <div class=function>
+        <div class=function id="method-set_default_size">
+            <h3>
+                <a href="#method-set_default_size">window:set_default_size (width, height)</a>
+            </h3>
+                    <div>
             
             
 <p>Set the default size of the window. If this is not called, the default size
@@ -485,162 +489,173 @@ The default height of the window, in pixels.
 </ul>
             
         </div>
+    
+        </div>
     <h2>Properties</h2>
 
-        <h3 class=property>
-            <span class=target id="property-title"></span>
-            <a href="#property-title">window.title</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div></div>
-                <div>Read-write</div>
-            </div>
-            <div>
+        <div class=property id="property-title">
+            <h3>
+                <a href="#property-title">window.title</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 The window title, as displayed on its title bar.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-decorated"></span>
-            <a href="#property-decorated">window.decorated</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>boolean</span></div>
-                <div>Default: 
+        <div class=property id="property-decorated">
+            <h3>
+                <a href="#property-decorated">window.decorated</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>boolean</span></div>
+                    <div>Default: 
 <code>true</code>
 </div>
-                <div>Read-write</div>
-            </div>
-            <div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 Whether the window is decorated. If the window is decorated, a title bar will
 be shown. Some window managers permit disabling this decoration, which
 creates a borderless window.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-urgency_hint"></span>
-            <a href="#property-urgency_hint">window.urgency_hint</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>boolean</span></div>
-                <div>Default: 
+        <div class=property id="property-urgency_hint">
+            <h3>
+                <a href="#property-urgency_hint">window.urgency_hint</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>boolean</span></div>
+                    <div>Default: 
 <code>false</code>
 </div>
-                <div>Read-write</div>
-            </div>
-            <div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 Whether the window is requesting the user's attention.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-fullscreen"></span>
-            <a href="#property-fullscreen">window.fullscreen</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>boolean</span></div>
-                <div>Default: 
+        <div class=property id="property-fullscreen">
+            <h3>
+                <a href="#property-fullscreen">window.fullscreen</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>boolean</span></div>
+                    <div>Default: 
 <code>false</code>
 </div>
-                <div>Read-write</div>
-            </div>
-            <div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 Whether the window is in fullscreen mode.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-maximized"></span>
-            <a href="#property-maximized">window.maximized</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>boolean</span></div>
-                <div>Default: 
+        <div class=property id="property-maximized">
+            <h3>
+                <a href="#property-maximized">window.maximized</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>boolean</span></div>
+                    <div>Default: 
 <code>false</code>
 </div>
-                <div>Read-write</div>
-            </div>
-            <div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 Whether the window is maximized.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-id"></span>
-            <a href="#property-id">window.id</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>integer</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-id">
+            <h3>
+                <a href="#property-id">window.id</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>integer</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 A unique identification number assigned to the window. This number will not
 be reassigned if the window is closed and another is ooened; new windows
 will always have new unique identification numbers.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-xid"></span>
-            <a href="#property-xid">window.xid</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>integer</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-xid">
+            <h3>
+                <a href="#property-xid">window.xid</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>integer</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 The window's X11 window ID. Available only when using the X11 windowing system.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-screen"></span>
-            <a href="#property-screen">window.screen</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>userdata</span></div>
-                <div></div>
-                <div>Read-write</div>
-            </div>
-            <div>
+        <div class=property id="property-screen">
+            <h3>
+                <a href="#property-screen">window.screen</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>userdata</span></div>
+                    <div></div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 The screen the window is on.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-icon"></span>
-            <a href="#property-icon">window.icon</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div></div>
-                <div>Read-write</div>
-            </div>
-            <div>
+        <div class=property id="property-icon">
+            <h3>
+                <a href="#property-icon">window.icon</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 Path to an image file to set as the window icon.
 This property can only be set; reading this property always returns <code>nil</code>.
 </div>
+            </div>
         </div>
     <h2>Signals</h2>
 
-        <h3 class=function>
-            <span class=target id="signal-can-close"></span>
-            <a href="#signal-can-close">"can-close"</a>
-        </h3>
-            <div class=function>
+        <div class=function id="signal-can-close">
+            <h3>
+                <a href="#signal-can-close">"can-close"</a>
+            </h3>
+                    <div>
             
             
 <p>Emitted before a window is closed. Allows Lua code to force the window to
@@ -661,11 +676,13 @@ window open.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="signal-key-press"></span>
-            <a href="#signal-key-press">"key-press"</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="signal-key-press">
+            <h3>
+                <a href="#signal-key-press">"key-press"</a>
+            </h3>
+                    <div>
             
             
 <p>Emitted when a key is pressed while the window has the input focus.</p>
@@ -717,11 +734,13 @@ propagated further.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="signal-add"></span>
-            <a href="#signal-add">"add"</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="signal-add">
+            <h3>
+                <a href="#signal-add">"add"</a>
+            </h3>
+                    <div>
             
             
 <p>Emitted when a new widget is set as this widget's child.</p>
@@ -747,11 +766,13 @@ The new child widget.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="signal-remove"></span>
-            <a href="#signal-remove">"remove"</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="signal-remove">
+            <h3>
+                <a href="#signal-remove">"remove"</a>
+            </h3>
+                    <div>
             
             
 <p>Emitted when a child widget is removed.</p>
@@ -777,17 +798,21 @@ The child widget that was removed.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="signal-property::*"></span>
-            <a href="#signal-property::*">"property::*"</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="signal-property::*">
+            <h3>
+                <a href="#signal-property::*">"property::*"</a>
+            </h3>
+                    <div>
             
             
 <p>Emitted when some properties change value.</p>
 
             
             
+        </div>
+    
         </div>
     
         <h2>Attribution</h2>

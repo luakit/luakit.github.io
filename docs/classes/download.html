@@ -46,7 +46,10 @@ body {
     font-weight: normal;
 }
 
-h3.function > a, h3.property > a, h3.table > a, h3.field > a {
+div.function > h3, div.property > h3 {
+	margin-top: 0;
+}
+div.function > h3 > a, div.property > h3 > a {
     font-family: monospace;
     color: #2B5782;
     text-decoration: none;
@@ -71,9 +74,18 @@ span.optional, span.any_type {
     color: #777;
 }
 
-div.function, div.property, div.table, div.field {
+div.function, div.property {
+	margin: -10px;
+	padding: 10px;
+}
+
+div.function > div, div.property > div {
     margin-left: 2rem;
-    margin-bottom: 1.5rem;
+}
+
+div.function:target, div.property:target {
+	background: #ffffb2;
+	border-radius: 0.3em;
 }
 
 span.info {
@@ -285,14 +297,6 @@ ul.triggers > li {
 }
 
 div.info > div { margin-top: 0.3rem; }
-
-span.target {
-    position: absolute;
-    display: block;
-    margin-top: -100px;
-    height: 100px;
-    visibility: hidden;
-}
         div#wrap { padding: 0; }
     </style>
 	<link rel=stylesheet href=/luakit/style.css />
@@ -437,173 +441,183 @@ span.target {
 
         <!-- modes and binds --><h2>Properties</h2>
 
-        <h3 class=property>
-            <span class=target id="property-allow_overwrite"></span>
-            <a href="#property-allow_overwrite">download.allow_overwrite</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>boolean</span></div>
-                <div>Default: 
+        <div class=property id="property-allow_overwrite">
+            <h3>
+                <a href="#property-allow_overwrite">download.allow_overwrite</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>boolean</span></div>
+                    <div>Default: 
 <code>false</code>
 </div>
-                <div>Read-write</div>
-            </div>
-            <div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 Whether this download should be permitted to overwrite any file already
 existing at the destination.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-destination"></span>
-            <a href="#property-destination">download.destination</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div>Default: 
+        <div class=property id="property-destination">
+            <h3>
+                <a href="#property-destination">download.destination</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div>Default: 
 <code>nil</code>
 </div>
-                <div>Read-write</div>
-            </div>
-            <div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 The path at which the downloaded file should be saved.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-progress"></span>
-            <a href="#property-progress">download.progress</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>number</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-progress">
+            <h3>
+                <a href="#property-progress">download.progress</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>number</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 The download progress, ranging from 0.0 (no data yet received) to 1.0 (all
 data received). This is only an estimate; see the <a href="../classes/download.html#property-current_size"><code>current_size</code></a> property for
 a more exact value.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-status"></span>
-            <a href="#property-status">download.status</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-status">
+            <h3>
+                <a href="#property-status">download.status</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 The download status. Will be one of <code>"created"</code>, <code>"started"</code>, <code>"cancelled"</code>,
 <code>"finished"</code>, or <code>"failed"</code>.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-error"></span>
-            <a href="#property-error">download.error</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span> or <span class=type>nil</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-error">
+            <h3>
+                <a href="#property-error">download.error</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span> or <span class=type>nil</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 The error message for the download, or <code>nil</code>.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-total_size"></span>
-            <a href="#property-total_size">download.total_size</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>number</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-total_size">
+            <h3>
+                <a href="#property-total_size">download.total_size</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>number</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 The total size of the file to be downloaded, including all data not yet
 downloaded.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-current_size"></span>
-            <a href="#property-current_size">download.current_size</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>number</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-current_size">
+            <h3>
+                <a href="#property-current_size">download.current_size</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>number</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 The current size of all data that has been downloaded and written to the
 destination.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-elapsed_time"></span>
-            <a href="#property-elapsed_time">download.elapsed_time</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>number</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-elapsed_time">
+            <h3>
+                <a href="#property-elapsed_time">download.elapsed_time</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>number</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 The length of time that the download has been running, in seconds. This
 includes any fractional part.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-mime_type"></span>
-            <a href="#property-mime_type">download.mime_type</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span> or <span class=type>nil</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-mime_type">
+            <h3>
+                <a href="#property-mime_type">download.mime_type</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span> or <span class=type>nil</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 The MIME type of the download, if known.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-suggested_filename"></span>
-            <a href="#property-suggested_filename">download.suggested_filename</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-suggested_filename">
+            <h3>
+                <a href="#property-suggested_filename">download.suggested_filename</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 The suggested filename to use, for use in dialog boxes.
 </div>
+            </div>
         </div>
     <h2>Signals</h2>
 
-        <h3 class=function>
-            <span class=target id="signal-property::allow-overwrite"></span>
-            <a href="#signal-property::allow-overwrite">"property::allow-overwrite"</a>
-        </h3>
-            <div class=function>
+        <div class=function id="signal-property::allow-overwrite">
+            <h3>
+                <a href="#signal-property::allow-overwrite">"property::allow-overwrite"</a>
+            </h3>
+                    <div>
             
             
 <p>Emitted when the <a href="../classes/download.html#property-allow_overwrite"><code>allow_overwrite</code></a> property has changed.</p>
@@ -612,11 +626,13 @@ The suggested filename to use, for use in dialog boxes.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="signal-property::destination"></span>
-            <a href="#signal-property::destination">"property::destination"</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="signal-property::destination">
+            <h3>
+                <a href="#signal-property::destination">"property::destination"</a>
+            </h3>
+                    <div>
             
             
 <p>Emitted when the <a href="../classes/download.html#property-destination"><code>destination</code></a> property has changed.</p>
@@ -625,11 +641,13 @@ The suggested filename to use, for use in dialog boxes.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="signal-decide-destination"></span>
-            <a href="#signal-decide-destination">"decide-destination"</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="signal-decide-destination">
+            <h3>
+                <a href="#signal-decide-destination">"decide-destination"</a>
+            </h3>
+                    <div>
             
             
 <p>Emitted when a destination for the download must be decided. Handlers should
@@ -667,11 +685,13 @@ The suggested filename for the download.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="signal-created-destination"></span>
-            <a href="#signal-created-destination">"created-destination"</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="signal-created-destination">
+            <h3>
+                <a href="#signal-created-destination">"created-destination"</a>
+            </h3>
+                    <div>
             
             
 <p>Emitted when the destination has been created.</p>
@@ -697,11 +717,13 @@ The final destination for the download.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="signal-error"></span>
-            <a href="#signal-error">"error"</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="signal-error">
+            <h3>
+                <a href="#signal-error">"error"</a>
+            </h3>
+                    <div>
             
             
 <p>Emitted when the download fails.</p>
@@ -727,17 +749,21 @@ The error message.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="signal-finished"></span>
-            <a href="#signal-finished">"finished"</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="signal-finished">
+            <h3>
+                <a href="#signal-finished">"finished"</a>
+            </h3>
+                    <div>
             
             
 <p>Emitted when the download has finished.</p>
 
             
             
+        </div>
+    
         </div>
     
         <h2>Attribution</h2>

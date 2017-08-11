@@ -46,7 +46,10 @@ body {
     font-weight: normal;
 }
 
-h3.function > a, h3.property > a, h3.table > a, h3.field > a {
+div.function > h3, div.property > h3 {
+	margin-top: 0;
+}
+div.function > h3 > a, div.property > h3 > a {
     font-family: monospace;
     color: #2B5782;
     text-decoration: none;
@@ -71,9 +74,18 @@ span.optional, span.any_type {
     color: #777;
 }
 
-div.function, div.property, div.table, div.field {
+div.function, div.property {
+	margin: -10px;
+	padding: 10px;
+}
+
+div.function > div, div.property > div {
     margin-left: 2rem;
-    margin-bottom: 1.5rem;
+}
+
+div.function:target, div.property:target {
+	background: #ffffb2;
+	border-radius: 0.3em;
 }
 
 span.info {
@@ -285,14 +297,6 @@ ul.triggers > li {
 }
 
 div.info > div { margin-top: 0.3rem; }
-
-span.target {
-    position: absolute;
-    display: block;
-    margin-top: -100px;
-    height: 100px;
-    visibility: hidden;
-}
         div#wrap { padding: 0; }
     </style>
 	<link rel=stylesheet href=/luakit/style.css />
@@ -434,11 +438,11 @@ span.target {
 
         <!-- modes and binds --><h2>Functions</h2>
 
-        <h3 class=function>
-            <span class=target id="function-parse_query"></span>
-            <a href="#function-parse_query">lousy.uri.parse_query (query)</a>
-        </h3>
-            <div class=function>
+        <div class=function id="function-parse_query">
+            <h3>
+                <a href="#function-parse_query">lousy.uri.parse_query (query)</a>
+            </h3>
+                    <div>
             
             
 <p>Parse the query component of a URI and return it as a table.</p>
@@ -475,11 +479,13 @@ The parsed table of query options.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-parse"></span>
-            <a href="#function-parse">lousy.uri.parse (uri)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-parse">
+            <h3>
+                <a href="#function-parse">lousy.uri.parse (uri)</a>
+            </h3>
+                    <div>
             
             
 <p>Parse a URI string and return a URI table.</p>
@@ -516,11 +522,13 @@ The URI as a table.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-copy"></span>
-            <a href="#function-copy">lousy.uri.copy (uri)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-copy">
+            <h3>
+                <a href="#function-copy">lousy.uri.copy (uri)</a>
+            </h3>
+                    <div>
             
             
 <p>Duplicate a URI table.</p>
@@ -555,6 +563,8 @@ A new copy of the URI table.
         </li>
     
 </ul>
+        </div>
+    
         </div>
     
         <h2>Attribution</h2>

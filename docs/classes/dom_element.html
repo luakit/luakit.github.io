@@ -46,7 +46,10 @@ body {
     font-weight: normal;
 }
 
-h3.function > a, h3.property > a, h3.table > a, h3.field > a {
+div.function > h3, div.property > h3 {
+	margin-top: 0;
+}
+div.function > h3 > a, div.property > h3 > a {
     font-family: monospace;
     color: #2B5782;
     text-decoration: none;
@@ -71,9 +74,18 @@ span.optional, span.any_type {
     color: #777;
 }
 
-div.function, div.property, div.table, div.field {
+div.function, div.property {
+	margin: -10px;
+	padding: 10px;
+}
+
+div.function > div, div.property > div {
     margin-left: 2rem;
-    margin-bottom: 1.5rem;
+}
+
+div.function:target, div.property:target {
+	background: #ffffb2;
+	border-radius: 0.3em;
 }
 
 span.info {
@@ -285,14 +297,6 @@ ul.triggers > li {
 }
 
 div.info > div { margin-top: 0.3rem; }
-
-span.target {
-    position: absolute;
-    display: block;
-    margin-top: -100px;
-    height: 100px;
-    visibility: hidden;
-}
         div#wrap { padding: 0; }
     </style>
 	<link rel=stylesheet href=/luakit/style.css />
@@ -440,11 +444,11 @@ span.target {
 
         <!-- modes and binds --><h2>Methods</h2>
 
-        <h3 class=function>
-            <span class=target id="method-query"></span>
-            <a href="#method-query">element:query (selector)</a>
-        </h3>
-            <div class=function>
+        <div class=function id="method-query">
+            <h3>
+                <a href="#method-query">element:query (selector)</a>
+            </h3>
+                    <div>
             
             
 <p>Find all sub-elements which match a given CSS selector.</p>
@@ -481,11 +485,13 @@ All sub-elements which match the selector.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="method-append"></span>
-            <a href="#method-append">element:append (child)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="method-append">
+            <h3>
+                <a href="#method-append">element:append (child)</a>
+            </h3>
+                    <div>
             
             
 <p>Append a new child element to the end of the element's children.</p>
@@ -511,11 +517,13 @@ The new child element.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="method-remove"></span>
-            <a href="#method-remove">element:remove ()</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="method-remove">
+            <h3>
+                <a href="#method-remove">element:remove ()</a>
+            </h3>
+                    <div>
             
             
 <p>Remove the element from its parent element.</p>
@@ -524,11 +532,13 @@ The new child element.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="method-click"></span>
-            <a href="#method-click">element:click ()</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="method-click">
+            <h3>
+                <a href="#method-click">element:click ()</a>
+            </h3>
+                    <div>
             
             
 <p>Simulate a mouse click on the element.</p>
@@ -537,11 +547,13 @@ The new child element.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="method-focus"></span>
-            <a href="#method-focus">element:focus ()</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="method-focus">
+            <h3>
+                <a href="#method-focus">element:focus ()</a>
+            </h3>
+                    <div>
             
             
 <p>Focus the element.</p>
@@ -550,11 +562,13 @@ The new child element.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="method-submit"></span>
-            <a href="#method-submit">element:submit ()</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="method-submit">
+            <h3>
+                <a href="#method-submit">element:submit ()</a>
+            </h3>
+                    <div>
             
             
 <p>If the element is a form element, submit the form.</p>
@@ -563,11 +577,13 @@ The new child element.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="method-add_event_listener"></span>
-            <a href="#method-add_event_listener">element:add_event_listener (type, capture, callback)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="method-add_event_listener">
+            <h3>
+                <a href="#method-add_event_listener">element:add_event_listener (type, capture, callback)</a>
+            </h3>
+                    <div>
             
             
 <p>Add an event listener to this element. The callback will be called with a
@@ -625,311 +641,334 @@ The callback function.
 </ul>
             
         </div>
+    
+        </div>
     <h2>Properties</h2>
 
-        <h3 class=property>
-            <span class=target id="property-inner_html"></span>
-            <a href="#property-inner_html">element.inner_html</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div></div>
-                <div>Read-write</div>
-            </div>
-            <div>
+        <div class=property id="property-inner_html">
+            <h3>
+                <a href="#property-inner_html">element.inner_html</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 The inner HTML of the element.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-tag_name"></span>
-            <a href="#property-tag_name">element.tag_name</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-tag_name">
+            <h3>
+                <a href="#property-tag_name">element.tag_name</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 The tag name of the element.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-text_content"></span>
-            <a href="#property-text_content">element.text_content</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-text_content">
+            <h3>
+                <a href="#property-text_content">element.text_content</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 The text content of the element.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-child_count"></span>
-            <a href="#property-child_count">element.child_count</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>integer</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-child_count">
+            <h3>
+                <a href="#property-child_count">element.child_count</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>integer</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 The number of child elements this element has.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-src"></span>
-            <a href="#property-src">element.src</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-src">
+            <h3>
+                <a href="#property-src">element.src</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 The "src" attribute of the element.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-href"></span>
-            <a href="#property-href">element.href</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-href">
+            <h3>
+                <a href="#property-href">element.href</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 The "href" attribute of the element.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-value"></span>
-            <a href="#property-value">element.value</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div></div>
-                <div>Read-write</div>
-            </div>
-            <div>
+        <div class=property id="property-value">
+            <h3>
+                <a href="#property-value">element.value</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 The "value" attribute of the element.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-checked"></span>
-            <a href="#property-checked">element.checked</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>boolean</span></div>
-                <div></div>
-                <div>Read-write</div>
-            </div>
-            <div>
+        <div class=property id="property-checked">
+            <h3>
+                <a href="#property-checked">element.checked</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>boolean</span></div>
+                    <div></div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 Whether this element is checked.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-type"></span>
-            <a href="#property-type">element.type</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-type">
+            <h3>
+                <a href="#property-type">element.type</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 The "type" attribute of the element.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-parent"></span>
-            <a href="#property-parent">element.parent</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>dom_element</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-parent">
+            <h3>
+                <a href="#property-parent">element.parent</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>dom_element</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 The parent element of this element.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-first_child"></span>
-            <a href="#property-first_child">element.first_child</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>dom_element</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-first_child">
+            <h3>
+                <a href="#property-first_child">element.first_child</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>dom_element</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 The first child element of this element.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-last_child"></span>
-            <a href="#property-last_child">element.last_child</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>dom_element</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-last_child">
+            <h3>
+                <a href="#property-last_child">element.last_child</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>dom_element</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 The last child element of this element.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-prev_sibling"></span>
-            <a href="#property-prev_sibling">element.prev_sibling</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>dom_element</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-prev_sibling">
+            <h3>
+                <a href="#property-prev_sibling">element.prev_sibling</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>dom_element</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 The previous sibling element of this element.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-next_sibling"></span>
-            <a href="#property-next_sibling">element.next_sibling</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>dom_element</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-next_sibling">
+            <h3>
+                <a href="#property-next_sibling">element.next_sibling</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>dom_element</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 The next sibling element of this element.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-rect"></span>
-            <a href="#property-rect">element.rect</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>table</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-rect">
+            <h3>
+                <a href="#property-rect">element.rect</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>table</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 The position of the element within the containing DOM document. It has four
 keys: <code>top</code>, <code>left</code>, <code>width</code>, and <code>height</code>.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-style"></span>
-            <a href="#property-style">element.style</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>table</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-style">
+            <h3>
+                <a href="#property-style">element.style</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>table</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 Table of computed styles. Index should be the name of a CSS property value.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-attr"></span>
-            <a href="#property-attr">element.attr</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>table</span></div>
-                <div></div>
-                <div>Read-write</div>
-            </div>
-            <div>
+        <div class=property id="property-attr">
+            <h3>
+                <a href="#property-attr">element.attr</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>table</span></div>
+                    <div></div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 The attributes of the DOM element and their values, as key/value
 pairs. All keys and values must be strings. Iteration with <code>next()</code>
 or <code>pairs()</code> does not work.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-document"></span>
-            <a href="#property-document">element.document</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>dom_document</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-document">
+            <h3>
+                <a href="#property-document">element.document</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>dom_document</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 The DOM document that this element is within. If this element is within a
 subframe, the document returned will be the DOM document for that subframe,
 not the top-level document.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-owner_document"></span>
-            <a href="#property-owner_document">element.owner_document</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>dom_document</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-owner_document">
+            <h3>
+                <a href="#property-owner_document">element.owner_document</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>dom_document</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 The DOM document that is the top-level document object for this element.
 one document and added to another.
 </div>
+            </div>
         </div>
     <h2>Signals</h2>
 
-        <h3 class=function>
-            <span class=target id="signal-destroy"></span>
-            <a href="#signal-destroy">"destroy"</a>
-        </h3>
-            <div class=function>
+        <div class=function id="signal-destroy">
+            <h3>
+                <a href="#signal-destroy">"destroy"</a>
+            </h3>
+                    <div>
             
             
 <p>Emitted when the element is destroyed.</p>
 
             
             
+        </div>
+    
         </div>
     
         <h2>Attribution</h2>

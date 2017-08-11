@@ -46,7 +46,10 @@ body {
     font-weight: normal;
 }
 
-h3.function > a, h3.property > a, h3.table > a, h3.field > a {
+div.function > h3, div.property > h3 {
+	margin-top: 0;
+}
+div.function > h3 > a, div.property > h3 > a {
     font-family: monospace;
     color: #2B5782;
     text-decoration: none;
@@ -71,9 +74,18 @@ span.optional, span.any_type {
     color: #777;
 }
 
-div.function, div.property, div.table, div.field {
+div.function, div.property {
+	margin: -10px;
+	padding: 10px;
+}
+
+div.function > div, div.property > div {
     margin-left: 2rem;
-    margin-bottom: 1.5rem;
+}
+
+div.function:target, div.property:target {
+	background: #ffffb2;
+	border-radius: 0.3em;
 }
 
 span.info {
@@ -285,14 +297,6 @@ ul.triggers > li {
 }
 
 div.info > div { margin-top: 0.3rem; }
-
-span.target {
-    position: absolute;
-    display: block;
-    margin-top: -100px;
-    height: 100px;
-    visibility: hidden;
-}
         div#wrap { padding: 0; }
     </style>
 	<link rel=stylesheet href=/luakit/style.css />
@@ -441,11 +445,11 @@ draggable slider between panes.</p>
 
         <!-- modes and binds --><h2>Methods</h2>
 
-        <h3 class=function>
-            <span class=target id="method-pack1"></span>
-            <a href="#method-pack1">paned:pack1 (child, options)</a>
-        </h3>
-            <div class=function>
+        <div class=function id="method-pack1">
+            <h3>
+                <a href="#method-pack1">paned:pack1 (child, options)</a>
+            </h3>
+                    <div>
             
             
 <p>Add a widget to the left/top panel. There are two options that can be set:</p>
@@ -494,11 +498,13 @@ Table of options.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="method-pack2"></span>
-            <a href="#method-pack2">paned:pack2 (child, options)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="method-pack2">
+            <h3>
+                <a href="#method-pack2">paned:pack2 (child, options)</a>
+            </h3>
+                    <div>
             
             
 <p>Add a widget to the right/bottom panel. Otherwise the same as <code>pack1()</code>.</p>
@@ -538,81 +544,88 @@ Table of options.
 </ul>
             
         </div>
+    
+        </div>
     <h2>Properties</h2>
 
-        <h3 class=property>
-            <span class=target id="property-top"></span>
-            <a href="#property-top">paned.top</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>widget</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-top">
+            <h3>
+                <a href="#property-top">paned.top</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>widget</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 The top/left pane child widget.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-left"></span>
-            <a href="#property-left">paned.left</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>widget</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-left">
+            <h3>
+                <a href="#property-left">paned.left</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>widget</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 The top/left pane child widget.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-bottom"></span>
-            <a href="#property-bottom">paned.bottom</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>widget</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-bottom">
+            <h3>
+                <a href="#property-bottom">paned.bottom</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>widget</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 The bottom/right pane child widget.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-right"></span>
-            <a href="#property-right">paned.right</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>widget</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-right">
+            <h3>
+                <a href="#property-right">paned.right</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>widget</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 The bottom/right pane child widget.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-position"></span>
-            <a href="#property-position">paned.position</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>number</span></div>
-                <div></div>
-                <div>Read-write</div>
-            </div>
-            <div>
+        <div class=property id="property-position">
+            <h3>
+                <a href="#property-position">paned.position</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>number</span></div>
+                    <div></div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 The current position of the divider, in pixels.
 </div>
+            </div>
         </div>
     
         <h2>Attribution</h2>

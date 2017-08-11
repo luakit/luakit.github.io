@@ -46,7 +46,10 @@ body {
     font-weight: normal;
 }
 
-h3.function > a, h3.property > a, h3.table > a, h3.field > a {
+div.function > h3, div.property > h3 {
+	margin-top: 0;
+}
+div.function > h3 > a, div.property > h3 > a {
     font-family: monospace;
     color: #2B5782;
     text-decoration: none;
@@ -71,9 +74,18 @@ span.optional, span.any_type {
     color: #777;
 }
 
-div.function, div.property, div.table, div.field {
+div.function, div.property {
+	margin: -10px;
+	padding: 10px;
+}
+
+div.function > div, div.property > div {
     margin-left: 2rem;
-    margin-bottom: 1.5rem;
+}
+
+div.function:target, div.property:target {
+	background: #ffffb2;
+	border-radius: 0.3em;
 }
 
 span.info {
@@ -285,14 +297,6 @@ ul.triggers > li {
 }
 
 div.info > div { margin-top: 0.3rem; }
-
-span.target {
-    position: absolute;
-    display: block;
-    margin-top: -100px;
-    height: 100px;
-    visibility: hidden;
-}
         div#wrap { padding: 0; }
     </style>
 	<link rel=stylesheet href=/luakit/style.css />
@@ -445,11 +449,11 @@ background programs, and more.</p>
 
         <!-- modes and binds --><h2>Functions</h2>
 
-        <h3 class=function>
-            <span class=target id="function-quit"></span>
-            <a href="#function-quit">luakit.quit ()</a>
-        </h3>
-            <div class=function>
+        <div class=function id="function-quit">
+            <h3>
+                <a href="#function-quit">luakit.quit ()</a>
+            </h3>
+                    <div>
             
             
 <p>Quit luakit immediately, without asking modules for confirmation.</p>
@@ -458,11 +462,13 @@ background programs, and more.</p>
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-spawn"></span>
-            <a href="#function-spawn">luakit.spawn (cmd, callback)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-spawn">
+            <h3>
+                <a href="#function-spawn">luakit.spawn (cmd, callback)</a>
+            </h3>
+                    <div>
             
             
 <p>Spawn a process asynchronously.</p>
@@ -503,11 +509,13 @@ process is terminated, of type <a href="../modules/luakit.html#callback-process_
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-spawn_sync"></span>
-            <a href="#function-spawn_sync">luakit.spawn_sync (cmd)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-spawn_sync">
+            <h3>
+                <a href="#function-spawn_sync">luakit.spawn_sync (cmd)</a>
+            </h3>
+                    <div>
             
             
 <p>Spawn a process synchronously.</p>
@@ -565,11 +573,13 @@ A string containig data printed on <code>stderr</code>.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-time"></span>
-            <a href="#function-time">luakit.time ()</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-time">
+            <h3>
+                <a href="#function-time">luakit.time ()</a>
+            </h3>
+                    <div>
             
             
 <p>Get the time since Luakit startup.</p>
@@ -589,11 +599,13 @@ The number of seconds Luakit has been running.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-uri_encode"></span>
-            <a href="#function-uri_encode">luakit.uri_encode (str)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-uri_encode">
+            <h3>
+                <a href="#function-uri_encode">luakit.uri_encode (str)</a>
+            </h3>
+                    <div>
             
             
 <p>Escape a string for use in a URI.</p>
@@ -630,11 +642,13 @@ The escaped/encoded string.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-uri_decode"></span>
-            <a href="#function-uri_decode">luakit.uri_decode (str)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-uri_decode">
+            <h3>
+                <a href="#function-uri_decode">luakit.uri_decode (str)</a>
+            </h3>
+                    <div>
             
             
 <p>Unescape an escaped string used in a URI.</p>
@@ -684,11 +698,13 @@ Error message.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-idle_add"></span>
-            <a href="#function-idle_add">luakit.idle_add (cb)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-idle_add">
+            <h3>
+                <a href="#function-idle_add">luakit.idle_add (cb)</a>
+            </h3>
+                    <div>
             
             
 <p>Add a function to be called regularly when Luakit is idle. If the function
@@ -721,11 +737,13 @@ The function to call when Luakit is idle, of type <a href="../modules/luakit.htm
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-idle_remove"></span>
-            <a href="#function-idle_remove">luakit.idle_remove (cb)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-idle_remove">
+            <h3>
+                <a href="#function-idle_remove">luakit.idle_remove (cb)</a>
+            </h3>
+                    <div>
             
             
 <p>Remove a function previously registered with <a href="../modules/luakit.html#function-idle_add"><code>idle_add</code></a>.</p>
@@ -763,11 +781,13 @@ callback was not found.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-register_scheme"></span>
-            <a href="#function-register_scheme">luakit.register_scheme (scheme)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-register_scheme">
+            <h3>
+                <a href="#function-register_scheme">luakit.register_scheme (scheme)</a>
+            </h3>
+                    <div>
             
             
 <p>Register a custom URI scheme.</p>
@@ -811,11 +831,13 @@ The network scheme to register.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-wch_upper"></span>
-            <a href="#function-wch_upper">luakit.wch_upper (key)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-wch_upper">
+            <h3>
+                <a href="#function-wch_upper">luakit.wch_upper (key)</a>
+            </h3>
+                    <div>
             
             
 <p>Convert a key or key name to uppercase.</p>
@@ -852,11 +874,13 @@ is already uppercase or if case conversion does not apply to the key.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-wch_lower"></span>
-            <a href="#function-wch_lower">luakit.wch_lower (key)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-wch_lower">
+            <h3>
+                <a href="#function-wch_lower">luakit.wch_lower (key)</a>
+            </h3>
+                    <div>
             
             
 <p>Convert a key or key name to lowercase.</p>
@@ -892,157 +916,168 @@ is already lowercase or if case conversion does not apply to the key.
     
 </ul>
         </div>
+    
+        </div>
     <h2>Properties</h2>
 
-        <h3 class=property>
-            <span class=target id="property-config_dir"></span>
-            <a href="#property-config_dir">luakit.config_dir</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-config_dir">
+            <h3>
+                <a href="#property-config_dir">luakit.config_dir</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 The path to the luakit configuration directory.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-data_dir"></span>
-            <a href="#property-data_dir">luakit.data_dir</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-data_dir">
+            <h3>
+                <a href="#property-data_dir">luakit.data_dir</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 The path to the luakit data directory.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-cache_dir"></span>
-            <a href="#property-cache_dir">luakit.cache_dir</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-cache_dir">
+            <h3>
+                <a href="#property-cache_dir">luakit.cache_dir</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 The path to the luakit cache directory.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-verbose"></span>
-            <a href="#property-verbose">luakit.verbose</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>boolean</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-verbose">
+            <h3>
+                <a href="#property-verbose">luakit.verbose</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>boolean</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 Whether luakit is using verbose logging. <code>true</code> if logging in <code>verbose</code> or
 <code>debug</code> mode.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-install_path"></span>
-            <a href="#property-install_path">luakit.install_path</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-install_path">
+            <h3>
+                <a href="#property-install_path">luakit.install_path</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 The luakit installation path.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-install_paths"></span>
-            <a href="#property-install_paths">luakit.install_paths</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>table</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-install_paths">
+            <h3>
+                <a href="#property-install_paths">luakit.install_paths</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>table</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 The paths to where luakit's files are installed.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-version"></span>
-            <a href="#property-version">luakit.version</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-version">
+            <h3>
+                <a href="#property-version">luakit.version</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 The luakit version.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-windows"></span>
-            <a href="#property-windows">luakit.windows</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>{widget}</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-windows">
+            <h3>
+                <a href="#property-windows">luakit.windows</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>{widget}</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 An array of all active window widgets.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-enable_spell_checking"></span>
-            <a href="#property-enable_spell_checking">luakit.enable_spell_checking</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>boolean</span></div>
-                <div>Default: 
+        <div class=property id="property-enable_spell_checking">
+            <h3>
+                <a href="#property-enable_spell_checking">luakit.enable_spell_checking</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>boolean</span></div>
+                    <div>Default: 
 <code>false</code>
 </div>
-                <div>Read-write</div>
-            </div>
-            <div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 Whether spell checking is enabled.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-spell_checking_languages"></span>
-            <a href="#property-spell_checking_languages">luakit.spell_checking_languages</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>{string}</span></div>
-                <div></div>
-                <div>Read-write</div>
-            </div>
-            <div>
+        <div class=property id="property-spell_checking_languages">
+            <h3>
+                <a href="#property-spell_checking_languages">luakit.spell_checking_languages</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>{string}</span></div>
+                    <div></div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 The set of languages to use for spell checking, if spell checking is
 enabled.
 
@@ -1057,19 +1092,20 @@ discarded and a warning is logged, but no error is generated.</p>
 value to <code>{}</code> will reset it to the default value.</p>
 
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-selection"></span>
-            <a href="#property-selection">luakit.selection</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>{[string]=string}</span></div>
-                <div></div>
-                <div>Read-write</div>
-            </div>
-            <div>
+        <div class=property id="property-selection">
+            <h3>
+                <a href="#property-selection">luakit.selection</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>{[string]=string}</span></div>
+                    <div></div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 The current contents of the different X selections.
 The key used to access this table must be the name of the X clipboard
 to use (one of <code>"primary"</code>, <code>"secondary"</code> or <code>"clipboard"</code>).
@@ -1083,14 +1119,15 @@ selections, but is included here for completeness.</p>
 <p>The clipboard selection is filled with the contents of the primary selection
 when the user explicitly requests a copy operation.</p>
 </div>
+            </div>
         </div>
     <h2>Signals</h2>
 
-        <h3 class=function>
-            <span class=target id="signal-page-created"></span>
-            <a href="#signal-page-created">"page-created"</a>
-        </h3>
-            <div class=function>
+        <div class=function id="signal-page-created">
+            <h3>
+                <a href="#signal-page-created">"page-created"</a>
+            </h3>
+                    <div>
             
             
 
@@ -1130,13 +1167,15 @@ The new page object.
 </ul>
             
         </div>
+    
+        </div>
     <h2>Callback Types</h2>
 
-        <h3 class=function>
-            <span class=target id="callback-process_exit_cb"></span>
-            <a href="#callback-process_exit_cb">process_exit_cb (reason, status)</a>
-        </h3>
-            <div class=function>
+        <div class=function id="callback-process_exit_cb">
+            <h3>
+                <a href="#callback-process_exit_cb">process_exit_cb (reason, status)</a>
+            </h3>
+                    <div>
             
             
 <p>Callback type for <a href="../modules/luakit.html#function-spawn"><code>spawn</code></a>.</p>
@@ -1177,11 +1216,13 @@ The exit status code of the process. Its meaning is system-dependent.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="callback-idle_cb"></span>
-            <a href="#callback-idle_cb">idle_cb ()</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="callback-idle_cb">
+            <h3>
+                <a href="#callback-idle_cb">idle_cb ()</a>
+            </h3>
+                    <div>
             
             
 <p>Idle callback function type.
@@ -1202,6 +1243,8 @@ Whether the callback should be kept running on idle.
         </li>
     
 </ul>
+        </div>
+    
         </div>
     
         <h2>Attribution</h2>

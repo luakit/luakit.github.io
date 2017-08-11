@@ -46,7 +46,10 @@ body {
     font-weight: normal;
 }
 
-h3.function > a, h3.property > a, h3.table > a, h3.field > a {
+div.function > h3, div.property > h3 {
+	margin-top: 0;
+}
+div.function > h3 > a, div.property > h3 > a {
     font-family: monospace;
     color: #2B5782;
     text-decoration: none;
@@ -71,9 +74,18 @@ span.optional, span.any_type {
     color: #777;
 }
 
-div.function, div.property, div.table, div.field {
+div.function, div.property {
+	margin: -10px;
+	padding: 10px;
+}
+
+div.function > div, div.property > div {
     margin-left: 2rem;
-    margin-bottom: 1.5rem;
+}
+
+div.function:target, div.property:target {
+	background: #ffffb2;
+	border-radius: 0.3em;
 }
 
 span.info {
@@ -285,14 +297,6 @@ ul.triggers > li {
 }
 
 div.info > div { margin-top: 0.3rem; }
-
-span.target {
-    position: absolute;
-    display: block;
-    margin-top: -100px;
-    height: 100px;
-    visibility: hidden;
-}
         div#wrap { padding: 0; }
     </style>
 	<link rel=stylesheet href=/luakit/style.css />
@@ -441,11 +445,11 @@ which will be visible at a given time.</p>
 
         <!-- modes and binds --><h2>Methods</h2>
 
-        <h3 class=function>
-            <span class=target id="method-count"></span>
-            <a href="#method-count">notebook:count ()</a>
-        </h3>
-            <div class=function>
+        <div class=function id="method-count">
+            <h3>
+                <a href="#method-count">notebook:count ()</a>
+            </h3>
+                    <div>
             
             
 <p>Get the number of pages in the notebook.</p>
@@ -465,11 +469,13 @@ The number of pages in the notebook.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="method-current"></span>
-            <a href="#method-current">notebook:current ()</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="method-current">
+            <h3>
+                <a href="#method-current">notebook:current ()</a>
+            </h3>
+                    <div>
             
             
 <p>Get the page number of the currently visible page.</p>
@@ -489,11 +495,13 @@ The 1-based index of the currently visible page.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="method-get_title"></span>
-            <a href="#method-get_title">notebook:get_title (child)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="method-get_title">
+            <h3>
+                <a href="#method-get_title">notebook:get_title (child)</a>
+            </h3>
+                    <div>
             
             
 <p>Get the tab label text for a particular child widget.</p>
@@ -519,11 +527,13 @@ The child widget.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="method-set_title"></span>
-            <a href="#method-set_title">notebook:set_title (child, title)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="method-set_title">
+            <h3>
+                <a href="#method-set_title">notebook:set_title (child, title)</a>
+            </h3>
+                    <div>
             
             
 <p>Set the tab label text for a particular child widget.</p>
@@ -564,11 +574,13 @@ The new tab label text.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="method-indexof"></span>
-            <a href="#method-indexof">notebook:indexof (child)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="method-indexof">
+            <h3>
+                <a href="#method-indexof">notebook:indexof (child)</a>
+            </h3>
+                    <div>
             
             
 <p>Get the page number of the given child widget.</p>
@@ -605,11 +617,13 @@ The 1-based index of the child widget.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="method-insert"></span>
-            <a href="#method-insert">notebook:insert (index, child)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="method-insert">
+            <h3>
+                <a href="#method-insert">notebook:insert (index, child)</a>
+            </h3>
+                    <div>
             
             
 <p>Add a new child widget to the notebook, adding a new page.</p>
@@ -650,11 +664,13 @@ The new child widget to add.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="method-switch"></span>
-            <a href="#method-switch">notebook:switch (index)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="method-switch">
+            <h3>
+                <a href="#method-switch">notebook:switch (index)</a>
+            </h3>
+                    <div>
             
             
 <p>Switch to a notebook page.</p>
@@ -680,11 +696,13 @@ The 1-based index of the page to switch to.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="method-reorder"></span>
-            <a href="#method-reorder">notebook:reorder (child, index)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="method-reorder">
+            <h3>
+                <a href="#method-reorder">notebook:reorder (child, index)</a>
+            </h3>
+                    <div>
             
             
 <p>Move a given child widget to a different position.</p>
@@ -724,48 +742,52 @@ the last position.
 </ul>
             
         </div>
+    
+        </div>
     <h2>Properties</h2>
 
-        <h3 class=property>
-            <span class=target id="property-show_tabs"></span>
-            <a href="#property-show_tabs">notebook.show_tabs</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>boolean</span></div>
-                <div>Default: 
+        <div class=property id="property-show_tabs">
+            <h3>
+                <a href="#property-show_tabs">notebook.show_tabs</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>boolean</span></div>
+                    <div>Default: 
 <code>true</code>
 </div>
-                <div>Read-write</div>
-            </div>
-            <div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 Whether a row of tabs will be shown above the notebook pages.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-show_border"></span>
-            <a href="#property-show_border">notebook.show_border</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>boolean</span></div>
-                <div>Default: 
+        <div class=property id="property-show_border">
+            <h3>
+                <a href="#property-show_border">notebook.show_border</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>boolean</span></div>
+                    <div>Default: 
 <code>false</code>
 </div>
-                <div>Read-write</div>
-            </div>
-            <div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 Whether a border will be shown around the notebook pages.
 </div>
+            </div>
         </div>
     <h2>Signals</h2>
 
-        <h3 class=function>
-            <span class=target id="signal-key-press"></span>
-            <a href="#signal-key-press">"key-press"</a>
-        </h3>
-            <div class=function>
+        <div class=function id="signal-key-press">
+            <h3>
+                <a href="#signal-key-press">"key-press"</a>
+            </h3>
+                    <div>
             
             
 <p>Emitted when a key is pressed while the notebook widget has the input focus.</p>
@@ -817,11 +839,13 @@ propagated further.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="signal-page-added"></span>
-            <a href="#signal-page-added">"page-added"</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="signal-page-added">
+            <h3>
+                <a href="#signal-page-added">"page-added"</a>
+            </h3>
+                    <div>
             
             
 <p>Emitted immediately after a new widget is added to the notebook, adding a new page.</p>
@@ -862,11 +886,13 @@ The 1-based page index of the new child widget.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="signal-page-removed"></span>
-            <a href="#signal-page-removed">"page-removed"</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="signal-page-removed">
+            <h3>
+                <a href="#signal-page-removed">"page-removed"</a>
+            </h3>
+                    <div>
             
             
 <p>Emitted immediately after a widget is removed from the notebook, removing a page.</p>
@@ -892,11 +918,13 @@ The child widget that was removed.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="signal-page-reordered"></span>
-            <a href="#signal-page-reordered">"page-reordered"</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="signal-page-reordered">
+            <h3>
+                <a href="#signal-page-reordered">"page-reordered"</a>
+            </h3>
+                    <div>
             
             
 <p>Emitted immediately after a notebook page has been reordered.</p>
@@ -937,11 +965,13 @@ The new 1-based page index of the child widget.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="signal-switch-page"></span>
-            <a href="#signal-switch-page">"switch-page"</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="signal-switch-page">
+            <h3>
+                <a href="#signal-switch-page">"switch-page"</a>
+            </h3>
+                    <div>
             
             
 <p>Emitted when the currently visible page of the notebook is changed.</p>
@@ -980,6 +1010,8 @@ The 1-based index of the page that is being switched to.
     
 </ul>
             
+        </div>
+    
         </div>
     
         <h2>Attribution</h2>

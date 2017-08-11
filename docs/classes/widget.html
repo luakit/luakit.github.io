@@ -46,7 +46,10 @@ body {
     font-weight: normal;
 }
 
-h3.function > a, h3.property > a, h3.table > a, h3.field > a {
+div.function > h3, div.property > h3 {
+	margin-top: 0;
+}
+div.function > h3 > a, div.property > h3 > a {
     font-family: monospace;
     color: #2B5782;
     text-decoration: none;
@@ -71,9 +74,18 @@ span.optional, span.any_type {
     color: #777;
 }
 
-div.function, div.property, div.table, div.field {
+div.function, div.property {
+	margin: -10px;
+	padding: 10px;
+}
+
+div.function > div, div.property > div {
     margin-left: 2rem;
-    margin-bottom: 1.5rem;
+}
+
+div.function:target, div.property:target {
+	background: #ffffb2;
+	border-radius: 0.3em;
 }
 
 span.info {
@@ -285,14 +297,6 @@ ul.triggers > li {
 }
 
 div.info > div { margin-top: 0.3rem; }
-
-span.target {
-    position: absolute;
-    display: block;
-    margin-top: -100px;
-    height: 100px;
-    visibility: hidden;
-}
         div#wrap { padding: 0; }
     </style>
 	<link rel=stylesheet href=/luakit/style.css />
@@ -484,11 +488,11 @@ library.</em></p>
 
         <!-- modes and binds --><h2>Functions</h2>
 
-        <h3 class=function>
-            <span class=target id="function-"></span>
-            <a href="#function-">widget (props)</a>
-        </h3>
-            <div class=function>
+        <div class=function id="function-">
+            <h3>
+                <a href="#function-">widget (props)</a>
+            </h3>
+                    <div>
             
             
 <p>Create a new widget. It is mandatory to specify a <code>type</code> as an
@@ -525,13 +529,15 @@ The newly-constructed widget.
     
 </ul>
         </div>
+    
+        </div>
     <h2>Methods</h2>
 
-        <h3 class=function>
-            <span class=target id="method-show"></span>
-            <a href="#method-show">widget:show ()</a>
-        </h3>
-            <div class=function>
+        <div class=function id="method-show">
+            <h3>
+                <a href="#method-show">widget:show ()</a>
+            </h3>
+                    <div>
             
             
 <p>Show the widget.</p>
@@ -540,11 +546,13 @@ The newly-constructed widget.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="method-hide"></span>
-            <a href="#method-hide">widget:hide ()</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="method-hide">
+            <h3>
+                <a href="#method-hide">widget:hide ()</a>
+            </h3>
+                    <div>
             
             
 <p>Hide the widget.</p>
@@ -553,11 +561,13 @@ The newly-constructed widget.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="method-focus"></span>
-            <a href="#method-focus">widget:focus ()</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="method-focus">
+            <h3>
+                <a href="#method-focus">widget:focus ()</a>
+            </h3>
+                    <div>
             
             
 <p>Move the input focus for the widget's window to the widget. If the widget is
@@ -568,11 +578,13 @@ window.</p>
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="method-destroy"></span>
-            <a href="#method-destroy">widget:destroy ()</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="method-destroy">
+            <h3>
+                <a href="#method-destroy">widget:destroy ()</a>
+            </h3>
+                    <div>
             
             
 <p>Destroy the widget.</p>
@@ -581,11 +593,13 @@ window.</p>
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="method-remove"></span>
-            <a href="#method-remove">widget:remove (child)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="method-remove">
+            <h3>
+                <a href="#method-remove">widget:remove (child)</a>
+            </h3>
+                    <div>
             
             
 <p>Remove a specific child widget from the widget. Only certain types of
@@ -612,263 +626,281 @@ The child widget to remove.
 </ul>
             
         </div>
+    
+        </div>
     <h2>Properties</h2>
 
-        <h3 class=property>
-            <span class=target id="property-type"></span>
-            <a href="#property-type">widget.type</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-type">
+            <h3>
+                <a href="#property-type">widget.type</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 The type of the widget. Must be specified during creation, and cannot be modified
 later.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-is_alive"></span>
-            <a href="#property-is_alive">widget.is_alive</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>boolean</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-is_alive">
+            <h3>
+                <a href="#property-is_alive">widget.is_alive</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>boolean</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 Whether the widget is alive. If it is not (i.e. it has been destroyed), then
 this is the only property that can be accessed without raising an error.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-margin"></span>
-            <a href="#property-margin">widget.margin</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>integer</span></div>
-                <div></div>
-                <div>Read-write</div>
-            </div>
-            <div>
+        <div class=property id="property-margin">
+            <h3>
+                <a href="#property-margin">widget.margin</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>integer</span></div>
+                    <div></div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 Combined property for all widget margins, in pixels.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-margin_top"></span>
-            <a href="#property-margin_top">widget.margin_top</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>integer</span></div>
-                <div></div>
-                <div>Read-write</div>
-            </div>
-            <div>
+        <div class=property id="property-margin_top">
+            <h3>
+                <a href="#property-margin_top">widget.margin_top</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>integer</span></div>
+                    <div></div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 The margin above the widget, in pixels.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-margin_bottom"></span>
-            <a href="#property-margin_bottom">widget.margin_bottom</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>integer</span></div>
-                <div></div>
-                <div>Read-write</div>
-            </div>
-            <div>
+        <div class=property id="property-margin_bottom">
+            <h3>
+                <a href="#property-margin_bottom">widget.margin_bottom</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>integer</span></div>
+                    <div></div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 The margin below the widget, in pixels.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-margin_left"></span>
-            <a href="#property-margin_left">widget.margin_left</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>integer</span></div>
-                <div></div>
-                <div>Read-write</div>
-            </div>
-            <div>
+        <div class=property id="property-margin_left">
+            <h3>
+                <a href="#property-margin_left">widget.margin_left</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>integer</span></div>
+                    <div></div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 The margin to the left of the widget, in pixels.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-margin_right"></span>
-            <a href="#property-margin_right">widget.margin_right</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>integer</span></div>
-                <div></div>
-                <div>Read-write</div>
-            </div>
-            <div>
+        <div class=property id="property-margin_right">
+            <h3>
+                <a href="#property-margin_right">widget.margin_right</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>integer</span></div>
+                    <div></div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 The margin to the right of the widget, in pixels.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-parent"></span>
-            <a href="#property-parent">widget.parent</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>widget</span> or <span class=type>nil</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-parent">
+            <h3>
+                <a href="#property-parent">widget.parent</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>widget</span> or <span class=type>nil</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 The widget's parent widget, if it has one.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-child"></span>
-            <a href="#property-child">widget.child</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>widget</span> or <span class=type>nil</span></div>
-                <div></div>
-                <div>Read-write</div>
-            </div>
-            <div>
+        <div class=property id="property-child">
+            <h3>
+                <a href="#property-child">widget.child</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>widget</span> or <span class=type>nil</span></div>
+                    <div></div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 The widget's single child widget, if it has one. Only certain types of
 widgets have this property; specifically, the event box, overlay, scrolled,
 and window widgets.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-focused"></span>
-            <a href="#property-focused">widget.focused</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>boolean</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-focused">
+            <h3>
+                <a href="#property-focused">widget.focused</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>boolean</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 Whether the widget has the input focus.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-visible"></span>
-            <a href="#property-visible">widget.visible</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>boolean</span></div>
-                <div></div>
-                <div>Read-write</div>
-            </div>
-            <div>
+        <div class=property id="property-visible">
+            <h3>
+                <a href="#property-visible">widget.visible</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>boolean</span></div>
+                    <div></div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 Whether the widget is visible.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-tooltip"></span>
-            <a href="#property-tooltip">widget.tooltip</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div>Default: 
+        <div class=property id="property-tooltip">
+            <h3>
+                <a href="#property-tooltip">widget.tooltip</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div>Default: 
 <code>nil</code>
 </div>
-                <div>Read-write</div>
-            </div>
-            <div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 The text displayed in the tooltip shown when the cursor is hovered above the
 widget, or <code>nil</code> if no tooltip should be displayed.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-width"></span>
-            <a href="#property-width">widget.width</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>integer</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-width">
+            <h3>
+                <a href="#property-width">widget.width</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>integer</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 The width of the widget, in pixels.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-height"></span>
-            <a href="#property-height">widget.height</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>integer</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-height">
+            <h3>
+                <a href="#property-height">widget.height</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>integer</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 The height of the widget, in pixels.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-min_size"></span>
-            <a href="#property-min_size">widget.min_size</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>table</span></div>
-                <div></div>
-                <div>Read-write</div>
-            </div>
-            <div>
+        <div class=property id="property-min_size">
+            <h3>
+                <a href="#property-min_size">widget.min_size</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>table</span></div>
+                    <div></div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 The minimum size of the widget, in pixels.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-children"></span>
-            <a href="#property-children">widget.children</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>{widget}</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-children">
+            <h3>
+                <a href="#property-children">widget.children</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>{widget}</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 A newly-created array of the widget's children. Modification of this array does not affect
 the user interface. Only certain types of widgets have this property:
 specifically, the box, event box, notebook, paned, and window widgets.
 </div>
+            </div>
         </div>
     <h2>Signals</h2>
 
-        <h3 class=function>
-            <span class=target id="signal-create"></span>
-            <a href="#signal-create">"create"</a>
-        </h3>
-            <div class=function>
+        <div class=function id="signal-create">
+            <h3>
+                <a href="#signal-create">"create"</a>
+            </h3>
+                    <div>
             
             
 <p>Emitted on the <code>widget</code> library when a new widget has been created.</p>
@@ -894,11 +926,13 @@ The newly-created widget.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="signal-destroy"></span>
-            <a href="#signal-destroy">"destroy"</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="signal-destroy">
+            <h3>
+                <a href="#signal-destroy">"destroy"</a>
+            </h3>
+                    <div>
             
             
 <p>Emitted when the widget is about to be destroyed.</p>
@@ -907,11 +941,13 @@ The newly-created widget.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="signal-resize"></span>
-            <a href="#signal-resize">"resize"</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="signal-resize">
+            <h3>
+                <a href="#signal-resize">"resize"</a>
+            </h3>
+                    <div>
             
             
 <p>Emitted when the widget has been resized.</p>
@@ -920,11 +956,13 @@ The newly-created widget.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="signal-focus"></span>
-            <a href="#signal-focus">"focus"</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="signal-focus">
+            <h3>
+                <a href="#signal-focus">"focus"</a>
+            </h3>
+                    <div>
             
             
 <p>Emitted when the <code>webview</code> widget gains the input focus.</p>
@@ -944,11 +982,13 @@ propagated further.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="signal-unfocus"></span>
-            <a href="#signal-unfocus">"unfocus"</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="signal-unfocus">
+            <h3>
+                <a href="#signal-unfocus">"unfocus"</a>
+            </h3>
+                    <div>
             
             
 <p>Emitted when the <code>webview</code> widget loses the input focus.</p>
@@ -968,11 +1008,13 @@ propagated further.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="signal-parent-set"></span>
-            <a href="#signal-parent-set">"parent-set"</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="signal-parent-set">
+            <h3>
+                <a href="#signal-parent-set">"parent-set"</a>
+            </h3>
+                    <div>
             
             
 <p>Emitted when the widget is either added or removed from a parent widget.</p>
@@ -996,6 +1038,8 @@ The widget's parent, or <code>nil</code>.
     
 </ul>
             
+        </div>
+    
         </div>
     
         <h2>Attribution</h2>

@@ -46,7 +46,10 @@ body {
     font-weight: normal;
 }
 
-h3.function > a, h3.property > a, h3.table > a, h3.field > a {
+div.function > h3, div.property > h3 {
+	margin-top: 0;
+}
+div.function > h3 > a, div.property > h3 > a {
     font-family: monospace;
     color: #2B5782;
     text-decoration: none;
@@ -71,9 +74,18 @@ span.optional, span.any_type {
     color: #777;
 }
 
-div.function, div.property, div.table, div.field {
+div.function, div.property {
+	margin: -10px;
+	padding: 10px;
+}
+
+div.function > div, div.property > div {
     margin-left: 2rem;
-    margin-bottom: 1.5rem;
+}
+
+div.function:target, div.property:target {
+	background: #ffffb2;
+	border-radius: 0.3em;
 }
 
 span.info {
@@ -285,14 +297,6 @@ ul.triggers > li {
 }
 
 div.info > div { margin-top: 0.3rem; }
-
-span.target {
-    position: absolute;
-    display: block;
-    margin-top: -100px;
-    height: 100px;
-    visibility: hidden;
-}
         div#wrap { padding: 0; }
     </style>
 	<link rel=stylesheet href=/luakit/style.css />
@@ -436,11 +440,11 @@ recent log messages.</p>
 
         <!-- modes and binds --><h2>Functions</h2>
 
-        <h3 class=function>
-            <span class=target id="function-widget"></span>
-            <a href="#function-widget">log_chrome.widget ()</a>
-        </h3>
-            <div class=function>
+        <div class=function id="function-widget">
+            <h3>
+                <a href="#function-widget">log_chrome.widget ()</a>
+            </h3>
+                    <div>
             
             
 <p>Construct a new error/warning status bar widget.
@@ -461,116 +465,124 @@ The newly-constructed status bar widget.
     
 </ul>
         </div>
+    
+        </div>
     <h2>Properties</h2>
 
-        <h3 class=property>
-            <span class=target id="property-buffer_size"></span>
-            <a href="#property-buffer_size">log_chrome.buffer_size</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>number</span></div>
-                <div>Default: 
+        <div class=property id="property-buffer_size">
+            <h3>
+                <a href="#property-buffer_size">log_chrome.buffer_size</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>number</span></div>
+                    <div>Default: 
 500
 </div>
-                <div>Read-write</div>
-            </div>
-            <div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 The size of the buffer in which the most recent log messages are stored.
 This is the maximum number of entries that will be shown on the log page.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-html_template"></span>
-            <a href="#property-html_template">log_chrome.html_template</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div></div>
-                <div>Read-write</div>
-            </div>
-            <div>
+        <div class=property id="property-html_template">
+            <h3>
+                <a href="#property-html_template">log_chrome.html_template</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 HTML template for luakit log chrome page content.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-html_page_title"></span>
-            <a href="#property-html_page_title">log_chrome.html_page_title</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div></div>
-                <div>Read-write</div>
-            </div>
-            <div>
+        <div class=property id="property-html_page_title">
+            <h3>
+                <a href="#property-html_page_title">log_chrome.html_page_title</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 Title for the log chrome page.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-html_style"></span>
-            <a href="#property-html_style">log_chrome.html_style</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div></div>
-                <div>Read-write</div>
-            </div>
-            <div>
+        <div class=property id="property-html_style">
+            <h3>
+                <a href="#property-html_style">log_chrome.html_style</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 CSS applied to the log chrome page.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-widget_error_format"></span>
-            <a href="#property-widget_error_format">log_chrome.widget_error_format</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div></div>
-                <div>Read-write</div>
-            </div>
-            <div>
+        <div class=property id="property-widget_error_format">
+            <h3>
+                <a href="#property-widget_error_format">log_chrome.widget_error_format</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 Format string which defines the appearance of the error/warning widget.
 This is passed to <code>string.format</code> with the number of errors as a
 numerical argument, the result of which is substituted into <a href="../modules/log_chrome.html#property-widget_format"><code>widget_format</code></a>.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-widget_warning_format"></span>
-            <a href="#property-widget_warning_format">log_chrome.widget_warning_format</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div></div>
-                <div>Read-write</div>
-            </div>
-            <div>
+        <div class=property id="property-widget_warning_format">
+            <h3>
+                <a href="#property-widget_warning_format">log_chrome.widget_warning_format</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 Format string which defines the appearance of the error/warning widget.
 This is passed to <code>string.format</code> with the number of warnings as a
 numerical argument, the result of which is substituted into <a href="../modules/log_chrome.html#property-widget_format"><code>widget_format</code></a>.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-widget_format"></span>
-            <a href="#property-widget_format">log_chrome.widget_format</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div></div>
-                <div>Read-write</div>
-            </div>
-            <div>
+        <div class=property id="property-widget_format">
+            <h3>
+                <a href="#property-widget_format">log_chrome.widget_format</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 Format string which defines the appearance of the error/warning widget.
 This combines the error and warning sub-format strings. <code>{errors}</code> will be
 replaced with the result of formatting <a href="../modules/log_chrome.html#property-widget_error_format"><code>widget_error_format</code></a>, or the
@@ -578,6 +590,7 @@ empty string if there have been no errors. Likewise, <code>{warnings}</code> wil
 replaced with the result of formatting <a href="../modules/log_chrome.html#property-widget_warning_format"><code>widget_warning_format</code></a>, or the
 empty string if there have been no warnings
 </div>
+            </div>
         </div>
     
         <h2>Attribution</h2>

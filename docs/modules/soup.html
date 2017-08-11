@@ -46,7 +46,10 @@ body {
     font-weight: normal;
 }
 
-h3.function > a, h3.property > a, h3.table > a, h3.field > a {
+div.function > h3, div.property > h3 {
+	margin-top: 0;
+}
+div.function > h3 > a, div.property > h3 > a {
     font-family: monospace;
     color: #2B5782;
     text-decoration: none;
@@ -71,9 +74,18 @@ span.optional, span.any_type {
     color: #777;
 }
 
-div.function, div.property, div.table, div.field {
+div.function, div.property {
+	margin: -10px;
+	padding: 10px;
+}
+
+div.function > div, div.property > div {
     margin-left: 2rem;
-    margin-bottom: 1.5rem;
+}
+
+div.function:target, div.property:target {
+	background: #ffffb2;
+	border-radius: 0.3em;
 }
 
 span.info {
@@ -285,14 +297,6 @@ ul.triggers > li {
 }
 
 div.info > div { margin-top: 0.3rem; }
-
-span.target {
-    position: absolute;
-    display: block;
-    margin-top: -100px;
-    height: 100px;
-    visibility: hidden;
-}
         div#wrap { padding: 0; }
     </style>
 	<link rel=stylesheet href=/luakit/style.css />
@@ -440,11 +444,11 @@ in C. For historical reasons, it also provides some other miscellaneous APIs.</p
 
         <!-- modes and binds --><h2>Functions</h2>
 
-        <h3 class=function>
-            <span class=target id="function-parse_uri"></span>
-            <a href="#function-parse_uri">soup.parse_uri (uri)</a>
-        </h3>
-            <div class=function>
+        <div class=function id="function-parse_uri">
+            <h3>
+                <a href="#function-parse_uri">soup.parse_uri (uri)</a>
+            </h3>
+                    <div>
             
             
 <p>Parse a URI.</p>
@@ -481,11 +485,13 @@ A table of URI components.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-uri_tostring"></span>
-            <a href="#function-uri_tostring">soup.uri_tostring (uri)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-uri_tostring">
+            <h3>
+                <a href="#function-uri_tostring">soup.uri_tostring (uri)</a>
+            </h3>
+                    <div>
             
             
 <p>Convert a table of URI components to a string.</p>
@@ -521,62 +527,67 @@ The URI string.
     
 </ul>
         </div>
+    
+        </div>
     <h2>Properties</h2>
 
-        <h3 class=property>
-            <span class=target id="property-proxy_uri"></span>
-            <a href="#property-proxy_uri">soup.proxy_uri</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div>Default: 
+        <div class=property id="property-proxy_uri">
+            <h3>
+                <a href="#property-proxy_uri">soup.proxy_uri</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div>Default: 
 <code>"default"</code>
 </div>
-                <div>Read-write</div>
-            </div>
-            <div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 The URI of the proxy to use for connections. Can be a URI, the
 string <code>"no_proxy"</code>, the string <code>"default"</code>, or <code>nil</code> (which means the same
 as <code>"default"</code>).
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-accept_policy"></span>
-            <a href="#property-accept_policy">soup.accept_policy</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div>Default: 
+        <div class=property id="property-accept_policy">
+            <h3>
+                <a href="#property-accept_policy">soup.accept_policy</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div>Default: 
 <code>"no_third_party"</code>
 </div>
-                <div>Read-write</div>
-            </div>
-            <div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 The cookie acceptance policy. Determines which cookies are accepted and
 stored. Can be one of <code>"always"</code>, <code>"never"</code>, and
 <code>"no_third_party"</code>.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-cookies_storage"></span>
-            <a href="#property-cookies_storage">soup.cookies_storage</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div>Default: 
+        <div class=property id="property-cookies_storage">
+            <h3>
+                <a href="#property-cookies_storage">soup.cookies_storage</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div>Default: 
 <code>nil</code>
 </div>
-                <div>Read-write</div>
-            </div>
-            <div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 The path to the cookie database to use. Should only be set once. Initially
 unset, meaning no cookie database will be used.
 </div>
+            </div>
         </div>
     
         <h2>Attribution</h2>

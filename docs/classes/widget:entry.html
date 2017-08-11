@@ -46,7 +46,10 @@ body {
     font-weight: normal;
 }
 
-h3.function > a, h3.property > a, h3.table > a, h3.field > a {
+div.function > h3, div.property > h3 {
+	margin-top: 0;
+}
+div.function > h3 > a, div.property > h3 > a {
     font-family: monospace;
     color: #2B5782;
     text-decoration: none;
@@ -71,9 +74,18 @@ span.optional, span.any_type {
     color: #777;
 }
 
-div.function, div.property, div.table, div.field {
+div.function, div.property {
+	margin: -10px;
+	padding: 10px;
+}
+
+div.function > div, div.property > div {
     margin-left: 2rem;
-    margin-bottom: 1.5rem;
+}
+
+div.function:target, div.property:target {
+	background: #ffffb2;
+	border-radius: 0.3em;
 }
 
 span.info {
@@ -285,14 +297,6 @@ ul.triggers > li {
 }
 
 div.info > div { margin-top: 0.3rem; }
-
-span.target {
-    position: absolute;
-    display: block;
-    margin-top: -100px;
-    height: 100px;
-    visibility: hidden;
-}
         div#wrap { padding: 0; }
     </style>
 	<link rel=stylesheet href=/luakit/style.css />
@@ -440,11 +444,11 @@ span.target {
 
         <!-- modes and binds --><h2>Methods</h2>
 
-        <h3 class=function>
-            <span class=target id="method-insert"></span>
-            <a href="#method-insert">entry:insert (position, text)</a>
-        </h3>
-            <div class=function>
+        <div class=function id="method-insert">
+            <h3>
+                <a href="#method-insert">entry:insert (position, text)</a>
+            </h3>
+                    <div>
             
             
 <p>Insert text into the entry widget.</p>
@@ -485,11 +489,13 @@ The text to insert.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="method-select_region"></span>
-            <a href="#method-select_region">entry:select_region (startpos, startpos)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="method-select_region">
+            <h3>
+                <a href="#method-select_region">entry:select_region (startpos, startpos)</a>
+            </h3>
+                    <div>
             
             
 <p>Select some or all of the text within the entry widget.</p>
@@ -529,104 +535,112 @@ the text in the entry widget.
 </ul>
             
         </div>
+    
+        </div>
     <h2>Properties</h2>
 
-        <h3 class=property>
-            <span class=target id="property-position"></span>
-            <a href="#property-position">entry.position</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>integer</span></div>
-                <div></div>
-                <div>Read-write</div>
-            </div>
-            <div>
+        <div class=property id="property-position">
+            <h3>
+                <a href="#property-position">entry.position</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>integer</span></div>
+                    <div></div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 The position of the caret within the entry widget.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-text"></span>
-            <a href="#property-text">entry.text</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div></div>
-                <div>Read-write</div>
-            </div>
-            <div>
+        <div class=property id="property-text">
+            <h3>
+                <a href="#property-text">entry.text</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 The contents of the entry widget.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-fg"></span>
-            <a href="#property-fg">entry.fg</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div></div>
-                <div>Read-write</div>
-            </div>
-            <div>
+        <div class=property id="property-fg">
+            <h3>
+                <a href="#property-fg">entry.fg</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 The color of the text within the entry widget.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-bg"></span>
-            <a href="#property-bg">entry.bg</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div></div>
-                <div>Read-write</div>
-            </div>
-            <div>
+        <div class=property id="property-bg">
+            <h3>
+                <a href="#property-bg">entry.bg</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 The background color of the entry widget.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-font"></span>
-            <a href="#property-font">entry.font</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div></div>
-                <div>Read-write</div>
-            </div>
-            <div>
+        <div class=property id="property-font">
+            <h3>
+                <a href="#property-font">entry.font</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 The font to use to display the text within the entry widget.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-show_frame"></span>
-            <a href="#property-show_frame">entry.show_frame</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>boolean</span></div>
-                <div></div>
-                <div>Read-write</div>
-            </div>
-            <div>
+        <div class=property id="property-show_frame">
+            <h3>
+                <a href="#property-show_frame">entry.show_frame</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>boolean</span></div>
+                    <div></div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 Whether the frame surrounding the entry widget should be shown.
 </div>
+            </div>
         </div>
     <h2>Signals</h2>
 
-        <h3 class=function>
-            <span class=target id="signal-activate"></span>
-            <a href="#signal-activate">"activate"</a>
-        </h3>
-            <div class=function>
+        <div class=function id="signal-activate">
+            <h3>
+                <a href="#signal-activate">"activate"</a>
+            </h3>
+                    <div>
             
             
 <p>Emitted when the entry widget is activated by pressing the <code>Enter</code> key.</p>
@@ -635,11 +649,13 @@ Whether the frame surrounding the entry widget should be shown.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="signal-changed"></span>
-            <a href="#signal-changed">"changed"</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="signal-changed">
+            <h3>
+                <a href="#signal-changed">"changed"</a>
+            </h3>
+                    <div>
             
             
 <p>Emitted when the text within the entry widget changes.</p>
@@ -648,11 +664,13 @@ Whether the frame surrounding the entry widget should be shown.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="signal-property::position"></span>
-            <a href="#signal-property::position">"property::position"</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="signal-property::position">
+            <h3>
+                <a href="#signal-property::position">"property::position"</a>
+            </h3>
+                    <div>
             
             
 <p>Emitted when the position of the caret within the entry widget changes.</p>
@@ -661,11 +679,13 @@ Whether the frame surrounding the entry widget should be shown.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="signal-key-press"></span>
-            <a href="#signal-key-press">"key-press"</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="signal-key-press">
+            <h3>
+                <a href="#signal-key-press">"key-press"</a>
+            </h3>
+                    <div>
             
             
 <p>Emitted when a key is pressed while the entry widget has the input focus.</p>
@@ -715,6 +735,8 @@ propagated further.
         </li>
     
 </ul>
+        </div>
+    
         </div>
     
         <h2>Attribution</h2>

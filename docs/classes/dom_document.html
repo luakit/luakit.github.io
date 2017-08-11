@@ -46,7 +46,10 @@ body {
     font-weight: normal;
 }
 
-h3.function > a, h3.property > a, h3.table > a, h3.field > a {
+div.function > h3, div.property > h3 {
+	margin-top: 0;
+}
+div.function > h3 > a, div.property > h3 > a {
     font-family: monospace;
     color: #2B5782;
     text-decoration: none;
@@ -71,9 +74,18 @@ span.optional, span.any_type {
     color: #777;
 }
 
-div.function, div.property, div.table, div.field {
+div.function, div.property {
+	margin: -10px;
+	padding: 10px;
+}
+
+div.function > div, div.property > div {
     margin-left: 2rem;
-    margin-bottom: 1.5rem;
+}
+
+div.function:target, div.property:target {
+	background: #ffffb2;
+	border-radius: 0.3em;
 }
 
 span.info {
@@ -285,14 +297,6 @@ ul.triggers > li {
 }
 
 div.info > div { margin-top: 0.3rem; }
-
-span.target {
-    position: absolute;
-    display: block;
-    margin-top: -100px;
-    height: 100px;
-    visibility: hidden;
-}
         div#wrap { padding: 0; }
     </style>
 	<link rel=stylesheet href=/luakit/style.css />
@@ -441,11 +445,11 @@ span.target {
 
         <!-- modes and binds --><h2>Methods</h2>
 
-        <h3 class=function>
-            <span class=target id="method-create_element"></span>
-            <a href="#method-create_element">document:create_element (tag_name, attributes, inner_text)</a>
-        </h3>
-            <div class=function>
+        <div class=function id="method-create_element">
+            <h3>
+                <a href="#method-create_element">document:create_element (tag_name, attributes, inner_text)</a>
+            </h3>
+                    <div>
             
             
 <p>Create a new element for the DOM document.</p>
@@ -501,11 +505,13 @@ The inner text to set on the element.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="method-element_from_point"></span>
-            <a href="#method-element_from_point">document:element_from_point (x, y)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="method-element_from_point">
+            <h3>
+                <a href="#method-element_from_point">document:element_from_point (x, y)</a>
+            </h3>
+                    <div>
             
             
 <p>Find the DOM element at the given point.</p>
@@ -556,81 +562,88 @@ The element at the given point.
     
 </ul>
         </div>
+    
+        </div>
     <h2>Properties</h2>
 
-        <h3 class=property>
-            <span class=target id="property-body"></span>
-            <a href="#property-body">document.body</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>dom_element</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-body">
+            <h3>
+                <a href="#property-body">document.body</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>dom_element</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 The body of the DOM document.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-window.scroll_x"></span>
-            <a href="#property-window.scroll_x">document.window.scroll_x</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>integer</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-window.scroll_x">
+            <h3>
+                <a href="#property-window.scroll_x">document.window.scroll_x</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>integer</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 The horizontal scroll position of the document view.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-window.scroll_y"></span>
-            <a href="#property-window.scroll_y">document.window.scroll_y</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>integer</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-window.scroll_y">
+            <h3>
+                <a href="#property-window.scroll_y">document.window.scroll_y</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>integer</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 The vertical scroll position of the document view.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-window.inner_width"></span>
-            <a href="#property-window.inner_width">document.window.inner_width</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>integer</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-window.inner_width">
+            <h3>
+                <a href="#property-window.inner_width">document.window.inner_width</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>integer</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 The inner width of the DOM document.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-window.inner_height"></span>
-            <a href="#property-window.inner_height">document.window.inner_height</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>integer</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-window.inner_height">
+            <h3>
+                <a href="#property-window.inner_height">document.window.inner_height</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>integer</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 The inner height of the DOM document.
 </div>
+            </div>
         </div>
     
         <h2>Attribution</h2>

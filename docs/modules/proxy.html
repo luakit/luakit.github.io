@@ -46,7 +46,10 @@ body {
     font-weight: normal;
 }
 
-h3.function > a, h3.property > a, h3.table > a, h3.field > a {
+div.function > h3, div.property > h3 {
+	margin-top: 0;
+}
+div.function > h3 > a, div.property > h3 > a {
     font-family: monospace;
     color: #2B5782;
     text-decoration: none;
@@ -71,9 +74,18 @@ span.optional, span.any_type {
     color: #777;
 }
 
-div.function, div.property, div.table, div.field {
+div.function, div.property {
+	margin: -10px;
+	padding: 10px;
+}
+
+div.function > div, div.property > div {
     margin-left: 2rem;
-    margin-bottom: 1.5rem;
+}
+
+div.function:target, div.property:target {
+	background: #ffffb2;
+	border-radius: 0.3em;
 }
 
 span.info {
@@ -285,14 +297,6 @@ ul.triggers > li {
 }
 
 div.info > div { margin-top: 0.3rem; }
-
-span.target {
-    position: absolute;
-    display: block;
-    margin-top: -100px;
-    height: 100px;
-    visibility: hidden;
-}
         div#wrap { padding: 0; }
     </style>
 	<link rel=stylesheet href=/luakit/style.css />
@@ -456,11 +460,11 @@ inactive proxies will be shown in light gray text.</p>
 
         <!-- modes and binds --><h2>Functions</h2>
 
-        <h3 class=function>
-            <span class=target id="function-get_names"></span>
-            <a href="#function-get_names">proxy.get_names ()</a>
-        </h3>
-            <div class=function>
+        <div class=function id="function-get_names">
+            <h3>
+                <a href="#function-get_names">proxy.get_names ()</a>
+            </h3>
+                    <div>
             
             
 <p>Get an ordered list of proxy names.</p>
@@ -480,11 +484,13 @@ List of proxy names.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-get"></span>
-            <a href="#function-get">proxy.get (name)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-get">
+            <h3>
+                <a href="#function-get">proxy.get (name)</a>
+            </h3>
+                    <div>
             
             
 <p>Get the address of proxy given by name.</p>
@@ -521,11 +527,13 @@ The address of the proxy.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-get_active"></span>
-            <a href="#function-get_active">proxy.get_active ()</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-get_active">
+            <h3>
+                <a href="#function-get_active">proxy.get_active ()</a>
+            </h3>
+                    <div>
             
             
 <p>Get the active proxy configuration.</p>
@@ -545,11 +553,13 @@ The active proxy configuration. Two fields are present:
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-load"></span>
-            <a href="#function-load">proxy.load (fd_name)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-load">
+            <h3>
+                <a href="#function-load">proxy.load (fd_name)</a>
+            </h3>
+                    <div>
             
             
 <p>Load the proxies list from a file.</p>
@@ -575,11 +585,13 @@ Custom proxy storage or <code>nil</code> to use default.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-save"></span>
-            <a href="#function-save">proxy.save (fd_name)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-save">
+            <h3>
+                <a href="#function-save">proxy.save (fd_name)</a>
+            </h3>
+                    <div>
             
             
 <p>Save the proxies list to a file.</p>
@@ -605,11 +617,13 @@ Custom proxy storage or <code>nil</code> to use default.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-set"></span>
-            <a href="#function-set">proxy.set (name, address, save_file)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-set">
+            <h3>
+                <a href="#function-set">proxy.set (name, address, save_file)</a>
+            </h3>
+                    <div>
             
             
 <p>Add a new proxy server to current list.</p>
@@ -665,11 +679,13 @@ Do not save configuration if <code>false</code>.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-del"></span>
-            <a href="#function-del">proxy.del (name)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-del">
+            <h3>
+                <a href="#function-del">proxy.del (name)</a>
+            </h3>
+                    <div>
             
             
 <p>Delete a proxy from the proxy list.</p>
@@ -695,11 +711,13 @@ Proxy server name.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-set_active"></span>
-            <a href="#function-set_active">proxy.set_active (name)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-set_active">
+            <h3>
+                <a href="#function-set_active">proxy.set_active (name)</a>
+            </h3>
+                    <div>
             
             
 <p>Set given proxy to active. Return true on success, else false.</p>
@@ -723,6 +741,8 @@ Proxy configuration name or <code>nil</code> to unset proxy.
     
 </ul>
             
+        </div>
+    
         </div>
     
         <h2>Attribution</h2>

@@ -46,7 +46,10 @@ body {
     font-weight: normal;
 }
 
-h3.function > a, h3.property > a, h3.table > a, h3.field > a {
+div.function > h3, div.property > h3 {
+	margin-top: 0;
+}
+div.function > h3 > a, div.property > h3 > a {
     font-family: monospace;
     color: #2B5782;
     text-decoration: none;
@@ -71,9 +74,18 @@ span.optional, span.any_type {
     color: #777;
 }
 
-div.function, div.property, div.table, div.field {
+div.function, div.property {
+	margin: -10px;
+	padding: 10px;
+}
+
+div.function > div, div.property > div {
     margin-left: 2rem;
-    margin-bottom: 1.5rem;
+}
+
+div.function:target, div.property:target {
+	background: #ffffb2;
+	border-radius: 0.3em;
 }
 
 span.info {
@@ -285,14 +297,6 @@ ul.triggers > li {
 }
 
 div.info > div { margin-top: 0.3rem; }
-
-span.target {
-    position: absolute;
-    display: block;
-    margin-top: -100px;
-    height: 100px;
-    visibility: hidden;
-}
         div#wrap { padding: 0; }
     </style>
 	<link rel=stylesheet href=/luakit/style.css />
@@ -437,11 +441,11 @@ this module is used by the <code>formfiller</code> module when selecting a form 
 
         <!-- modes and binds --><h2>Functions</h2>
 
-        <h3 class=function>
-            <span class=target id="function-enter"></span>
-            <a href="#function-enter">select_wm.enter (page, elements, stylesheet, ignore_case)</a>
-        </h3>
-            <div class=function>
+        <div class=function id="function-enter">
+            <h3>
+                <a href="#function-enter">select_wm.enter (page, elements, stylesheet, ignore_case)</a>
+            </h3>
+                    <div>
             
             
 <p>Enter element selection mode on a web page.</p>
@@ -535,11 +539,13 @@ The number of currently visible hints.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-leave"></span>
-            <a href="#function-leave">select_wm.leave (page)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-leave">
+            <h3>
+                <a href="#function-leave">select_wm.leave (page)</a>
+            </h3>
+                    <div>
             
             
 <p>Leave element selection mode on a web page.</p>
@@ -568,11 +574,13 @@ leave element selection.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-changed"></span>
-            <a href="#function-changed">select_wm.changed (page, hint_pat, text_pat, text)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-changed">
+            <h3>
+                <a href="#function-changed">select_wm.changed (page, hint_pat, text_pat, text)</a>
+            </h3>
+                    <div>
             
             
 <p>Update the element selection interface when user selection text changes.</p>
@@ -666,11 +674,13 @@ The number of currently visible hints.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-focus"></span>
-            <a href="#function-focus">select_wm.focus (page, step)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-focus">
+            <h3>
+                <a href="#function-focus">select_wm.focus (page, step)</a>
+            </h3>
+                    <div>
             
             
 <p>Update the element selection interface when the user moves the focus.</p>
@@ -744,11 +754,13 @@ The number of currently visible hints.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-hints"></span>
-            <a href="#function-hints">select_wm.hints (page)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-hints">
+            <h3>
+                <a href="#function-hints">select_wm.hints (page)</a>
+            </h3>
+                    <div>
             
             
 <p>Get the current state of element hints on a web page.</p>
@@ -788,11 +800,13 @@ The current hint state for <code>page</code>.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-focused_hint"></span>
-            <a href="#function-focused_hint">select_wm.focused_hint (page)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-focused_hint">
+            <h3>
+                <a href="#function-focused_hint">select_wm.focused_hint (page)</a>
+            </h3>
+                    <div>
             
             
 <p>Get the currently focused element hint on a web page.</p>
@@ -830,6 +844,8 @@ The currently focused hint.
         </li>
     
 </ul>
+        </div>
+    
         </div>
     
         <h2>Attribution</h2>

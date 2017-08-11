@@ -46,7 +46,10 @@ body {
     font-weight: normal;
 }
 
-h3.function > a, h3.property > a, h3.table > a, h3.field > a {
+div.function > h3, div.property > h3 {
+	margin-top: 0;
+}
+div.function > h3 > a, div.property > h3 > a {
     font-family: monospace;
     color: #2B5782;
     text-decoration: none;
@@ -71,9 +74,18 @@ span.optional, span.any_type {
     color: #777;
 }
 
-div.function, div.property, div.table, div.field {
+div.function, div.property {
+	margin: -10px;
+	padding: 10px;
+}
+
+div.function > div, div.property > div {
     margin-left: 2rem;
-    margin-bottom: 1.5rem;
+}
+
+div.function:target, div.property:target {
+	background: #ffffb2;
+	border-radius: 0.3em;
 }
 
 span.info {
@@ -285,14 +297,6 @@ ul.triggers > li {
 }
 
 div.info > div { margin-top: 0.3rem; }
-
-span.target {
-    position: absolute;
-    display: block;
-    margin-top: -100px;
-    height: 100px;
-    visibility: hidden;
-}
         div#wrap { padding: 0; }
     </style>
 	<link rel=stylesheet href=/luakit/style.css />
@@ -458,11 +462,11 @@ changes to stylesheets into luakit, without restarting the browser.</p>
 
         <!-- modes and binds --><h2>Functions</h2>
 
-        <h3 class=function>
-            <span class=target id="function-load_file"></span>
-            <a href="#function-load_file">styles.load_file (path)</a>
-        </h3>
-            <div class=function>
+        <div class=function id="function-load_file">
+            <h3>
+                <a href="#function-load_file">styles.load_file (path)</a>
+            </h3>
+                    <div>
             
             
 <p>Load the contents of a file as a stylesheet for a given domain.</p>
@@ -488,17 +492,21 @@ The path of the file to load.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-detect_files"></span>
-            <a href="#function-detect_files">styles.detect_files ()</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-detect_files">
+            <h3>
+                <a href="#function-detect_files">styles.detect_files ()</a>
+            </h3>
+                    <div>
             
             
 <p>Detect all files in the stylesheets directory and automatically load them.</p>
 
             
             
+        </div>
+    
         </div>
     
         <h2>Attribution</h2>

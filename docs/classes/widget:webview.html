@@ -46,7 +46,10 @@ body {
     font-weight: normal;
 }
 
-h3.function > a, h3.property > a, h3.table > a, h3.field > a {
+div.function > h3, div.property > h3 {
+	margin-top: 0;
+}
+div.function > h3 > a, div.property > h3 > a {
     font-family: monospace;
     color: #2B5782;
     text-decoration: none;
@@ -71,9 +74,18 @@ span.optional, span.any_type {
     color: #777;
 }
 
-div.function, div.property, div.table, div.field {
+div.function, div.property {
+	margin: -10px;
+	padding: 10px;
+}
+
+div.function > div, div.property > div {
     margin-left: 2rem;
-    margin-bottom: 1.5rem;
+}
+
+div.function:target, div.property:target {
+	background: #ffffb2;
+	border-radius: 0.3em;
 }
 
 span.info {
@@ -285,14 +297,6 @@ ul.triggers > li {
 }
 
 div.info > div { margin-top: 0.3rem; }
-
-span.target {
-    position: absolute;
-    display: block;
-    margin-top: -100px;
-    height: 100px;
-    visibility: hidden;
-}
         div#wrap { padding: 0; }
     </style>
 	<link rel=stylesheet href=/luakit/style.css />
@@ -453,11 +457,11 @@ span.target {
 
         <!-- modes and binds --><h2>Methods</h2>
 
-        <h3 class=function>
-            <span class=target id="method-search"></span>
-            <a href="#method-search">view:search (text, case_sensitive, forwards, wrap)</a>
-        </h3>
-            <div class=function>
+        <div class=function id="method-search">
+            <h3>
+                <a href="#method-search">view:search (text, case_sensitive, forwards, wrap)</a>
+            </h3>
+                    <div>
             
             
 <p>Begin searching the contents of the webview.</p>
@@ -530,11 +534,13 @@ Whether searching should wrap at the beginning and end of the document.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="method-search_next"></span>
-            <a href="#method-search_next">view:search_next ()</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="method-search_next">
+            <h3>
+                <a href="#method-search_next">view:search_next ()</a>
+            </h3>
+                    <div>
             
             
 <p>Focus the next occurrence of the text in the webview.</p>
@@ -543,11 +549,13 @@ Whether searching should wrap at the beginning and end of the document.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="method-search_previous"></span>
-            <a href="#method-search_previous">view:search_previous ()</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="method-search_previous">
+            <h3>
+                <a href="#method-search_previous">view:search_previous ()</a>
+            </h3>
+                    <div>
             
             
 <p>Focus the previous occurrence of the text in the webview.</p>
@@ -556,11 +564,13 @@ Whether searching should wrap at the beginning and end of the document.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="method-clear_search"></span>
-            <a href="#method-clear_search">view:clear_search ()</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="method-clear_search">
+            <h3>
+                <a href="#method-clear_search">view:clear_search ()</a>
+            </h3>
+                    <div>
             
             
 <p>Finish searching the contents of the webview.
@@ -570,11 +580,13 @@ This will cause all highlighted matches within the webview to be un-highlighted.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="method-go_back"></span>
-            <a href="#method-go_back">view:go_back ()</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="method-go_back">
+            <h3>
+                <a href="#method-go_back">view:go_back ()</a>
+            </h3>
+                    <div>
             
             
 <p>Load the previous item in the webview history.</p>
@@ -594,11 +606,13 @@ Whether the history item was loaded.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="method-go_forward"></span>
-            <a href="#method-go_forward">view:go_forward ()</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="method-go_forward">
+            <h3>
+                <a href="#method-go_forward">view:go_forward ()</a>
+            </h3>
+                    <div>
             
             
 <p>Load the next item in the webview history.</p>
@@ -618,11 +632,13 @@ Whether the history item was loaded.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="method-can_go_back"></span>
-            <a href="#method-can_go_back">view:can_go_back ()</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="method-can_go_back">
+            <h3>
+                <a href="#method-can_go_back">view:can_go_back ()</a>
+            </h3>
+                    <div>
             
             
 <p>Determine whether the webview has a previous history item.</p>
@@ -642,11 +658,13 @@ Whether the webview has a previous history item.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="method-can_go_forward"></span>
-            <a href="#method-can_go_forward">view:can_go_forward ()</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="method-can_go_forward">
+            <h3>
+                <a href="#method-can_go_forward">view:can_go_forward ()</a>
+            </h3>
+                    <div>
             
             
 <p>Determine whether the webview has a subsequent history item.</p>
@@ -666,11 +684,13 @@ Whether the webview has a subsequent history item.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="method-eval_js"></span>
-            <a href="#method-eval_js">view:eval_js (script, options)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="method-eval_js">
+            <h3>
+                <a href="#method-eval_js">view:eval_js (script, options)</a>
+            </h3>
+                    <div>
             
             
 
@@ -735,11 +755,13 @@ Additional arguments.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="method-load_string"></span>
-            <a href="#method-load_string">view:load_string (string, content_uri)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="method-load_string">
+            <h3>
+                <a href="#method-load_string">view:load_string (string, content_uri)</a>
+            </h3>
+                    <div>
             
             
 <p>Load the given string <code>string</code> into the webview, and set the webview URI
@@ -787,11 +809,13 @@ The URI to display.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="method-reload"></span>
-            <a href="#method-reload">view:reload ()</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="method-reload">
+            <h3>
+                <a href="#method-reload">view:reload ()</a>
+            </h3>
+                    <div>
             
             
 <p>Reload the current contents of the webview.</p>
@@ -800,11 +824,13 @@ The URI to display.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="method-reload_bypass_cache"></span>
-            <a href="#method-reload_bypass_cache">view:reload_bypass_cache ()</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="method-reload_bypass_cache">
+            <h3>
+                <a href="#method-reload_bypass_cache">view:reload_bypass_cache ()</a>
+            </h3>
+                    <div>
             
             
 <p>Reload the current contents of the webview, without using any cached data.</p>
@@ -813,11 +839,13 @@ The URI to display.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="method-stop"></span>
-            <a href="#method-stop">view:stop ()</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="method-stop">
+            <h3>
+                <a href="#method-stop">view:stop ()</a>
+            </h3>
+                    <div>
             
             
 <p>Stop any current load operation within the within the webview. If there is no
@@ -828,11 +856,13 @@ will be emitted with <code>"cancelled"</code> as the failure reason.</p>
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="method-ssl_trusted"></span>
-            <a href="#method-ssl_trusted">view:ssl_trusted ()</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="method-ssl_trusted">
+            <h3>
+                <a href="#method-ssl_trusted">view:ssl_trusted ()</a>
+            </h3>
+                    <div>
             
             
 <p>Determine whether any problems have been found with the certificate associated
@@ -859,11 +889,13 @@ were found, and <code>nil</code> if the contents of the webview were not loaded 
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="method-show_inspector"></span>
-            <a href="#method-show_inspector">view:show_inspector ()</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="method-show_inspector">
+            <h3>
+                <a href="#method-show_inspector">view:show_inspector ()</a>
+            </h3>
+                    <div>
             
             
 <p>Show the web inspector for the webview.</p>
@@ -872,11 +904,13 @@ were found, and <code>nil</code> if the contents of the webview were not loaded 
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="method-close_inspector"></span>
-            <a href="#method-close_inspector">view:close_inspector ()</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="method-close_inspector">
+            <h3>
+                <a href="#method-close_inspector">view:close_inspector ()</a>
+            </h3>
+                    <div>
             
             
 <p>Close the web inspector for the webview.</p>
@@ -885,11 +919,13 @@ were found, and <code>nil</code> if the contents of the webview were not loaded 
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="method-allow_certificate"></span>
-            <a href="#method-allow_certificate">view:allow_certificate ()</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="method-allow_certificate">
+            <h3>
+                <a href="#method-allow_certificate">view:allow_certificate ()</a>
+            </h3>
+                    <div>
             
             
 <p>Allow a certificate.</p>
@@ -897,167 +933,179 @@ were found, and <code>nil</code> if the contents of the webview were not loaded 
             
             
         </div>
+    
+        </div>
     <h2>Properties</h2>
 
-        <h3 class=property>
-            <span class=target id="property-inspector"></span>
-            <a href="#property-inspector">view.inspector</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>boolean</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-inspector">
+            <h3>
+                <a href="#property-inspector">view.inspector</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>boolean</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 Whether the web inspector is open for the webview.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-uri"></span>
-            <a href="#property-uri">view.uri</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div>Default: 
+        <div class=property id="property-uri">
+            <h3>
+                <a href="#property-uri">view.uri</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div>Default: 
 "about:blank"
 </div>
-                <div>Read-write</div>
-            </div>
-            <div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 The URI of the current web page.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-hovered_uri"></span>
-            <a href="#property-hovered_uri">view.hovered_uri</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string?</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-hovered_uri">
+            <h3>
+                <a href="#property-hovered_uri">view.hovered_uri</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string?</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 The URI of the link the mouse cursor is currently hovering over, or
 <code>nil</code> if the mouse cursor is not currently hovering over a link.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-source"></span>
-            <a href="#property-source">view.source</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=any_type>any type</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-source">
+            <h3>
+                <a href="#property-source">view.source</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=any_type>any type</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 The source of the current web page.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-session_state"></span>
-            <a href="#property-session_state">view.session_state</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div></div>
-                <div>Read-write</div>
-            </div>
-            <div>
+        <div class=property id="property-session_state">
+            <h3>
+                <a href="#property-session_state">view.session_state</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div>Read-write</div>
+                </div>
+                <div>
 The session state of the current web page.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-stylesheets"></span>
-            <a href="#property-stylesheets">view.stylesheets</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>table</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-stylesheets">
+            <h3>
+                <a href="#property-stylesheets">view.stylesheets</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>table</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 The stylesheets of the webview.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-history"></span>
-            <a href="#property-history">view.history</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>table</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-history">
+            <h3>
+                <a href="#property-history">view.history</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>table</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 The history of the webview.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-scroll"></span>
-            <a href="#property-scroll">view.scroll</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>table</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-scroll">
+            <h3>
+                <a href="#property-scroll">view.scroll</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>table</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 The scroll of the webview.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-favicon"></span>
-            <a href="#property-favicon">view.favicon</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>widget</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-favicon">
+            <h3>
+                <a href="#property-favicon">view.favicon</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>widget</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 The favicon of the webview.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-certificate"></span>
-            <a href="#property-certificate">view.certificate</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-certificate">
+            <h3>
+                <a href="#property-certificate">view.certificate</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 The certificate of the webview.
 </div>
+            </div>
         </div>
     <h2>Signals</h2>
 
-        <h3 class=function>
-            <span class=target id="signal-scheme-request::*"></span>
-            <a href="#signal-scheme-request::*">"scheme-request::*"</a>
-        </h3>
-            <div class=function>
+        <div class=function id="signal-scheme-request::*">
+            <h3>
+                <a href="#signal-scheme-request::*">"scheme-request::*"</a>
+            </h3>
+                    <div>
             
             
 
@@ -1117,11 +1165,13 @@ The MIME type of the content. Default: <code>text/html</code>.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="signal-property::*"></span>
-            <a href="#signal-property::*">"property::*"</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="signal-property::*">
+            <h3>
+                <a href="#signal-property::*">"property::*"</a>
+            </h3>
+                    <div>
             
             
 
@@ -1133,11 +1183,13 @@ widget when its <a href="../classes/widget:webview.html#property-uri"><code>uri<
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="signal-link-hover"></span>
-            <a href="#signal-link-hover">"link-hover"</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="signal-link-hover">
+            <h3>
+                <a href="#signal-link-hover">"link-hover"</a>
+            </h3>
+                    <div>
             <div class="alert warn">Deprecated: 
 use <code>property::hovered_uri</code> signal instead
 </div>
@@ -1165,11 +1217,13 @@ The hovered URI.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="signal-link-unhover"></span>
-            <a href="#signal-link-unhover">"link-unhover"</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="signal-link-unhover">
+            <h3>
+                <a href="#signal-link-unhover">"link-unhover"</a>
+            </h3>
+                    <div>
             <div class="alert warn">Deprecated: 
 use <code>property::hovered_uri</code> signal instead
 </div>
@@ -1197,11 +1251,13 @@ The just-unhovered URI.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="signal-button-press"></span>
-            <a href="#signal-button-press">"button-press"</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="signal-button-press">
+            <h3>
+                <a href="#signal-button-press">"button-press"</a>
+            </h3>
+                    <div>
             
             
 <p>Emitted when a mouse button was pressed with the cursor inside the <code>webview</code> widget.</p>
@@ -1269,11 +1325,13 @@ propagated further.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="signal-button-release"></span>
-            <a href="#signal-button-release">"button-release"</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="signal-button-release">
+            <h3>
+                <a href="#signal-button-release">"button-release"</a>
+            </h3>
+                    <div>
             
             
 <p>Emitted when a mouse button was released with the cursor inside the <code>webview</code> widget.</p>
@@ -1341,11 +1399,13 @@ propagated further.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="signal-button-double-click"></span>
-            <a href="#signal-button-double-click">"button-double-click"</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="signal-button-double-click">
+            <h3>
+                <a href="#signal-button-double-click">"button-double-click"</a>
+            </h3>
+                    <div>
             
             
 <p>Emitted when a mouse button was double-clicked with the cursor inside the <code>webview</code> widget.</p>
@@ -1413,11 +1473,13 @@ propagated further.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="signal-mouse-enter"></span>
-            <a href="#signal-mouse-enter">"mouse-enter"</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="signal-mouse-enter">
+            <h3>
+                <a href="#signal-mouse-enter">"mouse-enter"</a>
+            </h3>
+                    <div>
             
             
 <p>Emitted when the mouse cursor enters the <code>webview</code> widget.</p>
@@ -1454,11 +1516,13 @@ propagated further.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="signal-mouse-leave"></span>
-            <a href="#signal-mouse-leave">"mouse-leave"</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="signal-mouse-leave">
+            <h3>
+                <a href="#signal-mouse-leave">"mouse-leave"</a>
+            </h3>
+                    <div>
             
             
 <p>Emitted when the mouse cursor leaves the <code>webview</code> widget.</p>
@@ -1495,11 +1559,13 @@ propagated further.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="signal-populate-popup"></span>
-            <a href="#signal-populate-popup">"populate-popup"</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="signal-populate-popup">
+            <h3>
+                <a href="#signal-populate-popup">"populate-popup"</a>
+            </h3>
+                    <div>
             
             
 <p>Emitted just before the context menu is shown, usually after a right-click.
@@ -1527,11 +1593,13 @@ A table representing the context menu to be shown.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="signal-web-extension-loaded"></span>
-            <a href="#signal-web-extension-loaded">"web-extension-loaded"</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="signal-web-extension-loaded">
+            <h3>
+                <a href="#signal-web-extension-loaded">"web-extension-loaded"</a>
+            </h3>
+                    <div>
             
             
 <p>Emitted on a <code>webview</code> widget when its associated web process has finished
@@ -1541,11 +1609,13 @@ initialization.</p>
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="signal-crashed"></span>
-            <a href="#signal-crashed">"crashed"</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="signal-crashed">
+            <h3>
+                <a href="#signal-crashed">"crashed"</a>
+            </h3>
+                    <div>
             
             
 <p>Emitted on a <code>webview</code> widget when its associated web process has crashed.
@@ -1556,11 +1626,13 @@ replacement web process has finished initialization.</p>
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="signal-load-status"></span>
-            <a href="#signal-load-status">"load-status"</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="signal-load-status">
+            <h3>
+                <a href="#signal-load-status">"load-status"</a>
+            </h3>
+                    <div>
             
             
 <p>Emitted on a <code>webview</code> widget when its load status changes.</p>
@@ -1616,11 +1688,13 @@ with an error code and a human-readable message; otherwise, it will be <code>nil
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="signal-create-web-view"></span>
-            <a href="#signal-create-web-view">"create-web-view"</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="signal-create-web-view">
+            <h3>
+                <a href="#signal-create-web-view">"create-web-view"</a>
+            </h3>
+                    <div>
             
             
 <p>Emitted on a <code>webview</code> widget when it requests creation of a new <code>webview</code>
@@ -1641,11 +1715,13 @@ The newly created <code>webview</code> widget.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="signal-navigation-request"></span>
-            <a href="#signal-navigation-request">"navigation-request"</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="signal-navigation-request">
+            <h3>
+                <a href="#signal-navigation-request">"navigation-request"</a>
+            </h3>
+                    <div>
             
             
 <p>Emitted on a <code>webview</code> widget before a navigation request is made, in either
@@ -1699,11 +1775,13 @@ navigation from taking place.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="signal-new-window-decision"></span>
-            <a href="#signal-new-window-decision">"new-window-decision"</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="signal-new-window-decision">
+            <h3>
+                <a href="#signal-new-window-decision">"new-window-decision"</a>
+            </h3>
+                    <div>
             
             
 
@@ -1759,11 +1837,13 @@ navigation from taking place.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="signal-mime-type-decision"></span>
-            <a href="#signal-mime-type-decision">"mime-type-decision"</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="signal-mime-type-decision">
+            <h3>
+                <a href="#signal-mime-type-decision">"mime-type-decision"</a>
+            </h3>
+                    <div>
             
             
 <p>Similar to the <code>"navigation-request"</code> signal, the
@@ -1819,11 +1899,13 @@ navigation from taking place.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="signal-favicon"></span>
-            <a href="#signal-favicon">"favicon"</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="signal-favicon">
+            <h3>
+                <a href="#signal-favicon">"favicon"</a>
+            </h3>
+                    <div>
             
             
 <p>Emitted when the favicon for the currently loaded webpage becomes available.</p>
@@ -1832,11 +1914,13 @@ navigation from taking place.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="signal-expose"></span>
-            <a href="#signal-expose">"expose"</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="signal-expose">
+            <h3>
+                <a href="#signal-expose">"expose"</a>
+            </h3>
+                    <div>
             
             
 <p>Emitted when the <code>webview</code> widget is redrawn.</p>
@@ -1845,11 +1929,13 @@ navigation from taking place.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="signal-key-press"></span>
-            <a href="#signal-key-press">"key-press"</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="signal-key-press">
+            <h3>
+                <a href="#signal-key-press">"key-press"</a>
+            </h3>
+                    <div>
             
             
 <p>Emitted when a key is pressed while the <code>webview</code> widget has the
@@ -1900,6 +1986,8 @@ propagated further.
         </li>
     
 </ul>
+        </div>
+    
         </div>
     
         <h2>Attribution</h2>

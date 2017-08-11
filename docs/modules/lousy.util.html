@@ -46,7 +46,10 @@ body {
     font-weight: normal;
 }
 
-h3.function > a, h3.property > a, h3.table > a, h3.field > a {
+div.function > h3, div.property > h3 {
+	margin-top: 0;
+}
+div.function > h3 > a, div.property > h3 > a {
     font-family: monospace;
     color: #2B5782;
     text-decoration: none;
@@ -71,9 +74,18 @@ span.optional, span.any_type {
     color: #777;
 }
 
-div.function, div.property, div.table, div.field {
+div.function, div.property {
+	margin: -10px;
+	padding: 10px;
+}
+
+div.function > div, div.property > div {
     margin-left: 2rem;
-    margin-bottom: 1.5rem;
+}
+
+div.function:target, div.property:target {
+	background: #ffffb2;
+	border-radius: 0.3em;
 }
 
 span.info {
@@ -285,14 +297,6 @@ ul.triggers > li {
 }
 
 div.info > div { margin-top: 0.3rem; }
-
-span.target {
-    position: absolute;
-    display: block;
-    margin-top: -100px;
-    height: 100px;
-    visibility: hidden;
-}
         div#wrap { padding: 0; }
     </style>
 	<link rel=stylesheet href=/luakit/style.css />
@@ -437,11 +441,11 @@ span.target {
 
         <!-- modes and binds --><h2>Functions</h2>
 
-        <h3 class=function>
-            <span class=target id="function-escape"></span>
-            <a href="#function-escape">lousy.util.escape (text)</a>
-        </h3>
-            <div class=function>
+        <div class=function id="function-escape">
+            <h3>
+                <a href="#function-escape">lousy.util.escape (text)</a>
+            </h3>
+                    <div>
             
             
 <p>Escape a string from XML characters.</p>
@@ -478,11 +482,13 @@ A string with all XML characters escaped.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-unescape"></span>
-            <a href="#function-unescape">lousy.util.unescape (text)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-unescape">
+            <h3>
+                <a href="#function-unescape">lousy.util.unescape (text)</a>
+            </h3>
+                    <div>
             
             
 <p>Unescape a string from XML entities.</p>
@@ -519,11 +525,13 @@ A string with all the XML entities un-escaped.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-mkdir"></span>
-            <a href="#function-mkdir">lousy.util.mkdir (dir)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-mkdir">
+            <h3>
+                <a href="#function-mkdir">lousy.util.mkdir (dir)</a>
+            </h3>
+                    <div>
             
             
 <p>Create a directory.</p>
@@ -560,11 +568,13 @@ The status code returned by <code>mkdir</code>; 0 indicates success.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-eval"></span>
-            <a href="#function-eval">lousy.util.eval (s)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-eval">
+            <h3>
+                <a href="#function-eval">lousy.util.eval (s)</a>
+            </h3>
+                    <div>
             
             
 <p>Evaluate Lua code.</p>
@@ -601,11 +611,13 @@ The return value of Lua code.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-checkfile"></span>
-            <a href="#function-checkfile">lousy.util.checkfile (path)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-checkfile">
+            <h3>
+                <a href="#function-checkfile">lousy.util.checkfile (path)</a>
+            </h3>
+                    <div>
             
             
 <p>Check if a file is a Lua valid file.
@@ -643,11 +655,13 @@ and a string with the error otherwise.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-table.difference"></span>
-            <a href="#function-table.difference">lousy.util.table.difference (t, other)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-table.difference">
+            <h3>
+                <a href="#function-table.difference">lousy.util.table.difference (t, other)</a>
+            </h3>
+                    <div>
             
             
 <p>Return the difference of one table against another.</p>
@@ -699,11 +713,13 @@ All elements in the first table that are not in the other table.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-table.join"></span>
-            <a href="#function-table.join">lousy.util.table.join (args)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-table.join">
+            <h3>
+                <a href="#function-table.join">lousy.util.table.join (args)</a>
+            </h3>
+                    <div>
             
             
 <p>Join all tables given as parameters.
@@ -741,11 +757,13 @@ A new table containing all keys from the arguments.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-table.hasitem"></span>
-            <a href="#function-table.hasitem">lousy.util.table.hasitem (t, item)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-table.hasitem">
+            <h3>
+                <a href="#function-table.hasitem">lousy.util.table.hasitem (t, item)</a>
+            </h3>
+                    <div>
             
             
 <p>Check if a table has an item and return its key.</p>
@@ -797,11 +815,13 @@ The key where the item is found, or <code>nil</code> if not found.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-table.keys"></span>
-            <a href="#function-table.keys">lousy.util.table.keys (t)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-table.keys">
+            <h3>
+                <a href="#function-table.keys">lousy.util.table.keys (t)</a>
+            </h3>
+                    <div>
             
             
 <p>Get a sorted table with all integer keys from a table.</p>
@@ -838,11 +858,13 @@ A table with keys.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-table.reverse"></span>
-            <a href="#function-table.reverse">lousy.util.table.reverse (t)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-table.reverse">
+            <h3>
+                <a href="#function-table.reverse">lousy.util.table.reverse (t)</a>
+            </h3>
+                    <div>
             
             
 <p>Reverse a table.</p>
@@ -879,11 +901,13 @@ The reversed table.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-table.clone"></span>
-            <a href="#function-table.clone">lousy.util.table.clone (t)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-table.clone">
+            <h3>
+                <a href="#function-table.clone">lousy.util.table.clone (t)</a>
+            </h3>
+                    <div>
             
             
 <p>Clone a table.</p>
@@ -920,11 +944,13 @@ A clone of <code>t</code>.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-table.copy"></span>
-            <a href="#function-table.copy">lousy.util.table.copy (t)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-table.copy">
+            <h3>
+                <a href="#function-table.copy">lousy.util.table.copy (t)</a>
+            </h3>
+                    <div>
             
             
 <p>Clone table and set metatable.</p>
@@ -961,11 +987,13 @@ A clone of <code>t</code> with <code>t</code>'s metatable.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-table.isclone"></span>
-            <a href="#function-table.isclone">lousy.util.table.isclone (a, b)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-table.isclone">
+            <h3>
+                <a href="#function-table.isclone">lousy.util.table.isclone (a, b)</a>
+            </h3>
+                    <div>
             
             
 <p>Check if two tables are identical.</p>
@@ -1017,11 +1045,13 @@ The second table.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-table.values"></span>
-            <a href="#function-table.values">lousy.util.table.values (t)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-table.values">
+            <h3>
+                <a href="#function-table.values">lousy.util.table.values (t)</a>
+            </h3>
+                    <div>
             
             
 <p>Clone a table with all values as array items.</p>
@@ -1058,11 +1088,13 @@ All values in <code>t</code>.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-table.toarray"></span>
-            <a href="#function-table.toarray">lousy.util.table.toarray (t)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-table.toarray">
+            <h3>
+                <a href="#function-table.toarray">lousy.util.table.toarray (t)</a>
+            </h3>
+                    <div>
             
             
 <p>Convert a table to an array by removing all keys that are not sequential numbers.</p>
@@ -1099,11 +1131,13 @@ A new table with all non-number keys removed.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-table.filter_array"></span>
-            <a href="#function-table.filter_array">lousy.util.table.filter_array (t, pred)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-table.filter_array">
+            <h3>
+                <a href="#function-table.filter_array">lousy.util.table.filter_array (t, pred)</a>
+            </h3>
+                    <div>
             
             
 <p>Filters an array with a predicate function. Element indices are shifted down
@@ -1156,11 +1190,13 @@ The filtered array.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-os.exists"></span>
-            <a href="#function-os.exists">lousy.util.os.exists (f)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-os.exists">
+            <h3>
+                <a href="#function-os.exists">lousy.util.os.exists (f)</a>
+            </h3>
+                    <div>
             
             
 <p>Check if a file exists and is readable.</p>
@@ -1197,11 +1233,13 @@ The file path.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-string.split"></span>
-            <a href="#function-string.split">lousy.util.string.split (s, pattern, ret)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-string.split">
+            <h3>
+                <a href="#function-string.split">lousy.util.string.split (s, pattern, ret)</a>
+            </h3>
+                    <div>
             
             
 <p>Python like string split (source: lua wiki).</p>
@@ -1268,11 +1306,13 @@ A table of the string split by the pattern.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-find_config"></span>
-            <a href="#function-find_config">lousy.util.find_config (f)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-find_config">
+            <h3>
+                <a href="#function-find_config">lousy.util.find_config (f)</a>
+            </h3>
+                    <div>
             
             
 <p>Search and return the filepath of a file in the current working directory,
@@ -1311,11 +1351,13 @@ The first valid filepath or an error.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-find_data"></span>
-            <a href="#function-find_data">lousy.util.find_data (f)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-find_data">
+            <h3>
+                <a href="#function-find_data">lousy.util.find_data (f)</a>
+            </h3>
+                    <div>
             
             
 <p>Search and return the filepath of a file in the current working directory,
@@ -1353,11 +1395,13 @@ The first valid filepath or an error.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-find_cache"></span>
-            <a href="#function-find_cache">lousy.util.find_cache (f)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-find_cache">
+            <h3>
+                <a href="#function-find_cache">lousy.util.find_cache (f)</a>
+            </h3>
+                    <div>
             
             
 <p>Search and return the filepath of a file in the current working directory
@@ -1395,11 +1439,13 @@ The first valid filepath or an error.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-recursive_remove"></span>
-            <a href="#function-recursive_remove">lousy.util.recursive_remove (wi)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-recursive_remove">
+            <h3>
+                <a href="#function-recursive_remove">lousy.util.recursive_remove (wi)</a>
+            </h3>
+                    <div>
             
             
 <p>Recursively traverse widget tree and return all widgets.</p>
@@ -1425,11 +1471,13 @@ The widget.
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-ntos"></span>
-            <a href="#function-ntos">lousy.util.ntos (num, sigs)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-ntos">
+            <h3>
+                <a href="#function-ntos">lousy.util.ntos (num, sigs)</a>
+            </h3>
+                    <div>
             
             
 <p>Convert a number to string independent from locale.</p>
@@ -1481,11 +1529,13 @@ The string representation of the number.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-sql_escape"></span>
-            <a href="#function-sql_escape">lousy.util.sql_escape (s)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-sql_escape">
+            <h3>
+                <a href="#function-sql_escape">lousy.util.sql_escape (s)</a>
+            </h3>
+                    <div>
             
             
 <p>Escape values for SQL queries.
@@ -1526,11 +1576,13 @@ The escaped string.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-lua_escape"></span>
-            <a href="#function-lua_escape">lousy.util.lua_escape (s)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-lua_escape">
+            <h3>
+                <a href="#function-lua_escape">lousy.util.lua_escape (s)</a>
+            </h3>
+                    <div>
             
             
 <p>Escape values for lua patterns.</p>
@@ -1571,11 +1623,13 @@ The escaped pattern.
 </ul>
         </div>
     
-        <h3 class=function>
-            <span class=target id="function-get_etc_hosts"></span>
-            <a href="#function-get_etc_hosts">lousy.util.get_etc_hosts (force)</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="function-get_etc_hosts">
+            <h3>
+                <a href="#function-get_etc_hosts">lousy.util.get_etc_hosts (force)</a>
+            </h3>
+                    <div>
             
             
 <p>Get all hostnames in <code>/etc/hosts</code>.</p>
@@ -1610,6 +1664,8 @@ Table of all hostnames in <code>/etc/hosts</code>.
         </li>
     
 </ul>
+        </div>
+    
         </div>
     
         <h2>Attribution</h2>

@@ -46,7 +46,10 @@ body {
     font-weight: normal;
 }
 
-h3.function > a, h3.property > a, h3.table > a, h3.field > a {
+div.function > h3, div.property > h3 {
+	margin-top: 0;
+}
+div.function > h3 > a, div.property > h3 > a {
     font-family: monospace;
     color: #2B5782;
     text-decoration: none;
@@ -71,9 +74,18 @@ span.optional, span.any_type {
     color: #777;
 }
 
-div.function, div.property, div.table, div.field {
+div.function, div.property {
+	margin: -10px;
+	padding: 10px;
+}
+
+div.function > div, div.property > div {
     margin-left: 2rem;
-    margin-bottom: 1.5rem;
+}
+
+div.function:target, div.property:target {
+	background: #ffffb2;
+	border-radius: 0.3em;
 }
 
 span.info {
@@ -285,14 +297,6 @@ ul.triggers > li {
 }
 
 div.info > div { margin-top: 0.3rem; }
-
-span.target {
-    position: absolute;
-    display: block;
-    margin-top: -100px;
-    height: 100px;
-    visibility: hidden;
-}
         div#wrap { padding: 0; }
     </style>
 	<link rel=stylesheet href=/luakit/style.css />
@@ -441,11 +445,11 @@ is created in a web process.</p>
 
         <!-- modes and binds --><h2>Methods</h2>
 
-        <h3 class=function>
-            <span class=target id="method-eval_js"></span>
-            <a href="#method-eval_js">page:eval_js (script, options)</a>
-        </h3>
-            <div class=function>
+        <div class=function id="method-eval_js">
+            <h3>
+                <a href="#method-eval_js">page:eval_js (script, options)</a>
+            </h3>
+                    <div>
             
             
 <p>Synchronously run a string of JavaScript code in the context of the
@@ -494,62 +498,67 @@ Additional arguments.
 </ul>
             
         </div>
+    
+        </div>
     <h2>Properties</h2>
 
-        <h3 class=property>
-            <span class=target id="property-uri"></span>
-            <a href="#property-uri">page.uri</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>string</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-uri">
+            <h3>
+                <a href="#property-uri">page.uri</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 The current active URI of the page.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-document"></span>
-            <a href="#property-document">page.document</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>dom_document</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-document">
+            <h3>
+                <a href="#property-document">page.document</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>dom_document</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 The <code>dom_document</code> currently loaded in the page.
 </div>
+            </div>
         </div>
     
-        <h3 class=property>
-            <span class=target id="property-id"></span>
-            <a href="#property-id">page.id</a>
-        </h3>
-        <div class="two-col property">
-            <div>
-                <div>Type: <span class=type>integer</span></div>
-                <div></div>
-                <div>Read-only</div>
-            </div>
-            <div>
+        <div class=property id="property-id">
+            <h3>
+                <a href="#property-id">page.id</a>
+            </h3>
+            <div class="two-col property-body">
+                <div>
+                    <div>Type: <span class=type>integer</span></div>
+                    <div></div>
+                    <div>Read-only</div>
+                </div>
+                <div>
 Unique ID number associated with the web page.
 
 <p>A page and webview widget pair will always have the same ID; this is
 useful for coordinating Lua accross processes.</p>
 </div>
+            </div>
         </div>
     <h2>Signals</h2>
 
-        <h3 class=function>
-            <span class=target id="signal-document-loaded"></span>
-            <a href="#signal-document-loaded">"document-loaded"</a>
-        </h3>
-            <div class=function>
+        <div class=function id="signal-document-loaded">
+            <h3>
+                <a href="#signal-document-loaded">"document-loaded"</a>
+            </h3>
+                    <div>
             
             
 <p>Emitted when the DOM document of the page has finished loading.</p>
@@ -558,11 +567,13 @@ useful for coordinating Lua accross processes.</p>
             
         </div>
     
-        <h3 class=function>
-            <span class=target id="signal-send-request"></span>
-            <a href="#signal-send-request">"send-request"</a>
-        </h3>
-            <div class=function>
+        </div>
+    
+        <div class=function id="signal-send-request">
+            <h3>
+                <a href="#signal-send-request">"send-request"</a>
+            </h3>
+                    <div>
             
             
 <p>Emitted before every HTTP request is sent. By connecting to this signal
@@ -660,6 +671,8 @@ A redirect URI, or <code>false</code> to block the request.
         </li>
     
 </ul>
+        </div>
+    
         </div>
     
         <h2>Attribution</h2>
