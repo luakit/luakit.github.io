@@ -68,7 +68,7 @@ local make_news_index = function (releases)
         local lrt = i==1 and " - latest release" or ""
         local ver = release.version
         local hdr = "Luakit " .. ver .. lrt .. "\n"
-        contents = contents .. '<li><h3><a href="/luakit/news/luakit-'.. ver:gsub("%-", ".") .. '.html">' .. hdr .. "</a></h3></li>"
+        contents = contents .. '<li><h3><a href="/news/luakit-'.. ver:gsub("%-", ".") .. '.html">' .. hdr .. "</a></h3></li>"
     end
     contents  = contents .. "</ul>"
 
