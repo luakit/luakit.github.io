@@ -31,6 +31,7 @@ local make_doc_html = function (blob, path)
         style = style .. [===[
             #content > h2:first-child { margin-top: 0; }
             h2 + ul { margin: 0.5em 0; }
+            #content { max-width: unset; }
         ]===]
     end
     style = style .. [===[
