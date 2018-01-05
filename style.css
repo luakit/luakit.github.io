@@ -62,12 +62,11 @@ header h1 {
 	font-style: italic;
 	margin: 0;
 	padding: 0;
-	color: #888;
 	text-align: center;
 	font-weight: 500;
 }
 header h1 > a {
-	color: #8a8a8a;
+	color: #4a4a4a;
 	text-decoration: none;
 	margin: 0;
 	margin: 0;
@@ -246,4 +245,19 @@ footer {
 		display: block;
 		width: auto;
 	}
+}
+
+header h1 { margin: 0 0 0.3em; font-weight: 450; }
+#slogan { font-size: 2.8em; font-weight: 300; }
+
+h1 > a > img {
+}
+h1 > a > span {
+}
+h1 > a > img, h1 > a > span {
+	vertical-align: top;
+	height: 130px;
+	line-height: 150px;
+	display: inline-block;
+	margin: 0 0.1em;
 }
