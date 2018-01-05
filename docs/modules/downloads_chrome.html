@@ -128,7 +128,6 @@ div.good.alert {
 #content {
     flex: 1;
     position: relative;
-    max-width: 41rem;
 }
 #sidebar {
     flex: 0 0 13rem;
@@ -138,7 +137,6 @@ div.good.alert {
 
 @media (max-width: 55rem) {
     #sidebar { display: none; }
-    #content { max-width: 100vw; }
 }
 
 #sidebar > h2 {
@@ -337,16 +335,18 @@ div.info > div { margin-top: 0.3rem; }
 <ul class=pages>
     <li><a href="../pages/01-authors.html">Authors</a></li>
     <li><a href="../pages/02-faq.html">Frequently Asked Questions</a></li>
-    <li><a href="../pages/03-quick-start-guide.html">Quick-start guide</a></li>
+    <li><a href="../pages/03-quick-start-guide.html">Quick-start Guide</a></li>
     <li><a href="../pages/04-migration-guide.html">Migration Guide</a></li>
     <li><a href="../pages/05-configuration.html">Files and Directories</a></li>
-    <li><a href="../pages/06-tests.html">Tests</a></li>
+    <li><a href="../pages/06-tests.html">Running the Test Suite</a></li>
+    <li><a href="../pages/07-build-debian-package.html">Building a Debian Package</a></li>
 </ul>
 <h3>Modules</h3>
 <ul class=modules>
     <li><a href="../modules/adblock.html">adblock</a></li>
     <li><a href="../modules/adblock_chrome.html">adblock_chrome</a></li>
     <li><a href="../modules/binds.html">binds</a></li>
+    <li><a href="../modules/binds_chrome.html">binds_chrome</a></li>
     <li><a href="../modules/bookmarks.html">bookmarks</a></li>
     <li><a href="../modules/bookmarks_chrome.html">bookmarks_chrome</a></li>
     <li><a href="../modules/chrome.html">chrome</a></li>
@@ -370,6 +370,7 @@ div.info > div { margin-top: 0.3rem; }
     <li><a href="../modules/image_css.html">image_css</a></li>
     <li><a href="../modules/introspector_chrome.html">introspector_chrome</a></li>
     <li><a href="../modules/ipc.html">ipc</a></li>
+    <li><a href="../modules/keysym.html">keysym</a></li>
     <li><a href="../modules/log_chrome.html">log_chrome</a></li>
     <li><a href="../modules/lousy.bind.html">lousy.bind</a></li>
     <li><a href="../modules/lousy.load.html">lousy.load</a></li>
@@ -380,7 +381,20 @@ div.info > div { margin-top: 0.3rem; }
     <li><a href="../modules/lousy.uri.html">lousy.uri</a></li>
     <li><a href="../modules/lousy.util.html">lousy.util</a></li>
     <li><a href="../modules/lousy.widget.html">lousy.widget</a></li>
+    <li><a href="../modules/lousy.widget.buf.html">lousy.widget.buf</a></li>
+    <li><a href="../modules/lousy.widget.common.html">lousy.widget.common</a></li>
+    <li><a href="../modules/lousy.widget.hist.html">lousy.widget.hist</a></li>
+    <li><a href="../modules/lousy.widget.menu.html">lousy.widget.menu</a></li>
+    <li><a href="../modules/lousy.widget.progress.html">lousy.widget.progress</a></li>
+    <li><a href="../modules/lousy.widget.scroll.html">lousy.widget.scroll</a></li>
+    <li><a href="../modules/lousy.widget.ssl.html">lousy.widget.ssl</a></li>
+    <li><a href="../modules/lousy.widget.tab.html">lousy.widget.tab</a></li>
+    <li><a href="../modules/lousy.widget.tabi.html">lousy.widget.tabi</a></li>
+    <li><a href="../modules/lousy.widget.tablist.html">lousy.widget.tablist</a></li>
+    <li><a href="../modules/lousy.widget.uri.html">lousy.widget.uri</a></li>
+    <li><a href="../modules/lousy.widget.zoom.html">lousy.widget.zoom</a></li>
     <li><a href="../modules/luakit.html">luakit</a></li>
+    <li><a href="../modules/luakit.unique.html">luakit.unique</a></li>
     <li><a href="../modules/modes.html">modes</a></li>
     <li><a href="../modules/msg.html">msg</a></li>
     <li><a href="../modules/newtab_chrome.html">newtab_chrome</a></li>
@@ -388,11 +402,14 @@ div.info > div { margin-top: 0.3rem; }
     <li><a href="../modules/open_editor.html">open_editor</a></li>
     <li><a href="../modules/proxy.html">proxy</a></li>
     <li><a href="../modules/quickmarks.html">quickmarks</a></li>
+    <li><a href="../modules/readline.html">readline</a></li>
     <li><a href="../modules/referer_control_wm.html">referer_control_wm</a></li>
     <li><a href="../modules/search.html">search</a></li>
     <li><a href="../modules/select.html">select</a></li>
     <li><a href="../modules/select_wm.html">select_wm</a></li>
     <li><a href="../modules/session.html">session</a></li>
+    <li><a href="../modules/settings.html">settings</a></li>
+    <li><a href="../modules/settings_chrome.html">settings_chrome</a></li>
     <li><a href="../modules/soup.html">soup</a></li>
     <li><a href="../modules/styles.html">styles</a></li>
     <li><a href="../modules/tab_favicons.html">tab_favicons</a></li>
@@ -400,12 +417,15 @@ div.info > div { margin-top: 0.3rem; }
     <li><a href="../modules/taborder.html">taborder</a></li>
     <li><a href="../modules/tests.lib.html">tests.lib</a></li>
     <li><a href="../modules/undoclose.html">undoclose</a></li>
-    <li><a href="../modules/unique.html">unique</a></li>
+    <li><a href="../modules/unique_instance.html">unique_instance</a></li>
     <li><a href="../modules/userscripts.html">userscripts</a></li>
+    <li><a href="../modules/utf8.html">utf8</a></li>
     <li><a href="../modules/vertical_tabs.html">vertical_tabs</a></li>
     <li><a href="../modules/view_source.html">view_source</a></li>
     <li><a href="../modules/viewpdf.html">viewpdf</a></li>
     <li><a href="../modules/webinspector.html">webinspector</a></li>
+    <li><a href="../modules/webview.html">webview</a></li>
+    <li><a href="../modules/window.html">window</a></li>
     <li><a href="../modules/xdg.html">xdg</a></li>
 </ul>
 <h3>Classes</h3>
@@ -455,6 +475,7 @@ webpage at <a href="luakit://downloads/">luakit://downloads/</a>.</p>
             <h3>
                 <a href="#property-stylesheet">downloads_chrome.stylesheet</a>
             </h3>
+            
             <div class="two-col property-body">
                 <div>
                     <div>Type: <span class=type>string</span></div>
@@ -471,6 +492,7 @@ CSS for downloads chrome page.
             <h3>
                 <a href="#property-chrome_page">downloads_chrome.chrome_page</a>
             </h3>
+            
             <div class="two-col property-body">
                 <div>
                     <div>Type: <span class=type>string</span></div>
@@ -497,7 +519,7 @@ URI of the downloads chrome page.
 	</div>
 	<footer>
 		<div class="container">
-			<small>Copyright 2017 Aidan Holm</small>
+			<small>Copyright 2018 the luakit team</small>
 			<br>
 			<small>All written documentation and luakit code are copyright to their respective authors.</small>
 		</div>
