@@ -32,8 +32,8 @@ local make_news_html = function (release, is_latest)
         version = ver,
     })
 
-    local dest = opts.target_dir .. "/luakit-" .. ver:gsub("%-", ".") .. ".html"
-    local f = io.open(dest, "w")
+    local dest = opts.target_dir .. "/luakit-" .. ver:gsub("[%-%/]", ".") .. ".html"
+    local f = assert(io.open(dest, "w"))
     f:write(html)
     f:close()
     print("Wrote to " .. dest)
@@ -47,7 +47,7 @@ local split_changelog = function ()
     table.remove(parts, 1)
     for i, part in ipairs(parts) do
         parts[i] = {
-            version = assert(part:match("^%[([0-9-]+)%]\n"), "Bad version!"),
+            version = assert(part:match("^%[([%.%/0-9-]+)%]\n"), "Bad version in '" .. part .. "'"),
             markdown = part:gsub("^%[([0-9-]+)%]\n", ""),
         }
     end
