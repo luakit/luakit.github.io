@@ -48,7 +48,7 @@ local split_changelog = function ()
     for i, part in ipairs(parts) do
         parts[i] = {
             version = assert(part:match("^%[([%.%/0-9-]+)%]\n"), "Bad version in '" .. part .. "'"),
-            markdown = part:gsub("^%[([0-9-]+)%]\n", ""),
+            markdown = part:gsub("^%[([%.0-9-]+)%]\n", ""),
         }
     end
     return parts
