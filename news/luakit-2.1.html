@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset='UTF-8'>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Luakit 2.1</title>
+	<link rel="icon" type="image/png" href="favicon.png" />
+	<link rel=stylesheet href=/style.css />
+	<link rel="stylesheet" href="https://code.cdn.mozilla.net/fonts/fira.css">
+</head>
+<body>
+	<nav>
+		<a href="/">Home</a>
+		<a href="/news/">Releases</a>
+		<a href="/#sec-download">Download</a>
+		<a href="/docs/">Documentation</a>
+		<a href="/help/">Help &amp; Support</a>
+		<a href="/contributing/">Contributing</a>
+		<a href="https://github.com/luakit/luakit" target="_blank">GitHub</a>
+	</nav>
+	<section>
+		<div class="container">
+			
+<h2>Luakit 2.1 - latest release</h2>
+<p>[2.1]</p>
+
+<h3>Added</h3>
+
+<ul>
+    <li>Added <code>userstyles.toggle_sheet</code> function.</li>
+    <li>Added WebKit build version information to the <code>luakit://help/</code> page header</li>
+    <li>Added WebKit build/runtime version information to the output of <code>luakit --help</code></li>
+</ul>
+
+<h3>Changed</h3>
+
+<ul>
+    <li><code>userstyles</code> module now continuously applies styles while editing.</li>
+    <li>Duplicate <code>download::status</code> signals are no longer emitted.</li>
+    <li>Changed default data directory permissions to be user-accessible only (<code>0700</code>).</li>
+    <li>Luakit now changes the cookie database to be user-accessible only (<code>0600</code>) automatically.</li>
+</ul>
+
+<h3>Fixed</h3>
+
+<ul>
+    <li>Improved error when calling <code>:javascript</code> command without an argument.</li>
+</ul>
+
+
+		</div>
+	</section>
+	<footer>
+		<div class="container">
+			<small>Copyright 2019 the luakit team</small>
+			<br>
+			<small>All written documentation and luakit code are copyright to their respective authors.</small>
+		</div>
+	</footer>
+</body>
+</html>

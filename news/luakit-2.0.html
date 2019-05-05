@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset='UTF-8'>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Luakit 2.0</title>
+	<link rel="icon" type="image/png" href="favicon.png" />
+	<link rel=stylesheet href=/style.css />
+	<link rel="stylesheet" href="https://code.cdn.mozilla.net/fonts/fira.css">
+</head>
+<body>
+	<nav>
+		<a href="/">Home</a>
+		<a href="/news/">Releases</a>
+		<a href="/#sec-download">Download</a>
+		<a href="/docs/">Documentation</a>
+		<a href="/help/">Help &amp; Support</a>
+		<a href="/contributing/">Contributing</a>
+		<a href="https://github.com/luakit/luakit" target="_blank">GitHub</a>
+	</nav>
+	<section>
+		<div class="container">
+			
+<h2>Luakit 2.0</h2>
+<p>[2.0]</p>
+
+<h3>Migrating from version 2017-08-10</h3>
+
+<ol>
+    <li>Remove the two <code>if unique then ... end</code> blocks from your <code>rc.lua</code>.</li>
+    <li>Add <code>require "unique_instance"</code> to your <code>rc.lua</code>, before all other <code>require</code> statements.</li>
+    <li>Remove all configuration files except <code>rc.lua</code> and <code>theme.lua</code>. Any changes to <code>globals.lua</code>
+    need to be migrated to <code>rc.lua</code> and changed to use the <code>settings</code> API.</li>
+</ol>
+
+<h3>Added</h3>
+
+<ul>
+    <li>Added <code>styles.new_style</code> function.</li>
+    <li>Added <code>styles.toggle_sheet</code> function.</li>
+    <li>Added <code>styles.watch_styles</code> function, and enabled live-editing of user styles.</li>
+    <li>Added <code>luakit.install_paths</code> table. <code>luakit.install_path</code> is now deprecated.</li>
+    <li>Added <code>Control-Y</code> readline binding.</li>
+    <li>Added ability to control whether links from secondary instances open in a new window.</li>
+    <li>Added <code>luakit.resource_path</code> property to control where luakit searches for resource files.</li>
+    <li>Added <code>lousy.util.find_resource</code> function.</li>
+    <li>Added <code>scroll</code> signal.</li>
+    <li>Added ability to bind actions to webview scroll events.</li>
+    <li>Added ability to set the default zoom level.</li>
+    <li>Added <code>webview</code> widget <code>"permission-request"</code> signal.</li>
+    <li>Added <code>webview</code> widget <code>hardware_acceleration_policy</code> property.</li>
+    <li>Added <code>webview</code> widget <code>allow_file_access_from_file_urls</code> and <code>allow_universal_access_from_file_urls</code> properties.</li>
+    <li>Added <code>settings</code> module and APIs. This replaces the <code>domain_props</code> module.</li>
+    <li>Added <code>tablist.always_visible</code> setting.</li>
+    <li>Added <code>utf8.len</code> (same as <code>string.wlen</code>) and <code>utf8.offset</code> methods.</li>
+    <li>Added <code>utf8.charpattern</code> property.</li>
+    <li>Added <code>:set</code> and <code>:seton</code> commands, for changing settings.</li>
+    <li>Added ability to always save session before exiting luakit.</li>
+    <li>Added <code>markup</code> option to window <code>set_prompt()</code> method.</li>
+    <li>Added <code>detach-tab</code> signal.</li>
+    <li>Added support for multi-byte characters in hints.</li>
+    <li>Added widget <code>replace</code> method.</li>
+</ul>
+
+<h3>Changed</h3>
+
+<ul>
+    <li>It is no longer necessary to add bindings to tables with <code>lousy.bind.add_binds()</code>.</li>
+    <li>Readline bindings have been moved to <code>readline.lua</code>.</li>
+    <li>Readline bindings are now automatically bound when the input bar is visible.</li>
+    <li>Unique instance support has been moved to <code>unique_instance.lua</code>.</li>
+    <li>The <code>image</code> widget now uses <code>luakit.resource_path</code> to locate local files.</li>
+    <li>The log viewer now shows errors logged by a user-defined rc.lua failing to load.</li>
+    <li>Luakit will now remove its IPC socket file before restarting.</li>
+    <li>The editor command now defaults to using <code>xdg-open</code> to edit files.  The <code>default</code> builtin
+    command has been renamed <code>autodetect</code>.</li>
+    <li>Changed <code>luakit://introspector/</code> to <code>luakit://binds/</code>.</li>
+    <li>URL completion now uses word-based fuzzy matching.</li>
+    <li><code>:download</code> now uses the current page URI by default.</li>
+    <li><code>gy</code> now accepts a count.</li>
+    <li><code>:tabopen</code> will now only open local files when given an absolute path.</li>
+    <li><code>:styles-list</code> now lists active styles first and disabled styles last.</li>
+</ul>
+
+<h3>Removed</h3>
+
+<ul>
+    <li>Removed <code>domain_props</code> module. It is replaced by the <code>settings</code> module and its APIs.</li>
+    <li>Removed all configuration files except <code>rc.lua</code> and <code>theme.lua</code>.</li>
+    <li>Removed <code>enable_private_browsing</code> webview property.</li>
+    <li>Removed <code>w.closed_tabs</code> field. It is now private to the <code>undoclose</code> module.</li>
+</ul>
+
+<h3>Fixed</h3>
+
+<ul>
+    <li>Fixed <a href="luakit://help/">luakit://help/</a> not finding documentation with custom DOCDIR</li>
+    <li>Various minor documentation fixes.</li>
+    <li>Fixed <code>Control-Scroll</code> and <code>Shift-Scroll</code> key bindings not working with smooth scrolling.</li>
+    <li>Fixed inability to switch focus between web page elements with <code>Tab</code> and <code>Shift-Tab</code>.</li>
+    <li>Fixed log page bug when logging messages with newlines.</li>
+    <li>Fixed <code>Up</code> and <code>Down</code> keybindings being broken on completion menu.</li>
+    <li>Fixed hardcoded path to luakit icon.</li>
+    <li>Fixed luakit:// pages not working and spewing errors when not using LuaJIT.</li>
+    <li>Fixed thumbnail hinting not retrieving thumbnail links correctly.</li>
+    <li>Fixed inability to bind <code>Modifier-Minus</code>.</li>
+    <li>Fixed readline handling of wide characters.</li>
+    <li>Fixed completion not suggesting history/bookmarks items without titles/tags.</li>
+    <li>Fixed <code>:dump</code> command not working due to use of a removed API.</li>
+    <li>Fixed follow hints being sometimes truncated by the viewport edge.</li>
+    <li>Follow mode now renders hints much faster.</li>
+    <li>Fixed Forward/Back keys not working due to outdated bind syntax.</li>
+    <li>Fixed opening local files with names containing spaces from <code>:tabopen</code> and the command-line.</li>
+</ul>
+
+
+		</div>
+	</section>
+	<footer>
+		<div class="container">
+			<small>Copyright 2019 the luakit team</small>
+			<br>
+			<small>All written documentation and luakit code are copyright to their respective authors.</small>
+		</div>
+	</footer>
+</body>
+</html>
