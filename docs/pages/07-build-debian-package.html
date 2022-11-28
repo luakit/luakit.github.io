@@ -350,6 +350,7 @@ div.info > div { margin-top: 0.3rem; }
     <li><a href="../modules/bookmarks.html">bookmarks</a></li>
     <li><a href="../modules/bookmarks_chrome.html">bookmarks_chrome</a></li>
     <li><a href="../modules/chrome.html">chrome</a></li>
+    <li><a href="../modules/clear_data.html">clear_data</a></li>
     <li><a href="../modules/cmdhist.html">cmdhist</a></li>
     <li><a href="../modules/completion.html">completion</a></li>
     <li><a href="../modules/domain_props.html">domain_props</a></li>
@@ -363,6 +364,7 @@ div.info > div { margin-top: 0.3rem; }
     <li><a href="../modules/go_input.html">go_input</a></li>
     <li><a href="../modules/go_next_prev.html">go_next_prev</a></li>
     <li><a href="../modules/go_up.html">go_up</a></li>
+    <li><a href="../modules/gopher.html">gopher</a></li>
     <li><a href="../modules/help_chrome.html">help_chrome</a></li>
     <li><a href="../modules/hide_scrollbars.html">hide_scrollbars</a></li>
     <li><a href="../modules/history.html">history</a></li>
@@ -391,6 +393,7 @@ div.info > div { margin-top: 0.3rem; }
     <li><a href="../modules/lousy.widget.tab.html">lousy.widget.tab</a></li>
     <li><a href="../modules/lousy.widget.tabi.html">lousy.widget.tabi</a></li>
     <li><a href="../modules/lousy.widget.tablist.html">lousy.widget.tablist</a></li>
+    <li><a href="../modules/lousy.widget.tgname.html">lousy.widget.tgname</a></li>
     <li><a href="../modules/lousy.widget.uri.html">lousy.widget.uri</a></li>
     <li><a href="../modules/lousy.widget.zoom.html">lousy.widget.zoom</a></li>
     <li><a href="../modules/luakit.html">luakit</a></li>
@@ -413,7 +416,9 @@ div.info > div { margin-top: 0.3rem; }
     <li><a href="../modules/soup.html">soup</a></li>
     <li><a href="../modules/styles.html">styles</a></li>
     <li><a href="../modules/tab_favicons.html">tab_favicons</a></li>
+    <li><a href="../modules/tabgroups.html">tabgroups</a></li>
     <li><a href="../modules/tabhistory.html">tabhistory</a></li>
+    <li><a href="../modules/tabmenu.html">tabmenu</a></li>
     <li><a href="../modules/taborder.html">taborder</a></li>
     <li><a href="../modules/tests.lib.html">tests.lib</a></li>
     <li><a href="../modules/undoclose.html">undoclose</a></li>
@@ -468,39 +473,39 @@ required packages. These steps only have to be done once.</p>
 
 <p>Install the following packages:</p>
 
-<pre class="sourcecode lua"><span class="error">$</span> <span class="identifier">sudo</span> <span class="identifier">apt</span><span class="operator">-</span><span class="identifier">get</span> <span class="identifier">install</span> <span class="identifier">gitpkg</span> <span class="identifier">pbuilder</span>
+<pre class='sourcecode lua'>$ sudo apt-get install gitpkg pbuilder
 </pre>
 
 <p>Next, create a <code>pbuilder</code> build chroot environment in which to build the
 package. The following commands all use Debian Stretch; to use Buster or
 Sid releases, change <code>stretch</code> to <code>buster</code> or <code>sid</code> in the commands below.</p>
 
-<pre class="sourcecode lua"><span class="error">$</span> <span class="identifier">sudo</span> <span class="identifier">pbuilder</span> <span class="identifier">create</span> <span class="comment">--distribution strech \
-</span>      <span class="comment">--basetgz /var/cache/pbuilder/base-strech.tgz \
-</span>      <span class="comment">--mirror </span><a href="http://ftp.debian.org/debian" class="url">http://ftp.debian.org/debian</a><span class="comment">
-</span></pre>
+<pre class='sourcecode lua'>$ sudo pbuilder create --distribution strech \
+      --basetgz /var/cache/pbuilder/base-strech.tgz \
+      --mirror http://ftp.debian.org/debian
+</pre>
 
 <p>Clone the luakit source code to a local directory:</p>
 
-<pre class="sourcecode lua"><span class="error">$</span> <span class="identifier">mkdir</span> <span class="error">~</span><span class="operator">/</span><span class="identifier">debian</span>
-<span class="error">$</span> <span class="identifier">cd</span> <span class="error">~</span><span class="operator">/</span><span class="identifier">debian</span>
-<span class="error">$</span> <span class="identifier">git</span> <span class="identifier">clone</span> <span class="identifier">https</span><span class="operator">:</span><span class="operator">/</span><span class="operator">/</span><span class="identifier">github.com</span><span class="operator">/</span><span class="identifier">luakit</span><span class="operator">/</span><span class="identifier">luakit.git</span>
-<span class="error">$</span> <span class="identifier">cd</span> <span class="identifier">luakit</span>
+<pre class='sourcecode lua'>$ mkdir ~/debian
+$ cd ~/debian
+$ git clone https://github.com/luakit/luakit.git
+$ cd luakit
 </pre>
 
 <p>Finally, setup the <code>gitpkg</code> hook:</p>
 
-<pre class="sourcecode lua"><span class="error">$</span> <span class="identifier">git</span> <span class="identifier">config</span> <span class="identifier">gitpkg.deb</span><span class="operator">-</span><span class="identifier">export</span><span class="operator">-</span><span class="identifier">hook</span> <span class="identifier">debian</span><span class="operator">/</span><span class="identifier">source</span><span class="operator">/</span><span class="identifier">gitpkg</span><span class="operator">-</span><span class="identifier">deb</span><span class="operator">-</span><span class="identifier">export</span><span class="operator">-</span><span class="identifier">hook</span>
+<pre class='sourcecode lua'>$ git config gitpkg.deb-export-hook debian/source/gitpkg-deb-export-hook
 </pre>
 
 <h2>Building a Debian package for the current release</h2>
 
 <p>Find the git tag for the current release:</p>
 
-<pre class="sourcecode lua"><span class="error">$</span> <span class="identifier">git</span> <span class="identifier">tag</span>
-<span class="operator">...</span>
-<span class="number">2017.08</span><span class="number">.10</span>
-<span class="identifier">debian</span><span class="operator">/</span><span class="number">2017.08</span><span class="number">.10</span><span class="operator">-</span><span class="number">1</span>
+<pre class='sourcecode lua'>$ git tag
+...
+2017.08.10
+debian/2017.08.10-1
 </pre>
 
 <p>The following commands all use <code>2017.08.10</code> as the release date; make
@@ -508,47 +513,47 @@ sure you substitute the correct release.</p>
 
 <p>Export the luakit source code to Debian source packages:</p>
 
-<pre class="sourcecode lua"><span class="error">$</span> <span class="identifier">gitpkg</span> <span class="identifier">debian</span><span class="operator">/</span><span class="number">2017.08</span><span class="number">.10</span><span class="operator">-</span><span class="number">1</span> <span class="number">2017.08</span><span class="number">.10</span>
+<pre class='sourcecode lua'>$ gitpkg debian/2017.08.10-1 2017.08.10
 </pre>
 
 <p>Now, debian source packages can be found in:</p>
 
-<pre class="sourcecode lua"><span class="error">$</span> <span class="identifier">ls</span> <span class="operator">-</span><span class="number">1</span> <span class="operator">..</span><span class="operator">/</span><span class="identifier">deb</span><span class="operator">-</span><span class="identifier">packages</span><span class="operator">/</span><span class="identifier">luakit</span>
-<span class="identifier">luakit_2017</span><span class="number">.08</span><span class="number">.10</span><span class="operator">-</span><span class="number">1.</span><span class="identifier">debian.tar.xz</span>
-<span class="identifier">luakit_2017</span><span class="number">.08</span><span class="number">.10</span><span class="operator">-</span><span class="number">1.</span><span class="identifier">dsc</span>
-<span class="identifier">luakit_2017</span><span class="number">.08</span><span class="number">.10</span><span class="operator">.</span><span class="operator">or</span><span class="identifier">ig.tar.gz</span>
+<pre class='sourcecode lua'>$ ls -1 ../deb-packages/luakit
+luakit_2017.08.10-1.debian.tar.xz
+luakit_2017.08.10-1.dsc
+luakit_2017.08.10.orig.tar.gz
 </pre>
 
 <p>Update the pbuilder build chroot environment:</p>
 
-<pre class="sourcecode lua"><span class="error">$</span> <span class="identifier">sudo</span> <span class="identifier">pbuilder</span> <span class="identifier">update</span> <span class="comment">--distribution strech \
-</span>      <span class="comment">--basetgz /var/cache/pbuilder/base-strech.tgz
-</span></pre>
+<pre class='sourcecode lua'>$ sudo pbuilder update --distribution strech \
+      --basetgz /var/cache/pbuilder/base-strech.tgz
+</pre>
 
 <p>Finally, build the Debian source package:</p>
 
-<pre class="sourcecode lua"><span class="error">$</span> <span class="identifier">sudo</span> <span class="identifier">pbuilder</span> <span class="identifier">build</span> <span class="comment">--distribution strech \
-</span>      <span class="comment">--basetgz /var/cache/pbuilder/base-strech.tgz \
-</span>      <span class="comment">--buildresult ../deb-packages/luakit/strech \
-</span>      <span class="operator">..</span><span class="operator">/</span><span class="identifier">deb</span><span class="operator">-</span><span class="identifier">packages</span><span class="operator">/</span><span class="identifier">luakit</span><span class="operator">/</span><span class="identifier">luakit_2017</span><span class="number">.08</span><span class="number">.10</span><span class="operator">-</span><span class="number">1.</span><span class="identifier">dsc</span>
+<pre class='sourcecode lua'>$ sudo pbuilder build --distribution strech \
+      --basetgz /var/cache/pbuilder/base-strech.tgz \
+      --buildresult ../deb-packages/luakit/strech \
+      ../deb-packages/luakit/luakit_2017.08.10-1.dsc
 </pre>
 
 <p>The resulting binary package can now be found in the output directory:</p>
 
-<pre class="sourcecode lua"><span class="error">$</span> <span class="identifier">ls</span> <span class="operator">-</span><span class="number">1</span> <span class="operator">..</span><span class="operator">/</span><span class="identifier">deb</span><span class="operator">-</span><span class="identifier">packages</span><span class="operator">/</span><span class="identifier">luakit</span><span class="operator">/</span><span class="identifier">stretch</span>
-<span class="identifier">luakit_2017</span><span class="number">.08</span><span class="number">.10</span><span class="operator">-</span><span class="number">1</span><span class="identifier">_amd64.buildinfo</span>
-<span class="identifier">luakit_2017</span><span class="number">.08</span><span class="number">.10</span><span class="operator">-</span><span class="number">1</span><span class="identifier">_amd64.changes</span>
-<span class="identifier">luakit_2017</span><span class="number">.08</span><span class="number">.10</span><span class="operator">-</span><span class="number">1</span><span class="identifier">_amd64.deb</span>
-<span class="identifier">luakit_2017</span><span class="number">.08</span><span class="number">.10</span><span class="operator">-</span><span class="number">1.</span><span class="identifier">debian.tar.xz</span>
-<span class="identifier">luakit_2017</span><span class="number">.08</span><span class="number">.10</span><span class="operator">-</span><span class="number">1.</span><span class="identifier">dsc</span>
-<span class="identifier">luakit_2017</span><span class="number">.08</span><span class="number">.10</span><span class="operator">.</span><span class="operator">or</span><span class="identifier">ig.tar.gz</span>
-<span class="identifier">luakit</span><span class="operator">-</span><span class="identifier">dbgsym_2017</span><span class="number">.08</span><span class="number">.10</span><span class="operator">-</span><span class="number">1</span><span class="identifier">_amd64.deb</span>
+<pre class='sourcecode lua'>$ ls -1 ../deb-packages/luakit/stretch
+luakit_2017.08.10-1_amd64.buildinfo
+luakit_2017.08.10-1_amd64.changes
+luakit_2017.08.10-1_amd64.deb
+luakit_2017.08.10-1.debian.tar.xz
+luakit_2017.08.10-1.dsc
+luakit_2017.08.10.orig.tar.gz
+luakit-dbgsym_2017.08.10-1_amd64.deb
 </pre>
 
 <p>To install luakit, run the following:</p>
 
-<pre class="sourcecode lua"><span class="error">$</span> <span class="identifier">sudo</span> <span class="identifier">dpkg</span> <span class="operator">-</span><span class="identifier">i</span> <span class="operator">..</span><span class="operator">/</span><span class="identifier">deb</span><span class="operator">-</span><span class="identifier">packages</span><span class="operator">/</span><span class="identifier">luakit</span><span class="operator">/</span><span class="identifier">stretch</span><span class="operator">/</span><span class="identifier">luakit_2017</span><span class="number">.08</span><span class="number">.10</span><span class="operator">-</span><span class="number">1</span><span class="identifier">_amd64.deb</span>
-<span class="error">$</span> <span class="identifier">sudo</span> <span class="identifier">apt</span><span class="operator">-</span><span class="identifier">get</span> <span class="identifier">install</span> <span class="operator">-</span><span class="identifier">f</span>
+<pre class='sourcecode lua'>$ sudo dpkg -i ../deb-packages/luakit/stretch/luakit_2017.08.10-1_amd64.deb
+$ sudo apt-get install -f
 </pre>
 
 

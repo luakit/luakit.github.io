@@ -350,6 +350,7 @@ div.info > div { margin-top: 0.3rem; }
     <li><a href="../modules/bookmarks.html">bookmarks</a></li>
     <li><a href="../modules/bookmarks_chrome.html">bookmarks_chrome</a></li>
     <li><a href="../modules/chrome.html">chrome</a></li>
+    <li><a href="../modules/clear_data.html">clear_data</a></li>
     <li><a href="../modules/cmdhist.html">cmdhist</a></li>
     <li><a href="../modules/completion.html">completion</a></li>
     <li><a href="../modules/domain_props.html">domain_props</a></li>
@@ -363,11 +364,11 @@ div.info > div { margin-top: 0.3rem; }
     <li><a href="../modules/go_input.html">go_input</a></li>
     <li><a href="../modules/go_next_prev.html">go_next_prev</a></li>
     <li><a href="../modules/go_up.html">go_up</a></li>
+    <li><span>gopher</span></li>
     <li><a href="../modules/help_chrome.html">help_chrome</a></li>
     <li><a href="../modules/hide_scrollbars.html">hide_scrollbars</a></li>
     <li><a href="../modules/history.html">history</a></li>
     <li><a href="../modules/history_chrome.html">history_chrome</a></li>
-    <li><a href="../modules/https_always.html">https_always</a></li>
     <li><a href="../modules/image_css.html">image_css</a></li>
     <li><a href="../modules/introspector_chrome.html">introspector_chrome</a></li>
     <li><a href="../modules/ipc.html">ipc</a></li>
@@ -392,38 +393,32 @@ div.info > div { margin-top: 0.3rem; }
     <li><a href="../modules/lousy.widget.tab.html">lousy.widget.tab</a></li>
     <li><a href="../modules/lousy.widget.tabi.html">lousy.widget.tabi</a></li>
     <li><a href="../modules/lousy.widget.tablist.html">lousy.widget.tablist</a></li>
+    <li><a href="../modules/lousy.widget.tgname.html">lousy.widget.tgname</a></li>
     <li><a href="../modules/lousy.widget.uri.html">lousy.widget.uri</a></li>
     <li><a href="../modules/lousy.widget.zoom.html">lousy.widget.zoom</a></li>
-    <li><a href="../modules/lua_inspector_chrome.html">lua_inspector_chrome</a></li>
     <li><a href="../modules/luakit.html">luakit</a></li>
     <li><a href="../modules/luakit.unique.html">luakit.unique</a></li>
-    <li><a href="../modules/mdbg.html">mdbg</a></li>
     <li><a href="../modules/modes.html">modes</a></li>
-    <li><a href="../modules/mpv.html">mpv</a></li>
     <li><a href="../modules/msg.html">msg</a></li>
     <li><a href="../modules/newtab_chrome.html">newtab_chrome</a></li>
-    <li><a href="../modules/nightmode.html">nightmode</a></li>
     <li><a href="../modules/noscript.html">noscript</a></li>
     <li><a href="../modules/open_editor.html">open_editor</a></li>
     <li><a href="../modules/proxy.html">proxy</a></li>
-    <li><a href="../modules/pure_url_wm.html">pure_url_wm</a></li>
-    <li><a href="../modules/qr.html">qr</a></li>
     <li><a href="../modules/quickmarks.html">quickmarks</a></li>
     <li><a href="../modules/readline.html">readline</a></li>
-    <li><span>reddit_wm</span></li>
     <li><a href="../modules/referer_control_wm.html">referer_control_wm</a></li>
-    <li><a href="../modules/resource_chrome.html">resource_chrome</a></li>
     <li><a href="../modules/search.html">search</a></li>
     <li><a href="../modules/select.html">select</a></li>
     <li><a href="../modules/select_wm.html">select_wm</a></li>
     <li><a href="../modules/session.html">session</a></li>
     <li><a href="../modules/settings.html">settings</a></li>
     <li><a href="../modules/settings_chrome.html">settings_chrome</a></li>
-    <li><a href="../modules/smoothscroll.html">smoothscroll</a></li>
     <li><a href="../modules/soup.html">soup</a></li>
     <li><a href="../modules/styles.html">styles</a></li>
     <li><a href="../modules/tab_favicons.html">tab_favicons</a></li>
+    <li><a href="../modules/tabgroups.html">tabgroups</a></li>
     <li><a href="../modules/tabhistory.html">tabhistory</a></li>
+    <li><a href="../modules/tabmenu.html">tabmenu</a></li>
     <li><a href="../modules/taborder.html">taborder</a></li>
     <li><a href="../modules/tests.lib.html">tests.lib</a></li>
     <li><a href="../modules/undoclose.html">undoclose</a></li>
@@ -467,26 +462,209 @@ div.info > div { margin-top: 0.3rem; }
 
             </div>
             <div id=content>
-                        <h1>Module <code>reddit_wm</code></h1>
+                        <h1>Module <code>gopher</code></h1>
         <!-- status indicator -->
-        <span class=tagline>Reddit fixer - web module</span>
+        <span class=tagline>Add gopher:// scheme support</span>
         
 
-<p>Filters garbage off URIs.</p>
+<p>The module adds support for Gopher network with basic rendering.</p>
 
 
 
 
-        <!-- modes and binds -->
-        <h2>Attribution</h2>
-<div class=attr-wrap>
-    <h4>Copyright</h4><ul class=copyright>
-        <li>2018 Aidan Holm
-    </ul>
+        <!-- modes and binds --><h2>Functions</h2>
+
+        <div class=function id="function-parse_gopher_line">
+            <h3>
+                <a href="#function-parse_gopher_line">gopher.parse_gopher_line (line, url)</a>
+            </h3>
+                    <div>
+            
+            
+<p>Parse Gopher menu entry.</p>
+
+            <h4>Parameters</h4>
+<ul>
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>line</span>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+Literal string line representing a Gopher menu entry.
+
 </div>
+            </div>
+        </li>
+    
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>url</span>
+                    <div>Type: <span class=type>table</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+Parsed URL structure from parse_url().
+
+</div>
+            </div>
+        </li>
+    
+</ul>
+            <h4>Return Values</h4>
+<ul>
+        <li>
+            <div class=two-col>
+                <div><span class=type>table</span></div><div>
+Structure representing the menu entry tokens.
+
+</div>
+            </div>
+        </li>
+    
+</ul>
+        </div>
+    
+        </div>
+    
+        <div class=function id="function-href_source">
+            <h3>
+                <a href="#function-href_source">gopher.href_source (entry)</a>
+            </h3>
+                    <div>
+            
+            
+<p>Evaluate hyperlink for a gopher menu entry.</p>
+
+            <h4>Parameters</h4>
+<ul>
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>entry</span>
+                    <div>Type: <span class=type>table</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+Gopher menu entry structure from parse<em>gopher</em>line().
+
+</div>
+            </div>
+        </li>
+    
+</ul>
+            <h4>Return Values</h4>
+<ul>
+        <li>
+            <div class=two-col>
+                <div><span class=type>string</span></div><div>
+Valid URL for the menu entry.
+
+</div>
+            </div>
+        </li>
+    
+</ul>
+        </div>
+    
+        </div>
+    
+        <div class=function id="function-image_mime_type">
+            <h3>
+                <a href="#function-image_mime_type">gopher.image_mime_type (ext)</a>
+            </h3>
+                    <div>
+            
+            
+<p>Guess the image MIME type by a filename suffix.</p>
+
+            <h4>Parameters</h4>
+<ul>
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>ext</span>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+The filename suffix (without leading dot).
+
+</div>
+            </div>
+        </li>
+    
+</ul>
+            <h4>Return Values</h4>
+<ul>
+        <li>
+            <div class=two-col>
+                <div><span class=type>string</span></div><div>
+Appropriate MIME type.
+
+</div>
+            </div>
+        </li>
+    
+</ul>
+        </div>
+    
+        </div>
+    
+        <div class=function id="function-parse_url">
+            <h3>
+                <a href="#function-parse_url">gopher.parse_url (url)</a>
+            </h3>
+                    <div>
+            
+            
+<p>Parse Gopher URL.</p>
+
+            <h4>Parameters</h4>
+<ul>
+        <li class=parameter>
+            <div class=two-col>
+                <div>
+                    <span class=parameter>url</span>
+                    <div>Type: <span class=type>string</span></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div>
+Gopher URL starting with gopher://
+
+</div>
+            </div>
+        </li>
+    
+</ul>
+            <h4>Return Values</h4>
+<ul>
+        <li>
+            <div class=two-col>
+                <div><span class=type>table</span></div><div>
+A structure representing the URL tokens.
+
+</div>
+            </div>
+        </li>
+    
+</ul>
+        </div>
+    
+        </div>
+    
+        
     
             </div>
-            <div style='display:none'><a rel=prev href='../modules/readline.html'></a><a rel=next href='../modules/referer_control_wm.html'></a></div>
+            <div style='display:none'><a rel=prev href='../modules/go_up.html'></a><a rel=next href='../modules/help_chrome.html'></a></div>
         </div>
 	</div>
 	<footer>

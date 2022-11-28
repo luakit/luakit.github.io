@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset='UTF-8'>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Luakit 2.3</title>
+	<link rel="icon" type="image/png" href="favicon.png" />
+	<link rel=stylesheet href=/style.css />
+	<link rel="stylesheet" href="https://code.cdn.mozilla.net/fonts/fira.css">
+</head>
+<body>
+	<nav>
+		<a href="/">Home</a>
+		<a href="/news/">Releases</a>
+		<a href="/#sec-download">Download</a>
+		<a href="/docs/">Documentation</a>
+		<a href="/help/">Help &amp; Support</a>
+		<a href="/contributing/">Contributing</a>
+		<a href="https://github.com/luakit/luakit" target="_blank">GitHub</a>
+	</nav>
+	<section>
+		<div class="container">
+			
+<h2>Luakit 2.3</h2>
+
+<h3>Added</h3>
+
+<ul>
+    <li>Added Gopher protocol support, see comment in rc.lua.</li>
+    <li>Added two commands to clear website data (:clear-data, :clear-favicon-db).</li>
+    <li>Added dark mode support setting <code>application.prefer_dark_mode</code>.</li>
+    <li>The tabmenu plugin is now included in luakit (:tabmenu).</li>
+</ul>
+
+<h3>Changed</h3>
+
+<ul>
+    <li>Removed debug symbol generation for default make.</li>
+    <li>Changed the C standard from gnu99 to c11 because Webkit wants it.</li>
+    <li>The proxy module remembers when no proxy or system proxy was used last.</li>
+    <li>The proxy widget is hidden when proxy "None" is active.</li>
+</ul>
+
+<h3>Fixed</h3>
+
+<ul>
+    <li>Fixed bounding box not spanning over whole element.</li>
+    <li>Fixed an issue where styled hint labels caused intransparent bounding boxes.</li>
+    <li>Fixed a race condition when a tab is closed on NetBSD.</li>
+    <li>Do not execute "git ls-files" when luakit is not a git repository</li>
+</ul>
+
+<h3>Update information</h3>
+
+<ul>
+    <li>The gopher module needs <code>luasocket</code> installed.</li>
+</ul>
+
+
+		</div>
+	</section>
+	<footer>
+		<div class="container">
+			<small>Copyright 2019 the luakit team</small>
+			<br>
+			<small>All written documentation and luakit code are copyright to their respective authors.</small>
+		</div>
+	</footer>
+</body>
+</html>
