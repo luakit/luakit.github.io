@@ -488,8 +488,8 @@ function. <code>trim()</code>, <code>sort()</code>, <code>reverse()</code>, and 
 composer functions, and all the label maker function does is chain them
 together and return the result.</p>
 
-<pre class='sourcecode lua'>select.label_maker = function ()
-    return trim(sort(reverse(numbers())))
+<pre class='sourcecode lua'>select.label_maker = function (s)
+    return s.trim(s.sort(s.reverse(s.numbers())))
 end
 </pre>
 

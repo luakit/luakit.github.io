@@ -486,9 +486,9 @@ you use a non-qwerty keyboard layout), this can be done by replacing the
 
 <pre class='sourcecode lua'>local select = require "select"
 
-select.label_maker = function ()
-    local chars = charset("asdfqwerzxcv")
-    return trim(sort(reverse(chars)))
+select.label_maker = function (s)
+    local chars = s.charset("asdfqwerzxcv")
+    return s.trim(s.sort(s.reverse(chars)))
 end
 </pre>
 
@@ -509,7 +509,7 @@ non-latin letters to hint. For example, using the Cyrillic alphabet, the
 above code could be changed to the following:</p>
 
 <pre class='sourcecode lua'>...
-local chars = charset("ФЫВАПРОЛДЖЭ")
+local chars = s.charset("ФЫВАПРОЛДЖЭ")
 ...
 </pre>
 
@@ -527,7 +527,7 @@ This leads to corner cases if the hint charset contains punctuation characters,
 for example:</p>
 
 <pre class='sourcecode lua'>...
-local chars = charset("fjdksla;ghutnvir")
+local chars = s.charset("fjdksla;ghutnvir")
 ...
 </pre>
 
@@ -550,7 +550,7 @@ between letters on the left and right side of your keyboard. This is easy to
 do with the <code>interleave()</code> label composer function.</p>
 
 <pre class='sourcecode lua'>...
-local chars = interleave("qwertasdfgzxcvb", "yuiophjklnm")
+local chars = s.interleave("qwertasdfgzxcvb", "yuiophjklnm")
 ...
 </pre>
 
