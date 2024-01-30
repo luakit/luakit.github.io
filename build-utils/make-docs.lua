@@ -1,11 +1,11 @@
 local lfs = require "lfs"
 local util = require "build-utils.util"
 -- Use luakit's customized markdown: it linkifies luakit:// URIs
-package.path = "../../luakit/lib/?.lua;" .. package.path
+package.path = "../luakit/lib/?.lua;" .. package.path
 local markdown = require "markdown"
 
 local opts = {
-    source_dir = "../../luakit/doc/apidocs",
+    source_dir = "../luakit/doc/apidocs",
     template = "build-utils/docs_template.html",
     target_dir = "docs",
 }
