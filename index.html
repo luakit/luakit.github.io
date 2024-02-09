@@ -75,9 +75,6 @@
 
 			<ul id=osicons>
 				<li>
-					<img src="images/windows.svg" alt="" />
-					<span>Windows 10<br/>(with <abbr title="Windows Subsystem for Linux">WSL</abbr>)</span>
-				<li>
 					<img src="images/linux.svg" alt="" />
 					<span>Linux</span>
 				<li>
@@ -85,11 +82,15 @@
 					<span>BSD</span>
 				<li>
 					<img src="images/solaris.svg" alt="" />
-					<span>Solaris</span>
+					<span>Solaris<sup>*</sup></span>
+				<li>
+					<img src="images/windows.svg" alt="" />
+					<span>Windows 10<sup>*</sup><br/>(with <abbr title="Windows Subsystem for Linux">WSL</abbr>)</span>
 				<li>
 					<img src="images/hurd.svg" alt="" />
-					<span>HURD</span>
+					<span>HURD<sup>*</sup></span>
 			</ul>
+                        <small><sup>*</sup>Not actively supported, but known to work.</small>
 		</div>
 	</section>
 
@@ -115,9 +116,6 @@
 			<h3>Installing on Windows 10</h3>
 			<ol>
 				<li><p>First, install the <a href="https://msdn.microsoft.com/en-us/commandline/wsl/install_guide" target=_blank>Windows Subsystem for Linux</a> if you have not already done so, as WebKitGTK+ does not natively support Windows.
-				<li><p>The default Linux system is based on Ubuntu &ldquo;Trusty&rdquo;; upgrade your system to Ubuntu &ldquo;Xenial&rdquo; by running the following command at the Linux terminal:
-				<pre class=bash>do-release-upgrade</pre>
-				This is required due to a missing dependency (Lua File System) in the earlier version of Ubuntu.
 				<li><p>Download, build, and install luakit from source, following the instructions below.
 			</ol>
 		</div>
