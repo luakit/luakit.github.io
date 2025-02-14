@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset='UTF-8'>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Luakit 2.4.0</title>
+	<link rel="icon" type="image/png" href="favicon.png" />
+	<link rel=stylesheet href=/style.css />
+	<link rel="stylesheet" href="https://code.cdn.mozilla.net/fonts/fira.css">
+</head>
+<body>
+	<nav>
+		<a href="/">Home</a>
+		<a href="/news/">Releases</a>
+		<a href="/#sec-download">Download</a>
+		<a href="/docs/">Documentation</a>
+		<a href="/help/">Help &amp; Support</a>
+		<a href="/contributing/">Contributing</a>
+		<a href="https://github.com/luakit/luakit" target="_blank">GitHub</a>
+	</nav>
+	<section>
+		<div class="container">
+			
+<h2>Luakit 2.4.0 - latest release</h2>
+
+<h3>Added</h3>
+
+<ul>
+    <li>Manage dom events with luakit signals.</li>
+    <li>An enable_pdfjs setting to go back to letting viewpdf handle PDFs.</li>
+    <li><code>&lt;summary&gt;</code> elements are now hinted as clickable.</li>
+    <li><code>eval_js</code> of the <code>page</code> module can now return wrapped JavaScript function to Lua.</li>
+</ul>
+
+<h3>Changed</h3>
+
+<ul>
+    <li><p>Don't compress man page. This should be done by maintainers.</p></li>
+    <li><p>Removed now unsupported/ignored load-icons-ignoring-image-load-setting.</p></li>
+    <li><p>Removed now unsupported/ignored offline<em>web</em>application_cache setting.</p></li>
+    <li><p>The <code>hide_scrollbars</code> module is now not loaded as a part of the default
+    <code>rc.lua</code> as hiding the scrollbars causes issues with smooth scrolling.</p></li>
+    <li><p>The hardware acceleration policy setting now defaults to always since
+    on-demand has been reported to cause rendering issues on at least some
+    systems.</p></li>
+    <li><p>The default WebKit data and cache subdirectories are now used. If you use any
+    website which uses IndexedDB or local storage and wish to retain the saved
+    information, you will need to manually move the corresponding directories to
+    their new locations. Specifically, the mapping is as follows:</p></li>
+    <li><p><code>$XDG_DATA_HOME/luakit/local_storage -&gt; $XDG_DATA_HOME/luakit/localstorage</code></p></li>
+    <li><p><code>$XDG_DATA_HOME/luakit/indexeddb -&gt; $XDG_DATA_HOME/luakit/databases/indexeddb</code></p></li>
+</ul>
+
+<h3>Fixed</h3>
+
+<ul>
+    <li>Fixed build in a git worktree checkout </li>
+    <li>Fixed undoclose test sequence issue</li>
+    <li>Fixed luaH_init() implicit prototype warning</li>
+    <li>Fixed refresh being needed for the correct NoScript policy to take effect.</li>
+    <li>Fixes occasional zoom_level reset on start, reset or navigation</li>
+    <li>Show proper error message when the formfiller module can't parse form.lua</li>
+    <li>Fixed the scroll widget getting stuck at 99% instead of showing "Bot"</li>
+    <li>Fixed the document property of the instance of the dom_element class to work
+    for elements that are not part of a subframe.</li>
+</ul>
+
+<h3>Contributors to this release:</h3>
+
+<ul>
+    <li>@aidanholm</li>
+    <li>@balejk</li>
+    <li>@c0dev0id</li>
+    <li>@harishnkr</li>
+    <li>@msdemlei</li>
+    <li>@rdbo</li>
+    <li>@serg-kozhemyakin</li>
+    <li>@sideeffect42</li>
+</ul>
+
+
+		</div>
+	</section>
+	<footer>
+		<div class="container">
+			<small>Copyright 2019 the luakit team</small>
+			<br>
+			<small>All written documentation and luakit code are copyright to their respective authors.</small>
+		</div>
+	</footer>
+</body>
+</html>
